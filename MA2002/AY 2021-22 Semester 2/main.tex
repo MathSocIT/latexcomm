@@ -1,0 +1,545 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[english]{babel}
+\usepackage[a4paper, portrait, lmargin=0.5in, rmargin=0.5in, tmargin=1in,bmargin=1in]{geometry} % margins
+\usepackage{fancyhdr} % headers and footers
+\usepackage{mathtools} % matrices
+\usepackage{amsthm} % QED
+\usepackage{amsmath} % augmented matrix
+\usepackage[]{amssymb} % gives us the character \varnothing
+\usepackage{hyperref} % cross-referencing commands
+\usepackage{systeme}  % to write a system of equations
+\usepackage{enumerate} % to use \begin{enumerate}[(i)/(a)/...]
+\usepackage{framed} 
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{multirow}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\usepackage{array}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\usepackage[many]{tcolorbox}
+\usepackage{soul}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.12}
+\usepgfplotslibrary{fillbetween}
+\allowdisplaybreaks
+
+\usetikzlibrary{backgrounds}
+% background color definition from pgfmanual-en-macros.tex
+\definecolor{graphicbackground}{rgb}{0.96,0.96,0.8}
+% key to change color
+\pgfkeys{/tikz/.cd,
+  background color/.initial=graphicbackground,
+  background color/.get=\backcol,
+  background color/.store in=\backcol,
+}
+\tikzset{background rectangle/.style={
+    fill=\backcol,
+  },
+  use background/.style={    
+    show background rectangle
+  }
+}
+
+\pagestyle{fancy}
+\lhead{PYP Solutions Initiative • NUS MATHSOC}
+\rhead{\thepage}
+% \cfoot{} % could use this but feels irritating seeing this
+\cfoot{Calculus}
+
+\title{%
+  MA2002 - Calculus Suggested Solutions  \\ 
+  \large (Semester 2: AY2021/22) \\ }
+    
+\author{%
+  \large
+    Written by: Agrawal Naman \\
+    Audited by: Qi Fulin, Thang Pang Ern}
+
+\begin{document}
+
+
+
+\maketitle %This command prints the title based on information entered above.
+
+
+
+\section*{Question 1}
+(a) Use only the $\epsilon, \delta$ − definition of limit, prove that $\displaystyle\lim_{x \xrightarrow{} 2} \cfrac{3x^2-x-4}{x+1}=2$.
+\newline
+\newline
+Ans:
+\\ We need to find a $\delta > 0$ such that for all $\epsilon > 0$,
+$$0 < |x-2| < \delta \implies \Bigg | \cfrac{3x^2-x-4}{x+1} - 2 \Bigg | < \epsilon$$
+We can set,
+$$\delta = \min \left\{3, \cfrac{\epsilon}{3}\right\}$$
+Thus, for $0 < |x-2| < \delta $,
+\begin{align*}
+    \Bigg | \cfrac{3x^2-x-4}{x+1} - 2 \Bigg |
+    & = \Bigg | \cfrac{3x^2-x-4-2x-2}{x+1}\Bigg | \\
+    & = \Bigg | \cfrac{3x^2-3x-6}{x+1}\Bigg | \\
+    & = \Bigg | \cfrac{3(x+1)(x-2)}{x+1}\Bigg | \\
+    & = 3 | (x-2)| \\
+    & < 3 \left(\cfrac{\epsilon}{3}\right) = \epsilon
+\end{align*}
+Note we've set $\delta \leq 3$ because $ \delta \leq 3 \implies |x - 2| < 3 \implies -1 < x \implies x + 1 \neq 0 $.
+\newline
+\newline
+(b) Let $p$ and $q$ be positive constants. It is known that
+$$\lim_{x \xrightarrow{} 0} \cfrac{1}{px-\sin x} \int_{0}^{x} \cfrac{t^2}{\sqrt{q+t^2}}dt = 3$$
+Find the values of $p$ and $q$.
+\newline
+\newline
+Ans:
+$$\lim_{x \xrightarrow{} 0} \cfrac{1}{px-\sin x} \int_{0}^{x} \cfrac{t^2}{\sqrt{q+t^2}}dt = 3$$
+$$\implies \lim_{x \xrightarrow{} 0} \cfrac{\displaystyle\int_{0}^{x} \cfrac{t^2}{\sqrt{q+t^2}}dt}{px-\sin x}  = 3$$
+It is clear that:
+$$x \xrightarrow{} 0 \implies \displaystyle\int_{0}^{x} \cfrac{t^2}{\sqrt{q+t^2}}dt \xrightarrow{} 0; \;\;\;\; px-\sin x \xrightarrow{} 0$$
+Therefore, we may use L'Hôpital's rule as follows:
+$$\lim_{x \xrightarrow{} 0} \cfrac{\cfrac{d}{dx}\displaystyle\int_{0}^{x} \cfrac{t^2}{\sqrt{q+t^2}}dt}{\cfrac{d}{dx} (px-\sin x)}  = 3$$
+$$\implies \lim_{x \xrightarrow{} 0} \cfrac{\cfrac{x^2}{\sqrt{q+x^2}}}{p-\cos x}  = 3$$
+$$\implies \lim_{x \xrightarrow{} 0} \cfrac{x^2}{(p-\cos x)\sqrt{q+x^2}}  = 3$$
+Clearly, if $p \neq 1; \; q \neq 0$, the above limit will evaluate to 0, irrespective of the value of $p$ and $q$. Thus, $p = 1$. So, we get:
+\begin{align*}
+  \lim_{x \xrightarrow{} 0} \cfrac{1}{px-\sin x} \int_{0}^{x} \cfrac{t^2}{\sqrt{q+t^2}}\; dt = 3 
+  &\implies  \lim_{x \xrightarrow{} 0} \cfrac{\cfrac{x^2}{\sqrt{q+x^2}}}{1-\cos x} = 3 \\
+  &\implies  \lim_{x \xrightarrow{} 0} \cfrac{x^2 (1 + \cos x)}{\sqrt{q+x^2}(1-\cos x)(1+\cos x)} = 3 \\
+  &\implies  \lim_{x \xrightarrow{} 0} \cfrac{x^2 }{\sin ^2 x} \lim_{x \xrightarrow{} 0} \cfrac{(1 + \cos x)}{\sqrt{q+x^2}} = 3 \\
+  &\implies  \left(\lim_{x \xrightarrow{} 0} \cfrac{x}{\sin x} \right)^2 \lim_{x \xrightarrow{} 0} \cfrac{(1 + \cos x)}{\sqrt{q+x^2}} = 3 \\
+  &\implies 1 \cdot \cfrac{2}{\sqrt{q}} = 3 \\
+  &\implies q = \cfrac{4}{9} \\
+\end{align*}
+Thus the solution is $p = 1; \; q =   \cfrac{4}{9}$.
+\newpage
+\section*{Question 2}
+Evaluate the following limits.  
+\newline
+\newline
+(a) $\displaystyle\lim_{x \xrightarrow{} 0} (\cos x)^{\cfrac{1}{\ln{(1+x^2)}}}$
+\newline
+\newline
+Ans:
+$$\displaystyle\lim_{x \xrightarrow{} 0} (\cos x)^{\cfrac{1}{\ln{(1+x^2)}}}$$
+$$= \displaystyle\lim_{x \xrightarrow{} 0} \exp{\left( \ln{ \left((\cos x)^{\cfrac{1}{\ln{(1+x^2)}}} \right)} \right) }$$
+$$= \exp{\left(\displaystyle\lim_{x \xrightarrow{} 0} \ln{\left((\cos x)^{\cfrac{1}{\ln{(1+x^2)}}}\right)}\right)}$$
+$$= \exp{\left(\displaystyle\lim_{x \xrightarrow{} 0} \cfrac{\ln \cos x}{\ln{(1+x^2)}}\right)}$$
+It is known that:
+$$x \xrightarrow{} 0 \implies \ln \cos x \xrightarrow{} \ln 1 = 0; \;\;\; x \xrightarrow{} 0 \implies \ln (1 + x^2) \xrightarrow{}  \ln 1 = 0$$
+Therefore, we may use L'Hôpital's rule as follows:
+$$\exp{\left(\displaystyle\lim_{x \xrightarrow{} 0} \cfrac{\ln (\cos x)}{\ln{(1+x^2)}}\right)} = \exp{\left(\displaystyle\lim_{x \xrightarrow{} 0} \cfrac{\cfrac{d(\ln (\cos x))}{dx}}{\cfrac{d(\ln{(1+x^2))}}{dx}}\right)}
+= \exp{\left(\displaystyle\lim_{x \xrightarrow{} 0} -\cfrac{1}{2} \cdot \cfrac{\sin x}{x} \cdot \cfrac{1+x^2}{\cos x}\right)}$$
+$$= \exp{\left( -\cfrac{1}{2} \cdot \displaystyle\lim_{x \xrightarrow{} 0} \cdot \cfrac{\sin x}{x} \;\displaystyle\lim_{x \xrightarrow{} 0} \cfrac{1+x^2}{\cos x}\right)}
+= \exp{\left( -\cfrac{1}{2}\right)}$$
+\newline
+\newline
+(b) $\displaystyle\lim_{x \xrightarrow{} 1} \left(\cfrac{x}{x-1}-\cfrac{1}{\ln x}\right)$
+\newline
+\newline
+Ans:
+$$\displaystyle\lim_{x \xrightarrow{} 1} \left(\cfrac{x}{x-1}-\cfrac{1}{\ln x}\right) = \displaystyle\lim_{x \xrightarrow{} 1} \left(\cfrac{x \ln x - x + 1}{(x-1) \ln x}\right)$$
+It is known that:
+$$x \xrightarrow{} 1 \implies x \ln x - x+ 1 \xrightarrow{} 0; \;\;\; x \xrightarrow{} 1 \implies (x-1) \ln x \xrightarrow{} 0$$
+Therefore, we may use L'Hôpital's rule as follows:
+\begin{align*}
+    \displaystyle\lim_{x \xrightarrow{} 1} \left(\cfrac{x}{x-1}-\cfrac{1}{\ln x}\right) 
+    &= \displaystyle\lim_{x \xrightarrow{} 1} \left(\cfrac{x \ln x - x + 1}{(x-1) \ln x}\right) \\
+    &= \displaystyle\lim_{x \xrightarrow{} 1} \left(\cfrac{\cfrac{d}{dx} (x \ln x - x + 1)}{\cfrac{d}{dx} (x\ln x - \ln x)}\right) \\
+    &= \displaystyle\lim_{x \xrightarrow{} 1} \left(\cfrac{1 + \ln x - 1}{\cfrac{x-1}{x} + \ln x}\right) \\
+    &= \displaystyle\lim_{x \xrightarrow{} 1} \left(\cfrac{x \ln x}{x-1 + x\ln x}\right)
+\end{align*}
+It is known that:
+$$x \xrightarrow{} 1 \implies x \ln x \xrightarrow{} 0; \;\;\; x \xrightarrow{} 1 \implies x-1 + x\ln x \xrightarrow{} 0$$
+Therefore, we may use L'Hôpital's rule as follows:
+\begin{align*}
+    \displaystyle\lim_{x \xrightarrow{} 1} \left(\cfrac{x}{x-1}-\cfrac{1}{\ln x}\right) 
+    &= \displaystyle\lim_{x \xrightarrow{} 1} \left(\cfrac{x \ln x}{x-1 + x\ln x}\right) \\
+    &= \displaystyle\lim_{x \xrightarrow{} 1} \left(\cfrac{1 + \ln x}{1+ \ln x + 1}\right) \\
+\end{align*}
+Taking the limit,
+$$\displaystyle\lim_{x \xrightarrow{} 1} \left(\cfrac{x}{x-1}-\cfrac{1}{\ln x}\right)  = \displaystyle\lim_{x \xrightarrow{} 1} \left(\cfrac{1 + \ln x}{1+ \ln x + 1}\right) = 0.5$$
+
+\newpage
+\section*{Question 3}  
+(a) Let $f(x) = e^{2\sqrt{x}}$, where $x > 0$. It is known that $f''(x)$ may be expressed as:
+$$f''(x) = \cfrac{ke^{2\sqrt{x}}(2\sqrt{x}-1)}{x\sqrt{x}}$$
+where $k$ is a constant. Find the value of $k$.  
+\newline
+\newline
+Ans:
+\\ Calculating the first derivative:
+\begin{align*}
+    f'(x)
+    &= \cfrac{d}{dx} e^{2\sqrt{x}} \\
+    &= e^{2\sqrt{x}} \cfrac{d}{dx} (2\sqrt{x})\\
+    &= e^{2\sqrt{x}} \cfrac{2}{2\sqrt{x}}\\
+    &= \cfrac{e^{2\sqrt{x}}}{\sqrt{x}}
+\end{align*}
+Calculating the second derivative:
+\begin{align*}
+    f''(x)
+    &= \cfrac{d}{dx} \cfrac{e^{2\sqrt{x}}}{\sqrt{x}} \\
+    &= \cfrac{\sqrt{x} \cfrac{d}{dx}e^{2\sqrt{x}} - e^{2\sqrt{x}}\cfrac{d}{dx} \sqrt{x} }{x} \\
+    &= \cfrac{\sqrt{x} \cfrac{e^{2\sqrt{x}}}{\sqrt{x}} - e^{2\sqrt{x}}\cfrac{1}{2 \sqrt{x}} }{x} \\
+    &= \cfrac{2\sqrt{x} e^{2\sqrt{x}} - e^{2\sqrt{x}}}{2x\sqrt{x}} \\
+    &= \cfrac{ e^{2\sqrt{x}} (2\sqrt{x} - 1)}{2x\sqrt{x}} \\
+\end{align*}
+On comparing the above equation with the equation given in question, we get:
+$$k = \cfrac{1}{2}$$
+\newline
+\newline
+(b) Prove that $x-\cfrac{x^2}{2} < \ln (1+x) < x$ for all $x > 0$.
+\newline
+\newline
+Ans:
+\\ First, we show that $x-\cfrac{x^2}{2} < \ln (1+x)$ for all $x > 0$. Let,
+$$g(x) = x-\cfrac{x^2}{2} - \ln (1+x)$$
+Thus,
+$$g'(x) = 1 - x - \cfrac{1}{1+x} = \cfrac{1-x^2 - 1}{1+x} = -\cfrac{x^2}{1+x}$$
+For $x > 0$, $1 + x > 0$ and $x^2 > 0$. Thus, $-\cfrac{x^2}{1 + x} < 0 \implies g'(x) < 0$. Thus, $g(x)$ is a decreasing function for $x > 0$. Moreover,
+$$g(0) = 0$$
+Thus, $g(x)$ will have a value lesser than $0$ for all $x > 0$. Hence for all $x > 0$,
+$$g(x) < 0 \implies x-\cfrac{x^2}{2} - \ln (1+x) < 0 \implies x-\cfrac{x^2}{2} < \ln (1+x)$$
+Next, we show  that $\ln (1+x) < x$ for all $x > 0$. Let,
+$$h(x) = \ln (1+x) - x$$
+Thus,
+$$h'(x) = \cfrac{1}{1+x} - 1 = \cfrac{1-x - 1}{1+x} = -\cfrac{x}{1+x}$$
+For $x > 0$, $1 + x > 0$. Thus, $-\cfrac{x}{1 + x} < 0 \implies h'(x) < 0$. Thus, $h(x)$ is a decreasing function for $x > 0$. Moreover,
+$$h(0) = 0$$
+Thus, $h(x)$ will have a value lesser than $0$ for all $x > 0$. Hence for all $x > 0$,
+$$h(x) < 0 \implies \ln (1+x) - x < 0 \implies \ln (1+x) < x$$
+In view of the above inequalities, we get that for all $x > 0$,
+$$x-\cfrac{x^2}{2} < \ln (1+x) < x$$
+
+\begin{tcolorbox}
+\textbf{Remark:} An alternative way to prove the above inequality (taught in Analysis)
+Let $f(x) = \ln (1 + x)$
+By Maclaurin Expansion, 
+$$\ln (1 + x) = x - \cfrac{x^2}{2} + \cfrac{x^3}{3} - \cfrac{x^4}{4} + \cdots$$
+By Taylor's theorem
+$$\ln (1 + x) = P_0 (x) + R_0 (x) = x + R_0 (x)$$
+By Mean Value Theorem $\exists c \in (0, x)$ such that,
+$$f(x) - f(0) = f'(c) x \implies \ln (1 + x) = f'(c) x = \cfrac{x}{1 + c}$$
+Further, $0 < c < x \implies \cfrac{1}{1 + x} < \cfrac{1}{1 + c} < 1 $. Thus,
+$$\ln ( 1 + x ) < x$$
+Similarly $\exists c \in (0, x)$ such that 
+$$f(x) - x + \cfrac{x^2}{2} - 0 = x \left( \cfrac{1}{1 + c} - 1 + c \right) = \cfrac{xc^2}{1 + c} > 0$$
+Thus,
+$$\ln (1 + x) > x - \cfrac{x^2}{2}$$
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\textbf{Remark:} An alternative way to prove the above inequality
+Since, $x > 0$,
+$$\ln (1 + x) = \int_0^x \cfrac{1}{1 + t} \; dt < \int_0^x \; dt = x$$
+Also, we may show that:
+$$t > 0 \implies t^2 > 0 \implies 1 > 1 - t^2 \implies \cfrac{1}{1 + t} > 1 - t$$
+Thus, 
+$$\ln (1 + x) = \int_0^x \cfrac{1}{1 + t} \; dt > \int_0^x (1 - t) \; dt = x - \cfrac{x^2}{2}$$
+\end{tcolorbox}
+
+
+
+\newpage
+\section*{Question 4}
+Evaluate the following definite integrals. 
+\newline
+\newline
+(a) $\displaystyle\int_{1}^{2} x \sqrt{2-x} \; dx$
+\newline
+\newline
+Ans:
+\begin{align*}
+    \displaystyle\int_{1}^{2} x \sqrt{2-x} \; dx
+    &= \left[  x\displaystyle\int\sqrt{2-x} \; dx - \displaystyle\int (x)' \left(\displaystyle\int \sqrt{2-x} \; dx\right) \; dx  \right]^2_1 \\
+    &= \left[  -\cfrac{2x}{3}(2-x)^{3/2} - \displaystyle\int -\cfrac{2}{3}(2-x)^{3/2} \; dx  \right]^2_1 \\
+    &= \left[  -\cfrac{2x}{3}(2-x)^{3/2} - \cfrac{4}{15}(2-x)^{5/2}  \right]^2_1 \\
+    &= \cfrac{2}{3}(2-1)^{3/2} + \cfrac{4}{15}(2-1)^{5/2}  \\
+    &= \cfrac{2}{3} + \cfrac{4}{15}  \\
+    & = \cfrac{14}{15}
+\end{align*}
+\newline
+\newline
+(b) $\displaystyle\int_{0}^{36} |\sqrt{x}-2| dx$
+\newline
+\newline
+Ans:
+$$
+|\sqrt{x}-2| = \Bigg\{ 
+\begin{array}{cc}
+     & \sqrt{x}-2, \;\;\;\;\;\;\; \sqrt{x} \geq 2 \\
+     &  2-\sqrt{x}, \;\;\;\;\;\;\; \sqrt{x} < 2
+\end{array}
+= \Bigg\{ 
+\begin{array}{cc}
+     & \sqrt{x}-2, \;\;\;\;\;\;\; x \geq 4 \\
+     &  2-\sqrt{x}, \;\;\;\;\;\;\; x < 4
+\end{array}
+$$
+Therefore,
+\begin{align*}
+    \displaystyle\int_{0}^{36} |\sqrt{x}-2| dx
+    & = \displaystyle\int_{0}^{4} (2-\sqrt{x}) dx + \displaystyle\int_{4}^{36} (\sqrt{x}-2) dx \\
+    & = \left[  2x - \cfrac{2}{3} x^{3/2}   \right]_0^4 + \left[  \cfrac{2}{3} x^{3/2} - 2x   \right]_4^{36} \\
+    & =  8 - \cfrac{16}{3} +  \left(\cfrac{2}{3}\right) 6^3 - 72 - \cfrac{16}{3} + 8 \\
+    & = 16 - \cfrac{32}{3} - 72 + 144 \\
+    & = 88 - \cfrac{32}{3} \\
+    & = \cfrac{232}{3}
+\end{align*}
+
+
+
+
+
+\newpage
+\section*{Question 5}
+(a) It is known that $\displaystyle\int_1^e x^2 (\ln x)^2 dx = \cfrac{1}{27} (Ae^3 + B)$, where $A$ and $B$ are integers. Find the values
+of $A$ and $B$.
+\newline
+\newline
+Ans:
+\begin{align*}
+    \displaystyle\int_1^e x^2 (\ln x)^2 \; dx
+    &= \left[  (\ln x)^2 \displaystyle\int x^2 \; dx - \displaystyle\int ((\ln x)^2)' \left(\displaystyle\int x^2  \; dx\right) \; dx  \right]^e_1 \\
+    &= \left[  \cfrac{x^3}{3}(\ln x)^2  - 2 \displaystyle\int \cfrac{\ln x}{x} \cdot \cfrac{x^3}{3} \; dx  \right]^e_1 \\
+    &= \left[  \cfrac{x^3}{3}(\ln x)^2  - \cfrac{2}{3} \displaystyle\int x^2 \ln x \; dx  \right]^e_1 \\
+    &= \left[  \cfrac{x^3}{3}(\ln x)^2  - \cfrac{2}{3} \left(
+     \ln x \displaystyle\int x^2 \; dx - \displaystyle\int ( \ln x)' \left(\displaystyle\int x^2 \; dx \right) \; dx
+    \right)  \right]^e_1 \\
+    &= \left[  \cfrac{x^3}{3}(\ln x)^2  - \cfrac{2}{3} \left(
+    \cfrac{x^3}{3} \ln x  - \displaystyle\int \cfrac{1}{x} \cdot \cfrac{x^3}{3} \; dx
+    \right)  \right]^e_1 \\
+    &= \left[  \cfrac{x^3}{3}(\ln x)^2  - \cfrac{2}{3} \left(
+    \cfrac{x^3}{3} \ln x  - \cfrac{1}{3} \displaystyle\int x^2 \; dx
+    \right)  \right]^e_1 \\
+    &= \left[  \cfrac{x^3}{3}(\ln x)^2  - \cfrac{2x^3}{9} \ln x + \cfrac{2x^3}{27} \right]^e_1 \\
+    &= \left[  \left(9(\ln x)^2  - 6 \ln x + 2\right) \cfrac{x^3}{27} \right]^e_1 \\
+    &= \cfrac{5 e^3}{27} - \cfrac{2}{27} \\
+    &= \cfrac{1}{27}( 5 e^3 - 2) \\
+\end{align*}
+Thus, we get:
+$$A = 5, \;\; B = -2$$
+\newline
+\newline
+(b) Let $f(x) = (3+x)\displaystyle\int_1^{e^{2x}} \cfrac{1}{\sqrt{1+\ln t}} \; dt$. Find the value of $f'(0)$.
+\newline
+\newline
+Ans:
+\begin{align*}
+    f'(x)
+    &= \cfrac{d}{dx} \left[(3+x)\displaystyle\int_1^{e^{2x}} \cfrac{1}{\sqrt{1+\ln t}} \; dt \right] \\
+    &= (3+x) \cfrac{d}{dx} \left[\displaystyle\int_1^{e^{2x}} \cfrac{1}{\sqrt{1+\ln t}} \; dt \right] + \displaystyle\int_1^{e^{2x}} \cfrac{1}{\sqrt{1+\ln t}} \; dt\\
+    &= (3+x) \cfrac{d}{dx} (e^{2x}) \cfrac{1}{\sqrt{1+\ln (e^{2x})}} + \displaystyle\int_1^{e^{2x}} \cfrac{1}{\sqrt{1+\ln t}} \; dt \\
+    &= \cfrac{2(3+x)e^{2x} }{\sqrt{1+2x}} + \displaystyle\int_1^{e^{2x}} \cfrac{1}{\sqrt{1+\ln t}} \; dt
+\end{align*}
+Thus,
+$$f'(0) = \cfrac{2(3)}{\sqrt{1}} + \displaystyle\int_1^{e^{0}} \cfrac{1}{\sqrt{1+\ln t}} \; dt = 6 +\displaystyle\int_1^{1} \cfrac{1}{\sqrt{1+\ln t}} \; dt  = 6 + 0 = 6$$
+
+
+\newpage
+\section*{Question 6}
+(a) Let $R$ be the region bounded by the graphs of $y = \cfrac{1}{x}, y = \sqrt{x}$ and the line $x = 4$. Find the
+volume of solid formed by rotating $R$ completely about the $y$-axis. 
+\newline
+\newline
+Ans:
+\newline
+\begin{center}
+  \begin{tikzpicture}
+
+   \begin{axis}[
+   		minor tick num=3,
+%  axis y line=left,
+%  axis x line=bottom,
+  xlabel=$x$,ylabel=$y$,
+%  yticklabels=\empty,
+  ymax=5,
+  ymin=0,
+  xmin = 0,
+  xmax = 5,
+  grid = both,
+  minor tick num = 1,
+  major grid style = {lightgray},
+  minor grid style = {lightgray!25}]
+
+    \addplot [domain=0:10, samples=100, name path = f, thick, color=red]
+        {1/x};
+    \addplot [domain=0:10, samples=100, name path=g, thick, color=blue]
+        {x^(0.5)};
+    \addplot[thick, samples=50, smooth,domain=0:6,green] coordinates {(4, 0)(4, 5)};
+    \addplot[grey!50, opacity=0.4] fill between[of=f and g, soft clip={domain=1:4}];
+   \end{axis}
+
+  \end{tikzpicture}
+\end{center}
+\newline
+Using the cylindrical shell method, the volume of the solid is given by:
+\begin{align*}
+    V 
+    &= \displaystyle\int_{1}^4 2 \pi x(\sqrt{x} - \cfrac{1}{x}) \; dx \\
+    &= 2\pi \left[\cfrac{2}{5}x^{5/2}\right]_1^4 - 2\pi\left[x\right]_1^4 \\
+    &= \cfrac{128 \pi}{5}- \cfrac{4 \pi}{5} - 6 \pi \\
+    &= \cfrac{94\pi}{5}
+\end{align*}
+\newline
+\newline
+(b) A curve $C$ has equation $y = \sec (2x)$, where $0 \leq x \leq \cfrac{\pi}{6}$. Find the length of the curve $C$.
+\newline
+\newline
+Ans:
+The length of the curve is given by:
+\begin{align*}
+    L
+    &= \displaystyle\int_0^{\pi/6} \sqrt{1+\left(\cfrac{dy}{dx}\right)^2} \; dx \\
+    &= \displaystyle\int_0^{\pi/6} \sqrt{1+\left(\cfrac{d}{dx} \sec (2x)\right)^2} \; dx \\
+    &= \displaystyle\int_0^{\pi/6} \sqrt{1+\left(2\sec (2x) \tan (2x)\right)^2} \; dx \\
+    &= \displaystyle\int_0^{\pi/6} \sqrt{4\sec^{2} (2x) \tan^{2} (2x) + 1} \; dx \\
+    &= \displaystyle\int_0^{\pi/6} \sqrt{4\sec^{4} (2x) - 4 \sec^{2} (2x) + 1} \; dx \\
+    &= \displaystyle\int_0^{\pi/6} \sqrt{(2 \sec^{2} (2x) -1)^2} \; dx \\
+\end{align*}
+Moreover,  $0 \leq x \leq \cfrac{\pi}{6} \implies \sec 0 \leq \sec (2x) \leq \sec \cfrac{\pi}{3} \implies 1  \leq  \sec^2 (2x) \leq 4 \implies 1 \leq 2 \sec^{2} (2x) -1 \leq 7 \implies 2 \sec^{2} (2x) -1 > 0$. Thus,
+\begin{align*}
+    L
+    &= \displaystyle\int_0^{\pi/6} \sqrt{(2 \sec^{2} (2x) -1)^2} \; dx \\
+    &= \displaystyle\int_0^{\pi/6} (2 \sec^{2} (2x) -1) \; dx \\
+    &= 2 \displaystyle\int_0^{\pi/6} \sec^{2} (2x) \; dx - \displaystyle\int_0^{\pi/6} \; dx \\
+    &= \left[ \tan (2x) - x\right]_0^{\pi/6} \\
+    &= \tan \cfrac{\pi}{3} - \cfrac{\pi}{6} \\
+    &= \sqrt{3} - \cfrac{\pi}{6}
+\end{align*}
+
+\newpage
+\section*{Question 7}
+(a) Let $y$ denote the solution of the differential equation
+$$x^2 \cfrac{dy}{dx}- xy = 1$$
+with $x > 0$ that satisfies $y = 1$ when $x = 1$. Find the value of $y$ when $x = 2$. 
+\newline
+\newline
+Ans:
+$$x^2 \cfrac{dy}{dx}- xy = 1 \implies \cfrac{dy}{dx} - \cfrac{y}{x} = \cfrac{1}{x^2}$$
+Thus, the given differential equation is a linear differential equation, and can be calculated by finding its integrating factor:
+\begin{align*}
+    I.F.
+    &= \exp{\left(\displaystyle\int - \cfrac{1}{x} \; dx\right)} \\
+    &= \exp{\left(-\displaystyle\int \cfrac{1}{x} \; dx\right)} \\
+    &= \exp{\left(\ln \cfrac{1}{x}\right)} \\
+    &= \cfrac{1}{x}
+\end{align*}
+Thus, the solution of the differential equation is given by:
+$$\cfrac{y}{x} = \displaystyle\int \cfrac{1}{x} \cdot \cfrac{1}{x^2} \; dx = \displaystyle\int \cfrac{1}{x^3} \; dx$$
+$$\implies \cfrac{y}{x} + \cfrac{1}{2x^2} =  c$$
+Since the point $(1,1)$ satisfies the equation, 
+$$1 + \cfrac{1}{2} = c \implies c = \cfrac{3}{2}$$
+Thus, we get the following solution to the differential equation:
+$$\cfrac{y}{x} + \cfrac{1}{2x^2} = \cfrac{3}{2}, \;\;\; x > 0$$
+For $x = 2$, we arrive at the following solution:
+$$\cfrac{y}{2} + \cfrac{1}{8} = \cfrac{3}{2}$$
+$$\implies 4y + 1 = 12$$
+$$\implies y = \cfrac{11}{4}$$
+\newline
+\newline
+(b) Two chemicals $A$ and $B$ react to form the substance $X$ according to the differential equation
+$$\cfrac{dQ}{dt} = k(100 - Q)(50 - Q) $$
+where $Q = Q(t)$ denotes the amount of substance $X$ per unit volume at time $t$, and $k$ is a positive constant. Initially, no amount of $X$ is present. Derive an expression for the amount of $X$ per unit volume at time $t$.
+\newline
+\newline
+Ans:
+\\ The given differential equation is variable separable. The variables can be separated as follows:
+$$\cfrac{dQ}{dt} = k(100 - Q)(50 - Q) $$
+$$\implies \cfrac{dQ}{(100 - Q)(50 - Q)} = kdt $$
+Let $Q$ be the amount of substance at time $t$. Thus, integrating both sides gives us:
+$$\displaystyle\int \cfrac{dQ}{(100 - Q)(50 - Q)} = \displaystyle\int kdt $$
+$$\implies \displaystyle\int \cfrac{dQ}{(100 - Q)(50 - Q)} = kt + c_1 $$
+Solving the integral,
+\begin{align*}
+    \displaystyle\int \cfrac{dQ}{(100 - Q)(50 - Q)}
+    &= \displaystyle\int \cfrac{dQ}{Q^2 - 150Q + 5000} \\
+    &= \displaystyle\int \cfrac{dQ}{Q^2 - 150Q + 5625 - 625} \\
+    &= \displaystyle\int \cfrac{dQ}{(Q-75)^2 - (25)^2} \\
+    &= \cfrac{1}{50}
+    \log \left(\cfrac{Q-75-25}{Q-75+25}\right) + c_2
+     \\
+    &= \cfrac{1}{50}
+    \log \left(\cfrac{Q-100}{Q-50}\right) + c_2
+     \\
+\end{align*}
+Thus, the solution of the differential equation is:
+$$\cfrac{1}{50} \log \left(\cfrac{Q-100}{Q-50}\right) + c =kt $$
+Since, the amount is 0 at $t = 0$, we get:
+$$c = k(0) - \cfrac{1}{50} \log \left(\cfrac{0-100}{0-50}\right)\implies c = - \cfrac{1}{50} \log 2$$
+Thus, we get the following solution
+$$\log \left(\cfrac{Q-100}{Q-50}\right) =50kt + \log 2 $$
+$$\implies \cfrac{Q-100}{Q-50} = \exp {\left(50kt + \log 2\right)} $$
+$$\implies Q = \cfrac{50\exp {\left(50kt + \log 2\right)}-100}{\exp {\left(50kt + \log 2\right)} - 1} $$
+Thus the amount of $X$ per unit volume at time $t$, is given by:
+$$Q = \cfrac{50\exp {\left(50kt + \log 2\right)}-100}{\exp {\left(50kt + \log 2\right)} - 1} $$
+
+
+
+
+
+\section*{Question 8}
+(a) Let $f(x)$ be an even function. Suppose $f'(0)$ exists. Prove that $f'(0) = 0$.  
+\newline
+\newline
+Ans:
+\\ Since $f'(0)$ exists, the right hand and the left hand derivatives should be equal. Thus,
+$$f'(0) = \lim_{h \xrightarrow{} 0} \cfrac{f(0 + h) - f(0)}{h} = \lim_{h \xrightarrow{} 0} \cfrac{f(0 - h) - f(0)}{-h} $$
+$$ \implies \lim_{h \xrightarrow{} 0} \cfrac{f(h) - f(0)}{h} = \lim_{h \xrightarrow{} 0} \cfrac{f(-h) - f(0)}{-h} $$
+$$ \implies \lim_{h \xrightarrow{} 0} \cfrac{f(h) - f(0)}{h} + \lim_{h \xrightarrow{} 0} \cfrac{f(-h) - f(0)}{h} = 0$$
+Moreover, since $f$ is an even function, $f(h) = f(-h)$. Thus, 
+$$ \lim_{h \xrightarrow{} 0} \cfrac{f(h) - f(0)}{h} + \lim_{h \xrightarrow{} 0} \cfrac{f(h) - f(0)}{h} = 0$$
+$$ \implies 2\lim_{h \xrightarrow{} 0} \cfrac{f(h) - f(0)}{h} = 0$$
+$$ \implies 2f'(0) = 0$$
+$$ \implies f'(0) = 0$$
+\newline
+\newline
+(b) Let $f$ be a function defined on a closed interval $[a, b]$. We say that $f$ is differentiable at $x = a$ if 
+$f'_{+}(a) = \displaystyle\lim_{h \xrightarrow{} 0^{+}} \cfrac{f(a + h) - f(a)}{h}$ exists. Similarly, we say that $f$ is differentiable at $x = b$ if
+$f'_{-}(b) = \displaystyle\lim_{h \xrightarrow{} 0^{-}} \cfrac{f(b + h) - f(b)}{h}$ exists. Let $c \in (a, b)$ and $f$ is said to be differentiable at $x = c$ if 
+$f'(c) = \displaystyle\lim_{h \xrightarrow{} 0} \cfrac{f(c + h) - f(c)}{h}$ exists. A function is said to be differentiable on an interval $I$ if $f$ is differentiable at every point in the interval $I$. Let $f$ be a differentiable function on $[a, b]$. Suppose $f'_{+}(a) > 0, f'_{-}(b) > 0$ and $f(a) \geq f(b)$. Prove that the equation $f'(x) = 0$ has at least two distinct roots in $(a, b)$.  
+(Hint: Use Fermat Theorem.)
+\newline
+\newline
+Ans:
+\\ We need to show that $f$ has at least 2 local extrema in the interval $(a, b)$. First, we assume that $f$ has no local maxima in $(a, b)$. Since $f$ is differentiable in $I$, and hence continuous, this would mean that:
+$$\nexists \;\; c \in [a, b] \;\; \text{such that} \;\; f(c) > f(a) \;\; \text{and} \;\; f(c)>f(b)$$
+Since $f(a) \geq f(b)$ our assumption would imply:
+$$\nexists \;\; c \;\; \text{such that} \;\; f(c) > f(a)$$
+This would mean that $a$ is an absolute maximum for $f(x)$ for $x \in [a, b]$. This would mean, that for $h > 0$,
+$$f(a+h) < f(a) \implies \cfrac{f(a + h) - f(a)}{h} < 0 \implies  \displaystyle\lim_{h \xrightarrow{} 0^{+}} \cfrac{f(a + h) - f(a)}{h} < 0 \implies f'_{+}(a) < 0$$
+However, this contradicts the given statement that  $f'_{+}(a) > 0$. Thus, $f$ has at least one local maximum in $(a, b)$.
+Next, we assume that $f$ has no local minimum in $(a, b)$. Since $f$ is differentiable in $I$, and hence continuous, this would mean that:
+$$\nexists \;\; c \in [a, b] \;\; \text{such that} \;\; f(c) < f(a) \;\; \text{and} \;\; f(c)<f(b)$$
+Since $f(a) \geq f(b)$ our assumption would imply:
+$$\nexists \;\; c \;\; \text{such that} \;\; f(c) < f(b)$$
+This would mean that $b$ is an absolute minimum for $f(x)$ for $x \in [a, b]$. This would mean, that for $h < 0$,
+$$f(b+h) < f(b) \implies \cfrac{f(b + h) - f(b)}{h} < 0 \implies  \displaystyle\lim_{h \xrightarrow{} 0^{-}} \cfrac{f(b + h) - f(b)}{h} < 0 \implies f'_{-}(b) < 0$$
+However, this contradicts the given statement that  $f'_{-}(b) > 0$. Thus, $f$ has at least one local minimum in $(a, b)$.
+\\ In view of the above statements, $f$ has at least 2 local extrema in $(a, b)$. Thus, by Fermat's theorem (given that $f$ is a differentiable, hence continuous function in $I$), there exists at least 2 points in $(a, b)$, where $f'(x) = 0$. Thus, $f'(x) = 0$ has at least two distinct roots in $(a, b)$.
+\newline
+\newline
+\newline
+\vspace{5pt}
+\hrule
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
