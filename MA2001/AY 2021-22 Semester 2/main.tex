@@ -1,0 +1,740 @@
+% pre-setting
+\documentclass[12pt]{amsart}
+\usepackage[toc,page]{appendix}
+\usepackage{amsfonts}
+\usepackage{setspace}
+\usepackage{amssymb,amsthm,amsmath}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{mathtools}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{tikz-cd} 
+\linespread{}
+\hoffset -5pc
+\renewcommand{\baselinestretch}{1.25}
+\renewcommand{\textwidth}{40.5pc}
+\renewcommand{\arraystretch}{1.5}
+\setlength{\parskip}{0.5pc}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemmaa}[theorem]{Lemma A.}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{note}{Note}
+\newtheorem{case}{Case}[section]
+
+
+\def\mb{\mathbb}
+\def\bf{\textbf}
+\newcommand{\lf}{\lfloor}
+\newcommand{\rf}{\rfloor}
+\newcommand{\avk}{\bf v_1, \bf v_2, \ldots, \bf v_k}
+\newcommand{\awk}{\bf w_1, \bf w_2, \ldots, \bf w_k}
+\newcommand{\avkw}{\bf v_1\ \bf v_2\ \ldots\ \bf v_k}
+\newcommand{\aak}{\alpha_1, \alpha_2, \ldots, \alpha_k}
+\newcommand{\abk}{\beta_1, \beta_2, \ldots, \beta_k}
+\newcommand{\dsum}{\sum_{i=1}}
+\newcommand{\soe}{\bf{Ax}=\bf 0}
+\newcommand{\bew}{\begin{equation*}}
+\newcommand{\eew}{\end{equation*}}	
+\newcommand{\tu}{\textup}
+\newcommand{\RA}{\implies}
+\newcommand{\rA}{\rightarrow}
+\newcommand{\LA}{\Leftarrow}
+\newcommand{\lA}{\leftarrow}
+\newcommand{\LRA}{\Leftrightarrow}
+\newcommand{\lrA}{\leftrightarrow}
+\newcommand{\univ}{\mathcal U}
+\newcommand{\est}{\emptyset}
+\newcommand{\mc}{\mathcal}
+\newcommand{\union}{\cup}
+\newcommand{\inter}{\cap}
+\newcommand{\diff}{\backslash}
+\newcommand{\spa}{\textup{span}}
+\newcommand{\rank}{\textup{rank}}
+\newcommand{\nullity}{\textup{nullity}}
+
+\newcommand{\dint}[4]{\displaystyle\int_{#1}^{#2} \! #3 \, \operatorname{d} \! #4}
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\norm}[1]{\left\| #1 \right\|}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\bdf}{\begin{definition}}
+\newcommand{\edf}{\end{definition}}
+
+\DeclareMathOperator{\essinf}{essinf}
+\DeclareMathOperator{\meas}{meas}
+\DeclareMathOperator{\divv}{div}
+
+
+
+
+\begin{document}
+
+\title{Suggested Solution for MA2001 Linear Algebra I Final (AY21/22 Sem 2)}
+\author{Written by Qi Fulin\\ Audited by Agrawal Naman, Thang Pang Ern}
+
+
+
+%%% ----------------------------------------------------------------------
+%\begin{abstract}
+
+
+
+%\end{abstract}
+%%% ----------------------------------------------------------------------
+
+\maketitle
+
+%\textbf{Keywords}: {}
+\subsection*{Question 1} \ 
+
+Consider the augmented matrix of the linear system in the question. We have
+\begin{align*}
+	\left(
+	\begin{array}{ccc|c}
+		1 & 2 & 1 & a\\
+		4 & 5 & 6 & 2a\\
+		0 & -a & 2 & b
+	\end{array}
+	\right)
+	&\xrightarrow[]{R_2-4R_1}
+	\left(
+	\begin{array}{ccc|c}
+		1 & 2 & 1 & a\\
+		0 & -3 & 2 & -2a\\
+		0 & -a & 2 & b
+	\end{array}
+	\right)\\
+	&\xrightarrow[]{3R_3-aR_2}
+	\left(
+	\begin{array}{ccc|c}
+		1 & 2 & 1 & a\\
+		0 & -3 & 2 & -2a\\
+		0 & 0 & 6-2a & 3b+2a^2
+	\end{array}
+	\right).
+\end{align*}
+When $6-2a=0$, i.e. $a=3$, then if $3b+2a^2=0$, i.e. $b=-6$, the system will have infinitely many solutions since there are only two pivotal columns in the REF.
+
+\noindent When $a=3$ and $b\neq -6$, then the system will have no solution since the last column of the augmented matrix is a pivotal column. 
+
+\noindent When $a\neq 3$ and $b\in\mb R$, the system will have a unique solution since the first three columns are all pivotal.
+
+\newpage
+\subsection*{Question 2}\ 
+
+(i) We have
+\begin{align*}
+	\det(\bf A)=\left|
+	\begin{array}{cccc}
+		1 & -2 & -3 & 0\\
+		2 & -1 & 2 & 0\\
+		0 & 1 & 3 & 0\\
+		0 & 0 & 3 & 1\\
+	\end{array}
+	\right|&=(-1)^{4+4}\left|
+	\begin{array}{cccc}
+		1 & -2 & -3 \\
+		2 & -1 & 2\\
+		0 & 1 & 3\\
+	\end{array}
+	\right|\\
+	&=
+	(-1)^{2+3}\left|
+	\begin{array}{cccc}
+		1  & -3 \\
+		2  & 2\\
+	\end{array}
+	\right|+3(-1)^{3+3}
+	\left|
+	\begin{array}{cccc}
+		1 & -2 \\
+		2 & -1 \\
+	\end{array}
+	\right|\\
+	&=1
+\end{align*}
+
+(ii) Consider $(\bf A|\bf I)$. We have
+\begin{align*}
+	(\bf A|\bf I)=\left(
+	\begin{array}{cccc|cccc}
+		1 & -2 & -3 & 0 & 1 & 0 & 0 & 0\\
+		2 & -1 & 2 & 0 & 0 & 1 & 0 & 0\\
+		0 & 1 & 3 & 0 & 0 & 0 & 1 & 0\\
+		0 & 0 & 3 & 1 & 0 & 0 & 0 & 1\\
+	\end{array}
+	\right)
+	&\xrightarrow[\frac13R_2-\frac23R_1]{3R_3-R_2+2R_1}
+	\left(
+	\begin{array}{cccc|cccc}
+		1 & -2 & -3 & 0 & 1 & 0 & 0 & 0\\
+		0 & 1 & \frac83 & 0 & -\frac23 & \frac13 & 0 & 0\\
+		0 & 0 & 1 & 0 & 2 & -1 & 3 & 0\\
+		0 & 0 & 3 & 1 & 0 & 0 & 0 & 1\\
+	\end{array}
+	\right)\\
+	&\xrightarrow[R_2-\frac83R_3, R_1+2R_2-\frac73R_3]{R_4-3R_3}
+	\left(
+	\begin{array}{cccc|cccc}
+		1 & 0 & 0 & 0 & -5 & 3 & -7 & 0\\
+		0 & 1 & 0 & 0 & -6 & 3 & -8 & 0\\
+		0 & 0 & 1 & 0 & 2 & -1 & 3 & 0\\
+		0 & 0 & 0 & 1 & -6 & 3 & -9 & 1\\
+	\end{array}
+	\right)\\
+	&=(\bf I|\bf A^{-1}).
+\end{align*}
+
+(iii) Since we have $\bf B^T\bf A\bf B=\bf A$ and $\det(\bf A)\neq 0$ (as $\bf A$ is invertible), we have
+\begin{align*}
+	\det(\bf B^T)\det(\bf A)\det(\bf B)=\det(\bf A)\RA[\det(\bf B)]^2=1\RA\det(\bf B)\neq 0,
+\end{align*}
+which implies that $\bf B$ is invertible.
+
+\subsection*{Question 3}\
+
+(i) Consider $\det(\bf A-\lambda\bf I)$. We have
+\begin{align*}
+	\det(\bf A-\lambda\bf I)=\left|
+	\begin{array}{cccc}
+		-\lambda & 0 & -1 & 0\\
+		0 & -1-\lambda & 0 & 0\\
+		-1 & 0 & -\lambda & 0\\
+		0 & 0 & 0 & 1-\lambda\\
+	\end{array}
+	\right|&=
+	(1-\lambda)
+	\left|
+	\begin{array}{cccc}
+		-\lambda & 0 & -1\\
+		0 & -1-\lambda & 0\\
+		-1 & 0 & -\lambda\\
+	\end{array}
+	\right|\\
+	&=(1-\lambda)(-1-\lambda)
+	\left|
+	\begin{array}{cccc}
+		-\lambda & -1\\
+		-1 & -\lambda\\
+	\end{array}
+	\right|\\
+	&=(1-\lambda)(-1-\lambda)(\lambda^2-1)\\
+	&=(\lambda-1)^2(\lambda+1)^2.
+\end{align*}
+
+Setting $\det(\bf A-\lambda\bf I)=0$, we have $\lambda=\pm1$.
+
+(ii) Consider the linear system $(\bf A-\bf I)\bf x=\bf 0$, i.e., $\lambda=1$, where $\bf x=(a\ b\ c\ d)^T$. By Gaussian elimination, we have
+\begin{align*}
+	(\bf A-\bf I)\bf x=\bf 0\RA
+	\left\{
+	\begin{array}{l}
+		-a-c=0\\
+		-2b=0
+	\end{array}
+	\right.
+	&\implies
+	\left\{
+	\begin{array}{l}
+		a=-c\\
+		b=0
+	\end{array}
+	\right.\\
+	&\RA
+	\bf x=
+	\left(
+	\begin{array}{c}
+		a\\
+		b\\
+		c\\
+		d
+	\end{array}
+	\right)=a\left(
+	\begin{array}{c}
+		1\\
+		0\\
+		-1\\
+		0
+	\end{array}
+	\right)+d\left(
+	\begin{array}{c}
+		0\\
+		0\\
+		0\\
+		1
+	\end{array}
+	\right),
+\end{align*}
+so a basis for $E_{1}$ is $\{(1\ 0\ -1\ 0)^T, \ (0\ 0\ 0\ 1)^T\}$.
+
+Similarly, consider the linear system $(\bf A+\bf I)\bf x=\bf 0$, i.e., $\lambda=-1$. By Gaussian elimination, we have
+\begin{align*}
+	(\bf A+\bf I)\bf x=\bf 0\RA
+	\left\{
+	\begin{array}{l}
+		a-c=0\\
+		d=0
+	\end{array}
+	\right.
+	&\implies
+	\left\{
+	\begin{array}{l}
+		a=c\\
+		d=0
+	\end{array}
+	\right.\\
+	&\RA
+	\bf x=
+	\left(
+	\begin{array}{c}
+		a\\
+		b\\
+		c\\
+		d
+	\end{array}
+	\right)=a\left(
+	\begin{array}{c}
+		1\\
+		0\\
+		1\\
+		0
+	\end{array}
+	\right)+b\left(
+	\begin{array}{c}
+		0\\
+		1\\
+		0\\
+		0
+	\end{array}
+	\right),
+\end{align*}
+so a basis for $E_{-1}$ is $\{(1\ 0\ 1\ 0)^T, \ (0\ 1\ 0\ 0)^T\}$.
+
+(iii) Since $\bf P$ is orthogonal, we have $\bf P^T=\bf P^{-1}$. From $(ii)$, we know that $\bf A$ is diagonalisable. Hence, we choose
+\begin{align*}
+	\bf P=\left(
+	\begin{array}{cccc}
+		\frac1{\sqrt2} & 0 & -\frac1{\sqrt2} & 0\\
+		0 & 1 & 0 & 0\\
+		\frac1{\sqrt2} & 0 & \frac1{\sqrt2} & 0\\
+		0 & 0 & 0 & 1\\
+	\end{array}
+	\right),
+\end{align*}
+which is an orthogonal matrix whose columns form an orthogonal basis of $\mb R^4$. We now verify that $\bf P^T\bf A\bf P$ is indeed a diagonal matrix:
+\begin{align*}
+	\bf P^T\bf A\bf P=\left(
+	\begin{array}{cccc}
+		-1 & 0 & 0 & 0\\
+		0 & -1 & 0 & 0\\
+		0 & 0 & 1 & 0\\
+		0 & 0 & 0 & 1\\
+	\end{array}
+	\right).
+\end{align*}
+
+\newpage
+\subsection*{Question 4}\ 
+
+Substitute $(1,2,0)$, $(0,1,1)$, $(-1,0,1)$, $(1,1,1)$ into the function. We have
+\begin{align*}
+	\left\{
+	\begin{array}{l}
+		a+2b+c=0\\
+		b+c=1\\
+		a+c=1\\
+		a+b+c=1\\
+	\end{array}
+	\right.
+	\implies
+	\left(
+	\begin{array}{ccc|c}
+		1 & 2 & 1 & 0\\
+		0 & 1 & 1 & 1\\
+		1 & 0 & 1 & 1\\
+		1 & 1 & 1 & 1\\
+	\end{array}
+	\right)
+	\implies \textbf A\textbf x=\textbf b,
+\end{align*}
+where
+\begin{align*}
+	\bf A=\left(
+	\begin{array}{ccc}
+		1 & 2 & 1\\
+		0 & 1 & 1\\
+		1 & 0 & 1\\
+		1 & 1 & 1\\
+	\end{array}
+	\right),
+	\bf b=\left(
+	\begin{array}{ccc|c}
+		0\\
+		1\\
+		1\\
+		1\\
+	\end{array}
+	\right),
+	\bf x=
+	\left(
+	\begin{array}{c}
+		a\\
+		b\\
+		c\\
+	\end{array}
+	\right).
+\end{align*}
+
+Consider $\bf A^T\bf A\bf x=\bf A^T\bf b$. We have
+\begin{align*}
+	\left(
+	\begin{array}{ccc}
+		3 & 3 & 3\\
+		3 & 6 & 4\\
+		3 & 4 & 4
+	\end{array}
+	\right)
+	\left(
+	\begin{array}{ccc}
+		a\\
+		b\\
+		c
+	\end{array}
+	\right)=
+	\left(
+	\begin{array}{ccc}
+		2\\
+		2\\
+		3
+	\end{array}
+	\right)&\RA
+	\left(
+	\begin{array}{ccc|c}
+		3 & 3 & 3 & 2\\
+		3 & 6 & 4 & 2\\
+		3 & 4 & 4 & 3
+	\end{array}
+	\right)\\
+	&\xrightarrow[R_2-R_1]{3R_3-R_2-2R_1}
+	\left(
+	\begin{array}{ccc|c}
+		3 & 3 & 3 & 2\\
+		0 & 3 & 1 & 0\\
+		0 & 0 & 2 & 3
+	\end{array}
+	\right)\\
+	&\RA
+	\left(
+	\begin{array}{ccc}
+		a\\
+		b\\
+		c
+	\end{array}
+	\right)=\left(
+	\begin{array}{ccc}
+		-\frac13\\
+		-\frac12\\
+		\frac32
+	\end{array}
+	\right).
+\end{align*}
+Hence, the best approximation of the function is $z=-\frac13x^2-\frac12y+\frac32$.
+
+\newpage
+\subsection*{Question 5}\ 
+
+(i) To prove $\spa(S)=\spa (T)$, we just need to prove that 
+\begin{align*}
+	\spa(S)&\subseteq \spa(T)\\
+	\spa(T)&\subseteq \spa(S).
+\end{align*}
+
+
+Since $\bf u_1$, $\bf u_2$, $\bf u_3$ can all be written as a linear combination of $\bf v_1$, $\bf v_2$, $\bf v_3$, we have $\bf u_1$, $\bf u_2$, $\bf u_3\in S$ and thus $\spa(T)\subseteq\spa(S)$. 
+
+We now prove that $\spa(S)\subseteq \spa(T)$. Since we have
+\begin{align*}
+	\left(
+	\begin{array}{ccc}
+		\frac23 & \frac13 & \frac23\\
+		-\frac23 & \frac23 & \frac13\\
+		\frac13 & \frac23 & -\frac23\\
+	\end{array}
+	\right)
+	\left(
+	\begin{array}{c}
+		\bf v_1\\
+		\bf v_2\\
+		\bf v_3
+	\end{array}
+	\right)=
+	\left(
+	\begin{array}{c}
+		\bf u_1\\
+		\bf u_2\\
+		\bf u_3
+	\end{array}
+	\right),
+\end{align*}
+whose coefficient matrix is denoted by \bf A, we have
+\begin{align*}
+	\det(\bf A)=
+	\left|
+	\begin{array}{ccc}
+		\frac23 & \frac13 & \frac23\\
+		-\frac23 & \frac23 & \frac13\\
+		\frac13 & \frac23 & -\frac23\\
+	\end{array}
+	\right|&=\left|
+	\begin{array}{ccc}
+		0 & 1 & 1\\
+		-\frac23 & \frac23 & \frac13\\
+		1 & 0 & -1\\
+	\end{array}
+	\right|\indent \indent (R_1+R_2, R_3-R_2)\\
+	&=\left|
+	\begin{array}{ccc}
+		1 & 1\\
+		\frac23 & \frac13\\
+	\end{array}
+	\right|-\left|
+	\begin{array}{ccc}
+		0 & 1\\
+		-\frac23 & \frac23\\
+	\end{array}
+	\right|\\
+	&=-1\neq 0,
+\end{align*}
+which implies that $\bf A$ is invertible. Therefore, we have
+\begin{align*}
+	\left(
+	\begin{array}{c}
+		\bf v_1\\
+		\bf v_2\\
+		\bf v_3
+	\end{array}
+	\right)=
+	\bf A^{-1}
+	\left(
+	\begin{array}{c}
+		\bf u_1\\
+		\bf u_2\\
+		\bf u_3
+	\end{array}
+	\right),
+\end{align*}
+which implies that $\bf v_1$, $\bf v_2$, $\bf v_3\in T$ and thus $\spa(S)\subseteq\spa(T)$. 
+
+We then conclude that $\spa(S)=\spa(T)$.
+
+(ii) Suppose $S$ is an orthonormal set. We have
+\begin{align*}
+	\bf v_i\cdot\bf v_j=\left\{
+	\begin{array}{ll}
+		0 & \tu{if $i\neq j$;}\\
+		1 & \tu{if $i=j$,}
+	\end{array}
+	\right.
+\end{align*}
+for $i,j=1,2,3$.
+
+Thus, we have
+\begin{align*}
+	\norm{\bf u_1}&=\left(\frac23\bf v_1+\frac13\bf v_2+\frac23\bf v_3\right)\cdot \left(\frac23\bf v_1+\frac13\bf v_2+\frac23\bf v_3\right)=\frac49+\frac19+\frac49=1;\\
+	\norm{\bf u_2}&=\left(-\frac23\bf v_1+\frac23\bf v_2+\frac13\bf v_3\right)\cdot \left(-\frac23\bf v_1+\frac23\bf v_2+\frac13\bf v_3\right)=\frac49+\frac49+\frac19=1;\\
+	\norm{\bf u_3}&=\left(\frac13\bf v_1+\frac23\bf v_2-\frac23\bf v_3\right)\cdot \left(\frac13\bf v_1+\frac23\bf v_2-\frac23\bf v_3\right)=\frac19+\frac49+\frac49=1.
+\end{align*}
+
+We also have
+\begin{align*}
+	\bf u_1\cdot\bf u_2&=\left(\frac23\bf v_1+\frac13\bf v_2+\frac23\bf v_3\right)\cdot\left(-\frac23\bf v_1+\frac23\bf v_2+\frac13\bf v_3\right)=-\frac49+\frac29+\frac29=0;\\
+	\bf u_2\cdot\bf u_3&=\left(-\frac23\bf v_1+\frac23\bf v_2+\frac13\bf v_3\right)\cdot \left(\frac13\bf v_1+\frac23\bf v_2-\frac23\bf v_3\right)=-\frac29+\frac49-\frac29=0;\\
+	\bf u_1\cdot \bf u_3&=\left(\frac23\bf v_1+\frac13\bf v_2+\frac23\bf v_3\right)\cdot\left(\frac13\bf v_1+\frac23\bf v_2-\frac23\bf v_3\right)=\frac29+\frac29-\frac49=0.
+\end{align*}
+
+We therefore conclude that $T$ is also an orthonormal set.
+
+\newpage
+\subsection*{Question 6}\ 
+
+If $\bf A$ is full rank, then $\rank(\bf A)=n\RA \rank(\bf A-\bf I)=0\RA\bf A-\bf I=\bf 0\RA \bf A=\bf I$, which implies $\bf A^2=\bf A$.
+
+We now suppose $\bf A$ is not full rank. By the rank-nullity theorem, we have
+\begin{align*}
+	\nullity (\bf A)&=\rank(\bf A-\bf I);\\
+	\rank (\bf A)&=\nullity (\bf A-\bf I).
+\end{align*}
+
+Since we have $(\bf A-\bf I)\bf x=\bf 0\RA \bf A\bf x=\bf I\bf x=\bf x$, we conclude that every vector in the null space of $(\bf A-\bf I)$ is in the column space of $\bf A$, so the null space of $(\bf A-\bf I)$ is a subset of the column space of \bf A. This, along with the fact that $\rank (\bf A)=\nullity (\bf A-\bf I)$, suggests that 
+\begin{align*}
+	\tu{the null space of $\bf A-\bf I$}=\tu{the column space of \bf A}. 
+\end{align*}
+
+Similarly, with the fact that  $\bf A\bf x=\bf 0\RA (\bf A-\bf I)\bf x=-\bf x$ and $\nullity (\bf A)=\rank(\bf A-\bf I)$, we conclude that
+\begin{align*}
+	\tu{the null space of $\bf A$}=\tu{the column space of $\bf A-\bf I$}. 
+\end{align*}
+
+We now prove $\bf A^2=\bf A$. Let $\bf x\in\mb R^n$ be arbitrarily chosen. It must satisfy exactly one of the following cases:
+
+\noindent (1) \bf x is in the null space of $\bf A-\bf I$:
+\begin{align*}
+	\bf A(\bf A-\bf I)\bf x=\bf A[(\bf A-\bf I)\bf x]=\bf A\bf 0=\bf 0.
+\end{align*}
+
+\noindent (2) \bf x is not in the null space of $\bf A-\bf I$:
+\begin{align*}
+	(\bf A-\bf I)\bf x \tu{ is in the column space of $(\bf A-\bf I)$}
+	&\RA (\bf A-\bf I)\bf x \tu{ is in the null space of $\bf A$}\\
+	&\RA\bf A(\bf A-\bf I)\bf x=\bf0.
+\end{align*}
+
+Therefore, for all $\bf x\in\mb R^n$, we have $\bf A(\bf A-\bf I)\bf x=0$, which implies that the null space of $\bf A(\bf A-\bf I)$ is $\mb R^n$. Consequently, we must have
+\begin{align*}
+	\bf A(\bf A-\bf I)=\bf 0\RA \bf A^2-\bf A=0\RA \bf A^2=\bf A.
+\end{align*}
+We therefore conclude our proof.
+
+\newpage
+\subsection*{Question 7}\ 
+
+We first observe that
+\begin{align*}
+	\bf A\bf B=\bf B\bf A^{-1}&\RA (\bf A\bf B)^2=(\bf B\bf A^{-1})(\bf A\bf B)=(\bf A\bf B)(\bf B\bf A^{-1})\\
+	&\RA \bf B^2=\bf A\bf B^2\bf A^{-1}\\
+	&\RA \bf B^2\bf A=\bf A\bf B^2.
+\end{align*}
+
+Choose $V:=\{\bf u_i\}$ to be a set of linearly independent eigenvectors of \bf A, where $\bf u_i\in E_{\lambda_i}, 1\leq i\leq n$. It is to be noted that $V$ is a basis for $\mb R^n$.
+
+If $\bf u_i$ is an eigenvector of $\bf A$ with eigenvalue $\lambda_i$, we will have
+\begin{align*}
+	\bf A\bf B^2(\bf u_i)=\bf B^2(\bf A\bf u_i)=\lambda_i\bf B^2\bf u_i,
+\end{align*}
+which implies that $\bf B^2\bf u_i\in E_{\lambda_i}$.
+
+Since $\bf A$ is diagonalisable and has $n$ distinct eigenvalues, any basis of any eigenspace can only consist of one vector, which suggests that $\{\bf u_i\}$ is a basis of $E_{\lambda_i}$. Therefore, since $\bf B^2\bf u_i\in E_{\lambda_i}$, we must have   $\bf B^2\bf u_i=m\bf u_i$ for some $m\in\mb R$ , which suggests that $\bf u_i$ is an eigenvector of $\bf B^2$. Since this is true for all $\bf u_i\in V$, we conclude that $\bf B^2$ has $n$ linearly independent eigenvectors, so it is diagonalisable.
+
+\newpage
+\subsection*{Question 8}\ 
+
+(a) The statement is true.
+
+Since \bf A is orthogonal, its column space is just $\mb R^n$. Writing
+\begin{align*}
+	\bf A=(\bf v_1\ \bf v_2\ \ldots\ \bf v_n),
+\end{align*}
+we have $V:=\{\bf v_1, \bf v_2,\ldots, \bf v_n\}$ is an orthonormal basis of $\mb R^n$.  
+
+Let $E$ be the standard basis (which is orthonormal). Noticing that 
+\begin{align*}
+	(\bf v_i)_E=\bf v_i
+\end{align*}
+for $1\leq i\leq n$, we conclude that 
+\begin{align*}
+	\bf A=((\bf v_1)_E\ (\bf v_2)_E\ \ldots\ (\bf v_n)_E).
+\end{align*}
+This implies that $\bf A$ is the transition matrix from $V$ to $E$.
+
+(b) The statement is false.
+
+Suppose $T$ is a linear transformation. We have
+\begin{align*}
+	T\left(\left(
+	\begin{array}{c}
+		2\\
+		2\\
+		2\\
+	\end{array}
+	\right)\right)=
+	T\left(\left(
+	\begin{array}{c}
+		1\\
+		1\\
+		1\\
+	\end{array}
+	\right)\right)+
+	T\left(\left(
+	\begin{array}{c}
+		1\\
+		1\\
+		1\\
+	\end{array}
+	\right)\right)\RA 8=2\RA \tu{a contradiction.}
+\end{align*}
+
+(c) The statement is true.
+
+By the rank-nullity theorem, we have
+\begin{align*}
+	\rank(\bf A)+\nullity(\bf A)=n;\\
+	\rank(\bf B\bf A)+\nullity(\bf B\bf A)=n.
+\end{align*}
+
+Since $\bf A\bf x=\bf 0\RA\bf B\bf A\bf x=\bf B(\bf A\bf x)=\bf B\bf0=\bf 0$, we conclude that the null space of $\bf A$ is a subset of the null space of $\bf B\bf A$, so $\nullity(\bf A)\leq \nullity(\bf B\bf A)$. Consequently, we must have
+\begin{align*}
+	\rank(\bf A)\geq \rank(\bf B\bf A).
+\end{align*}
+
+Since $\bf B\bf A$ is full rank, i.e., $\rank(\bf B\bf A)=\min(m,n)$, we have
+\begin{align*}
+	\min(m,n)=\rank(\bf B\bf A)\leq \rank(\bf A)\leq \min(m,n),
+\end{align*}
+which implies that $\rank(\bf A)=\min(m,n)$. We thus conclude that $\bf A$ is full rank.
+
+(d) The statement is true.
+
+Since $\bf A$ is diagonalisable, we can write $\bf A=\bf P\bf D\bf P^{-1}$ for some invertible matrix $\bf P$ and diagonal matrix $\bf D$. 
+
+Since $\bf A$ is nilpotent, there exists $m\in\mb Z^+$ such that $\bf A^m=\bf0$, which implies
+\begin{align*}
+	\bf A^m=(\bf P\bf D\bf P^{-1})^m=\bf P\bf D^m\bf P^{-1}=\bf0\RA \bf D^m=\bf 0\RA \bf D=0\RA \bf A=0.
+\end{align*}
+We therefore conclude our proof.
+
+(e) The statement is false.
+
+We define $\bf A$ as
+\begin{align*}
+	\bf A:=\left(
+	\begin{array}{cc}
+		0 & 1\\
+		0 & 0\\
+	\end{array}
+	\right).
+\end{align*}
+
+Consider $\det(\bf A-\lambda\bf I)$. We have
+\begin{align*}
+	\det(\bf A-\lambda\bf I)=\lambda^2,
+\end{align*}
+which suggests that $\lambda=0$ is the only eigenvalue of \bf A, which has an algebraic multiplicity of 2. Meanwhile, solving $(\bf A-0\bf I)\bf x=\bf 0$ gives us
+\begin{align*}
+	\bf x=\binom{x}{0}=x\binom{1}{0},
+\end{align*}
+which suggests that $E_0=\spa\{(1\ 0)^T\}$, i.e., geometric multiplicity is 1.
+
+Since $\dim(E_0)=1<\tu{the algebraic multiplicity of $\lambda=0$}$, we conclude that $\bf A$ is not diagonalisable. Yet, clearly, both $\binom10$ and $\binom 20$ are the eigenvectors of $\bf A$.  We therefore conclude that the question statement is false.
+
+
+\noindent \bf{Remark:} The condition for a square matrix to be diagonalisable is for all eigenvalues, their algebraic multiplicities equal geometric multiplicities.
+
+
+
+
+
+%\begin{thebibliography}{99}
+%\bibitem{}
+%\end{thebibliography}
+\end{document}
