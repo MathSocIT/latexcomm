@@ -1,0 +1,170 @@
+\documentclass[answers]{exam}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\renewcommand{\thepartno}{\roman{partno}}
+\unframedsolutions
+
+\title{MA1100 - Basic Discrete Mathematics Suggested Solutions
+    \\ (Semester 2: AY2021/22)}
+\author{Written by: Daryl Chew
+\\Audited by: Chow Yong Lam}
+\date{\vspace{-5ex}} % remove date
+
+\begin{document}
+\maketitle
+
+\begin{questions}
+\question
+\begin{solution}
+\begin{itemize}
+    \item $\bigcup_{n=1}^{\infty} A_n = \mathbb{Z}^+$ because for every $m \in \mathbb{Z}^+$, $1 \leq m \leq 5k$ for some $k \in \mathbb{Z}^+$, so $m \in A_k \subseteq \bigcup_{n=1}^{\infty} A_n$ and thus $\mathbb{Z}^+ \subseteq \bigcup_{n=1}^{\infty} A_n$. We also have $A_n \subseteq \mathbb{Z}^+$ so $\bigcup_{n=1}^{\infty} A_n \subseteq \mathbb{Z}^+$.
+    \item $\bigcap_{n=1}^{\infty} A_n = A_1$, because every $k \in A_1$ satisfies $1 \leq k \leq 5n$ for all $n \in \mathbb{Z}^+$ (hence is a member of all $A_n$ and thus $\bigcap_{n=1}^{\infty} A_n$). Any $k \notin A_1$ will not be in $\bigcap_{n=1}^{\infty} A_n$ by definition of intersection.
+\end{itemize}
+\end{solution}
+
+\question
+\begin{solution}
+\begin{parts}
+\part No; $f(0) = 5 = f(2)$ for instance.
+\part For all $x \in \mathbb{Q}$, $(x-1)^2 \geq 0$ which implies $4(x-1)^2 \geq 0$ and $4(x-1)^2 + 1 \geq 1$. Hence $f(x) \geq 1$, thus $\mathcal{R}(f) \subseteq [1, \infty)$.
+\part No; for any $x$ in the domain, $x = \frac{a}{b}$ for integers $a$ and $b$, where $b \neq 0$. Therefore
+\begin{align*}
+    f(x) &= f\left (\frac{a}{b} \right) \\
+         &= 4\left (\frac{a}{b} - 1 \right)^2 + 1 \\
+         &= 4\left (\frac{a - b}{b} \right)^2 + 1 \\
+         &= \frac{4(a - b)^2}{b^2} + 1 \\
+         &= \frac{4(a - b)^2 + b^2}{b^2} \in \mathbb{Q},
+\end{align*}
+so $\sqrt{2}$ would be in $[1, \infty)$ but not $\mathcal{R}(f)$, for instance.
+\end{parts}
+\end{solution}
+
+\question
+\begin{solution}
+\begin{parts}
+\part
+If $y = (f \circ g)(x)$ for any $x \in \mathbb{R}$, then
+$$y = 6x + 5 \iff x = \frac{y-5}{6},$$
+therefore $(f \circ g)^{-1}(x) = \frac{x-5}{6}$.
+
+\part
+Since $f$, $f \circ g$ and $h$ are bijective, we have
+\begin{align*}
+f(x) &= (f \circ g)^{-1} \circ (f \circ g) \circ f(x) \\
+     &= (f \circ g)^{-1} \circ f \circ (g \circ f)(x) \\
+     &= (f \circ g)^{-1} \circ h(x) \\
+     &= (f \circ g)^{-1}(18x + 17) \\
+     &= \frac{(18x + 17) - 5}{6} \\
+     &= \frac{18x + 12}{6} \\
+     &= 3x + 2.
+\end{align*}
+\end{parts}
+\end{solution}
+
+\question
+\begin{solution}
+\begin{proof}
+($\subseteq$): Suppose $x \in f^{-1} \left [ \bigcap_{i \in I} Z_i \right ]$. 
+Then $f(x) \in \bigcap_{i \in I} Z_i$ and is thus in $Z_i$ for all $i \in I$. 
+Therefore $x \in f^{-1}[Z_i]$ for all $i \in I$, so $x \in \bigcap_{i \in I} f^{-1}[Z_i]$.
+
+($\supseteq$): Now suppose $x \in \bigcap_{i \in I} f^{-1}[Z_i]$.
+Then $x \in f^{-1}[Z_i]$ for all $i \in I$, so $f(x) \in Z_i$ for all $i \in I$.
+Therefore $f(x) \in \bigcap_{i \in I} Z_i$ and so $x \in f^{-1} \left [ \bigcap_{i \in I} Z_i \right ]$.
+\end{proof}
+\end{solution}
+
+\question
+
+\begin{solution}
+\begin{parts}
+\part
+\begin{proof}
+Noting that 
+$$10 \equiv -1 \mod{11},$$
+$$10^2 \equiv 1 \mod{11},$$
+$$10^{k+2n} \equiv 10^{k}10^{2n} \equiv 10^{k}(10^{2})^{n} \equiv 10^{k} \mod{11},$$
+we have 
+$$10^k \equiv -1 \mod{11} \text{ if $k$ is odd},$$
+$$10^k \equiv 1 \mod{11} \text{ if $k$ is even.}$$
+
+Therefore $10^k \equiv (-1)^k \mod{11}$, so $\sum_{k=0}^n a_k \cdot 10^k \equiv \sum_{k=0}^n a_k \cdot (-1)^k \mod{11}$. 
+Since an integer $N$ is divisible by 11 if and only if $N \equiv 0 \mod{11}$, by the established congruence we have the desired result.
+\end{proof}
+\part 
+Setting $S = \sum_{k=1}^{9} (10 - k) \cdot 10^{k-1}$ for brevity, we have
+\begin{alignat*}{2}
+123456789123456789123456789123456789 &\equiv \sum_{j=0}^{3} 10^{9j} \cdot \left (\sum_{k=1}^{9} (10 - k) \cdot 10^{k-1} \right ) &&\pmod{11} \\
+&\equiv 10^0 \cdot S + 10^9 \cdot S + 10^{18} \cdot S + 10^{27} \cdot S &&\pmod{11} \\
+&\equiv S - S + S - S &&\pmod{11} \\
+&\equiv 0 &&\pmod{11},
+\end{alignat*}
+so it is divisible by 11.
+\end{parts}
+\end{solution}
+
+\question
+\begin{solution}
+\begin{parts}
+\part 
+\begin{proof}
+We verify that $\sim$ is reflexive, symmetric and transitive:
+\begin{itemize}
+    \item (reflexivity): for all $(x, y)$, $(x, y) \sim (x, y)$ because $y - x = y - x$.
+    \item (symmetry): if $(x, y) \sim (x', y')$, then $y - x = y' - x' \iff y' - x' = y = x$, thus $(x', y') \sim (y, x)$.
+    \item (transitivity): if $(x_1, y_1) \sim (x_2, y_2)$ and $(x_2, y_2) \sim (x_3, y_3)$, then $y_1 - x_1 = y_2 - x_2 = y_3 - x_3$, so $(x_1, y_1) \sim (x_3, y_3)$.
+\end{itemize}
+\end{proof}
+\part
+For any $(x, y) \in [(a, b)]$, we have $(x, y) \sim (a, b)$.
+Therefore $y - x = b - a$, so $y = b - a + x$. 
+Thus the points $(x, y) \in [(a, b)]$ form a straight line in $\mathbb{R}^2$ described by the equation.
+\part
+\begin{proof}
+The function $f: \mathbb{R} \to X/\sim$ defined by $f(x) = [(0, x)]$ is a bijection; this can easily be verified:
+\begin{itemize}
+    \item (injectivity): If $f(x) = f(x')$, then $[(0, x)] = [(0, x')]$. So $(0, x) \sim (0, x')$ implying $x - 0 = x' - 0$ and thus $x = x'$.
+    \item (surjectivity): Any $[(a, b)] \in X/\sim$ is equal to $[(0, b-a)] = f(b-a)$.
+\end{itemize}
+\end{proof}
+\end{parts}
+\end{solution}
+
+\question
+\begin{solution}
+\begin{proof}
+Suppose not; then $A \cup B = B \cup (A - B)$ is the union of countable sets and hence countable.
+By the inclusion injection $\iota: A \hookrightarrow A \cup B$, $A \preceq A \cup B$ and is hence countable, a contradiction.
+\end{proof}
+\end{solution}
+
+\question
+\begin{solution}
+\begin{parts}
+\part
+\begin{proof}
+Since $p \mid p!$ and $p! = k!(p-k)!\binom{p}{k}$, by the primality of $p$ at least one of $p \mid k!$, $p \mid (p-k)!$ and $p \mid \binom{p}{k}$ holds. Since $k < p$, $p \nmid n$ for any $n \in \{1, \dots, k \}$, so $p \nmid k!$ again by primality. Since $0 < k$, $p - k < p$ and a similar argument shows that $p \nmid (p - k)!$. Therefore $p \mid \binom{p}{k}$.
+\end{proof}
+\part
+\begin{proof}
+Fix a prime number $p$; we shall perform induction on $n \in \mathbb{Z}^+$.
+\begin{itemize}
+    \item Base case: $1^p = 1$, so $1^p \equiv 1 \mod{p}$.
+    \item Inductive step: Suppose $n^p \equiv n \pmod{p}$ for some $n \in \mathbb{Z}^+$. Then
+    \begin{alignat*}{2}
+        (n + 1)^p &\equiv n^p + \binom{p}{1}n^{p-1} + \cdots + \binom{p}{p-1}n + 1 &&\pmod{p} \\
+        &\equiv n^p + 0 + \cdots + 0 + 1 &&\pmod{p} \\
+        &\equiv n^p + 1 &&\pmod{p} \\
+        &\equiv n + 1 &&\pmod{p},
+    \end{alignat*}
+    where the second equivalence follows by the divisibility of $\binom{p}{k}$ by $p$ and the fourth equivalence follows from the inductive hypothesis.
+    Thus $n^p \sim n \pmod{p}$ for all $n \in \mathbb{Z}^+$ by induction.
+\end{itemize}
+\end{proof}
+\end{parts}
+\end{solution}
+\end{questions}
+
+\end{document}
