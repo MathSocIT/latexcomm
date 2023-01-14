@@ -1,0 +1,400 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\title{Suggested Solution for MA2001 Linear Algebra Final Exam}
+\author{Semester 1, AY21/22}
+\date{Written by: Than Hui Xin, Teng Yu-Hsiang \\
+Reviewed by: Daryl Chew}
+
+\begin{document}
+
+\maketitle
+\section*{Question 1}
+
+(A) False. Take 
+$\mathbf{A} = \begin{pmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 
+\end{pmatrix}$ and $\mathbf{P} = 
+\begin{pmatrix}
+0 & 0 & 0 \\
+0 & 0 & 1 \\
+0 & 0 & 0 
+\end{pmatrix}$ as counterexample. \\\\
+(B) True. Multiplying $\mathbf{P}$ to the right of $\mathbf{A}$ can be thought of as obtaining linear combinations of columns of $\mathbf{A}$. \\\\
+(C) False. Taking $\mathbf{A} = \mathbf{I}_n$ and $\mathbf{P} = \mathbf{0}$, we have null($\mathbf{B}$) = null($\mathbf{0}$) = $\mathbb{R}^m$ $\not \subset$ $\mathbf{0}$ = null($\mathbf{A}$). \\\\
+(D) False. By Theorem 4.2.8, rank($\mathbf{B}$) $\leq$ rank($\mathbf{A}$). Since $\text{rank}(\mathbf{A})+\text{nullity}(\mathbf{A}) = \text{rank}(\mathbf{B})+\text{nullity}(\mathbf{B})= n$, nullity($\mathbf{A}$) $\leq$ nullity($\mathbf{B}$). \\\\
+(E) True.
+\section*{Question 2}
+Recall that for any matrix $\boldsymbol{A}$, the dimension of the row space and column space are the same, which we denote as rank($\boldsymbol{A}$). \\\\
+(A) True. The number of columns of the matrix is equal to the dimension of its column space, which means that all columns are linearly independent. \\\\
+(B) False. It spans $\mathbb{R}^n$. \\\\
+(C) False. Take $\mathbf{I}_n$ as counterexample. \\\\
+(D) False. Take 
+$\mathbf{A} = \begin{pmatrix}
+1 & 0 \\
+0 & 1 \\
+0 & 0
+\end{pmatrix}$ as counterexample. \\\\
+(E) True. Since the linear system is consistent if and only if the augmented matrix ($\mathbf{A} \mid \mathbf{b}$) is of the same rank as $\mathbf{A}$, we know that $\mathbf{b}$ is a linear combination of columns of $\mathbf{A}$ and that the columns of $\mathbf{A}$ is a basis for $\mathbb{R}^n$. There is thus a unique $\mathbf{x}$ such that $\mathbf{A} \mathbf{x}= \mathbf{b}$.
+\section*{Question 3}
+Note that eigenvectors are vectors in $\mathbb{R}^4$ in this case. Without loss of generality, either 
+\begin{enumerate}
+  \item  dim($E_1$) = 1, dim($E_2$) = 3, or
+
+  \item  dim($E_1$) = 2, dim($E_2$) = 2.
+\end{enumerate}
+In any case, we can find orthonormal bases $S_1$ and $S_2$ for $E_1$ and $E_2$ such that $S_1 \cup S_2$ is again orthonormal and spans $\mathbb{R}^4$. Then, we use such orthonormal basis to form the columns of an orthogonal $\mathbf{P}$ and let $\mathbf{D}$ be the corresponding diagonal matrix with eigenvalues, which gives us 
+\[\mathbf{A} = \mathbf{P}\mathbf{D}\mathbf{P}^{-1} = \mathbf{P}\mathbf{D}^{T}\mathbf{P}^{T} = \mathbf{A}^{T}.\]
+So $\mathbf{A}$ is symmetric. \\\\
+(A) True. \\\\
+(B) False. Suppose there is another eigenvalue with an eigenvector $\mathbf{v}$. Then either $\mathbf{v} \in E_1$ or $\mathbf{v} \in E_2$, which implies that the new eigenvalue is one of the two given eigenvalues. Contradiction. \\\\
+(C) True. \\\\
+(D) False. Take diag(1,1,1,2) as counterexample. \footnote{Note that diag that takes in $n$ arguments is the $n \times n$ diagonal matrix with the $n$ arguments as its diagonal.} \\\\
+(E) False. Take diag(1,1,1,2) as counterexample.
+\section*{Question 4}
+(A) True. \\\\
+(B) False. \\\\
+(C) True. $\mathbf{A}$ and $\mathbf{B}$ being row equivalent indicates that their RREF are the same; therefore, the nullspaces obtained are equivalent.  \\\\
+(D) False.\\\\
+(E) False.
+\section*{Question 5}
+We have 
+\begin{align*}
+    \mathbf{A} \mathbf{v} = \lambda\mathbf{v} &\iff \mathbf{A}^T \mathbf{v} = \lambda^{-1}\mathbf{v}, \text{ and} \\
+    \mathbf{A}^T \mathbf{u} = \mu\mathbf{u} &\iff \mathbf{A} \mathbf{u} = \mu^{-1}\mathbf{u}.
+\end{align*}
+Note also that the characteristic polynomial of any matrix and its transpose are the same. We then have $\lambda, \mu, \lambda^{-1}$ and $\mu^{-1}$ as the eigenvalues of both $\mathbf{A}$ and $\mathbf{A}^T$. \\\\
+(A) False. \\\\
+(B) True. \\\\
+(C) True. \\\\
+(D) False. \\\\
+(E) False. $\mathbf{u}$ and $\mathbf{v}$ may be the same vector.
+
+\section*{Question 6}
+(A) False. By linearity and linear independence of $\mathbf{u_1}, \cdots ,\mathbf{u_n}$ ,
+\begin{align*}
+    T\circ T(\mathbf{v}) &= T(\alpha_1c_1\mathbf{u}_1 + \cdots + \alpha_nc_c\mathbf{u}_n) \\
+    &= T(\alpha_1c_1\mathbf{u}_1) + \cdots + T(\alpha_n c_n\mathbf{u}_n) \\
+    &= \alpha_1^2 c_1 \mathbf{u}_1 + \cdots + \alpha_n^2 c_n\mathbf{u}_n. 
+\end{align*}
+(B) True. \\\\
+(C) False. Take $\begin{pmatrix}
+    1 & 1 \\ 0 & 2
+\end{pmatrix}$ as counterexample, which has $(1,0)^T$ and $(1,1)^T$ as eigenvectors and is not diagonal itself. \\\\
+(D) True.\\\\
+(E) False. If $\alpha_0 = \cdots = \alpha_n = 0$, $\text{Ker}(T) = \mathbb{R}^n$.\\\\
+\section*{Question 7}
+(A) False.
+\begin{align*}
+\begin{vmatrix} 
+a & b & c \\ 
+d & e & f \\ 
+g & h & i
+\end{vmatrix} 
+&= a \begin{vmatrix} e & f \\ h & i \end{vmatrix} 
+- b \begin{vmatrix} d & f \\ g & i \end{vmatrix}  
++ c \begin{vmatrix} d & e \\ g & h \end{vmatrix}  \\
+&= a(ei - hf) - b(di -gf) + c(dh -ge), \\
+-\begin{vmatrix} d
+& e & f \\ 
+g & h & i \\ a
+& b & c
+\end{vmatrix}
+&= - d \begin{vmatrix} h & i \\ b & c \end{vmatrix} 
++ e\begin{vmatrix} g & i \\ a & c \end{vmatrix} 
+- f\begin{vmatrix} g & h \\ a & b \end{vmatrix}  \\ 
+&= -d (hc - bi) + e(gc - ai) - f(gb - ah) \\ 
+&= a (-ei + hf) - b (-di + gf) + c (-dh + ge).
+\end{align*}
+(B) True.
+\begin{align*}
+\begin{vmatrix} 
+a & b & c \\ 
+a & 2b & 3c \\ 
+a & 4b & 9c
+\end{vmatrix} 
+&= a \begin{vmatrix} 2b & 3c \\ 4b & 9c \end{vmatrix} 
+- b \begin{vmatrix} a & 3c \\ a & 9c \end{vmatrix}
++ c \begin{vmatrix} a & 2b \\ a & 4b \end{vmatrix} \\ 
+&= a(18bc - 12bc) - b(9ac - 3ac) + c(4ab -2ab) \\
+&= 2abc, \\
+abc \begin{vmatrix} 
+1 & 1 & 1 \\ 
+1 & 2 & 3 \\ 
+1 & 4 & 9
+\end{vmatrix} 
+&= abc [{{\begin{vmatrix} 2 & 3 \\ 4 & 9 \end{vmatrix} } - {\begin{vmatrix} 1 & 3 \\ 1 & 9 \end{vmatrix} } + {\begin{vmatrix} 1 & 2 \\ 1 & 4 \end{vmatrix} }}] \\
+&= abc [(18-12) - (9-3) + (4-2)] \\
+&= 2abc.
+\end{align*}
+(C) True.
+\begin{align*}
+\begin{vmatrix} a
++b & c+d & e+f \\ 
+a & b & c \\ 
+d & e & f
+\end{vmatrix}
+&= (a + b)(bf - ec) - (c + d)(af - cd) + (e + f)(ae - bd), \\
+\begin{vmatrix} 
+a & c & e \\ 
+a & b & c \\ 
+d & e & f
+\end{vmatrix} 
++ \begin{vmatrix} 
+b & d & f \\ 
+a & b & c \\ 
+d & e & f
+\end{vmatrix}
+&= a (bf - ec) - c(af - dc) + e(ae - bd)  \\
+&+ b(bf - ec) - d(af - cd) + f(ae - db) \\
+&= (a + b)(bf - ec) - (c + d)(af - cd) + (e + f)(ae - bd).
+\end{align*}
+(D) False.
+\begin{align*}
+    \begin{vmatrix} 
+    a & 0 & 0 \\ 
+    b & c & 0 \\ 
+    d & e & f
+    \end{vmatrix}
+    &= acf, \\
+    \begin{vmatrix} 
+    0 & 0 & a \\ 
+    0 & c & b \\ 
+    f & e & d
+    \end{vmatrix} 
+    &= a (0 - cf) \\
+    &= - acf.
+\end{align*}
+(E) False.
+\begin{align*}
+    \begin{vmatrix} 
+    a & b & c \\ 
+    d & e & f \\ 
+    g & h & i
+    \end{vmatrix}
+    &= aei+bfg+cdh-ceg-afh-dbi, \\
+    \begin{vmatrix} 
+    c & f & i \\ 
+    b & e & h \\ 
+    a & d & g
+    \end{vmatrix} 
+    & = ceg+afh+dbi-aei-bfg-cdh.
+\end{align*}
+
+
+\section*{Question 8}
+(A) True. \\\\
+(B) False. \\\\
+(C) True. $\mathbf{A}$ has the second, third and fourth columns as pivot columns. \\\\
+(D) False.
+The general solution is given by
+\begin{align*}
+\begin{pmatrix}
+    x_1 \\
+    x_2 \\
+    x_3 \\
+    x_4 \\
+    x_5
+\end{pmatrix}
+&=
+\begin{pmatrix}
+    s \\
+    -t \\
+    0 \\
+    1 - t \\
+    t
+\end{pmatrix} \in \mathbb{R}^5.
+\end{align*}
+(E) False. $\mathbf{0}$ is not in the solution set. 
+
+\section*{Question 9}
+(A) Yes.
+\begin{align*}
+    \frac{1}{3} \begin{pmatrix}6\\0\\0\end{pmatrix} + \begin{pmatrix}0\\4\\0\end{pmatrix} + 3\begin{pmatrix}0\\0\\2\end{pmatrix} &= \begin{pmatrix}2\\4\\6\end{pmatrix}
+\end{align*}
+(B) Yes.
+\begin{align*}
+    \frac{2}{3} \begin{pmatrix} 3 \\ 6 \\ 9 \end{pmatrix} &= \begin{pmatrix} 2\\ 4 \\ 6 \end{pmatrix}
+\end{align*}
+(C) Yes.
+\begin{align*} 
+    \begin{pmatrix} 2 \\ 0 \\ 0 \end{pmatrix}
+    + \begin{pmatrix} 0 \\ 4 \\ 6 \end{pmatrix} 
+    &= \begin{pmatrix} 2 \\ 4 \\ 6 \end{pmatrix} 
+\end{align*}
+(D)
+No. One can check $\begin{pmatrix} 4 & 6 & 2 \\ 6 & 2 & 4 \\ 2 & 4 & 6\end{pmatrix}$ is of full rank. \\\\
+(E) 
+No. One can check $\begin{pmatrix} 2 & 2 & 0 \\ 0 & 6 & 6  \\ 2 & 4 & 6\end{pmatrix}$ is of full rank.
+
+\section*{Question 10}
+(A) Linearly independent. \\\\
+(B) Linearly dependent.
+The RREF form is 
+$\begin{pmatrix}
+1 & 0 & -1 & -2 \\
+0 & 1 & 2 & 3 \\
+0 & 0 & 0 & 0 
+\end{pmatrix}$. \\\\
+(C) Linearly independent.
+The RREF form is $\mathbf{I}_4$.\\\\
+(D) Linearly independent.
+The RREF form is $\mathbf{I}_4$. \\\\
+(E) Linearly dependent.
+The RREF form is $\begin{pmatrix}
+1 & 0 & \frac{12}{13} & 0 \\
+0 & 1 & \frac{2}{13} & 2 \\
+0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 
+\end{pmatrix}$.
+\newpage
+Vectors in the following questions are column vectors.
+\section*{Long Question 1}
+\subsection*{i.}
+The RREF of the matrix with S as its rows is
+\[\begin{pmatrix}
+    1 & 0 & 0 & -1 \\
+    0 & 1 & 0 & 1 \\
+    0 & 0 & 1 & 0
+\end{pmatrix}, \]
+which has full rank, so $S$ is indeed a basis and dim($V$) = 3.
+\subsection*{ii.}
+Equivalently, we can solve for $\mathbf{A}^T\mathbf{A}\mathbf{x} = \mathbf{A}^T\mathbf{b}$. More explicitly,
+\begin{align*}
+\mathbf{A}^T\mathbf{A}\mathbf{x} = 
+    \begin{pmatrix}
+        3 & 2 & 2 & 7 \\
+        2 & 2 & 1 & 5 \\
+        2 & 1 & 3 & 6 \\
+        7 & 5 & 6 & 18
+    \end{pmatrix}\mathbf{x}&=\begin{pmatrix}
+        9 \\
+        6 \\
+        9 \\
+        24
+    \end{pmatrix}.
+\end{align*}
+Using augmented matrix and row operations, we have that $\mathbf{x} \in \text{span}\{(0,0,1,1), (1,1,2,0)\}$.
+\subsection*{iii.}
+Note that the column space of $\mathbf{A}$ is essentially $V$. We can then substitute any least squares solution into $\mathbf{A}\mathbf{x}$, which gives
+\begin{align*}
+\mathbf{p} = \mathbf{A}\begin{pmatrix}
+        0 \\
+        0 \\
+        1 \\
+        1
+    \end{pmatrix}
+        &=\begin{pmatrix}
+        2 \\
+        4 \\
+        3 \\
+        2
+    \end{pmatrix}.
+\end{align*}
+\subsection*{iv.}
+\[(1,1,2).\]
+\section*{Long Question 2}
+\subsection*{i.}
+It is easy to check that 
+\begin{align*}
+    \mathbf{P} &=
+    \begin{pmatrix}
+        1 & 0 & 2 \\
+        1 & 1 & -1 \\
+        0 & 1 & 0
+    \end{pmatrix}\text{ and}\\
+    \mathbf{D} &=
+    \begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & 1 & 0 \\
+        0 & 0 & 0
+    \end{pmatrix}
+\end{align*}
+satisfy $\mathbf{P}^{-1}\mathbf{A}\mathbf{P} = \mathbf{D}$.
+\subsection*{ii.} 
+No. 0 is an eigenvalue. 
+\subsection*{iii.}
+No. With the eigenvalue and eigenvector conditions (nine equations in $\mathbb{R}^9$), one can solve
+\begin{align*}
+    \begin{pmatrix}
+        a_{1,1} & a_{1,2} & a_{1,3} \\
+        a_{2,1} & a_{2,2} & a_{2,3} \\
+        a_{3,1} & a_{3,2} & a_{3,3}
+    \end{pmatrix} \mathbf{v} = \lambda \mathbf{v}.
+\end{align*}If the eigenspaces and associated eigenvalues were to be the same as those of $\mathbf{A}$'s, it is essentially performing row operations to the augmented matrix formed with the nine equations, leaving us with the same final matrix.
+\subsection*{iv.} 
+We know that 
+\begin{align*}
+    \mathbf{A} &= \mathbf{P} \mathbf{D} \mathbf{P}^{-1} \\
+    \implies \mathbf{A} &= \begin{pmatrix}
+        1 & 0 & 0 \\
+        1 & 1 & 0 \\
+        0 & 1 & 0
+    \end{pmatrix} \mathbf{P}^{-1}.
+\end{align*}
+Since the column space of $\mathbf{A}$ is contained in span$\{(1,1,0),(0,1,1)\}$, $\mathbf{v} \in E_1$, where $E_1$ is the eigenspace of $\mathbf{A}$ with eigenvalue 1. But then 
+\[\mathbf{A}^n\mathbf{v} = (\mathbf{P} \mathbf{D} \mathbf{P}^{-1})^n\mathbf{v} = \mathbf{P} \mathbf{D}^n \mathbf{P}^{-1}\mathbf{v} = \mathbf{P} \mathbf{D} \mathbf{P}^{-1} \mathbf{v} = \mathbf{A} \mathbf{v}.\]
+Hence, $\mathbf{A}^n\mathbf{v} = \mathbf{v}.$
+\section*{Long Question 3}
+\subsection*{i.}
+The standard matrix of $T$ is given by
+\[\mathbf{T} = \begin{pmatrix}
+    0 & 2 & -2 \\
+    2 & 1 & -3 \\
+    2 & 3 & -5
+\end{pmatrix}.\]
+\subsection*{ii.}
+\[\text{Ker}(T) = \text{span}\{(1,1,1)\}.\] 
+\subsection*{iii.}
+Recall that the range of $T$ is the column space, which is spanned by $(2,1,3)$ and $(2,3,5)$. Taking the cross product of the two vectors, we have that vectors in the range must satisfy $x+y-z = d$. Substituting in $(0,1,1) \in R(T)$ gives us $d = 0$. Finally, the equation is $x+y-z=0$.
+\subsection*{iv.}
+Noting that $(0,1,1)$ is an eigenvector of $\mathbf{T}$, we may take $U = $ span$\{(0,1,1)\}$ as a proper subspace of $R(T)$ invariant under $T$. (It is proper since $(1,0,1) \in R(T)$.)
+\section*{Long Question 4}
+\subsection*{(a)}
+\subsubsection*{i.}
+Regardless of the value of $y$, the row and column space of $\mathbf{B}$ are two-dimensional. ($(2,8)^T$ and $(9,2)^T$ are linearly independent, for example.) Since the ranks of row space and column space of a matrix are the same, rank($\mathbf{B}$) = rank($\mathbf{A}$)= 2.
+\subsubsection*{ii.}
+By i., we know that the column space of $\mathbf{A}$ is spanned by two vectors. We have in particular\[2*(2,1,1,-2)^T - (4,0,4,-3)^T = (0,2,-2,-1)^T \]and so $x = -2$. Similarly, \[9*(2,1,1,-2) - 4*(4,0,4,-3) = (2,9,-7,-6)\] and so $y = -6$.
+\subsection*{(b)}
+Consider the column space of $\mathbf{C}$. Since the first and last columns are the same, the maximal possible rank is 3. If $x$ neither $-1$ nor $4$, then 
+\[\mathbf{C} = \begin{pmatrix}
+    ab & a & b & ab \\
+    0 & b & a & 0 \\
+    0 & a & b & 0 \\
+    0 & ab & 0 & 0
+\end{pmatrix}\] for some nonzero $a$ and $b$, and rank($\mathbf{C}$) = $3$ in this case. (Note that the first three columns are linearly independent, and the fourth is identical to the first.)
+
+If $x$ is either $-1$ or $4$, then $\mathbf{C}$ has the second and third columns as linearly independent columns with the first and last columns being zero vectors, so rank($\mathbf{C}$) = $2$.
+\section*{Long Question 5}
+\subsection*{(a)}
+\subsubsection*{i.}
+
+Let $\mathbf{S} = \begin{pmatrix}
+    \mathbf{u} \\
+    \mathbf{v} \\
+    \mathbf{w} \\
+\end{pmatrix}$.
+Since $\mathbf{A}$ is invertible, we have that
+\[\mathbf{A} \mathbf{S} = \mathbf{E}_n \cdots \mathbf{E}_1 \mathbf{S}, \]
+where $\mathbf{E}_k$ are elementary matrices for all $1 \leq k \leq n$. We then see that the row space of $\mathbf{A} \mathbf{S}$ is exactly the same as that of $\mathbf{S}$, which implies that rank($\mathbf{A} \mathbf{S}$) = rank($\mathbf{S}$) = 3, and so $T$ is also a basis for $\mathbb{R}^3$. \\\\
+\subsubsection*{ii.}
+
+Clearly, if $\mathbf{A} = \mathbf{I}_3$, then $T$ is also an orthonormal basis for $\mathbb{R}^3$.
+
+Suppose now that $T$ is an orthonormal basis. Taking the inner product of the vectors in $T$, we have for example
+\begin{align*}
+    1 = \langle  a\mathbf{u} + b\mathbf{v} + c\mathbf{w}\; , \; a\mathbf{u} + b\mathbf{v} + c\mathbf{w}\rangle &= a^2 \langle  \mathbf{u} \; , \; \mathbf{u}\rangle + b^2 \langle  \mathbf{v} \; , \; \mathbf{v}\rangle + c^2 \langle  \mathbf{w} \; , \; \mathbf{w}\rangle \\
+    &= a^2 + b^2 + c^2 \\
+    0 = \langle  a\mathbf{u} + b\mathbf{v} + c\mathbf{w}\; , \; d\mathbf{u} + e\mathbf{v} + i\mathbf{w}\rangle &= ad \langle  \mathbf{u} \; , \; \mathbf{u}\rangle + be \langle  \mathbf{v} \; , \; \mathbf{v}\rangle + ci \langle  \mathbf{w} \; , \; \mathbf{w}\rangle \\
+    &= ad + be + ci,
+\end{align*}
+since $\{\mathbf{u}, \mathbf{v}, \mathbf{w}\}$ is orthonormal. The same holds for other combinations of vectors in $T$. Therefore, one can give $\mathbf{A} \mathbf{A}^{T}$ = $\mathbf{I}_3$, i.e. $\mathbf{A}$ is orthogonal, as a necessary condition. 
+\subsection*{(b)}
+\subsubsection*{i.}
+Let $\mathbf{P} = \mathbf{E}_1 \cdots \mathbf{E}_n$, where $\mathbf{E}_k$ are "Type II" elementary matrices for all $1 \leq k \leq n$. Since such matrices are symmetric and orthogonal, we have $\mathbf{P}^T = (\mathbf{E}_1 \cdots \mathbf{E}_n)^T = \mathbf{E}_n \cdots \mathbf{E}_1$ and that $\mathbf{P}\mathbf{P}^T = (\mathbf{E}_1 \cdots \mathbf{E}_n)(\mathbf{E}_n \cdots \mathbf{E}_1) = \mathbf{I}_n$.
+\subsubsection*{ii.}
+Suppose that $\mathbf{I}_n - \mathbf{P}$ is not singular, i.e. it is invertible and has nullity $0$. By definition, the nullspace of  $\mathbf{I}_n - \mathbf{P}$ being trivial (i.e. having dimension 0) is equivalent to the eigenspace of $\mathbf{P}$ associated with the eigenvalue $1$ being trivial. On the other hand, we know that $\mathbf{P}$ always admits $(1, \cdots ,1) \in \mathbb{R}^n$ as an eigenvector with eigenvalue 1, which gives us a contradiction and shows that $\mathbf{I}_n - \mathbf{P}$ is singular.
+\end{document}
