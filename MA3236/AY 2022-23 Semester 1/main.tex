@@ -1,0 +1,254 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{MA3236 - Non-Linear Programming Suggested Solutions}
+\author{(Semester 1, AY2022/2023)}
+\date{Written by: Chow Yong Lam\\ Audited by: Clarence Chew Xuan Da}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{mathtools}
+\usepackage{mathtools}
+
+\DeclarePairedDelimiterX{\infdivx}[2]{(}{)}{%
+  #1\;\delimsize\|\;#2%
+}
+\newcommand{\infdiv}{D\infdivx}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\geometry{left=20mm,right=20mm,top=20mm,bottom=20mm}
+
+
+\begin{document}
+\maketitle
+
+\section*{Question 1}
+\begin{itemize}
+    \item[(a)] $f(\mathbf{x}) = \frac14x_1^4+\frac14x_2^4+\frac12x_1^2+\frac12x_2^2$.\\
+    $\nabla f(\mathbf{x}) = \begin{pmatrix}x_1^3+x_1\\x_2^3+x_2\end{pmatrix}$.\\
+    $H_f(\mathbf{x}) = \begin{pmatrix}3x_1^2+1&0\\0&3x_2^2+1\end{pmatrix}$.\\
+    Since for all $x_1, x_2\in\mathbb{R}$, $3x_1^2+1\geq1>0, (3x_1^2+1)(3x_2^2+1)\geq 1(1)>0$, by the check of principal minors, the Hessian matrix $H_f(\mathbf{x})$ is positive definite, and the function $f$ is strictly convex.
+   \item[(b)] $\mathbf{x}^{(0)}=\begin{pmatrix}1\\1\end{pmatrix}$. \\
+   $\mathbf{x}^{(1)}=\mathbf{x}^{(0)} - H_f(\mathbf{x}^{(0)})^{-1}\nabla f(\mathbf{x}^{(0)}) = \begin{pmatrix}1\\1\end{pmatrix} - \begin{pmatrix} 4&0\\0&4\end{pmatrix}^{-1}\begin{pmatrix}1^3+1\\1^3+1\end{pmatrix}= \begin{pmatrix}1\\1\end{pmatrix} - \begin{pmatrix} \frac14&0\\0&\frac14\end{pmatrix}\begin{pmatrix}2\\2\end{pmatrix}=\begin{pmatrix}\frac12\\\frac12\end{pmatrix}$. \\
+   $\mathbf{x}^{(2)}=\mathbf{x}^{(1)} - H_f(\mathbf{x}^{(1)})^{-1}\nabla f(\mathbf{x}^{(1)}) = \begin{pmatrix}\frac12\\\frac12\end{pmatrix} - \begin{pmatrix} \frac74&0\\0&\frac74\end{pmatrix}^{-1}\begin{pmatrix}\frac12^3+\frac12\\\frac12^3+\frac12\end{pmatrix}= \begin{pmatrix}\frac12\\\frac12\end{pmatrix} - \begin{pmatrix} \frac47&0\\0&\frac47\end{pmatrix}\begin{pmatrix}\frac58\\\frac58\end{pmatrix}=\begin{pmatrix}\frac17\\\frac17\end{pmatrix}$.
+   Note that $f(\mathbf{x}) \geq 0$ with equality achieved if and only if $x_1=x_2=0$. Thus, $\mathbf{x}^*=\mathbf{0}$.\\
+   The Euclidean 2-norm of the error is:\[ \norm{\mathbf{x}^{(2)} - \mathbf{x}^*} = \left\lVert\begin{pmatrix} \frac17\\ \frac17 \end{pmatrix}\right\rVert = \left(2\left(\frac17\right)^2\right)^\frac12 = \frac{\sqrt2}{7}\]
+   \item[(c)] Given a function $g$ and a point $\mathbf{x}\in\mathbb{R}^n$, a vector $\mathbf{p}$ is a descent direction if $\nabla g(\mathbf{x})^T\mathbf{p}<0$.\\
+   Since $g$ is a strictly convex function, its Hessian matrix $H_g(\mathbf{x})$ is a positive definite matrix at all $\mathbf{x} \in \mathbb{R}^n$, and so is the inverse $H_g(\mathbf{x})^{-1}$.\\
+   The Newton's direction of $g$ at $\mathbf{x}$ is $-H_g(\mathbf{x})^{-1}\nabla g(\mathbf{x})$. If $\mathbf{x}$ is a stationary point, then it is the global minimiser and the Newton's direction is just the zero vector. If $\mathbf{x}$ is not a stationary point, then it is not the global minimiser and the gradient vector is non-zero. Thus,
+   \begin{align*}
+       \nabla g(\mathbf{x})^T\left(-H_g(\mathbf{x})^{-1}\nabla g(\mathbf{x})\right) & = -\nabla g(\mathbf{x})^TH_g(\mathbf{x})^{-1}\nabla g(\mathbf{x}) \\
+       &<0 \ \ \ (\text{since } \nabla g(\mathbf{x})^TH_g(\mathbf{x})^{-1}\nabla g(\mathbf{x})>0)
+   \end{align*}
+   Therefore, the Newton's direction of $g$ is a descent direction (when the point is not a global minimiser or stationary point).
+   \\
+   \textbf{Note:} Alternatively, recall that $H_g(\mathbf{x})$ is symmetric and so is $H_g(\mathbf{x})^{-1}$. In other words, $H_g(\mathbf{x})^{-1}=\left(H_g(\mathbf{x})^{-1}\right)^T$. Since $H_g(\mathbf{x})$ is positive definite, 
+   \begin{align*}
+       \nabla g(\mathbf{x})^TH_g(\mathbf{x})^{-1}\nabla g(\mathbf{x}) &=\nabla g(\mathbf{x})^T\left(H_g(\mathbf{x})^{-1}\right)^TH_g(\mathbf{x})H_g(\mathbf{x})^{-1}\nabla g(\mathbf{x})\\& =\left(H_g(\mathbf{x})^{-1}\nabla g(\mathbf{x}) \right)^T H_g(\mathbf{x})H_g(\mathbf{x})^{-1}\nabla g(\mathbf{x})  \\&>0
+   \end{align*}
+\end{itemize}
+\section*{Question 2}
+\begin{align*}
+    \min \ \ \ \ & f(\mathbf{x}) := -x_1-x_2\\
+    \text{s.t. } \ \ \ & h_1(\mathbf{x}) := x_1^3+2x_1^2+x_1+x_2-1\leq 0 \text{ and}\\
+    & h_2(\mathbf{x}) := -5x_1-x_2-7\leq 0
+\end{align*}
+\begin{itemize}
+    \item[(a)] \[
+    \nabla f(\mathbf{x}) = \begin{pmatrix}-1\\-1\end{pmatrix};\ \ \nabla h_1(\mathbf{x}) = \begin{pmatrix}3x_1^2+4x_1+1\\1\end{pmatrix};\ \ \nabla h_2(\mathbf{x}) = \begin{pmatrix}-5\\-1\end{pmatrix}\]
+Since both gradient vectors are non-zero, any feasible point with only one active inequality constraint is regular. Any interior point in the feasible region (no active constraints) is also regular.\\
+If both inequality constraints are active, then: \begin{align*}
+    h_2(\mathbf{x}) = 0 &\implies x_2 = -5x_1-7\\
+    h_1(\mathbf{x}) = 0 &\implies x_1^3 + 2x_1^2 + x_1 -5x_1-7-1 = 0\\
+    &\implies (x_1+2)^2(x_1-2)=0\\
+    &\implies x_1 = -2 \text{ or } x_1= 2
+\end{align*}
+If $x_1 = -2$, then $x_2 =3 $, $\nabla h_1(\mathbf{x}) = \begin{pmatrix}5\\1\end{pmatrix} = -\nabla h_2(\mathbf{x})$ and the two gradients are linearly dependent. \\
+If $x_1 = 2$, then $x_2 =-17 $, $\nabla h_1(\mathbf{x}) = \begin{pmatrix}21\\1\end{pmatrix}$, which is not a scalar multiple of $\nabla h_2(\mathbf{x})$. The two gradients are linearly independent. \\
+Thus, all feasible points, except $\mathbf{x} = [-2;3]$, are regular.
+
+\item[(b)]
+Case 1: Any interior point is not a KKT point since $\nabla f(\mathbf{x})$ is non-zero.\\
+Case 2: Only $h_1(\mathbf{x})= 0$ is active, i.e. $x_1^3+2x_1^2+x_1+x_2-1=0$. If the point is a KKT point, then there exists $\mu_1\geq0$ such that:\[
+\begin{pmatrix} -1\\-1\end{pmatrix} +\mu_1\begin{pmatrix}3x_1^2+4x_1+1\\1\end{pmatrix} = 0
+\]
+Then, $\mu_1 =1 $ from the second equality. From the first equality, \begin{align*}
+    3x_1^2 + 4x_1 + 1 -1 = 0 &\implies x_1(3x_1+4)= 0\\
+    &\implies x_1 = 0 \ \ \ \text{or} \ \ \ x_1 = -\frac43
+\end{align*}
+When $x_1=0$, $x_2=1$. When $x_1 = -\frac43$, $x_2 = 1 - x_1 -2x_1^2-x_1^3 = \frac{31}{27}$.
+Therefore, there are two potential KKT points, $[0;1]$ and $[-\frac43;\frac{31}{27}]$. Indeed, $h_2([0;1])=-8<0, \  h_2([-\frac43;\frac{31}{27}])=-\frac{40}{27}<0$. Thus, both points are feasible and they are KKT points. \\
+
+Case 3: Only $h_2(\mathbf{x}) = 0$ is active. If the point is a KKT point, then there exists $\mu_2\geq0$ such that:\[
+\begin{pmatrix} -1\\-1\end{pmatrix} +\mu_2\begin{pmatrix}-5\\-1\end{pmatrix} = 0 \]
+From the second equality, $\mu_2 + 1 = 0 \implies \mu_2 = -1<0$, a contradiction. Thus, there are no KKT points in this case.\\
+
+Case 4: Both constraints are active. The only regular point in this case is $[2;-17]$. If it is a KKT point, then there exist $\mu_1, \mu_2\geq 0$ such that: \[
+\begin{pmatrix} -1\\-1\end{pmatrix} +\mu_1\begin{pmatrix}21\\1\end{pmatrix} + \mu_2\begin{pmatrix}-5\\-1\end{pmatrix} = 0
+\]
+By solving the equalities, $\mu_1 = -\frac14, \mu_2 = -\frac54.$ Both parameters are negative, so there are no KKT points in this case. \\
+
+Therefore, there are two KKT points, $[0;1]$ and $[-\frac43;\frac{31}{27}]$.
+
+\item[(c)] Consider the point $\mathbf{x}=[t; -5t-7], t\in\mathbb{R}$. At this point, the condition $h_2(\mathbf{x}) = 0$ holds. Then as $t\rightarrow -\infty,   h_1(\mathbf{x}) = (t+2)^2(t-2) \rightarrow - \infty $. In particular, $h_1(\mathbf{x}) < 0$ as long as $t<-2$.
+Using this point, $f(\mathbf{x}) = -t+5t+ 7 = 4t+7 \rightarrow-\infty$ as $t\rightarrow-\infty$ from $-2$. Thus, the objective function value is unbounded in the feasible set and this problem does not have an optimal solution.
+\end{itemize}
+\section*{Question 3}
+In this problem, $a, b\in\mathbb{R}, a\neq0$.
+\begin{align*}
+(P) \ \ \ \min \ \ \ \ & f(x_1)\\
+    \text{s.t. } \ \ \ & ax_2-b=0\text{, and}\\
+    & x_3^2-1\leq0.
+\end{align*}
+\begin{itemize}
+    \item[(a)] Since $f$ is a differentiable convex function, any stationary point of $f$ is a global minimiser. In particular, $x_1^*$ is a stationary point and thus a global minimiser. \\
+    In this problem, any feasible point must fulfill $x_2 = \frac ba, x_3 \in [-1,1]$. Thus, the optimal solutions are in the form $\mathbf{x} = \left[x_1; \frac ba; x_3\right]$ where $x_1$ is a stationary point of $f$ and $x_3\in[-1,1]$. The optimal objective function value of $(P)$ is $f(x_1^*)$.
+    \item[(b)] For $\lambda \in \mathbb{R}, \mu\geq0$, the Lagrangian function is given as:\[L(\mathbf{x},\lambda,\mu) = f(x_1) + \lambda (ax_2 -b) + \mu(x_3^2-1)\] and the Lagrangian dual function is:\begin{align*}
+        \theta(\lambda, \mu) &= \inf_{\mathbf{x}\in\mathbb{R}^3}\left\{ f(x_1) + \lambda (ax_2 -b) + \mu(x_3^2-1)\right\} \\ &=
+        \inf_{x_1\in\mathbb{R}}\{f(x_1)\} +\inf_{x_2\in\mathbb{R}}\{\lambda (ax_2-b)\} +\inf_{x_3\in\mathbb{R}}\{\mu(x_3^2-1)\}  
+    \end{align*}
+
+Note that:
+\[ \inf_{x_2\in\mathbb{R}}\{\lambda (ax_2-b)\} = \left\{ \begin{array}{c c}
+     -\infty & \text{ if } \lambda\neq0 \\
+     0 &  \text{ if } \lambda=0
+\end{array}\right.
+\]
+and:
+\[ \inf_{x_3\in\mathbb{R}}\{\mu (x_3^2-1)\} = -\mu
+\]
+Thus, \[
+\theta(\lambda,\mu) = \left\{ \begin{array}{c c}
+     -\infty & \text{ if } \lambda\neq0 \\
+     f(x_1^*)-\mu &  \text{ if } \lambda=0
+\end{array}\right.
+\]
+
+\item[(c)] The Lagrangian dual problem is:
+\begin{align*}
+(D) \ \ \ \max_{\lambda,\mu\in\mathbb{R}} \ \ \ \ & f(x_1^*) - \mu\\
+    \text{s.t. } \ \ \ & \lambda=0 \text{, and}\\&
+    \mu\geq0.
+\end{align*}
+The dual optimal solution is $\left(\lambda,\mu\right)= (0,0)$ and the dual optimal objective function value is $f(x_1^*)$.
+\item[(d)] There is zero duality gap since the primal and dual optimal objective function values are equal.
+\item[(e)] First, the objective function $f$ is convex since the Hessian matrix as shown below is positive semi definite. \[\forall \mathbf{x}\in\mathbb{R}^3, H(\mathbf{x}) = \begin{pmatrix}f''(x_1)&0&0\\0&0&0\\0&0&0\end{pmatrix}, \text{ where for all }x_1,  f''(x_1)\geq0. \] $g(\mathbf{x}) = ax_2-b$ is affine, $h(\mathbf{x}) = x_3^2-1$ is convex so the feasible region is a convex set. Finally, using the point $\left[x_1^*;\frac{b}{a};0\right]$, $0-1<0, a\left(\frac ba \right)-b=0$ so the Slater's condition holds. Thus, the conditions for the strong duality theorem hold. 
+\end{itemize}
+
+\newpage \section*{Question 4}
+In this problem, $\mathbf{c}\in\mathbb{R}^n, \mathbf{c}\geq0, A\in\mathbb{R}^{m \times n}, \mathbf{b}\in\mathbb{R}^m$. 
+\begin{align*}
+\max_{\mathbf{x}\in\mathbb{R}^n} \ \ \ \ & \mathbf{c}^T\mathbf{x}\\
+    \text{s.t. } \ \ \ & A\mathbf{x\leq b} \text{, and}\\&
+    \mathbf{x}\in X:=\{0,1\}^n
+\end{align*}
+\begin{itemize}
+\item[(a)] The Lagrangian dual function is, for $\boldsymbol\mu\in\mathbb{R}^m, \boldsymbol\mu\geq0$:
+\begin{align*}
+\theta(\boldsymbol\mu) &= \inf_{\mathbf{x}\in X} \mathbf{c}^T\mathbf{x} +\boldsymbol\mu^T\left(A\mathbf{x-b}\right)\\&= \inf_{\mathbf{x}\in X} \left(A^T\boldsymbol\mu+\mathbf{c}\right)^T\mathbf{x} -\boldsymbol\mu^T\mathbf{b}
+\end{align*}
+Let $\mathbf{p} =A^T\boldsymbol\mu+\mathbf{c}$, and denote $p_i$ as the $i$-th entry in $\mathbf{p}$. Then, 
+\[\theta(\boldsymbol\mu) = \sum_{i: p_i\leq0}p_i - \boldsymbol\mu^T\mathbf{b}
+\]
+The first sum can be obtained by choosing $x_i=1$ if and only if $p_i\leq0$. 
+\item[(b)] $\theta(\mathbf{0}) = \inf_{\mathbf{x}\in X}\mathbf{c}^T\mathbf{x}$. Since $\mathbf{c}\geq0,$ then $\theta(\mathbf{0})\geq0$. \\ \\
+Case 1: If $\mathbf{c}$ has no zero entries. Then the unique minimiser of $\mathbf{c}^T\mathbf{x}$ in $X$  is $\mathbf{x}=\mathbf{0}$, in which the minimum value is zero. Then $\partial \theta(\mathbf{0}) =\text{conv} \{A\cdot\mathbf{0}-\mathbf{b}\} =\{-\mathbf{b}\}$.\\
+\\
+Case 2: Suppose there are entries in $\mathbf{c}$ with value zero. Denote $c_i$ as the $i$-th entry of $\mathbf{c}$. Then, $\mathbf{c}^T\mathbf{x} = 0$ for all $\mathbf{x}$ in the set below:\[
+S = \left\{\mathbf{x}\in X: x_i\in\{0,1\} \text{ for } i \text{ such that }c_i = 0, \ x_i = 0 \text{ for } i \text{ such that } c_i\neq 0\right\}
+\]
+The set $S$ contains all minimisers of $\mathbf{c}^T\mathbf{x}$, and $\partial \theta(\mathbf{0}) =\text{conv} \{A\mathbf{x}-\mathbf{b}: \mathbf{x}\in S\}$. Denote $\mathbf{a}_i$ as the $i$-th column of $A$. The subdifferential can also be written as:\[
+\partial\theta(\mathbf{0}) = \text{conv}\left\{\sum_{i: c_i = 0} y_i\mathbf{a}_i-\mathbf{b}: y_i \in \{0,1\} \text{ for } \ i\in\{1,2,\cdots,n\} \text{ in which } \ c_i=0\right\}
+\]
+\end{itemize}
+\newpage
+\section*{Question 5}
+For (a) and (b):
+\begin{align*}
+\min_{\mathbf{x}\in\mathbb{R}^3} \ \ \ \ & x_1^2+x_2^2+x_3^2-2x_3\\
+    \text{s.t. } \ \ \ & 2x_1+x_2=1
+\end{align*}
+\begin{itemize}
+    \item[(a)] The quadratic penalty function is:
+    \[
+    Q(\mathbf{x},\mu) = x_1^2+x_2^2+x_3^2-2x_3 + \frac{1}{2\mu}(2x_1+x_2-1)^2
+    \]
+    The function is convex, so the minimiser is the stationary point.
+    \[
+    \nabla  Q(\mathbf{x},\mu) = \begin{pmatrix}
+    2x_1 + \frac{2}{\mu}(2x_1+x_2-1)\\2x_2 + \frac{1}{\mu}(2x_1+x_2-1)\\2x_3-2
+    \end{pmatrix} = \begin{pmatrix}
+    0\\0\\0
+    \end{pmatrix}
+    \]
+    The minimizer is thus:
+    \[\mathbf{x}=\begin{pmatrix}
+    \frac{2}{2\mu+5}\\\frac1{2\mu+5}\\1
+    \end{pmatrix}
+    \]
+    
+\item[(b)] The augmented Lagrangian function is:
+    \[
+    L_A(\mathbf{x},\lambda,\sigma) = x_1^2+x_2^2+x_3^2-2x_3 + \lambda(2x_1+x_2-1)+ \frac{1}{2\sigma}(2x_1+x_2-1)^2
+    \]
+    The function is convex, so the minimiser is the stationary point.
+    \[
+    \nabla  L_A(\mathbf{x},\lambda,\sigma) = \begin{pmatrix}
+    2x_1 + 2\lambda+ \frac{2}{\sigma}(2x_1+x_2-1)\\2x_2 + \lambda+ \frac{1}{\sigma}(2x_1+x_2-1)\\2x_3-2
+    \end{pmatrix} = \begin{pmatrix}
+    0\\0\\0
+    \end{pmatrix}
+    \]
+    The minimizer is thus:
+    \[\mathbf{x}=\begin{pmatrix}
+    \frac{2(1-\lambda\sigma)}{2\sigma+5}\\\frac{1-\lambda\sigma}{2\sigma+5}\\1
+    \end{pmatrix} =\begin{pmatrix}
+    \frac 25\\\frac 15\\1
+    \end{pmatrix} \text{ when }\lambda = -\frac 25
+    \]
+
+\end{itemize}
+
+For (c) and (d), $Q\in\mathbb{R}^{n\times n}$ is symmetric positive definite, $\mathbf{c}\in\mathbb{R}^n, A\in\mathbb{R}^{m\times n},\mathbf{b}\in\mathbb{R}^m$.\begin{align*}
+    \min_{\mathbf{x}\in\mathbb{R}^n} \ \ \ \ & \frac{1}{2}\mathbf{x}^TQ\mathbf{x}+\mathbf{c}^T\mathbf{x}\\
+    \text{s.t. } \ \ \ & A\mathbf{x=b}
+\end{align*}
+
+\begin{itemize}
+    \item[(c)] The quadratic penalty function is:
+    \[Q(\mathbf{x},\mu) =
+   \frac{1}{2}\mathbf{x}^TQ\mathbf{x}+\mathbf{c}^T\mathbf{x} + \frac{1}{2\mu} \norm{ A\mathbf{x-b}}^2
+    \]
+    The function is convex, so the minimiser is the stationary point.
+    \[
+    \nabla  Q(\mathbf{x},\mu) = Q\mathbf{x}+\mathbf{c}+\frac1\mu A^T(A\mathbf{x-b}) = \mathbf{0}
+    \]
+    Thus we need to solve:
+    \[
+    \left(\frac{1}{\mu}A^TA+Q\right)\mathbf{x} = \frac1\mu A^T\mathbf{b} - \mathbf{c}
+    \]
+    \item[(d)] The augmented Lagrangian function is:
+    \[L_A(\mathbf{x},\boldsymbol\lambda,\sigma) =
+   \frac{1}{2}\mathbf{x}^TQ\mathbf{x}+\mathbf{c}^T\mathbf{x} + \boldsymbol\lambda^T(A\mathbf{x-b})+ \frac{1}{2\sigma} \norm{ A\mathbf{x-b}}^2
+    \]
+    The function is convex, so the minimiser is the stationary point.
+    \[
+    \nabla  L_A(\mathbf{x},\boldsymbol\lambda,\sigma)  = Q\mathbf{x}+\mathbf{c}+A^T\boldsymbol\lambda+\frac1\sigma A^T(A\mathbf{x-b}) = \mathbf{0}
+    \]
+    Thus we need to solve:
+    \[
+    \left(\frac{1}{\sigma}A^TA+Q\right)\mathbf{x} = \frac1\sigma A^T\mathbf{b} - \mathbf{c} - A^T\boldsymbol\lambda
+    \]
+\end{itemize}
+
+
+
+
+
+
+
+
+\end{document}

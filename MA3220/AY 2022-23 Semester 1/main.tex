@@ -1,0 +1,540 @@
+% pre-setting
+\documentclass[12pt]{amsart}
+\usepackage[toc,page]{appendix}
+\usepackage{amsfonts}
+\usepackage{setspace}
+\usepackage{amssymb,amsthm,amsmath}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{color}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{yhmath}
+\usepackage{stackengine}
+\stackMath
+
+\linespread{0}
+\hoffset -5pc
+\renewcommand{\baselinestretch}{1.4}
+\renewcommand{\textwidth}{40.5pc}
+\renewcommand{\arraystretch}{1.5}
+\setlength{\parskip}{0.2pc}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemmaa}[theorem]{Lemma A.}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{note}{Note}
+\newtheorem{case}{Case}[section]
+\newtheorem*{question}{Question}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{convention}[theorem]{Convention}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{claim}{Claim}
+\newtheorem{Rule}{Rule}
+
+\newtheorem{innercustomgeneric}{\customgenericname}
+\providecommand{\customgenericname}{}
+\newcommand{\newcustomtheorem}[2]{%
+  \newenvironment{#1}[1]
+  {%
+   \renewcommand\customgenericname{#2}%
+   \renewcommand\theinnercustomgeneric{##1}%
+   \innercustomgeneric
+  }
+  {\endinnercustomgeneric}
+}
+
+\newcustomtheorem{ctheorem}{Theorem}
+\newcustomtheorem{clemma}{Lemma}
+\newcustomtheorem{cclaim}{Claim}
+
+\def\mb{\mathbb}
+\def\bf{\textbf}
+\newcommand{\lf}{\lfloor}
+\newcommand{\rf}{\rfloor}
+\newcommand{\avk}{\bf v_1, \bf v_2, \ldots, \bf v_k}
+\newcommand{\awk}{\bf w_1, \bf w_2, \ldots, \bf w_k}
+\newcommand{\avkw}{\bf v_1\ \bf v_2\ \ldots\ \bf v_k}
+\newcommand{\aak}{\alpha_1, \alpha_2, \ldots, \alpha_k}
+\newcommand{\abk}{\beta_1, \beta_2, \ldots, \beta_k}
+\newcommand{\dsum}{\sum_{i=1}}
+\newcommand{\soe}{\bf{Ax}=\bf 0}
+\newcommand{\bew}{\begin{equation*}}
+\newcommand{\eew}{\end{equation*}}	
+\newcommand{\tu}{\textup}
+\newcommand{\RA}{\implies}
+\newcommand{\rA}{\rightarrow}
+\newcommand{\LA}{\impliedby}
+\newcommand{\lA}{\leftarrow}
+\newcommand{\LRA}{\Leftrightarrow}
+\newcommand{\lrA}{\leftrightarrow}
+\newcommand{\univ}{\mathcal U}
+\newcommand{\mc}{\mathcal}
+\newcommand{\union}{\cup}
+\newcommand{\inter}{\cap}
+\newcommand{\diff}{\backslash}
+\newcommand{\lsq}{\langle}
+\newcommand{\rsq}{\rangle}
+\newcommand{\dom}{\tu{dom}}
+\newcommand{\ran}{\tu{ran}}
+\newcommand{\uhra}{\upharpoonright}
+\newcommand{\Ima}{\tu{Im}}
+\newcommand{\pred}{\tu{pred}}
+\newcommand{\FN}{\textup{\bf{FN}}}
+\newcommand{\WO}{\textup{\bf{WO}}}
+\newcommand{\ORD}{\textup{\bf{ORD}}}
+\newcommand{\FOD}{\textup{\bf{FOD}}}
+\newcommand{\C}{\textup{\bf{C}}}
+\newcommand{\V}{\textup{\bf{V}}}
+\newcommand{\otp}{\textup{otp}}
+\newcommand{\lap}{\lessapprox}
+\newcommand{\lnp}{\lnapprox}
+\newcommand{\mf}{\mathfrak}
+\newcommand{\what}{\widehat}
+\newcommand{\lloc}[1]{L^{#1}_{loc}}
+\newcommand{\supp}{\tu{Supp}}
+\newcommand{\barint}[1]{\stackinset{c}{}{c}{}{-\mkern4mu}{\displaystyle\int_{#1}}}
+\newcommand{\cemb}{\subset\subset}
+
+
+\newcommand{\dint}[4]{\displaystyle\int_{#1}^{#2} \! #3 \, \operatorname{d} \! #4}
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\norm}[1]{\left\| #1 \right\|}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\bdf}{\begin{definition}}
+\newcommand{\edf}{\end{definition}}
+
+\DeclareMathOperator{\essinf}{essinf}
+\DeclareMathOperator{\esssup}{esssup}
+\DeclareMathOperator{\meas}{meas}
+\DeclareMathOperator{\divv}{div}
+\DeclareMathOperator{\spann}{span}
+
+
+
+\begin{document}
+
+\title{Suggested Solution for MA3220 Ordinary Differential Equations Final (AY22/23 Sem 1)}
+\author{Written by Qi Fulin\\ Audited by Ikhoon Eom}
+
+
+
+%%% ----------------------------------------------------------------------
+%\begin{abstract}
+
+
+
+%\end{abstract}
+%%% ----------------------------------------------------------------------
+
+\maketitle
+
+%\textbf{Keywords}: {}
+\subsection*{Question 1} \ 
+\begin{remark}
+	In the actual exam, no justification is needed for Question 1. Justifications presented here are just for readers' reference.
+\end{remark}
+(a) False.
+
+Since it is a non-linear first-order equation, defining $f(t,y)=y^\frac15$, we just need to verify whether both $f$ and $f_y$ are both continuous in some open rectangle containing $(0,0)$. Clearly, $f_y=\frac15y^{-\frac45}$ is discontinuous at $x=0$, so no such rectangle exists. 
+
+(b) True. 
+
+We can either see it from the superposition principle of linear ODEs, or
+\begin{align*}
+	\frac{d^3}{dt^3}(y_1+2y_2)=y'''_1+2y'''_3=e^ty_1+2e^ty_2=e^t(y_1+2y_2).
+\end{align*}
+
+(c) True.
+
+One may verify that $e^{-At}$ is indeed the inverse of $e^{At}$ for all $t\in\mb R$.
+
+(d) True.
+
+Since $(1,2)$ is a saddle point for the given autonomous system, we conclude that the corresponding linearised system near $(1,2)$ has two real eigenvalues of opposite signs, and $(1,2)$ is a critical point for the modified autonomous system. 
+
+Given that $\lambda\in\mb R$ being an eigenvalue of $A$ implies $-\lambda\in\mb R$ being an eigenvalue of $-A$, we have the linearised system near $(1,2)$ corresponding to the modified autonomous system also has two real eigenvalues of opposite signs, so $(1,2)$ is indeed a saddle point for the second autonomous system.
+
+(e) One such equation is $y'(t)=y^2$.
+
+We have
+\begin{align*}
+	y^{-2}y'(t)=1&\RA -y^{-1}=t-C\\
+	&\RA y=\frac{1}{C-t}.
+\end{align*}
+With the given initial condition, we have $C=1$, so the (unique) solution to the equation on some open interval containing $t=0$ is 
+\begin{align*}
+	y=\frac{1}{1-t},
+\end{align*}
+which goes to infinity at $t=1$.
+
+(f) The suitable guess is $Y=t(At+B)(C\sin t+D\cos t)$.
+
+Solving the characteristic equation $r^2+1=0$ gives us $r=\pm i$, so the general solution to the homogeneous solution is 
+\begin{align*}
+	y=A\sin t+B\cos t.
+\end{align*}
+Hence, the suitable guess is
+\begin{align*}
+	Y=t(At+B)(C\sin t+D\cos t).
+\end{align*}
+We need to multiply $(At+B)(C\sin t+D\cos t)$ by $t$ since otherwise, $BC\sin t+BD\cos t$ will solve the homogeneous equation.
+
+(g) $\alpha=3$.
+
+Define $f(x,y)=\alpha x^2y+xy^2$ and $g(x,y)=(x+y)x^2$. If the equation is exact, then 
+\begin{align*}
+	f_y=g_x\RA \alpha x^2+2xy=3x^2+2xy\RA \alpha=3.
+\end{align*}
+
+\subsection*{Question 2} \ 
+
+(i) Rewrite the equation as $\displaystyle y'-t^{-1}y =t^3$, which is a first-order linear equation. Since $t^3$ is continuous on $\mb R$, $t^{-1}$ is continuous on $\mb R\backslash\{0\}$, and the initial condition is $y(1)=2$, by the existence and uniqueness theorem, the maximum interval where a solution is certain to exist is $(0,\infty)$.
+
+(ii) The integrating factor is 
+\begin{align*}
+	e^{\int -t^{-1}\ dt}=t^{-1}.
+\end{align*}
+
+Multiplying both sides of $\displaystyle y'-t^{-1}y =t^3$ by $t^{-1}$, we have
+\begin{align*}
+	\left(t^{-1} y\right)'=t^2\RA t^{-1}y=\frac13t^3+C\RA y=\frac13t^4+Ct.
+\end{align*}
+
+From the initial condition $y(1)=2$, we have
+\begin{align*}
+	C=\frac53,
+\end{align*}
+so the solution to the IVP is
+\begin{align*}
+	y=\frac13t^4+\frac53t.
+\end{align*}
+
+Hence, the actual interval where the solution exists is $(-\infty,\infty)$.
+
+\subsection*{Question 3} \ 
+
+(i) Denoting the system as $\bf x'=\bf A\bf x$, we first try to find the eigenvalues of $\bf A$. The characteristic polynomial of $\bf A$ is
+\begin{align*}
+	\det(\bf A-\lambda\bf I)=\left|
+	\begin{array}{cc}
+		3-\lambda & -2\\
+		1 & 1-\lambda
+	\end{array}
+	\right|=(3-\lambda)(1-\lambda)+2=\lambda^2-4\lambda+5,
+\end{align*}
+setting it to 0 giving us $\lambda=2\pm i$.
+
+We now try to find an eigenvector corresponding to $\lambda=2+i$:
+\begin{align*}
+	\left(
+	\begin{array}{cc}
+		1-i & -2\\
+		1 & -1-i
+	\end{array}
+	\right)
+	\left(
+	\begin{array}{cc}
+		a\\
+		b
+	\end{array}
+	\right)=\bf 0&\RA 
+	\left(
+	\begin{array}{cc}
+		1 & -1-i\\
+		0 & 0
+	\end{array}
+	\right)
+	\left(
+	\begin{array}{cc}
+		a\\
+		b
+	\end{array}
+	\right)=\bf 0\\
+	&\RA \left(
+	\begin{array}{cc}
+		a\\
+		b
+	\end{array}
+	\right)=b\left(
+	\begin{array}{cc}
+		1\\
+		1
+	\end{array}
+	\right)+bi\left(
+	\begin{array}{cc}
+		1\\
+		0
+	\end{array}
+	\right),\ b\in\mb R,
+\end{align*}
+so an eigenvector corresponding to $\lambda=2+i$ is $\displaystyle\binom11+i\binom 10$.
+
+We then have a complex-valued solution
+\begin{align*}
+	\bf x(t)&=e^{2t}(\cos t+i\sin t)\left[\binom11+i\binom 10\right]\\
+		&=e^{2t}\left[\binom{\cos t-\sin t}{\cos t}+i\binom{\sin t+\cos t}{\sin t}\right],
+\end{align*}
+so the general solution to the given system is
+\begin{align*}
+	\bf x(t)=e^{2t}\left[C_1\binom{\cos t-\sin t}{\cos t}+C_2\binom{\sin t+\cos t}{\sin t}\right].
+\end{align*}
+
+From the initial condition $\displaystyle \bf x(0)=\binom21$, we have
+\begin{align*}
+	C_1\binom11+C_2\binom10= \binom21\RA C_1=1,C_2=1,
+\end{align*}
+so the solution to the given IVP is
+\begin{align*}
+	\bf x(t)=e^{2t}\left[\binom{\cos t-\sin t}{\cos t}+\binom{\sin t+\cos t}{\sin t}\right]=e^{2t}\binom{2\cos t}{\cos t+\sin t}.
+\end{align*}
+
+(ii) The phase portrait is an anticlockwise outward spiral centred at $(0,0)$. Since the real part of the eigenvalue is $2>0$, we conclude that the phase portrait is a spiral source and is unstable.
+
+\subsection*{Question 4} \ 
+
+(i) We define $x_1=x$, $x_2=x'$. From the second order equation, we have
+\begin{align*}
+	\left\{
+	\begin{array}{l}
+		x_1'=x_2\\
+		x_2'=-x_2-\alpha\sin x_1
+	\end{array}
+	\right.\iff \bf x'=\bf f(\bf x),
+\end{align*}
+which is a first-order system. When $\bf f(\bf x)=0$, we have
+\begin{align*}
+	\left\{
+	\begin{array}{l}
+		x_2=0\\
+		-x_2-\alpha\sin x_1=0
+	\end{array}
+	\right.\RA\left\{
+	\begin{array}{l}
+		x_2=0\\
+		\sin x_1=0
+	\end{array}
+	\right.\RA\left\{
+	\begin{array}{l}
+		x_2=0\\
+		x_1=k\pi,k\in\mb Z.
+	\end{array}
+	\right.
+\end{align*}
+Hence, all critical points of the first order system are $(k\pi,0)$ for $k\in\mb Z$.
+
+(ii) We define $\displaystyle \bf u(t)=\binom{x_1(t)}{x_2(t)}$.
+
+Since we have
+\begin{align*}
+	\bf A=\bf f'(\bf 0)=\left.\left(
+	\begin{array}{cc}
+		0 & 1\\
+		-\alpha\cos x_1&-1
+	\end{array}
+	\right)\right|_{x_1=x_2=0}=\left(
+	\begin{array}{cc}
+		0 & 1\\
+		-\alpha & -1
+	\end{array}
+	\right),
+\end{align*}
+the corresponding linearised system near $(0,0)$ is 
+\begin{align*}
+	\bf u'(t)=\left(
+	\begin{array}{cc}
+		0 & 1\\
+		-\alpha & -1
+	\end{array}
+	\right)\bf u(t)=\bf A\bf u(t).
+\end{align*} 
+
+(iii) The eigenvalues of $\bf A$ are the roots of
+\begin{align*}
+	p_\bf A(t)=\det(\bf A-\lambda \bf I)=-\lambda(-1-\lambda)+\alpha=\lambda^2+\lambda+\alpha,
+\end{align*}
+which are
+\begin{align*}
+	\lambda_1=\frac{-1+\sqrt{1-4\alpha}}{2},\lambda_2=\frac{-1-\sqrt{1-4\alpha}}{2}.
+\end{align*}
+
+When the critical point $(0,0)$ is a stable node, we have $\lambda_2<\lambda_1<0$, which then implies that
+\begin{align*}
+	0<\sqrt{1-4\alpha}< 1\RA 0<1-4\alpha<1\RA 0< \alpha<\frac14.
+\end{align*}
+
+\subsection*{Question 5} \ 
+
+(i) From the question, we have
+\begin{align*}\tag{1}
+	y''+\frac1x y+\left(1-\frac4{x^2}\right)y=0.
+\end{align*}
+
+Since $\displaystyle \lim_{x\rA0}\frac1x$ does not exist, we conclude that $x=0$ is a singular point.
+
+Since $\displaystyle\lim_{x\rA0}x\cdot \frac1x=\lim_{x\rA0}1=1$ and $\displaystyle \lim_{x\rA0}x^2\left(1-\frac4{x^2}\right)=\lim_{x\rA0}x^2-4=-4$, we conclude that $x=0$ is a regular singular point.
+
+
+(ii) Let $\displaystyle y=\sum_{n=0}^\infty a_nx^{n+r}$ be the ansatz, so
+\begin{align*}
+	y'=\sum_{n=0}^\infty(n+r)a_nx^{n+r-1}\land 
+	y''=\sum_{n=0}^\infty(n+r)(n+r-1)a_nx^{n+r-2}.
+\end{align*}
+
+From the question, we have
+\begin{align*}\tag{2}
+	&\sum_{n=0}^\infty(n+r)(n+r-1)a_nx^{n+r}+\sum_{n=0}^\infty(n+r)a_nx^{n+r}+\sum_{n=0}^\infty a_nx^{n+r+2}-\sum_{n=0}^\infty 4a_nx^{n+r}=0,
+\end{align*}
+so the indicial equation is
+\begin{align*}
+r(r-1)+r-4=0\RA r^2-4=0\RA r^2=4.
+\end{align*}
+
+The roots of the indicial equation are thus $r=\pm 2$.
+
+(iii) From (2), we know $\{a_n\}_{n\in\mb Z^+_0}$ satisfies
+\begin{align*}
+	\left\{
+	\begin{array}{ll}
+		a_1=0 & \tu{if $n=1$;}\\
+		(n^2+2nr+r^2-4)a_n+a_{n-2}=0 & \tu{if $n\geq2$.}\\
+	\end{array}
+	\right.\RA\left\{
+	\begin{array}{ll}
+		a_1=0 & \tu{if $n=1$;}\\
+		a_n=\frac{-a_{n-2}}{n^2+2nr+r^2-4} & \tu{if $n\geq2$.}\\
+	\end{array}
+	\right.
+\end{align*}
+
+When $r=2$, we have $a_i=0$ for odd $i\in\mb Z^+$ and 
+\begin{align*}
+	a_2&=-\frac1{12}a_0,\\
+	a_4&=-\frac1{32}a_2=\frac1{384}a_0.
+\end{align*}
+Following this trend, we see that $a_i$ is well-defined for all even $i\in\mb Z^+$ as well,  
+so a series solution for the case of $r_1=2$ exists. The first three non-zero terms of the series solution are
+\begin{align*}
+	y=a_0x^2-\frac1{12}a_0x^4+\frac1{384}a_0x^6.
+\end{align*} 
+
+When $r=-2$, we have
+\begin{align*}
+	a_4&=\frac{1}{16-16+4-4}a_2=\frac10a_2,
+\end{align*}
+which is undefined. Hence, there is no series solution for the case of $r_2=-2$.
+
+\subsection*{Question 6} \ 
+
+(i) When $\lambda=0$, we have
+\begin{align*}
+	y''=0\RA y=Cx+D
+\end{align*}
+by integrating both sides twice with respect to $t$, where $C,D\in\mb R$ are arbitrary constants.
+
+From the boundary conditions, we have $D=0$ and $C+D-C=0$, so all solutions to the BVP when $\lambda=0$ must be in the form of
+\begin{align*}
+	y=Cx,
+\end{align*}
+where $C\in\mb R$. Hence, there exists non-trivial solutions to the equation when $\lambda=0$, so $\lambda=0$ is indeed an eigenvalue.
+
+(ii) The characteristic equation of $y''+\lambda y=0$ is $m^2+\lambda=0$, whose roots are
+\begin{align*}
+	m_1=\sqrt{-\lambda},m_2=-\sqrt{-\lambda}.
+\end{align*}
+
+Assume $\lambda>0$. We have $m_1,m_2$ are both complex, i.e., $m_1=i\sqrt\lambda,m_2=-i\sqrt{\lambda}$. The general solution to the equation is thus
+\begin{align*}
+	y(t)=A\cos{\sqrt\lambda t}+B\sin{\sqrt\lambda t}.
+\end{align*}
+
+From the boundary conditions, we have
+\begin{align*}
+	y(0)=0&\RA A=0\\
+	y(1)-y'(1)=0&\RA A\cos\sqrt\lambda+B\sin\sqrt\lambda+\sqrt \lambda A\sin\sqrt\lambda-\sqrt\lambda B\cos\sqrt\lambda=0,   
+\end{align*}
+which suggest
+\begin{align*}
+	B\sin\sqrt\lambda-\sqrt\lambda B\cos\sqrt\lambda=0&\RA \sin\sqrt\lambda-\sqrt\lambda \cos\sqrt\lambda=0\\
+	&\RA \sqrt{1+\lambda}\sin(\sqrt\lambda-\arctan\sqrt\lambda)=0\\
+	&\RA \sqrt{\lambda_n}-\arctan\sqrt{\lambda_n}=n\pi, n\in\mb Z^+\tag{$*$}.
+\end{align*}
+Therefore, as long as $\lambda$ satisfies $(*)$, we can choose $B\in\mb R$ for free, which then implies that non-trivial solutions to the eigenvalue problem exist, i.e., $\lambda_n$ is an eigenvalue.
+
+Since by definition, $\displaystyle -\frac\pi2<\arctan x<\frac\pi2$, from $(*)$, we have
+\begin{align*}
+	n\pi -\frac\pi 2<\sqrt{\lambda_n}<n\pi +\frac\pi 2\RA \left(n-\frac12\right)^2\pi^2<\lambda_n<\left(n+\frac12\right)^2\pi^2,
+\end{align*}
+which then gives us the desired result.
+
+(iii) We define $\displaystyle \lsq f,g\rsq=\int_{0}^1fg\ dt$.
+
+Let $f,g$ be non-trivial eigenfunctions corresponding to different eigenvalues $\lambda_1$ and $\lambda_2\in\mb R$. We have
+\begin{align*}
+\begin{split}
+	\lsq -\lambda_1 f,g\rsq=\lsq f'',g\rsq&=\int_{0}^1f''g\ dt\\
+	&=\left[f'g\right]_{0}^1-\int_{0}^1f'g'\ dt\\
+	&=\left[f'g\right]_{0}^1-\lsq f',g'\rsq,
+\end{split}\\
+	\lsq  f,-\lambda_2g\rsq=\lsq f,g'\rsq&=\int_{0}^1fg''\ dt\\
+	&=\left[fg'\right]_{0}^1-\int_{0}^1f'g'\ dt\\
+	&=\left[fg'\right]_{0}^1-\lsq f',g'\rsq.
+\end{align*}
+
+From the boundary conditions, we have $f(0)=g(0)=0$, $f(1)=f'(1)$, and $g(1)=g'(1)$, which then implies that
+\begin{align*}
+	\lsq -\lambda_1 f,g\rsq=f(1)g(1)-\lsq f',g'\rsq,\\
+	\lsq f, -\lambda_2g\rsq=f(1)g(1)-\lsq f',g'\rsq.
+\end{align*}
+
+This suggests that 
+\begin{align*}
+	\lsq -\lambda_1f,g\rsq=-\lambda_1\lsq f,g\rsq=-\lambda_2\lsq f,g\rsq=\lsq f,-\lambda_2g\rsq,
+\end{align*}
+which implies $\lsq f,g\rsq=0$ given that $\lambda_1\neq\lambda_2$. We therefore conclude that eigenfunctions corresponding to different eigenvalues must be mutually orthogonal on $[0,1]$.
+
+\subsection*{Question 7} \ 
+
+(i) Choose $p(t)=0$ and $q(t)=1$, so the equation becomes $y''+y=0$. We can check that 
+\begin{enumerate}
+	\item our choice of $p(t)$ and $q(t)$ satisfies the question requirements;
+	\item $y(t)=\sin x$ is indeed a non-constant solution to the equation which has infinitely many zeros.
+\end{enumerate}
+
+(ii) Impossible.
+
+Suppose this is possible for the sake of finding a contradiction. Let $y(t)$ be an arbitrary non-constant solution to the equation, and $a,b$ be two consecutive zeros of $y(t)$. 
+
+Since both $p(t)$ and $g(t)$ are continuous on $\mb R$, we must have $y(t)$ is continuous on $\mb R$. Hence, by the extreme value theorem, $y(t)$ must have a local extrema in $(a,b)$.
+
+If $y(t)$ has a local maximum $c$ in $(a,b)$, we have $y(c)>0$, $y'(c)=0$, and $y''(c )<0$. Since $q(c)<0$ by assumption, we have $q(c)y(c)<0$, which then implies that 
+\begin{align*}
+	0=y''(c)+q(c)y(c)<0,
+\end{align*}
+a contradiction.
+
+Similarly, if $y(t)$ has a local minimum $d$ in $(a,b)$, we have $y(c)<0$, $y'(c)=0$, and $y''(c )>0$. Since $q(c)<0$ by assumption, we have $q(c)y(c)>0$, which then implies that 
+\begin{align*}
+	0=y''(c)+q(c)y(c)>0,
+\end{align*}
+a contradiction.
+
+Therefore, we conclude that $y(t)$ has no local extrema in $(a,b)$, a contradiction to the extreme value theorem. We then conclude that it is impossible to have a solution with infinitely many zeros when $p(t)<0$ for all $t\in\mb R$.
+
+
+
+%\begin{thebibliography}{99}
+%\bibitem{}
+%\end{thebibliography}
+\end{document}

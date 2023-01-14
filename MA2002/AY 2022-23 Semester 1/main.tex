@@ -1,0 +1,335 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[a4paper, total={6in, 10in}]{geometry}
+\usepackage{tikz}
+\usepackage{multicol}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\allowdisplaybreaks
+
+\title{MA2002 - Calculus Suggested Solutions}
+\author{(Semester 1, AY2022/2023)}
+\date{Written by: Kek Yan Xin\\ Audited by: Tan Jia Hang}
+
+\begin{document}
+\maketitle
+\section*{Question 1}
+\subsection*{Question 1a}
+
+\begin{align*}
+    \frac{x^2+x-2}{x^2-1} - \frac{3}{2} &= \frac{(x-1)(x+2)}{(x-1)(x+1)} -\frac{3}{2}\\
+    &= \frac{x+2}{x+1} - \frac{3}{2}\\
+    &= \frac{2(x+2)-3(x+1)}{2(x+1)}\\
+    &= \frac{2x+4-3x-3}{2(x+1)}\\
+    &= \frac{-x+1}{2(x+1)}\\
+    &= -\frac{x-1}{2(x+1)}.
+\end{align*}
+Notice if we take $|x-1|<1$, then
+\begin{align*}
+    -1 &< x-1 < 1\\
+    1 &< x+1 < 3\\
+    1 &>\frac{1}{x+1}>\frac{1}{3}.
+\end{align*}
+i.e., $\left|\frac{1}{x+1}\right|<1$. Hence, let $\varepsilon>0$ and $\delta=\min\{1, 2\varepsilon\}$, so for $0<|x-1|<\delta$,
+\begin{align*}
+    \left|\frac{x^2+x-2}{x^2-1}-\frac{3}{2}\right|&= \left|-\frac{x-1}{2(x+1)}\right|\\
+    &= \left|-\frac{1}{2}\right|\cdot\frac{|x-1|}{|x+1|}\\
+    &< \frac{1}{2}\cdot|x-1| && \because \frac{1}{|x+1|}<1\\
+    &<\frac{1}{2}\cdot 2\varepsilon\\
+    &=\varepsilon.
+\end{align*}
+By the $\epsilon-\delta$ definition, we have proven that \[\lim_{x\rightarrow1} \frac{x^2+x-2}{x^2-1}=\frac{3}{2}.\]
+
+\newpage
+\subsection*{Question 1b(i)}
+For $(-\infty, 1)$, $f$ is a polynomial. For $(1, \infty)$, $f$ is a rational function that has no asymptotes. This proves that $f$ is differentiable when $x\neq 1$. It remains to prove that $f$ is differentiable at $x=1$. It will suffice to show that the difference quotient has both right- and left-handed limits that are equal. 
+
+For $x<1$,
+\begin{align*}
+    \frac{f(x)-f(1)}{x-1} &= \frac{\frac{13-x^2}{8}-\frac{3}{2}}{x-1}\\
+    &=\frac{(13-x^2)-(3\cdot 4)}{8(x-1)}\\
+    &=\frac{1-x^2}{8(x-1)}\\
+    &=\frac{(1-x)(1+x)}{-8(1-x)}\\
+    &=\frac{1+x}{-8}\\
+    \lim_{x\to 1^-}\frac{f(x)-f(1)}{x-1} &= \frac{1+1}{-8}\\
+    &= -\frac{2}{8}\\
+    &= -\frac{1}{4}.
+\end{align*}
+For $x>1$, 
+\begin{align*}
+    \frac{f(x)-f(1)}{x-1} &= \frac{\frac{x+2}{x+1}-\frac{3}{2}}{x-1}\\
+    &= \frac{2(x+2)-3(x+1)}{2(x+1)(x-1)}\\
+    &= \frac{2x+4-3x-3}{2(x+1)(x-1)}\\
+    &= \frac{-x+1}{2(x+1)(x-1)}\\
+    &= -\frac{x-1}{2(x+1)(x-1)}\\
+    &= -\frac{1}{2(x+1)}\\
+    \lim_{x\to 1^+}\frac{f(x)-f(1)}{x-1} &= -\frac{1}{2(1+1)}\\
+    &= -\frac{1}{4}.
+\end{align*}
+Since
+\begin{align*}
+    \lim_{x\to 1^-}\frac{f(x)-f(1)}{x-1} = \lim_{x\to 1^+}\frac{f(x)-f(1)}{x-1} = -\frac{1}{4},
+\end{align*}
+$\lim_{x\to 1}\frac{f(x)-f(1)}{x-1}$ exists, so $f'(1)$ exists and is equal to $-\frac{1}{4}$. Hence, the given piecewise function is differentiable everywhere.
+
+\newpage
+\subsection*{Question 1b(ii)}
+\begin{align*}
+    f'(x) &= \begin{cases}
+    \frac{d}{dx}\frac{13-x^2}{8}, & x<1\\
+    \frac{-1}{4}, & x=1\\
+    \frac{d}{dx}\frac{x+2}{x+1}, & x>1
+    \end{cases}\\
+    &= \begin{cases}
+    \frac{-x}{4}, & x<1\\
+    \frac{-1}{4}, & x=1\\
+    \frac{(x+1)-(x+2)}{(x+1)^2}, & x>1
+    \end{cases}\\
+    &= \begin{cases}
+    \frac{-x}{4}, & x\leq1\\
+    \frac{-1}{(x+1)^2}, & x>1
+    \end{cases}
+\end{align*}
+It is clear that (i) for $0<x\leq 1$, $f'(x)<0$, (ii) for $x<0$, $f'(x)>0$, and (iii) for $x>1$, $f'(x)<0$. i.e., for $x<0$, $f'(x)>0$, and for $x>0$, $f'(x)<0$, so $f$ increases for $x<0$ and decreases for $x>0$. Hence, the global maximum of $f$ is at $x=0$, so the maximum point is $(0, f(0))=(0,\frac{13}{8})$.
+
+\newpage
+\section*{Question 2}
+\subsection*{Question 2a}
+Let $u=\sin(x)$, so that $du = \cos(x) dx$, and when $x=0$, $u=0$; when $x=\frac{\pi}{2}$, $u=1$. 
+\begin{align*}
+    &\int_0^{\frac{\pi}{2}}\frac{\cos(x)(\sin^4(x)+2\sin^2(x)+\sin(x)+2)}{(\sin(x)+1)(\sin^2(x)+1)^2}dx\\ 
+    =& \int_0^1\frac{u^4+2u^2+u+2}{(u+1)(u^2+1)^2}du\\
+    =& \int_0^1\frac{(u^4+2u^2+1)+(u+1)}{(u+1)(u^2+1)^2}du\:(*)\\
+    =& \int_0^1\frac{(u^2+1)^2+(u+1)}{(u+1)(u^2+1)^2}du\\
+    =& \int_0^1\frac{1}{u+1}+\frac{1}{(u^2+1)^2}du
+\end{align*}
+$(*)$ Alternatively, one can use direct addition or partial fraction to show that
+\begin{align*}
+    \frac{1}{u+1}+\frac{1}{(u^2+1)^2} = \frac{u^4+2u^2+u+2}{(u+1)(u^2+1)^2}.
+\end{align*}
+
+\subsection*{Question 2b}
+\begin{align*}
+    \int_0^1\frac{1}{u+1}du = \ln(u+1)|_0^1 = \ln(2)-\ln(1) = \ln(2).
+\end{align*}
+For the other integral, we proceed with the substitution $u=\tan\theta$. So $du = \sec^2\theta d\theta$, when $u=0$, $\theta=0$; when $u=1$, $\theta=\frac{\pi}{4}$.
+\begin{align*}
+    \int_0^1\frac{1}{(u^2+1)^2}du &= \int_0^{\frac{\pi}{4}}\frac{1}{(\tan^2(\theta)+1)^2}\cdot\sec^2(\theta) d\theta\\
+    &=\int_0^{\frac{\pi}{4}}\frac{1}{\sec^4(\theta)}\cdot\sec^2(\theta) d\theta\\
+    &=\int_0^{\frac{\pi}{4}}\frac{1}{\sec^2(\theta)} d\theta\\
+    &=\int_0^{\frac{\pi}{4}}\cos^2(\theta) d\theta\\
+    &=\int_0^{\frac{\pi}{4}}\frac{1+\cos(2\theta)}{2} d\theta\\
+    &=\left.\left(\frac{1}{2}\theta + \frac{1}{4}\sin(2\theta)\right)\right|_0^{\frac{\pi}{4}}\\
+    &= \left(\frac{1}{2} \cdot \frac{\pi}{4} + \frac{1}{4}\sin\left(\frac{\pi}{2}\right)\right)-\left(\frac{1}{2}(0)+\frac{1}{4}\sin(0)\right)\\
+    &= \frac{\pi}{8}+\frac{1}{4}.
+\end{align*}
+
+\newpage
+Alternatively, one could also use the substitution $u=\frac{1}{x}$. So, $du=-\frac{1}{x^2} dx$, and when $u=1,x=1$; when $u=0,x=\infty$.
+\begin{align*}
+    \int_0^1\frac{1}{(u^2+1)^2} du
+    &= \int_\infty^1 \frac{-\frac{1}{x^2}}{\left(\frac{1}{x^2}+1\right)^2}dx\\
+    &= \int^\infty_1 \frac{x^2}{\left(1+x^2\right)^2}dx\:(*)\\
+    &= \left.x\times\frac{-1}{2(1+x^2)}\right|^\infty_1 - \int^\infty_1 1\times\frac{-1}{2(1+x^2)}dx\\
+    &= \frac{1}{4}+\left.\frac{1}{2}\arctan(x)\right|_1^\infty && \because\int \frac{1}{1+x^2}dx=\arctan(x)\\
+    &= \frac{1}{4}+\frac{\pi}{8}.
+\end{align*}
+
+$(*)$ Here, we use integration by parts with
+\begin{align*}
+    &u=x                        && du=dx \\
+    &dv=\frac{x}{(1+x^2)^2}dx   && v=\frac{-1}{2(1+x^2)}.
+\end{align*}
+
+Then
+\begin{align*}
+    \int_0^1\frac{1}{u+1}+\frac{1}{(u^2+1)^2}du = \ln(2) + \frac{\pi}{8} + \frac{1}{4}.
+\end{align*}
+
+\newpage
+\section*{Question 3}
+\subsection*{Question 3a} Let $L$ denote the limit in question. 
+\begin{align*}
+    L &= \lim_{x\to 2}\frac{(x-1)^\frac{1}{x-2}}{e^{x-1}}\\
+    \ln(L) &= \lim_{x\to 2}\ln\left(\frac{(x-1)^\frac{1}{x-2}}{e^{x-1}}\right) && \because\text{by continuity of ln}\\
+    &= \lim_{x\to 2}\left(\frac{1}{x-2}\ln(x-1)-\ln\left(e^{x-1}\right)\right)\\
+    &= \lim_{x\to 2}\frac{\ln(x-1)}{x-2}-\lim_{x\to 2}\ln(e^{x-1})\\
+    &= \lim_{x\to 2}\frac{\frac{1}{x-1}}{1} - \lim_{x\to 2}(x-1) && \because\frac{\ln(x-1)}{x-2}\to \frac{0}{0} \text{ so we apply L'H on the first limit}\\
+    &= \frac{1}{2-1} - (2-1)\\
+    &= 1 - 1\\
+    &= 0\\
+    L &= e^0 = 1.
+\end{align*}
+
+\subsection*{Question 3b} Consider $x\in\mathbb{R}$ such that $0<|x|<\varepsilon$. Either $f(x)>0$ or $f(x)=0$. Suppose $x$ is such that $f(x)>0$. Then
+\begin{align*}
+    0<\frac{f(x)e^{-\frac{1}{x^2}}}{1+f(x)} = \frac{e^{-\frac{1}{x^2}}}{\frac{1}{f(x)}+ 1} < e^{-\frac{1}{x^2}} \:\text{since } 1+\frac{1}{f(x)}>1.
+\end{align*}
+Suppose $x$ is such that $f(x)=0$. Then
+\begin{align*}
+    0\leq \frac{f(x)e^{-\frac{1}{x^2}}}{1+f(x)} = 0 < e^{-\frac{1}{x^2}}.
+\end{align*}
+Hence, for $x\in (-\varepsilon, \varepsilon)\setminus \{0\},$
+\begin{align*}
+    0 \leq \frac{f(x)e^{-\frac{1}{x^2}}}{1+f(x)} < e^{-\frac{1}{x^2}}.
+\end{align*}
+Since $\lim_{x\to 0}e^{-\frac{1}{x^2}} = 0$, by Squeeze Theorem,
+\begin{align*}
+    \lim_{x\to 0}\frac{f(x)e^{-\frac{1}{x^2}}}{1+f(x)} = 0.
+\end{align*}
+
+\newpage
+\section*{Question 4}
+\subsection*{Question 4a}
+By the disc method, we integrate along the $x$-axis from $0$ to $2\pi$, with the radius of each disc being $f(x)-1=\sin(x)+2$.
+\begin{align*}
+    V &= \int_0^{2\pi}\pi(\sin(x) + 2)^2dx\\
+    &= \pi\int_0^{2\pi}\left(\sin^2(x)+4\sin(x) +4\right)dx\\
+    &= \pi\int_0^{2\pi}\left(\frac{1-\cos(2x)}{2}+4\sin(x) +4\right)dx\\
+    &= \pi\cdot\left.\left(\frac{x}{2}-\frac{\sin(2x)}{4}-4\cos(x)+4x\right)\right|_0^{2\pi}\\
+    &=\pi\left(\left(\frac{2\pi}{2}-\frac{\sin(4\pi)}{4}-4\cos(2\pi)+4(2\pi)\right)-\left(\frac{0}{2}-\frac{\sin(0)}{4}-4\cos(0)+4(0)\right)\right)\\
+    &= \pi (\pi - 0 - 4 + 8\pi + 4)\\
+    &= \pi (9\pi)\\
+    &= 9\pi^2.
+\end{align*}
+
+\subsection*{Question 4b}
+By the shell method, we integrate along the $x$-axis from $0$ to $2\pi$, and each shell has radius $x$ and height $f(x)=\sin(x)+3$.
+
+\begin{align*}
+    V &= \int_0^{2\pi} 2\pi x (\sin(x)+3) dx\\
+    &= 2\pi \int_0^{2\pi}\left( x\sin(x) + 3x\right)dx\\
+    &= 2\pi \left(\int_0^{2\pi}x\sin(x)dx + \int_0^{2\pi}3xdx\right)\:(*)\\
+    &= 2\pi \left(\left.-x\cos(x)\right|_0^{2\pi}+\int_0^{2\pi}\left(-\cos(x)\right)dx + \left.\frac{3}{2}x^2\right|_0^{2\pi}\right)\\
+    &= 2\pi\left(-2\pi\cos(2\pi)+0\cos(0)+(\sin(x))_0^{2\pi}+\left(\frac{3}{2}(2\pi)^2-\frac{3}{2}(0)^2\right)\right)\\
+    &= 2\pi\left(-2\pi + (\sin(2\pi)-\sin(0))+6\pi^2\right)\\
+    &=2\pi(6\pi^2-2\pi)\\
+    &= 4\pi^2(3\pi-1).
+\end{align*}
+
+$(*)$ Here, we use integration by parts with
+\begin{align*}
+    & u=x            && du=dx \\
+    & dv=\sin(x)dx   && v=-\cos(x).
+\end{align*}
+
+\newpage
+\subsection*{Question 4c(i)}
+The height is given by $f(x)-3=\sin(x)$. We will integrate from $0$ to $\frac{\pi}{2}$ in order to have an injective substitution later on. By symmetry of $\sin(x)$, the required surface area $S$ is $4$ times of the surface area from $0$ to $\frac{\pi}{2}$. By the surface area formula,\begin{align*}
+    S &= 4\int_0^{\pi/2}2\pi\sin(x)\sqrt{1+\cos^2(x)}dx.
+\end{align*}
+We proceed with the substitution $u=\cos(x)$, so that $du=-\sin(x)dx$, and when $x=0, u=1$; when $x=\frac{\pi}{2}, u=0$.
+\begin{align*}
+    S &= 8\pi\int_1^0-\sqrt{1+u^2}du = 8\pi\int_0^1\sqrt{1+u^2}du. 
+\end{align*}
+
+\subsection*{Question 4c(ii)}
+We proceed with the substitution $u=\tan\theta$. So, $du=\sec^2(\theta)d\theta$, and when $u=0,\theta=0$; when $u=1,\theta=\frac{\pi}{4}$.
+\begin{align*}
+    S &= 8\pi\int_0^{\pi/4}\sqrt{1+\tan^2(\theta)}\sec^2(\theta) d\theta\\
+    &= 8\pi\int_0^{\pi/4}\sqrt{\sec^2(\theta)}\sec^2(\theta) d\theta\\
+    &= 8\pi\int_0^{\pi/4}\mid\sec(\theta)\mid \sec^2(\theta) d\theta\\
+    &= 8\pi\int_0^{\pi/4}\sec^3(\theta) d\theta &&\because \theta\in\left[0,\frac{\pi}{4}\right]\implies \sec(\theta)>0\\
+    &= 8\pi \int_0^{\pi/4}\cos^{-3}(\theta) d\theta. 
+\end{align*}
+One can proceed from here with integration by parts, but we will use the identity given, taking $n=-1$, to solve for $\int_0^{\pi/4}\cos^{-3}\theta d\theta$, and substitute back into $S$.
+\begin{align*}
+    \int_0^{\pi/4}\cos^{-1}(\theta) d\theta &= \left.\frac{1}{-1}\sin(\theta)\cos^{-1-1}(\theta)\right|_0^{\pi/4}+\frac{-1-1}{-1}\int_0^{\pi/4}\cos^{-3}(\theta) d\theta\\
+    \int_0^{\pi/4}\sec(\theta) d\theta &= \left.-\sin(\theta)\cos^{-2}(\theta) \right|_0^{\pi/4}+2\int_0^{\pi/4}\cos^{-3}(\theta) d\theta\\
+    \left.\ln\left(\sec(\theta)+\tan(\theta)\right)\right|_0^{\pi/4} &= \left(-\frac{\sin(\frac\pi 4)}{\cos^2(\frac\pi 4)}+\frac{\sin(0)}{\cos^2(0)}\right)+2\int_0^{\pi/4}\cos^{-3}(\theta) d\theta
+\end{align*}
+\begin{align*}
+    \ln\left(\frac{1}{\cos(\pi/4)}+\tan(\pi/4)\right) - \ln\left(\frac{1}{\cos(0)}+\tan(0)\right) &= \left(-\frac{\frac{1}{\sqrt{2}}}{\frac{1}{2}}+\frac{0}{1}\right)+2\int_0^{\pi/4}\cos^{-3}(\theta) d\theta\\
+    \ln(\sqrt{2}+1)-\ln(1+0)&=-\frac{2}{\sqrt{2}}+2\int_0^{\pi/4}\cos^{-3}(\theta) d\theta\\
+    \ln(\sqrt{2}+1)&=-\sqrt{2}+2\int_0^{\pi/4}\cos^{-3}(\theta) d\theta\\
+    \int_0^{\pi/4}\cos^{-3}(\theta) d\theta &= \frac{1}{2}(\ln(\sqrt{2}+1)+\sqrt{2}).
+\end{align*}
+
+Substituting back into $S$,
+\begin{align*}
+    S &= 8\pi\left(\frac{1}{2}(\ln(\sqrt{2}+1)+\sqrt{2})\right)
+    = 4\pi\left(\ln(\sqrt{2}+1)+\sqrt{2}\right).
+\end{align*}
+
+\newpage
+\section*{Question 5}
+\subsection*{Question 5a}
+Let $y=f(x)$. Then
+\begin{align*}
+    2e^x\frac{dy}{dx} &= (1-e^{2x})e^y\\
+    2e^{-y}\frac{dy}{dx} &= e^{-x}-e^x\\
+    \int 2e^{-y}dy &= \int\left(e^{-x}-e^x\right)dx\\
+    -2e^{-y} &= -e^{-x}-e^x + C,\:C\in\mathbb{R}\\
+    e^{-y} &= \frac{1}{2}e^{-x}+\frac{1}{2}e^x -\frac{C}{2}
+\end{align*}
+Note that we need $C<0$ in order for the right side of the equation to be positive for all $x\in\mathbb{R}$. Assuming so, we can then take $\ln$ on both sides.
+\begin{align*}
+    f(x) &= -\ln\left(\frac{1}{2}e^{-x}+\frac{1}{2}e^x + C\right), \: C>0 && \because\text{Let } C'=-\frac{C}{2}>0
+\end{align*}
+
+\subsection*{Question 5b} 
+Let $y=f(x).$ Then
+\begin{align*}
+    x\frac{dy}{dx} &= \ln(x)+2y\\
+    \frac{dy}{dx} - \frac{2}{x}y &= \frac{\ln(x)}{x}
+\end{align*}
+Then the integrating factor is $e^{\int-\frac{2}{x}dx} = e^{-2\ln\mid x\mid}=e^{\ln(\mid x\mid^{-2})}=x^{-2}$.
+\begin{align*}
+    yx^{-2} &= \int x^{-2}\frac{\ln(x)}{x}dx\\
+    &= \int x^{-3}\ln(x)dx\:(*)\\
+    &= \frac{x^{-2}}{-2}\times\ln(x) + \int\frac{x^{-2}}{2}\times\frac{1}{x}dx\\
+    &= \frac{x^{-2}}{-2}\times\ln(x) + \frac{x^{-2}}{2\times-2}\\
+    &= -\frac{1}{4} x^{-2}\left(2\ln(x)+1\right)+C\\
+    \therefore y &= -\frac{1}{4}(2\ln(x)+1)+Cx^2.
+\end{align*}
+
+$(*)$ Here, we use integration by parts with
+\begin{align*}
+    & u=\ln(x)      && du=\frac{1}{x}dx \\
+    & dv=x^{-3}dx   && v=\frac{x^{-2}}{-2}
+\end{align*}
+
+Substituting in $x=1,y=0$
+\begin{align*}
+    0 &= -\frac{1}{4}(2\ln(1)-1)+C(1)^2= -\frac{1}{4}+C\\
+    \therefore C &= \frac{1}{4}.
+\end{align*}
+Therefore, the particular solution is
+\begin{align*}
+    f(x) &= -\frac{1}{4}(2\ln(x)+1-x^2).  
+\end{align*}
+
+\newpage
+\section*{Question 6}
+\begin{align*}
+    \frac{1}{n^2}\sum_{k=1}^n\left[kf'\left(\frac{k}{n}\right)+nf\left(\frac{k}{n}\right)\right] &= \frac{1}{n}\sum_{k=1}^n\left[\frac{k}{n}f'\left(\frac{k}{n}\right)+f\left(\frac{k}{n}\right)\right]\\
+    &= \sum_{k=1}^n\left[\frac{1}{n}\cdot g\left(\frac{k}{n}\right)\right],
+\end{align*}
+where $g(x) = xf'(x)+f(x)$. Notice that $g$ is continuous since $x, f'(x), f(x)$ are all continuous. Hence, $g$ is integrable. To find the antiderivative of $g$, 
+\begin{align*}
+    \int g(x) dx &= \int \left(xf'(x) + f(x)\right) dx\\
+    &= \int xf'(x) dx + \int f(x) dx\:(*)\\
+    &= xf(x) - \int f(x) dx + \int f(x) dx\\
+    &= xf(x).
+\end{align*}
+
+$(*)$ Here, we use integration by parts with
+\begin{align*}
+    & u=x           && du=dx \\
+    & dv=f'(x)dx    && v=f(x)
+\end{align*}    
+
+Note that a Riemann sum can expressed as a definite integral, i.e.,
+\begin{align*}
+    \lim_{n\to\infty}\sum_{k=1}^n\left[\Delta x \cdot g(x_k)\right]=\int_a^b g(x)dx, 
+    && \text{where }\Delta x=\frac{b-a}{n},\: x_k=a+k\Delta x.
+\end{align*}
+Taking the Riemann sum of $g$ over $[0,1]$ with even-width partition,
+\begin{align*}
+    \lim_{n\to\infty}\sum_{k=1}^n\left[\frac{1}{n}\cdot g\left(\frac{k}{n}\right)\right] &= \int_0^1 g(x)dx\\
+    &= xf(x)\mid_0^1\\
+    &= f(1).
+\end{align*}
+\end{document}

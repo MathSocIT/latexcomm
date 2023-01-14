@@ -1,0 +1,408 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{xcolor}
+
+\title{MA2101 22/23 Sem 1 Finals Solutions}
+\author{-}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\nullity}{nullity}
+
+\begin{document}
+\maketitle
+
+\section*{Question 1}
+Note that we have
+\begin{align*}
+Y
+=\begin{pmatrix} y_1\\y_2\\y_3 \end{pmatrix}
+&=\begin{pmatrix} 0\\0\\1 \end{pmatrix}(y_3-y_1)
++\begin{pmatrix} 1\\1\\1 \end{pmatrix}(y_1)
++\begin{pmatrix} 0\\1\\0 \end{pmatrix}(y_2-y_1)
+\\&=\begin{bmatrix} 0&1&0\\0&1&1\\1&1&0 \end{bmatrix}
+\begin{pmatrix} y_3-y_1\\y_1\\y_2-y_1 \end{pmatrix} 
+\\&=P
+\begin{pmatrix} y_3-y_1\\y_1\\y_2-y_1 \end{pmatrix} 
+.
+\end{align*}
+Likewise 
+\[
+    Y'
+=P\begin{pmatrix} y_3'-y_1'\\y_1'\\y_2'-y_1' \end{pmatrix} 
+=P\begin{pmatrix} (y_3-y_1)'\\y_1'\\(y_2-y_1)' \end{pmatrix} 
+\]
+by linearity of the derivative. Letting $z(x)=y_3(x)-y_1(x)$ and
+$w(x)=y_2(x)-y_1(x)$, our differential equation becomes
+\[
+    P\begin{pmatrix} z'\\y_1'\\w' \end{pmatrix}
+    = AP\begin{pmatrix} z\\y_1\\w \end{pmatrix} 
+\]
+whence multiplying both sides by $P^{-1}$ gives
+\[
+    \begin{pmatrix} z'\\y_1'\\w' \end{pmatrix}
+    = (P^{-1}AP)\begin{pmatrix} z\\y_1\\w \end{pmatrix} 
+    =\begin{bmatrix} 1&0&0\\0&2&1\\0&0&2 \end{bmatrix}
+    \begin{pmatrix} z\\y_1\\w \end{pmatrix} 
+    =\begin{pmatrix} z\\2y_1+w\\2w \end{pmatrix}.
+\]
+so that $z'=z$, $y_1'=2y_1+w$ and $w'=2w$.
+From single-variable calculus, we know the first and third equations have
+solutions $z(x)=C_1\exp x$ and $w=C_2\exp{2x}$ (where $C_1,C_2\in\mathbb{R}$ are
+arbitrary), so the second equation becomes
+\[
+    y_1'=2y_1'+w=2y_1+C_2\exp{2x}.
+\]
+Using the given formula with $p(x)=-2, q(x)=\exp{2x}$,
+we get $\mu(x)=\exp{(-2x)}$ and \underline{$y_1=(C_2 x+C_3)\exp{2x}$}
+(with $C_3\in\mathbb{R}$ arbitrary.) Finally, we calculate
+\[
+    \underline{y_2(x)=w(x)+y_1(x)=(C_2x+(C_2+C_3))\exp{2x}},
+\]
+and
+\[
+    \underline{y_3(x)=z(x)+y_1(x)=C_1\exp x + (C_2x+C_3)\exp{2x}},
+\]
+which is exactly what we wanted.
+\hfill$\square$
+
+\newpage
+\section*{Question 2}
+\subsection*{Part (a)}
+We claim that $AA^{T}$ is a real symmetric matrix, then by the spectral
+theorem $AA^T$ is orthogonally diagonalizable as desired.
+
+Indeed, write $A=(a_{i,j})_{i,j=1}^n$, then $A^T=(a_{j, i})_{i,j=1}^n$, and
+\[
+    AA^T=(a_{i,j})_{i,j=1}^n(a_{j,i})_{i,j=1}^n
+    =\left(\sum_{k=1}^n a_{i,k}a_{j,k}\right)_{i,j=1}^n,
+\]
+which is clearly symmetric. \hfill$\blacksquare$
+
+\subsection*{Part (b)}
+We first calculate
+$AA^T=
+\begin{bmatrix} 1&1\\-1&-1 \end{bmatrix} 
+\begin{bmatrix} 1&-1\\1&-1 \end{bmatrix}
+=\begin{bmatrix} 2&-2\\-2&2 \end{bmatrix} $.
+Then $AA^T$ clearly has eigenvectors
+$\begin{pmatrix} 1\\1 \end{pmatrix} $ (with eigenvalue 0)
+and $\begin{pmatrix} 1\\-1 \end{pmatrix}$ (with eigenvalue 4).
+Normalising both eigenvectors, we get
+$\begin{pmatrix} \frac{1}{\sqrt{2}}\\\frac{1}{\sqrt{2}} \end{pmatrix} $
+and $\begin{pmatrix} \frac{1}{\sqrt{2}}\\-\frac{1}{\sqrt{2}} \end{pmatrix} $,
+so we can conclude by defining
+\[
+    \underline{
+P=\begin{bmatrix}
+    \frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}
+    \\\frac{1}{\sqrt{2}}&-\frac{1}{\sqrt{2}}
+\end{bmatrix},
+\qquad
+D=\begin{bmatrix} 0&0\\0&4 \end{bmatrix}
+}.
+\]
+\hfill$\square$
+
+\newpage
+\section*{Question 3}
+\subsection*{Part (a)}
+We simply look at all possible cases of elementary divisors of $m_A(x)$.
+Certainly we must have $(x-2)^3$ and $(x-8)$ as elementary divisors,
+so it suffices to ``make up" elementary divisors with sum of degrees equal to 2.
+\begin{itemize}
+    \item Case 1:
+        $(x-2)$, $(x-2)$, the corresponding JCF is $
+        \begin{bmatrix} 
+            2& & & & &0\\
+             &2& & & & \\
+             & &2&1& & \\
+             & & &2&1& \\
+             & & & &2& \\
+            0& & & & &8
+        \end{bmatrix}$. 
+    \item Case 2:
+        $(x-2)^2$, the corresponding JCF is $
+        \begin{bmatrix} 
+            2&1& & & &0\\
+             &2& & & & \\
+             & &2&1& & \\
+             & & &2&1& \\
+             & & & &2& \\
+            0& & & & &8
+        \end{bmatrix}$. 
+    \item Case 3:
+        $(x-8)$, $(x-8)$, the corresponding JCF is $
+        \begin{bmatrix} 
+            2&1& & & &0\\
+             &2&1& & & \\
+             & &2& & & \\
+             & & &8& & \\
+             & & & &8& \\
+            0& & & & &8
+        \end{bmatrix}$. 
+    \item Case 4:
+        $(x-2)$, $(x-8)$, the corresponding JCF is $
+        \begin{bmatrix} 
+            2& & & & &0\\
+             &2&1& & & \\
+             & &2&1& & \\
+             & & &2& & \\
+             & & & &8& \\
+            0& & & & &8
+        \end{bmatrix}$. 
+\end{itemize}
+It is easily verified that we have enumerated all cases, up to
+permutation of the Jordan blocks.
+\hfill$\square$
+
+
+\subsection*{Part (b)}
+Clearly the minimal polynomial $m_B(x)$ of $B$ is either 
+$(x-\lambda_1)^2(x-\lambda_2)$
+or $(x-\lambda_1)(x-\lambda_2)^2$.
+Just like above, we need to ``make up" a degree of 1 somewhere.
+
+\begin{itemize}
+    \item Case 1: $m_B(x)=(x-\lambda_1)^2(x-\lambda_2)$.
+        \begin{itemize}
+            \item Case 1.1: Elementary divisors are
+                $(x-\lambda_1), (x-\lambda_1)^2, (x-\lambda_2)$.
+                The corresponding JCF is $
+                \begin{bmatrix} 
+                    1& & & \\
+                     &1&1& \\
+                     & &1& \\
+                     & & &2
+                \end{bmatrix}$. 
+            \item Case 1.2: Elementary divisors are
+                $(x-\lambda_1)^2, (x-\lambda_2), (x-\lambda_2)$.
+                The corresponding JCF is $
+                \begin{bmatrix} 
+                    1&1& & \\
+                     &1& & \\
+                     & &2& \\
+                     & & &2
+                \end{bmatrix}$. 
+        \end{itemize}
+    \item Case 2: $m_B(x)=(x-\lambda_1)(x-\lambda_2)^2$.
+        \begin{itemize}
+            \item Case 2.1: Elementary divisors are
+                $(x-\lambda_1), (x-\lambda_1), (x-\lambda_2)^2$.
+                The corresponding JCF is $
+                \begin{bmatrix} 
+                    1& & & \\
+                     &1& & \\
+                     & &2&1\\
+                     & & &2
+                \end{bmatrix}$. 
+            \item Case 2.2: Elementary divisors are
+                $(x-\lambda_1), (x-\lambda_2), (x-\lambda_2)^2$.
+                The corresponding JCF is $
+                \begin{bmatrix} 
+                    1& & & \\
+                     &2& & \\
+                     & &2&1\\
+                     & & &2
+                \end{bmatrix}$. 
+        \end{itemize}
+\end{itemize}
+Like above, it is easily checked that we have accounted for all
+possibilities up to
+permutation of the Jordan blocks.
+\hfill$\square$
+
+\newpage
+\section*{Question 4}
+\subsection*{Part (a)}
+
+We note that $T|_{V_1}:V_1\to W$ is a linear map, and that
+$\ker T|_{V_1}$ is clearly a subspace of $\ker T$ (because $T$ kills every vector
+that $T|_{V_1}$ kills.) Furthermore, $\im T|_{V_1}$ is clearly
+a subspace of $W_1$.
+Then by the rank-nullity theorem
+\begin{align*}
+    \dim V_1 &= \dim\im T|_{V_1} + \dim\ker T|_{V_1}
+           \\&\color{blue}\leq\color{black}
+           \dim W_1 + \dim\ker T|_{V_1}
+                                       \\&\color{red}\leq\color{black}
+            \dim W_1 + \dim \ker T.
+\end{align*}
+\hfill$\blacksquare$
+
+\subsection*{Part (b)}
+Suppose that $T$ is surjective and observe the inequality above becomes an
+equality if we have $\color{red}\ker T|_{V_1}=\ker T$ and
+$\color{blue}W_1=\im T|_{V_1}$. Since
+$T$ is surjective every vector in $W_1$ is the target of some $\mathbf{v}\in V$
+under the mapping $T$,
+so the blue condition trivially holds; on the other hand we already
+know that $\ker T|_{V_1}\subseteq \ker T$, so it suffices to check the reverse
+inclusion.
+
+Let $\mathbf{v}\in\ker T$, then $T(\mathbf{v})=0_W\in W_1$
+since $W_1$ is a subspace. By definition
+of $V_1$ we must have $\mathbf{v}\in V_1$, so $T|_{V_1}(\mathbf{v})=T(\mathbf{v})
+=0_W$ by definition. It
+follows that $\mathbf{v}\in\ker T|_{V_1}$, which is exactly what we wanted.
+\hfill$\blacksquare$
+
+\newpage
+\section*{Question 5}
+\subsection*{Part (a)}
+Let $\mathbf{v}\in W^\perp$. For any $\mathbf{w}\in W$,
+we have
+$\langle T(\mathbf{v}),\mathbf{w} \rangle=\langle \mathbf{v},
+T^*(\mathbf{w}) \rangle$, but since $W$
+is $T^*$-invariant, we have $T^*(\mathbf{w})\in W$. By definition of $W^\perp$,
+we thus have $\langle \mathbf{v}, T^*(\mathbf{w}) \rangle = 0$.
+Since $\mathbf{w}\in W$ is arbitrary, we have $T(\mathbf{v})\in W^\perp$;
+and since $\mathbf{v}\in W^\perp$ is arbitrary, $W^\perp$ is indeed
+$T$-invariant.
+\hfill$\blacksquare$
+
+\subsection*{Part (b)}
+Consider the following counterexample: Let $V=\mathbb{C}^2$ equipped with
+the standard inner product, and
+$U=\spn\left\{\begin{pmatrix} 1\\0 \end{pmatrix}\right\}$.
+It is clear that
+$U^\perp=\spn\left\{\begin{pmatrix} 0\\1 \end{pmatrix}\right\}$.
+Let $T:V\to V$ be defined by
+$T(\mathbf{v})=\begin{bmatrix} 1&1\\1&0 \end{bmatrix} \mathbf{v}$,
+then $U$ is clearly $T$-invariant
+since $\begin{pmatrix} 1\\0 \end{pmatrix}$ is an eigenvector of $T$; but
+we have $\begin{pmatrix} 0\\1 \end{pmatrix} \in U^\perp$ and
+$T\begin{pmatrix} 0\\1 \end{pmatrix}=\begin{pmatrix} 1\\1 \end{pmatrix}
+\not\in U^\perp$, so $U^\perp$ is not $T$-invariant.
+\hfill$\blacksquare$
+
+\newpage
+\section*{Question 6}
+\subsection*{Part (a)}
+We note that the representation of any $\mathbf{w}$ as a linear combination of
+$\mathbf{w}_1,\ldots,\mathbf{w}_n$ is unique as 
+$\{\mathbf{w}_n,\ldots,\mathbf{w}_n\}$ is a basis; thus our function is
+well-defined.
+
+We first verify that it is conjugate symmetric: indeed, 
+\begin{align*}
+    \left(\sum_{j=1}^ny_j\mathbf{w}_j, \sum_{i=1}^nx_i\mathbf{w}_i\right)
+    &=Y^tD\overline{X}
+  \\&={\left(Y^tD\overline{X}\right)^t}
+      &\text{since $Y^tD\overline X\in\mathbb{C}$}
+    \\&=\overline{X}^tD^t(Y^t)^t
+    \\&=\overline{X}^tD^tY
+    \\&=\overline{\overline{\overline{X}^tD^tY}}
+    \\&=\overline{\overline{\overline{X}^t}\overline{D^t}\overline{Y}}
+    \\&=\overline{{X}^t\overline{D^t}\overline{Y}}
+    \\&=\overline{{X}^tD\overline{Y}}
+      \\&=\overline{
+    \left(\sum_{i=1}^nx_i\mathbf{w}_i, \sum_{j=1}^ny_j\mathbf{w}_j\right),
+}
+\end{align*}
+where $D=\overline{D^t}$ since positive definite matrices are Hermitian.
+To see that our function is linear in the second argument, let us define
+the vectors 
+$\mathbf{v}=\sum_{i=1}^nx_i\mathbf{w}_i$,
+$\mathbf{w}=\sum_{i=1}^ny_i\mathbf{w}_i$, and
+$\mathbf{w}+\mathbf{w'}=\sum_{i=1}^ny_i'\mathbf{w}_i$ for complex $x_i,y_i,y_i'$.
+Then
+$\mathbf{w}+\mathbf{w'}=\sum_{i=1}^n(y_i+y_i')\mathbf{w}_i$, and
+by definition
+\begin{align*}
+    (\mathbf{v},\mathbf{w+w'})
+    &=
+    \begin{pmatrix} x_1&\ldots&x_n \end{pmatrix} 
+    D
+    \begin{pmatrix} y_1+y_1'\\\vdots\\y_n+y_n' \end{pmatrix} 
+    \\&=
+    \begin{pmatrix} x_1&\ldots&x_n \end{pmatrix} 
+    D
+    \begin{pmatrix} y_1\\\vdots\\y_n \end{pmatrix} 
+    +
+    \begin{pmatrix} x_1&\ldots&x_n \end{pmatrix} 
+    D
+    \begin{pmatrix} y_1'\\\vdots\\y_n' \end{pmatrix} 
+                       \\&=
+    (\mathbf{v},\mathbf{w})+(\mathbf{v},\mathbf{w'}).
+\end{align*}
+
+Finally, the fact that our function is positive definite directly follows from
+the definition of $D$ being positive definite: let
+$\mathbf{v}=\sum_{i=1}^nx_i\mathbf{w}_i$, then
+$(\mathbf{v},\mathbf{v})=X^tD\overline{X}\geq0$
+with equality if and only if every $x_i$ is 0, which
+occurs precisely when $\mathbf{v}=0_W$.
+\hfill$\blacksquare$
+
+\newpage
+\subsection*{Part (b)}
+\subsubsection*{Subpart (i)}
+We calculate
+\begin{align*}
+    \left(\sum_{i=1}^nx_i\mathbf{v}_i, \sum_{j=1}^ny_j\mathbf{v}_j\right)
+    &=\sum_{i=1}^nx_i\sum_{j=1}^n\overline{y_j}(\mathbf{v}_i, \mathbf{v}_j)
+    \\&=\begin{pmatrix} x_1&\ldots&x_n \end{pmatrix} 
+    \begin{pmatrix}
+        \sum_{j=1}^n\overline{y_j}(\mathbf{v}_1, \mathbf{v}_j)\\
+        \vdots\\
+        \sum_{j=1}^n\overline{y_j}(\mathbf{v}_n, \mathbf{v}_j)
+    \end{pmatrix}
+    \\&=\begin{pmatrix} x_1&\ldots&x_n \end{pmatrix} 
+    \begin{bmatrix} (\mathbf{v}_1,\mathbf{v}_1)
+        &\ldots
+    &(\mathbf{v}_1,\mathbf{v}_n)
+        \\ \vdots&\ddots&\vdots\\
+    (\mathbf{v}_n,\mathbf{v}_1)&\ldots&(\mathbf{v}_n,\mathbf{v}_n)
+    \end{bmatrix} 
+    \begin{pmatrix} \overline{y_1}\\\vdots\\\overline{y_n} \end{pmatrix} 
+    \\&= X^t A \overline{Y}
+.\end{align*}
+\hfill$\blacksquare$
+
+\subsubsection*{Subpart (ii)}
+ 
+We have \begin{align*}
+    A^*=\overline{A^t}&=\overline{
+    \begin{bmatrix} (\mathbf{v}_1,\mathbf{v}_1)
+        &\ldots
+    &(\mathbf{v}_1,\mathbf{v}_n)
+        \\ \vdots&\ddots&\vdots\\
+    (\mathbf{v}_n,\mathbf{v}_1)&\ldots&(\mathbf{v}_n,\mathbf{v}_n)
+    \end{bmatrix}^t 
+    }
+                    \\&=
+    \begin{bmatrix} \overline{(\mathbf{v}_1,\mathbf{v}_1)}
+        &\ldots
+        &\overline{(\mathbf{v}_n,\mathbf{v}_1)}
+        \\ \vdots&\ddots&\vdots\\
+        \overline{(\mathbf{v}_1,\mathbf{v}_n)}
+                 &\ldots&\overline{(\mathbf{v}_n,\mathbf{v}_n)}
+    \end{bmatrix}
+                    \\&=
+    \begin{bmatrix} (\mathbf{v}_1,\mathbf{v}_1)
+        &\ldots
+        &(\mathbf{v}_1,\mathbf{v}_n)
+        \\ \vdots&\ddots&\vdots\\
+    (\mathbf{v}_n,\mathbf{v}_1)&\ldots&(\mathbf{v}_n,\mathbf{v}_n)
+    \end{bmatrix}=A 
+\end{align*}
+by conjugate symmetry, and likewise $A^t$ is self-adjoint (because transpose
+and conjugate operators commute).
+\hfill$\blacksquare$
+
+\subsubsection*{Subpart (ii)}
+Clearly if $X=0$ then $X^tA\overline{X}=0$. If $X\neq 0$, then
+from (b)(i) we know
+\[
+    X^tA\overline{X}=
+    \left(\sum_{i=1}^nx_i\mathbf{v}_i, \sum_{j=1}^nx_j\mathbf{v}_j\right)
+    >0
+\]
+since $\sum_{i=1}^nx_i\mathbf{v}\neq 0$ and inner products are positive definite.
+\hfill$\blacksquare$
+\end{document}

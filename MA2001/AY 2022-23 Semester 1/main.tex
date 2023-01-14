@@ -1,0 +1,670 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[english]{babel}
+\usepackage[a4paper, portrait, lmargin=0.5in, rmargin=0.5in, tmargin=1in,bmargin=1in]{geometry} % margins
+\usepackage{fancyhdr} % headers and footers
+\usepackage{mathtools} % matrices
+\usepackage{amsthm} % QED
+\usepackage{amsmath} % augmented matrix
+\usepackage[]{amssymb} % gives us the character \varnothing
+\usepackage{hyperref} % cross-referencing commands
+\usepackage{systeme}  % to write a system of equations
+\usepackage{enumerate} % to use \begin{enumerate}[(i)/(a)/...]
+\usepackage{framed} 
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\usepackage{multirow}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\usepackage{array}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\usepackage[many]{tcolorbox}
+\usepackage{soul}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.12}
+\usepgfplotslibrary{fillbetween}
+\allowdisplaybreaks
+
+\usepackage{bm}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+
+% Augmented matrix
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+    \hskip -\arraycolsep
+    \let\@ifnextchar\new@ifnextchar
+    \array{#1}}
+\makeatother
+
+\usetikzlibrary{backgrounds}
+% background color definition from pgfmanual-en-macros.tex
+\definecolor{graphicbackground}{rgb}{0.96,0.96,0.8}
+% key to change color
+\pgfkeys{/tikz/.cd,
+  background color/.initial=graphicbackground,
+  background color/.get=\backcol,
+  background color/.store in=\backcol,
+}
+\tikzset{background rectangle/.style={
+    fill=\backcol,
+  },
+  use background/.style={    
+    show background rectangle
+  }
+}
+
+\pagestyle{fancy}
+\lhead{PYP Solutions Initiative • NUS MATHSOC}
+\rhead{\thepage}
+% \cfoot{} % could use this but feels irritating seeing this
+\cfoot{Linear Algebra}
+
+\title{%
+  MA2001 - Linear Algebra Suggested Solutions  \\ 
+  \large (Semester 1: AY2022/23) \\ }
+    
+\author{%
+  \large
+    Written by: Agrawal Naman \\
+    Audited by: Chow Yong Lam}
+\date{}
+
+\begin{document}
+
+
+
+\maketitle %This command prints the title based on information entered above.
+
+\begin{tcolorbox}
+\textbf{Note on Notations:}
+\begin{itemize}
+    \item $0$ refers to the real value zero, $0 \in \mathbb{R}$
+    \item $\Tilde{0}$ refers to the zero vector, $\Tilde{0} \in \mathbb{R}^n$
+    \item $\bm{0}$ refers to the zero matrix, $\bm{0} \in \mathbb{R}^m \times \mathbb{R}^n$
+\end{itemize}
+\end{tcolorbox}
+
+\section*{Question 1}
+\newline
+\\ Let
+$
+B=
+            \begin{pmatrix}[cccccc]
+                1 & -1 & 1 & 1 & 0 & 0 \\
+                1 & 0 & 1 & 0 & 1 & 0 \\
+                0 & 2 & 1 & 0 & 0 & 1 \\ 
+            \end{pmatrix}
+$ 
+\newline
+\\ (a)  (6 marks) Use the Gauss-Jordan Elimination to reduce B to the reduced row-echelon form. (Indicate the elementary row operations used in each step.)
+\newline
+\textbf{Solution:}
+
+$$
+B=
+            \begin{pmatrix}[cccccc]
+                1 & -1 & 1 & 1 & 0 & 0 \\
+                1 & 0 & 1 & 0 & 1 & 0 \\
+                0 & 2 & 1 & 0 & 0 & 1 \\ 
+            \end{pmatrix}
+            \xrightarrow{R_2 - R_1}
+            \begin{pmatrix}[cccccc]
+                1 & -1 & 1 & 1 & 0 & 0 \\
+                0 & 1 & 0 & -1 & 1 & 0 \\
+                0 & 2 & 1 & 0 & 0 & 1 \\ 
+            \end{pmatrix}
+            \xrightarrow{R_3 -2 R_2}
+            \begin{pmatrix}[cccccc]
+                1 & -1 & 1 & 1 & 0 & 0 \\
+                0 & 1 & 0 & -1 & 1 & 0 \\
+                0 & 0 & 1 & 2 & -2 & 1 \\ 
+            \end{pmatrix}
+$$
+$$
+            \xrightarrow{R_1 + R_2}
+            \begin{pmatrix}[cccccc]
+                1 & 0 & 1 & 0 & 1 & 0 \\
+                0 & 1 & 0 & -1 & 1 & 0 \\
+                0 & 0 & 1 & 2 & -2 & 1 \\ 
+            \end{pmatrix}
+            \xrightarrow{R_1 - R_3}
+            \begin{pmatrix}[cccccc]
+                1 & 0 & 0 & -2 & 3 & -1 \\
+                0 & 1 & 0 & -1 & 1 & 0 \\
+                0 & 0 & 1 & 2 & -2 & 1 \\ 
+            \end{pmatrix}
+$$
+\newline
+\\ (b) Let $S = \{\bm{u_1, u_2, u_3}\}$ and $T = \{\bm{v_1, v_2, v_3}\}$  be two bases for a vector space $V$
+where
+$$\bm{v_1} = \bm{u_1} + \bm{u_2}, \; \bm{v_2} = - \bm{u_1} + 2 \bm{u_3}, \; \bm{v_3} = \bm{u_1} + \bm{u_2} + \bm{u_3}$$
+(i) (3 marks) Write down the transition matrix from $T$ to $S$.
+\newline
+\textbf{Solution:}
+First, we find the coordinate vectors of $\bm{v_1}, \bm{v_2}, \bm{v_3}$ relative to the basis S. There ase given by:
+$$[\bm{v_1}]_S = \begin{pmatrix}[ccc] 1 & 1 & 0 \end{pmatrix}^\top, \; [\bm{v_2}]_S = \begin{pmatrix}[ccc] -1 & 0 & 2 \end{pmatrix}^\top, \; [\bm{v_3}]_S = \begin{pmatrix}[ccc] 1 & 1 & 1 \end{pmatrix}^\top$$
+The required transition matrix is given by:
+$$P = \begin{pmatrix}[ccc]
+    [\bm{v_1}]_S & [\bm{v_2}]_S & [\bm{v_3}]_S \\
+\end{pmatrix} = 
+\begin{pmatrix}[ccc]
+    1 & -1 & 1 \\
+    1 & 0 & 1 \\
+    0 & 2 & 1 \\
+\end{pmatrix}$$
+(ii) (3 marks) Write down the transition matrix from S to T. (Hint: Use the result in (a).)
+\newline
+\textbf{Solution:}
+The transition matrix from S to T will be the inverse of the transition matrix from T to S. Thus, the required transition matrix is given by:
+
+$$P' = P ^{-1} =  
+\begin{pmatrix}[ccc]
+    1 & -1 & 1 \\
+    1 & 0 & 1 \\
+    0 & 2 & 1 \\
+\end{pmatrix}^{-1} = 
+\begin{pmatrix}[ccc]
+    -2 & 3 & -1 \\
+    -1 & 1 & 0 \\
+    2 & -2 & 1 \\
+\end{pmatrix}$$
+Note: The inverse was obtained while performing Gauss-Jordan Elimination in part (i).
+
+\newpage
+
+\section*{Question 2}
+\newline
+\\ Let $V = \{ (a + b, a + 2b + d, b + c + d, a + b + c) | a, b, c, d \in \mathbb{R} \}$ which is a subspace in $\mathbb{R}^4$ 
+\newline
+\\ (a)  (5 marks) Find a basis for $V$ and determine the dimension of $V$.
+\newline
+\textbf{Solution:}
+We may express $V$ as follows:
+$$V = \left\{ 
+a\begin{pmatrix}[c] 1 \\ 1 \\ 0 \\ 1 \end{pmatrix} + b\begin{pmatrix}[c] 1 \\ 2 \\ 1 \\ 1 \end{pmatrix} + c\begin{pmatrix}[c] 0 \\ 0 \\ 1 \\ 1 \end{pmatrix} + d\begin{pmatrix}[c] 0 \\ 1 \\ 1 \\ 0 \end{pmatrix}\Bigg|  a, b, c, d \in \mathbb{R} \right\} =\text{span}\left\{ 
+\begin{pmatrix}[c] 1 \\ 1 \\ 0 \\ 1 \end{pmatrix}, \begin{pmatrix}[c] 1 \\ 2 \\ 1 \\ 1 \end{pmatrix}, \begin{pmatrix}[c] 0 \\ 0 \\ 1 \\ 1 \end{pmatrix}, \begin{pmatrix}[c] 0 \\ 1 \\ 1 \\ 0 \end{pmatrix}\right\}$$
+Next, we check for linear independence of the vectors by setting up the following augmented matrix:
+$$
+\begin{pmatrix}[cccc|c]
+    1 & 1 & 0 & 0 & 0 \\
+    1 & 2 & 0 & 1 & 0 \\
+    0 & 1 & 1 & 1 & 0 \\
+    1 & 1 & 1 & 0 & 0
+\end{pmatrix}
+\xrightarrow{\text{Gauss Elimination}}
+\begin{pmatrix}[cccc|c]
+    1 & 1 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 1 & 0 \\
+    0 & 0 & 1 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0
+\end{pmatrix}
+$$
+Thus, the matrix system has non-trivial solutions implying linear dependence of the vectors. We pick the vectors corresponding to the pivotal columns of the row echelon form, giving us the required basis:
+$$\left\{ 
+\begin{pmatrix}[c] 1 \\ 1 \\ 0 \\ 1 \end{pmatrix}, \begin{pmatrix}[c] 1 \\ 2 \\ 1 \\ 1 \end{pmatrix}, \begin{pmatrix}[c] 0 \\ 0 \\ 1 \\ 1 \end{pmatrix}\right\}$$
+Since the dimension of a subspace is given by the number of basis vectors, the dimension of $V$ is 3.
+\newline
+\\ (b) Let $T : \mathbb{R}^4 \xrightarrow{} \mathbb{R}^3$ be a linear transformation and define $W = \{ T(u^\top) | u \in V \}$
+\newline
+(i) (4 marks) Show that $W$ is a subspace of $\mathbb{R}^3$
+\newline
+\textbf{Solution:}
+Let $A$ be the standard matrix of $T$.
+\begin{itemize}
+    \item Check for zero vector:
+    $$\Tilde{0} \in V \; \text{(} V \text{ is a subspace)} \; \implies A \Tilde{0} \in W \implies \Tilde{0} \in W$$
+    \item Closure under linear combination:
+    Let $v_1 \in W$ and $v_2 \in W$
+    $$\implies v_1 = Au_1, \; v_2 = Au_2 \; \text{for some} \; u_1, u_2 \in V$$
+    $$\implies \alpha u_1 + \beta u_2 \in V, \; \forall \alpha, \beta \in \mathbb{R} \; \text{(as } V \text{ is a subspace)}$$
+    $$\implies A(\alpha u_1 + \beta u_2) \in W$$
+    $$ \implies \alpha A u_1 + \beta A u_2 \in W$$
+    $$ \implies \alpha v_1 + \beta v_2 \in W$$
+\end{itemize}
+Thus, $W$ contains the zero vector and is closed under vector addition and scalar multiplication. It is therefore a subspace.
+\newline
+\newline
+(ii) (3 marks) Suppose the standard matrix for $T$ is
+$\begin{pmatrix}[cccc]
+    -1 & 0 & 0 & 1 \\
+    0 & 1 & 0 & 1 \\
+    1 & 0 & 1 & 1
+\end{pmatrix}$ Determine the dimension of W.
+\newline
+\textbf{Solution:}
+Any vector $u \in V$ can be written as:
+$$v = a\begin{pmatrix}[c] 1 \\ 1 \\ 0 \\ 1 \end{pmatrix} + b\begin{pmatrix}[c] 1 \\ 2 \\ 1 \\ 1 \end{pmatrix} + c \begin{pmatrix}[c] 0 \\ 0 \\ 1 \\ 1 \end{pmatrix} =
+\begin{pmatrix}[c] a + b \\ a + 2b \\ b + c \\ a + b + c \end{pmatrix} \; \text{for some } a, b, c \in \mathbb{R}$$
+Thus, any vector in $W$ is given by:
+$$\begin{pmatrix}[cccc]
+    -1 & 0 & 0 & 1 \\
+    0 & 1 & 0 & 1 \\
+    1 & 0 & 1 & 1
+\end{pmatrix}
+\begin{pmatrix}[c] a + b \\ a + 2b \\ b + c \\ a + b + c \end{pmatrix}
+= \begin{pmatrix}[c] c \\ 2a + 3b + c \\ 2a + 3b + 2c \end{pmatrix} = a\begin{pmatrix}[c] 0 \\ 2 \\ 2  \end{pmatrix} + b\begin{pmatrix}[c] 0 \\ 3 \\ 3 \end{pmatrix} + c \begin{pmatrix}[c] 1 \\ 1 \\ 2 \end{pmatrix} \text{for some } a, b, c \in \mathbb{R} $$
+Thus, $$W = \text{span} \left\{ \begin{pmatrix}[c] 0 \\ 2 \\ 2  \end{pmatrix}, \begin{pmatrix}[c] 0 \\ 3 \\ 3  \end{pmatrix}, \begin{pmatrix}[c] 1 \\ 1 \\ 2 \end{pmatrix} \right\} =  \text{span} \left\{ \begin{pmatrix}[c] 0 \\ 1 \\ 1  \end{pmatrix}, \begin{pmatrix}[c] 1 \\ 1 \\ 2 \end{pmatrix} \right\}$$
+Clearly, the above two vectors are independent. Since the dimension of a subspace is given by the number of basis vectors, the dimension of $W$ is 2.
+
+
+\section*{Question 3}
+\newline
+Let $A = \begin{pmatrix}[ccc]
+    1 & 0 & 0 \\
+    0 & 1 & 1\\
+    1 & 2 & -1 \\
+    0 & -1 & 1
+    \end{pmatrix}$ and $b = \begin{pmatrix}[c]
+    9 \\ 0 \\ 0 \\ 0  \end{pmatrix}$
+\newline
+\newline
+\\ (a) (4 marks) Is the linear system $Ax = b$ consistent? Justify your answer.
+\newline
+\textbf{Solution:}
+On performing Gauss Elimination, we observe that:
+$$
+\begin{pmatrix}[ccc|c]
+    1 & 0 & 0 & 9\\
+    0 & 1 & 1 & 0\\
+    1 & 2 & -1 & 0\\
+    0 & -1 & 1 & 0
+\end{pmatrix}
+\xrightarrow{R_3 - R_1}
+\begin{pmatrix}[ccc|c]
+    1 & 0 & 0 & 9\\
+    0 & 1 & 1 & 0\\
+    0 & 2 & -1 & -9\\
+    0 & -1 & 1 & 0
+\end{pmatrix}
+\xrightarrow{R_3 - 2R_2, R_4 + R_2}
+\begin{pmatrix}[ccc|c]
+    1 & 0 & 0 & 9\\
+    0 & 1 & 1 & 0\\
+    0 & 0 & -3 & -9\\
+    0 & 0 & 2 & 0
+\end{pmatrix}
+\xrightarrow{R_4 + 2/3 R_3}
+\begin{pmatrix}[ccc|c]
+    1 & 0 & 0 & 9\\
+    0 & 1 & 1 & 0\\
+    0 & 0 & -3 & -9\\
+    0 & 0 & 0 & -6
+\end{pmatrix}
+$$
+Since the last column of the augmented matrix is a pivotal column, the system is inconsistent. 
+\newline
+\\ (b) (5 marks) Find a least square solution to $Ax = b$.
+\newline
+\textbf{Solution:}
+In order to obtain the least square solution, we transform the problem to solving the following linear system:
+$$A^\top A \hat{x} = A^\top b \implies 
+\begin{pmatrix}[ccc]
+    1 & 0 & 0 \\
+    0 & 1 & 1\\
+    1 & 2 & -1 \\
+    0 & -1 & 1
+\end{pmatrix} ^ \top \begin{pmatrix}[ccc]
+    1 & 0 & 0 \\
+    0 & 1 & 1\\
+    1 & 2 & -1 \\
+    0 & -1 & 1
+\end{pmatrix} \begin{pmatrix}[c] x_1 \\ x_2 \\ x_3 \end{pmatrix} = \begin{pmatrix}[ccc]
+    1 & 0 & 0 \\
+    0 & 1 & 1\\
+    1 & 2 & -1 \\
+    0 & -1 & 1
+\end{pmatrix}^ \top \begin{pmatrix}[c] 9 \\ 0 \\ 0 \\ 0  \end{pmatrix} \implies
+\begin{pmatrix}[ccc]
+    2 & 2 & -1 \\
+    2 & 6 & -2\\
+    -1 & -2 & 3 
+\end{pmatrix} \begin{pmatrix}[c] x_1 \\ x_2 \\ x_3  \end{pmatrix} = \begin{pmatrix}[c] 9 \\ 0 \\ 0   \end{pmatrix}$$
+On solving the above linear system, we obtain the least square solution:
+$$ \hat{x} = \begin{pmatrix}[c] 7 \\ -2 \\ 1   \end{pmatrix}$$
+\newline
+\\ (c)  (3 marks) Use the result in (b) to find the projection of $b$ on to the column space of $A$.
+\newline
+\textbf{Solution:} 
+The projection of b onto the column space of $A$ is given by:
+$$\text{proj}_A b = A \hat{x}, \; \text{where } \hat{x} \text{ is least square solution to } A x = b$$
+(Intuitively, $\text{proj}_A b$ is the vector on the column space of $A$ such that the perpendicular distance between $b$ and $\text{proj}_A b$ is minimum. The least square solution minimizes the residual error of the linear system and should also, therefore, give the coefficients that determine $\text{proj}_A b$.) Thus, 
+$$\text{proj}_A b = A \hat{x} = 
+\begin{pmatrix}[ccc]
+    1 & 0 & 0 \\
+    0 & 1 & 1\\
+    1 & 2 & -1 \\
+    0 & -1 & 1
+\end{pmatrix} \begin{pmatrix}[c] 7 \\ -2 \\ 1   \end{pmatrix} = \begin{pmatrix}[c] 7 \\ -1 \\ 2 \\ 3   \end{pmatrix}$$ 
+
+\newpage
+
+\section*{Question 4}
+\newline
+Let $C = \begin{pmatrix}[cccc]
+    2 & 1 & -1 & 0 \\
+    1 & 2 & 1 & 0\\
+    -1 & 1 & 2 & 0 \\
+    0 & 0 & 0 & 3
+    \end{pmatrix}$. It is known that $C$ has only two eigenvalues 0 and 3.
+\newline
+\newline
+\\ (a) (4 marks)  Find an orthonormal basis for the eigenspace $E_0$ of $C$.
+\newline
+\textbf{Solution:}
+$E_0$ is the solution space for the homogeneous system:
+$$Cx = \Tilde{0} \implies \begin{pmatrix}[cccc]
+    2 & 1 & -1 & 0 \\
+    1 & 2 & 1 & 0\\
+    -1 & 1 & 2 & 0 \\
+    0 & 0 & 0 & 3
+    \end{pmatrix} 
+    \begin{pmatrix}[c] x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} = 
+     \begin{pmatrix}[c] 0 \\ 0 \\ 0 \\ 0 \end{pmatrix}$$
+Thus, we consider the following augmented matrix:
+$$
+\begin{pmatrix}[cccc|c]
+    2 & 1 & -1 & 0 & 0\\
+    1 & 2 & 1 & 0 & 0\\
+    -1 & 1 & 2 & 0 & 0\\
+    0 & 0 & 0 & 3 & 0
+\end{pmatrix}
+\xrightarrow[R_2 - 0.5 R_1]{R_3 + 0.5 R_1}
+\begin{pmatrix}[cccc|c]
+    2 & 1 & -1 & 0 & 0\\
+    0 & 1.5 & 1.5 & 0 & 0\\
+    0 & 1.5 & 1.5 & 0 & 0\\
+    0 & 0 & 0 & 3 & 0
+\end{pmatrix}
+\xrightarrow[R_4 - R_2]{R_3 \leftrightarrow R_4}
+\begin{pmatrix}[cccc|c]
+    2 & 1 & -1 & 0 & 0\\
+    0 & 1.5 & 1.5 & 0 & 0\\
+    0 & 0 & 0 & 3 & 0\\
+    0 & 0 & 0 & 0 & 0
+\end{pmatrix}
+$$
+Thus, we have the following solution set $(t \in \mathbb{R})$:
+$$\begin{pmatrix}[c] x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} = \begin{pmatrix}[c] t \\ -t \\ t \\ 0 \end{pmatrix} = \text{span} \left\{\begin{pmatrix}[c] 1 \\ -1 \\ 1 \\ 0 \end{pmatrix}\right\}$$
+We normalise the above basis vector in order to obtain the required orthonormal basis for $E_0$:
+$$\left\{ \cfrac{1}{\sqrt{3}}\begin{pmatrix}[c] 1 \\ -1 \\ 1 \\ 0 \end{pmatrix}\right\}$$
+\newline
+\\ (b) (4 marks)  Find an orthonormal basis for the eigenspace $E_3$ of $C$.
+\newline
+\textbf{Solution:}
+$E_3$ is the solution space for the homogeneous system:
+$$(C - 3I)x = \Tilde{0} \implies \begin{pmatrix}[cccc]
+    -1 & 1 & -1 & 0 \\
+    1 & -1 & 1 & 0\\
+    -1 & 1 & -1 & 0 \\
+    0 & 0 & 0 & 0
+    \end{pmatrix} 
+    \begin{pmatrix}[c] x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} = 
+     \begin{pmatrix}[c] 0 \\ 0 \\ 0 \\ 0 \end{pmatrix}$$
+Thus, we consider the following augmented matrix:
+$$
+\begin{pmatrix}[cccc|c]
+    -1 & 1 & -1 & 0 & 0 \\
+    1 & -1 & 1 & 0 & 0 \\
+    -1 & 1 & -1 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0
+\end{pmatrix}
+\xrightarrow[R_2 + R_1]{R_3 - R_1}
+\begin{pmatrix}[cccc|c]
+    -1 & 1 & -1 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0
+\end{pmatrix}
+$$
+We let $x_2 = r, x_3 = s, x_4 = t, \; r, s, t \in \mathbb{R}$. Thus, we have the following solution set:
+$$\begin{pmatrix}[c] r - s \\ r \\ s \\ t \end{pmatrix} = r\begin{pmatrix}[c] 1 \\ 1 \\ 0 \\ 0 \end{pmatrix} + s\begin{pmatrix}[c] -1 \\ 0 \\ 1 \\ 0 \end{pmatrix} + t\begin{pmatrix}[c] 0 \\ 0 \\ 0 \\ 1 \end{pmatrix} = \text{span} \left\{\begin{pmatrix}[c] 0 \\ 0 \\ 0 \\ 1 \end{pmatrix}, \begin{pmatrix}[c] 1 \\ 1 \\ 0 \\ 0 \end{pmatrix}, \begin{pmatrix}[c] -1 \\ 0 \\ 1 \\ 0 \end{pmatrix}\right\} = \text{span} \{u_1, u_2, u_3\}$$
+We use Gram Schmidt to obtain an orthogonal basis:
+$$v_1 = u_1 = \begin{pmatrix}[c] 0 \\ 0 \\ 0 \\ 1 \end{pmatrix}$$
+$$v_2 = u_2 - \cfrac{v_1 \cdot u_2}{\norm{v_1}^2} \; v_1 = \begin{pmatrix}[c] 1 \\ 1 \\ 0 \\ 0 \end{pmatrix} - \Tilde{0} = \begin{pmatrix}[c] 1 \\ 1 \\ 0 \\ 0 \end{pmatrix}$$
+$$v_3 = u_3 - \cfrac{v_1 \cdot u_3}{\norm{v_1}^2} \; v_1 - \cfrac{v_2 \cdot u_3}{\norm{v_2}^2} \; v_2 = \begin{pmatrix}[c] -1 \\ 0 \\ 1 \\ 0 \end{pmatrix} - \Tilde{0} + \cfrac{1}{2} \begin{pmatrix}[c] 1 \\ 1 \\ 0 \\ 0 \end{pmatrix} = \begin{pmatrix}[c] -0.5 \\ 0.5 \\ 1 \\ 0 \end{pmatrix}  = \cfrac{1}{2} \begin{pmatrix}[c] -1 \\ 1 \\ 2 \\ 0 \end{pmatrix}$$
+Thus, the required orthonormal basis is:
+$$\left\{ \begin{pmatrix}[c] 0 \\ 0 \\ 0 \\ 1 \end{pmatrix}, \cfrac{1}{\sqrt{2}}\begin{pmatrix}[c] 1 \\ 1 \\ 0 \\ 0 \end{pmatrix}, \cfrac{1}{\sqrt{6}}\begin{pmatrix}[c] -1 \\ 1 \\ 2 \\ 0 \end{pmatrix} \right\}$$
+\newline
+\\ (c) (2 marks)  Based on the results of (a) and (b), write down the characteristic polynomial of $C$.
+\newline
+\textbf{Solution:}
+From a and b, it is evident that the dimensions of $E_0$ and $E_3$ are 1 and 3 respectively. Since these dimensions determine the multiplicity of the eigenvalue root in the characteristic polynomial, the required polynomial is given by:
+$$P(\lambda) = (\lambda - 0)^{\text{dim}E_0} (\lambda - 3)^{\text{dim}E_3} = \lambda (\lambda - 3)^3$$
+\newline
+\\ (d)  (4 marks) Write down two 4 × 4 matrices $P$ and $D$ such that $P$ is an orthogonal matrix, $D$ is a diagonal matrix and $D = P^\top CP$.
+\newline
+\textbf{Solution:} 
+It is evident that $C$ is a symmetric matrix and therefore it must be orthogonally diagonalizable. The orthogonal matrix can be obtained by letting the columns be the eigenvectors in the orthonormal basis of $E_0$ and $E_3$. Then, $D$ can be the diagonal matrix whose diagonal entries are the corresponding eigenvalues. Since $C$ is symmetric, it need not be shown that the basis vectors for $E_0$ and $E_3$ are orthogonal to one another. Thus, we have:
+$$C = 
+\begin{pmatrix}[cccc] 
+ \cfrac{1}{\sqrt{3}} & 0 & \cfrac{1}{\sqrt{2}} & -\cfrac{1}{\sqrt{6}} \\[10pt]
+ -\cfrac{1}{\sqrt{3}} & 0 & \cfrac{1}{\sqrt{2}} & \cfrac{1}{\sqrt{6}} \\[10pt]
+ \cfrac{1}{\sqrt{3}} & 0 & 0 & \cfrac{2}{\sqrt{6}} \\[10pt]
+0 & 1 & 0 & 0
+\end{pmatrix}
+\begin{pmatrix}[cccc]
+    0 & 0 & 0 & 0 \\
+    0 & 3 & 0 & 0\\
+    0 & 0 & 3 & 0 \\
+    0 & 0 & 0 & 3
+\end{pmatrix} 
+\begin{pmatrix}[cccc] 
+ \cfrac{1}{\sqrt{3}} & 0 & \cfrac{1}{\sqrt{2}} & -\cfrac{1}{\sqrt{6}} \\[10pt]
+ -\cfrac{1}{\sqrt{3}} & 0 & \cfrac{1}{\sqrt{2}} & \cfrac{1}{\sqrt{6}} \\[10pt]
+ \cfrac{1}{\sqrt{3}} & 0 & 0 & \cfrac{2}{\sqrt{6}} \\[10pt]
+0 & 1 & 0 & 0
+\end{pmatrix}^\top$$
+Thus, we have:
+$$P = \begin{pmatrix}[cccc] 
+ \cfrac{1}{\sqrt{3}} & 0 & \cfrac{1}{\sqrt{2}} & -\cfrac{1}{\sqrt{6}} \\[10pt]
+ -\cfrac{1}{\sqrt{3}} & 0 & \cfrac{1}{\sqrt{2}} & \cfrac{1}{\sqrt{6}} \\[10pt]
+ \cfrac{1}{\sqrt{3}} & 0 & 0 & \cfrac{2}{\sqrt{6}} \\[10pt]
+0 & 1 & 0 & 0
+\end{pmatrix}, \; D = 
+\begin{pmatrix}[cccc]
+    0 & 0 & 0 & 0 \\
+    0 & 3 & 0 & 0\\
+    0 & 0 & 3 & 0 \\
+    0 & 0 & 0 & 3
+\end{pmatrix}$$
+
+\newpage
+
+\section*{Question 5}
+\newline
+Let $V$ be a subspace of $\mathbb{R}^n$. Define $V^\perp = \{u \in \mathbb{R}^n | u \text{ is orthogonal to } V \}$, i.e. $V^\perp = \{u \in \mathbb{R}^n | v \cdot u = 0 \; \; \forall \; v \in V \}$.
+\newline
+\\ (a) (5 marks) Show that $V^\perp$ is a subspace of $\mathbb{R}^n$.
+\newline
+\textbf{Solution:}
+\begin{itemize}
+    \item Check for zero vector: For any $v \in V$, 
+    $$v \cdot \Tilde{0} = 0 \implies \Tilde{0} \text{ is orthogonal to } V \implies \Tilde{0} \in V^\perp $$
+    \item Closure under linear combination:
+    Let $v_1 \in V^\perp$ and $v_2 \in V^\perp$
+    $$\implies v_1 \cdot u = 0, \; v_2 \cdot u = 0 \; \forall \; u \in V$$
+    $$\implies \alpha v_1 \cdot u = 0, \; \beta v_2 \cdot u = 0 \; \forall \; u \in V; \; \alpha, \beta \in \mathbb{R}$$
+    $$\implies \alpha v_1 \cdot u + \beta v_2 \cdot u = 0 \; \forall \; u \in V$$
+    $$ \implies (\alpha v_1 + \beta v_2) \cdot u = 0 \; \forall \; u \in V$$
+    $$ \implies \alpha v_1 + \beta v_2 \in V^\perp$$
+\end{itemize}
+Thus, $V^\perp$ contains the zero vector and is closed under vector addition and scalar multiplication. It is therefore a subspace.
+\\ Note: Another way to prove this statement would be to show that the vectors in $V^\perp$ must constitute the solution set of a homogeneous system given by a matrix whose rowspace is $V$. An idea of this proof is demonstarted in part c).
+\newline
+\\ (b) (5 marks) Let $\{v_1, v_2, \cdots , v_k\}$ be a basis for $V$ and $\{u_1, u_2, \cdots , u_m\}$ a basis for $V^\perp$. Show that $\{v_1, v_2, \cdots , v_k, u_1, u_2, \cdots , u_m\}$ is a basis for $\mathbb{R}^n$.
+\newline
+\textbf{Solution:}
+First, we show that $n = k + m$. We construct a $k \times n$ matrix A, whose row space is given by $V$:
+$$A = 
+\begin{pmatrix}[c]
+    \text{--- } v_1  \text{ ---} \\
+    \text{--- } v_2  \text{ ---} \\
+    \vdots \\
+    \text{--- } v_k  \text{ ---} \\
+\end{pmatrix}
+$$
+Then, its null space must be $V^\perp$, because the null space is the orthogonal complement of the row space.
+\begin{tcolorbox}
+\textbf{Theorem:} Every vector in the null space of $A$ is orthogonal to the row space of $A$ i.e., the null space of $A$ is the orthogonal complement of the row space of $A$ i.e., 
+$$\text{nullsp}(A)=\text{rowsp}(A)^\bot$$
+\begin{proof}
+We use the element-chasing method to prove our theorem:
+Let $A$ be an $m \times n$ matrix:  
+$$A=
+\begin{pmatrix}[c]
+                  a_1^\top \\
+                  a_2^\top \\
+                  \vdots \\
+                  a_m^\top
+\end{pmatrix}
+$$
+where $a_i \in \mathbb{R}^n \; \forall i \in \{1, 2, \cdots, m\}$. Then,
+$$x \in \text{nullsp}(A) 
+\iff Ax=\Tilde{0} 
+\iff 
+\begin{pmatrix}[c]
+                  a_1^\top \\
+                  a_2^\top \\
+                  \vdots \\
+                  a_m^\top
+\end{pmatrix}
+x = \Tilde{0}
+\iff 
+\begin{pmatrix}[c]
+                  a_1^\top x \\
+                  a_2^\top x \\
+                  \vdots \\
+                  a_m^\top x
+\end{pmatrix}
+=\Tilde{0}
+\iff
+\begin{pmatrix}[c]
+                  a_1 \cdot x \\
+                  a_2 \cdot x \\
+                  \vdots \\
+                  a_m \cdot x
+\end{pmatrix}
+=\Tilde{0}
+$$
+$$
+\iff
+x \cdot a_i =0 \; \forall i \in \{1, 2, \cdots, m\}
+\iff
+x \perp a_i \; \forall i \in \{1, 2, \cdots, m\}
+\iff
+x \in \text{rowsp}(A)^\bot
+$$
+$$\implies \text{nullsp}(A) = \text{rowsp}(A)^\bot$$
+\end{proof}
+\end{tcolorbox}
+Thus, by the dimension theorem of matrices,
+$$\text{rank}(A) + \text{nullity}(A) = \text{ncols}(A) = n \implies \text{dim rowsp}(A) + \text{dim nulsp}(A) = n \implies \text{dim} V + \text{dim} V^\perp = n \implies k + m = n$$
+Next, we show that the vectors $\{v_1, v_2, \cdots , v_k, u_1, u_2, \cdots , u_m\}$ are linearly independent. Consider the following homogenous vector equation:
+$$c_1v_1 +  c_2v_2 + \cdots + c_k v_k + d_1 u_1 + d_2u_2 + \cdots + d_m u_m = \Tilde{0} \implies v  + u = \Tilde{0}$$ $$ \text{ where } v = c_1v_1 +  c_2v_2 + \cdots + c_k v_k \in V \text{ and } u = d_1 u_1 + d_2u_2 + \cdots +  d_m u_m \in V^\perp$$
+$$\implies v = - u$$
+Since $v \in V, u \in V^\perp$, 
+$$v \cdot u = 0\implies -u \cdot u = 0 \implies \norm{u}^2 = 0 \implies u = \Tilde{0} = v$$
+Thus,
+$$v = c_1v_1 +  c_2v_2 + \cdots c_k v_k = \Tilde{0}, \; u = d_1 u_1 + d_2u_2 \cdots d_m u_m = \Tilde{0} \implies c_1 = c_2 = \cdots = c_k = d_1 = d_2 = \cdots = d_m = 0$$
+The above reasoning comes from the fact that $\{v_1, v_2, \cdots , v_k\}$ and $\{u_1, u_2, \cdots , u_m\}$ are respectively the basis for $V$ and $V^\perp$. Thus the homogeneous system has only the trivial solution, implying the linear independence of the $n$ vectors. Consequently $\{v_1, v_2, \cdots , v_k, u_1, u_2, \cdots , u_m\}$ is a set of $k + m = n$ vectors in $\mathbb{R}^n$ that are linearly independent and therefore should constitute a basis for $\mathbb{R}^n$.
+\newline
+\\ (c) (4 marks) Suppose $n = 4$ and
+$V = \text{span}\{ (1, 1, 1, 1), (-1, 1, -3, 1), (1, 3, -1, 3) \}$. Find a basis for $V^\perp$.
+\newline
+\textbf{Solution:}
+We need to find $V^\perp$, which is the set of vectors of the form $(a, b, c, d)$ such that $(a, b, c, d) \cdot (1, 1, 1, 1) = 0 $, $(a, b, c, d) \cdot (-1, 1, -3, 1) = 0 $, $ (a, b, c, d) \cdot (1, 3, -1, 3) = 0$ In other words, we find the solution space of the homogeneous linear system represented by the augmented matrix:
+$$
+\begin{pmatrix}[cccc|c]
+    1 & 1 & 1 & 1 & 0 \\
+    -1 & 1 & -3 & 1 & 0 \\
+    1 & 3 & -1 & 3 & 0
+\end{pmatrix}
+\xrightarrow[R_2 + R_1]{R_3 - R_1}
+\begin{pmatrix}[cccc|c]
+    1 & 1 & 1 & 1 & 0 \\
+    0 & 2 & -2 & 2 & 0 \\
+    0 & 2 & -2 & 2 & 0
+\end{pmatrix}
+\xrightarrow{R_3 - R_1}
+\begin{pmatrix}[cccc|c]
+    1 & 1 & 1 & 1 & 0 \\
+    0 & 2 & -2 & 2 & 0 \\
+    0 & 0 & 0 & 0 & 0
+\end{pmatrix}
+$$
+Thus, we have the following general solution $(s, t \in \mathbb{R})$:
+$$\begin{pmatrix}[c] -2t \\ s \\ t \\ t - s \end{pmatrix} = s\begin{pmatrix}[c] 0 \\ 1 \\ 0 \\ -1 \end{pmatrix} + t\begin{pmatrix}[c] -2 \\ 0 \\ 1 \\ 1 \end{pmatrix}$$ 
+Therefore, we have the following solution space:
+$$ \text{span} \left\{\begin{pmatrix}[c] 0 \\ 1 \\ 0 \\ -1 \end{pmatrix}, \begin{pmatrix}[c] -2 \\ 0 \\ 1 \\ 1 \end{pmatrix} \right\} $$
+Since the two vectors are linearly independent, the required basis is:
+$$\left\{\begin{pmatrix}[c] 0 \\ 1 \\ 0 \\ -1 \end{pmatrix}, \begin{pmatrix}[c] -2 \\ 0 \\ 1 \\ 1 \end{pmatrix}\right\} $$
+
+
+
+
+\newpage
+
+\section*{Question 6}
+\newline
+ (All vectors in this question are written as column vectors.)
+\newline
+\\ (a) (3 marks) Let $P$ and $Q$ be two $m \times n$ matrices.
+Suppose $P v_i = Q v_i$, for $i = 1, 2, \cdots, n$, where $\{v_1, v_2, \cdots , v_n\}$ is a basis for $\mathbb{R}^n$. Show that $P = Q$.
+\\ (Hint: Let $\{e_1, e_2, \cdots , e_n\}$ be the standard basis for $\mathbb{R}^n$ Then for any $m \times n$ matrix $R$, $Re_j$ is the $j$th column of $R$ for $j = 1, 2, \cdots, n$.)
+\newline
+\textbf{Solution:} 
+Let there be some $i \in \{1,2, \cdots, n\}$. Further, let $p_i$ and $q_i$ denote the $i$th column of $P$ and $Q$ respectively. Since, $\{v_1, v_2, \cdots, v_n\}$ is a basis for $\mathbb{R}^n$, we must be able to combine them linearly to obtain the standard basis vector:
+$$e_i = c_{1i} v_1 + c_{2i} v_2 + \cdots + c_{ni} v_n$$
+It is evident that:
+$$p_i = Pe_i = P(c_{1i} v_1 + c_{2i} v_2 + \cdots + c_{ni} v_n) =c_{1i} P v_1 + c_{2i} P v_2 + \cdots + c_{ni} P v_n$$
+$$=c_{1i} Q v_1 + c_{2i} Q v_2 + \cdots + c_{ni} Q v_n = Q(c_{1i} v_1 + c_{2i} v_2 + \cdots + c_{ni} v_n) = Qe_i = q_i$$
+Since the above result holds $\forall \; i \in \{1,2,\cdots, n\}$, $P$ and $Q$ must share the same columns and are consequently the same. Thus, we have that $P = Q$.
+\newline
+\\ (b) Let $A$ and $B$ be two square matrices of order $n$.
+\newline
+\\ (i) (3 marks) Suppose $AB + BA = \bm{0}$. Show that if $u$ is an eigenvector of $A$ associated with an eigenvalue $\lambda$, then either $Bu = \Tilde{0}$ or $Bu$ is an eigenvector of A associated with $-\lambda$.
+\newline
+\textbf{Solution:}
+Since $u$ is an eigenvector of $A$ associated with an eigenvalue $\lambda$,
+$$Au = \lambda u$$
+Using the equation provided and post-multiplying both sides with $u$:
+$$AB + BA = \bm{0} \implies ABu + BAu = \Tilde{0} \implies ABu + \lambda Bu = \Tilde{0} \implies A(Bu) = -\lambda (Bu) \implies Aw = -\lambda w$$
+where $w = Bu$. The above equation only implies two possibilities:
+\begin{itemize}
+    \item $w = Bu$ is an eigenvector of $A$ with eigenvalue of $-\lambda$
+    \item $w$ is not an eigenvector, which is possible only if $w = \Tilde{0} \implies Bu = \Tilde{0}$
+\end{itemize}
+\newline
+\\ (ii) (6 marks) Let $A$ be diagonalizable. Suppose $B$ has the property that for any eigenvalue $\lambda$ of $A$ and eigenvector $u$ of $A$ associated with $\lambda$, either $Bu = \Tilde{0}$ or $Bu$ is an eigenvector of $A$ associated with $-\lambda$. Prove that $AB + BA = \bm{0}$.
+\newline
+\textbf{Solution:}
+Since $A$ is given to be diagonalizable, there must be a set of eigenvectors $\{ v_1, v_2, \cdots, v_n \}$ that form a basis for $\mathbb{R}^n$. For any of these eigenvectors $v_i$ associated with eigenvalue $\lambda_i$, this would mean that
+$$ABv_i = -\lambda_i Bv_i \implies ABv_i + \lambda_i Bv_i = \Tilde{0} \implies ABv_i + B (\lambda_i v_i) = \Tilde{0} \implies ABv_i + BAv_i = \Tilde{0} \implies (AB + BA)v_i = \Tilde{0}$$
+Consider some arbitrary vector $w \in \mathbb{R}^n$. Since, the eigenvectors of $A$ form a basis in $\mathbb{R}^n$, we must be able to combine them linearly to obtain $w$:
+$$w = \alpha_1 v_1 + \alpha_2 v_2 + \cdots + \alpha_n v_n \; \text{for some} \; \alpha_1, \cdots, \alpha_n \in \mathbb{R}^n$$
+We may now compute $(AB + BA)w$ as follows:
+\begin{align*}
+    (AB + BA)w &= (AB + BA)(\alpha_1 v_1 + \alpha_2 v_2 + \cdots + \alpha_n v_n) \\
+    &= \alpha_1 (AB + BA) v_1 + \alpha_2 (AB + BA) v_2 + \cdots + \alpha_n (AB + BA) v_n \\
+    &= \Tilde{0} + \Tilde{0} + \cdots + \Tilde{0} = \Tilde{0}
+\end{align*}
+Thus, $\forall \; w \in \mathbb{R}^n$, $(AB + BA)w = \Tilde{0}$. In other words, the nullspace of $AB + BA$ is the entire $\mathbb{R}^n$ i.e., nullity$(AB + BA) = n$. Since, this is true only for the zero matrix, we can conclude that $AB + BA = \bm{0}$.
+\newline
+\\ (iii) (4 marks) Suppose $A, B$ are symmetric and $AB + BA = \bm{0}$. Prove that if $\mu$ is an eigenvalue of $AB$, then $-\mu$ is also an eigenvalue of $AB$.
+\newline
+\textbf{Solution:}
+Let $v$ be an eigenvector of $AB$ associated with eigenvalue $\mu$ It is given that:
+$$AB + BA = \bm{0} \implies AB v + BA v = \Tilde{0} \text{ (post multiplying by } v \text{)}  \implies \mu v + BA v = \Tilde{0} $$
+$$ \implies BA v = - \mu v \implies (A^\top B^\top)^\top v = - \mu v \implies (AB)^\top v = - \mu v \; (\text{since} \; A = A^\top, B = B^\top)$$
+Thus, $-\mu$ is an eigenvalue of $(AB)^\top$. But, a matrix and its transpose must share the same eigenvalues. In particular,
+$$(AB)^\top v = - \mu v \implies \text{det}((AB)^\top + \mu I) = 0 \implies \text{det}((AB  + \mu I)^\top) = 0 \implies \text{det}(AB  + \mu I) = 0 \implies AB v' = - \mu v'$$
+for some $v' \in \mathbb{R}^n$. Thus, $-\mu$ is also an eigenvalue of $AB$.
+
+\newline
+\vspace{5pt}
+\hrule
+
+\end{document}
