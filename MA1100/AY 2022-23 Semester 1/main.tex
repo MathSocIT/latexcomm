@@ -1,0 +1,140 @@
+\documentclass[11pt]{article}
+
+%title
+\title{MA1100 - Discrete Mathematics Suggested Solutions}
+\author{(Semester 1, AY2022/2023)}
+\date{Written by: Gao Tianlu\\Audited by: James Liu Jiayu}
+%packages
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{amssymb,amsmath,amsfonts,xcolor,graphicx,float,titling,hyperref,enumerate}
+
+\parindent 0pt
+
+%start of document
+\begin{document}
+\maketitle
+\section*{Question 1}
+Claim: $\bigcup_{n=1}^\infty A_n = \mathbb{Z}^+$.\\
+$(\subseteq)$ Let $l\in \bigcup_{n=1}^\infty A_n.$ Then $\exists k\in \mathbb{Z}^+$ such that $l\in A_k$. Since $A_k=\{j\in \mathbb{Z}^+|k\leq j \leq 2k\}\subseteq \mathbb{Z}^+$, so $l\in \mathbb{Z}^+$ and $\bigcup_{n=1}^\infty A_n \subseteq \mathbb{Z}^+$.\\
+$(\supseteq)$ Let $n\in \mathbb{Z}^+$, then $n\in A_n$ and $n\in \bigcup_{n=1}^\infty A_n$. So $\mathbb{Z}^+\subseteq \bigcup_{n=1}^\infty A_n$.\\
+Hence, $\bigcup_{n=1}^\infty A_n = \mathbb{Z}^+$ as desired.\\
+
+Claim: $\bigcap_{n=1}^\infty A_n=\emptyset.$\\
+Since $\emptyset \subseteq \bigcap_{n=1}^\infty A_n$, we only need to show $\bigcap_{n=1}^\infty A_n \subseteq \emptyset.$ By definition, $\bigcap_{n=1}^\infty A_n \subseteq A_1$ and $\bigcap_{n=1}^\infty A_n \subseteq A_3$. Then $\bigcap_{n=1}^\infty A_n \subseteq {A_1 \cap A_3}$. So $\bigcap_{n=1}^\infty A_n=\emptyset$ as desired.\\
+
+\section*{Question 2}
+\begin{enumerate}[(i)]
+    \item 
+    Let $x_1,x_2 \in \mathbb{R}-\{2\}$ such that $f(x_1)=f(x_2).$ Then 
+    \begin{align*}
+        f(x_1)&=f(x_2)\\
+        1+\frac{1}{x_1-2}&=1+\frac{1}{x_2-2}\\
+        x_1-2&=x_2-2 \ \text{ since }x_1,x_2 \neq 2\\
+        x_1&=x_2.
+    \end{align*}
+    So $f$ is injective as desired.
+    \item
+    Claim: $R(f)=\mathbb{R}-\{1\}$.\\
+    Let $y\in R(f)$. Then $\exists a\in \mathbb{R}-\{2\}$ such that $f(x)=y$. Since $y=1+\frac{1}{a-2}\neq 1$, so $y\in \mathbb{R}-\{1\}.$ \\
+    Let $y\in \mathbb{R}-\{1\}$. Take $a=2+\frac{1}{y-1}$, where $a\neq 2$. Then 
+    \begin{align*}\nonumber 
+        f(a)&=1+\frac{1}{a-2}\\
+        &=1+\frac{1}{2+\frac{1}{y-1}-2}\\
+        &=1+y-1\\
+        &=y.
+    \end{align*}
+    So $y\in R(f).$ Hence, $R(f)=\mathbb{R}-\{1\}$ as desired.
+    \item
+    Claim: $f$ is not invertible.\\
+    To show $f$ is not invertible is equivalent to show $f$ is not bijective. Since $R(f)=\mathbb{R}-\{1\}\neq \mathbb{R},$ $f$ is not surjective and hence not bijective. So $f$ is not invertible. \\
+\end{enumerate}
+
+\section*{Question 3}
+\begin{enumerate}[(a)]
+    \item 
+    \begin{align*}
+        f[X]&=\{f(x)|x\in X\}\\
+        &=\{f(-1),f(0),f(1)\}\\
+        &=\{0,1\}\\
+    \end{align*}
+    \begin{align*}
+        f^{-1}[Y]&=\{x\in\mathbb{R}|f(x)\in Y\}\\
+        &=\{\pm 1, \pm 2\}
+    \end{align*}
+    \item
+    $(\subseteq)$ Let $y\in g[\bigcup_{i\in I} C_i].$ Then $\exists x \in \bigcup_{i\in I}C_i$ such that $g(x)=y$. So $\exists i\in I$ such that $x\in C_i$ and $g(x)=y\in g[C_i]$. Hence, $y\in \bigcup_{i\in I}g[C_i].$
+
+    $(\supseteq)$ Let $y\in\bigcup_{i\in I}g[C_i].$ Then $\exists i\in I$ such that $y\in g[C_i]$ and $\exists x\in C_i$ such that $g(x)=y$. So $x\in C_i$, $x\in \bigcup_{i\in I} C_i$ and $g(x)=y\in g[\bigcup_{i\in I}C_i]$.\\
+    Hence, $g[\bigcup_{i\in I} C_i]=\bigcup_{i\in I}g[C_i]$ as desired.\\
+\end{enumerate}
+
+\section*{Question 4}
+Let $n\in \mathbb{Z}$, we want to show that $n(7n^2+5)=6k$ for some $k\in \mathbb{Z}$. We know $n \equiv r \mod{6}$ for some integer $r$ with $0\leq r < 6.$ Consider all 6 cases, then $$
+\begin{tabular}{c|c}
+     $n$ & $n(7n^2+5)$ \\
+     \hline
+     $0 \mod{6}$ & $0(7(0)^2+5)\equiv 0 \mod{6}$\\
+     $1 \mod{6}$ & $1(7(1)^2+5)\equiv 12 \mod{6}\equiv 0 \mod{6}$ \\
+     $2 \mod{6}$ & $2(7(2)^2+5)\equiv 66 \mod{6} \equiv 0 \mod{6}$\\
+     $3 \mod{6}$ & $3(7(3)^2+5)\equiv 6(34)\mod{6}\equiv 0\mod{6}$\\
+     $4\mod{6}$ & $4(7(4)^2+5)\equiv6(78) \mod{6} \equiv 0\mod{6}$\\
+     $5\mod{6}$ & $5(7(5)^2+5)\equiv 36(25)\mod{6}\equiv 0\mod{6}.$
+\end{tabular}$$
+So $n(7n^2+5)$ is divisible by $6$ as desired.
+
+
+\section*{Question 5}
+\begin{enumerate}[(i)]
+    \item 
+    \begin{align*}
+        12378&=4\times 3054 +162\\
+        3054&= 18 \times 162 +138\\
+        162 & = 1\times 138 +24\\
+        138&=5\times 24 +18\\
+        24 &=1\times 18+6\\
+        18&=3\times 6 + 0
+    \end{align*}
+    So $\gcd{(12378,3054)}=6$ as desired.
+    \item
+    \begin{align*}
+        6&=24-18\\
+        &=24-(138-5\times 24)\\
+        &=6\times 24-138\\
+        &=6\times(162-138)-138\\
+        &=6\times 162-7\times 138\\
+        &=6\times 162 -7\times(3054-18\times 162)\\
+        &=132\times 162 - 7\times 3054\\
+        &=132\times (12378-4\times 3054)-7\times3054\\
+        &=132\times 12378  - 535\times 3054
+    \end{align*}
+    So $x=132,\ y=-535$ as desired.
+\end{enumerate}
+
+\section*{Question 6}
+\begin{enumerate}[(i)]
+    \item 
+    Reflexive: Let $(a,b)\in \mathbb{R}^2$. $b-a^3=b-a^3\Leftrightarrow (a,b)\sim(a,b)$.\\
+    Symmetric: Let $(a,b),(c,d)\in \mathbb{R}^2$ such that $(a,b)\sim (c,d)$, then \begin{align*}
+        b-a^3&=d-c^3\\
+        d-c^3&=b-a^3\\
+        (c,d)&\sim (a,b).
+    \end{align*}
+    Transitive: Let $(a,b),(c,d),(e,f)\in \mathbb{R}^2$ such that $(a,b)\sim (c,d)$ and $(c,d)\sim (e,f)$. We know $b-a^3=d-c^3$ and $d-c^3=f-e^3$, then $b-a^3=f-e^3$. So $(a,b)\sim (e,f).$\\
+    Hence, $\sim$ is an equivalence relation as desired.
+    \item
+    By definition of the graph of a function, consider the function $f:\mathbb{R} \to \mathbb{R}$ such that $f(x)=x^3+b-a^3$. 
+    \item
+    Each partition in the quotient set represents a solution curve $y=x^3+b-a^3$ for some $a,b$. The quotient set consists of all these curves. Consider the function $g([(x,y)])=b-a^3$, where $[(a,b)]$ is the partition in which $(x,y)$ lies. By definition of a partition, $g$ is injective and surjective, hence a bijection as desired.
+\end{enumerate}
+\section*{Question 7}
+\begin{enumerate}[(i)]
+    \item 
+    To show two sets are equinumerous, it suffices to show there exists a bijection $f$ between the 2 sets. Consider the function $f:A\to A\times \{b_0\}$ such that $f(a)=(a,b_0)$. \\
+    Injective: Let $a_1,a_2\in A$ such that $f(a_1)=f(a_2)$. Then $(a_1,b_0)=(a_2,b_0)$ and $a_1=a_2.$\\
+    Surjective: Let $(a,b_0)\in A\times \{b_0\}$. Then by definition,  for $a\in A$, $f(a)=(a,b)$. \\
+    So $f$ is bijective. Hence $A\times \{b_0\}$ is equinumerous with $A$ as desired.
+    \item
+    Consider the set $\{b_0\}\subseteq B$, then $A\times \{b_0\} \subseteq A\times B$. Since $A$ is uncountable, and from (i), $A\times \{b_0\}$ is uncountable, hence $A\times B$ is also uncountable as desired.
+\end{enumerate}
+
+\end{document}
