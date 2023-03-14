@@ -1,0 +1,296 @@
+
+\documentclass{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{enumitem}
+\usepackage[margin=1in]{geometry}
+\title{MA3209 - Metric and Topological Spaces Suggested Solutions}
+\author{(Semester 1, AY2021/2022)}
+\date{Written by: Chow Boon Wei\\Audited by: Chong Jing Quan}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\setlength\parindent{0pt}
+
+\begin{document}
+\maketitle
+\subsection*{Question 1}
+
+\begin{enumerate}[label=\roman*)]
+
+\item For any $x,y\in X$, we have 
+\begin{align*}
+    \rho(x,y) = 0 &\iff \sqrt{d(x,y)+4}-2=0\\
+    &\iff \sqrt{d(x,y)+4}=2\\
+    &\iff d(x,y)+4=4\\
+    &\iff d(x,y)=0\\
+    &\iff x=y.
+\end{align*}
+
+Also, $\rho(x,y) = \sqrt{d(x,y)+4}-2 = \sqrt{d(y,x)+4}-2 = \rho(y,x)$. 
+
+Finally, we have 
+\begin{align*}
+    \rho(x,y)+\rho(y,z) &= \sqrt{d(x,y)+4}-2+\sqrt{d(y,z)+4}-2\\
+    &= \sqrt{(\sqrt{d(x,y)+4}+\sqrt{d(y,z)+4})^2}-4\\
+    &= \sqrt{d(x,y)+4+2\sqrt{d(x,y)+4}\sqrt{d(y,z)+4}+d(y,z)+4}-4\\
+    &= \sqrt{d(x,y)+d(y,z)+2\sqrt{d(x,y)d(y,z)+4d(x,y)+4d(y,z)+16}+8}-4\\
+    &\geq \sqrt{d(x,z)+2\sqrt{d(x,y)d(y,z)+4d(x,z)+16}+8}-4\\
+    &\geq \sqrt{d(x,z)+2\sqrt{4d(x,z)+16}+8}-4\\
+    &\geq \sqrt{d(x,z)+4+4\sqrt{d(x,z)+4}+4}-4\\
+    &= \sqrt{d(x,z)+4}+2-4\\
+    &= \sqrt{d(x,z)+4}-2.
+\end{align*}
+
+\item Let $(a_n)_{n\in\N}$ be a sequence that is Cauchy convergent with respect to $\rho$. 
+Then, I claim that this sequence is also Cauchy convergent with respect to $d$. 
+Let $\epsilon>0$ be given. We can find an $N\in \N$ such that 
+$$
+n,m\geq N \implies \rho(a_n,a_m) < \sqrt{\epsilon+4}-2. 
+$$
+Then, whenever $n,m\geq N$, we have $d(a_n,a_m) = (\rho(a_n,a_m) + 2)^2-4 < \epsilon$. 
+So, this sequence is also Cauchy convergent with respect to $d$. 
+Since $(X<d)$ is complete, we can find an $a\in X$ such that $a_n\to a$ with respect to $d$. 
+That is, for every $\epsilon>0$, we can fine a $K\in \N$ such that 
+$$
+n\geq K \implies d(a_n,a)<(\epsilon+2)^2-4.
+$$
+Then, whenever $n\geq K$, we have 
+$\rho(a_n,a) = \sqrt{d(a_n,a)+4}-2 < \epsilon$. Hence, $a_n \to a$ with respect to $\rho$. 
+This means that the sequence is convergent.
+Finally, we see that every sequence that is Cauchy convergent with respect to $\rho$ is also 
+convergent with respect to $\rho$. So, $(X,\rho)$ is complete. 
+
+\item Let $\left\{U_{\lambda}\right\}_{\lambda\in \Lambda}$ be an open cover for $(X,\rho)$. 
+Then, for each $\lambda \in \Lambda$, $U_\lambda$ is open in $(X,\rho)$. 
+So, for each $x\in U_\lambda$, we can find a $\epsilon > 0$ such that 
+$B_\rho(x,\epsilon) \subset U_\lambda$. Now, I claim that $B_d\left(x,(\epsilon+2)^2-4\right) \subset 
+U_\lambda$. Indeed, we have 
+\begin{align*}
+    y\in B_d\left(x,(\epsilon+2)^2-4\right)
+&\iff 
+d(y,x)<(\epsilon+2)^2-4\\
+&\iff 
+\rho(x,y)<\epsilon\\
+&\iff 
+y\in B_\rho(x,\epsilon)\\
+&\implies y\in U_\lambda.
+\end{align*}
+
+So, $U_\lambda$ is also open in $(X,d)$. In particular, 
+$\left\{U_{\lambda}\right\}_{\lambda\in \Lambda}$ is also an open cover for 
+$(X,d)$. Since, $(X,d)$ is compact, we can find a finite subcover 
+$\left\{U_{\lambda_1},\dots,U_{\lambda_n}\right\}$. This shows that $(X,\rho)$ is compact. 
+
+Remark: In fact, $(X,d)$ and $(X,\rho)$ have the same topology.
+
+\end{enumerate}
+
+\subsection*{Question 2}
+
+\begin{enumerate}[label=\roman*)]
+
+\item Take $f:[0,2]\to \R$ given by $f(x)=x$ for each $x\in [0,2]$.
+Let $\epsilon>0$ be given. Take $N\in\N$ such that $\frac{1}{N}<\epsilon$. 
+For any $n\geq N$, we have 
+\begin{align*}
+    d_2(f,f_n) &= \sqrt{ \int_0^2 | f(x) - f_n(x) | dx } \\
+    &= \sqrt{ \int_0^{1/n^3} | f(x) - f_n(x) | dx 
+    + \int_{{1/n^3}}^2 | x - f_n(x) | dx } \\
+    &= \sqrt{ \int_0^{1/n^3} | x - n - (1-n^4)x | dx 
+    + \int_{{1/n^3}}^2 | x - x | dx } \\
+    &= \sqrt{ \int_0^{1/n^3} | - n +n^4x | dx } \\
+    &= \sqrt{ \int_0^{1/n^3} n-n^4x dx } \\
+    &= \sqrt{\frac{1}{2n^2}} \\
+    &<\frac{1}{N}\\&<\epsilon.
+\end{align*}
+Therefore, this sequence converges in $(C[0,2],d_2)$. 
+
+\item Let $K=\Z_{\geq 0}$. Then, $K$ is compact because give any open cover 
+$C = \{U_{\lambda}\}_{\lambda \in \Lambda}$, we can choose a finite subcover as follows. 
+Fix $U_{\lambda_0} \in C$. Since $U_{\lambda_0}$ is open in $(\Z,\tau_{cofinite})$, 
+$\Z \backslash U_{\lambda_0}$ is finite. So, $K \backslash U_{\lambda_0}$ is also finite. 
+If $K \backslash U_{\lambda_0} = \emptyset$, we are done. Otherwise, write 
+$K \backslash U_{\lambda_0} = \{x_1,\dots,x_n\}$. For each $1\leq i \leq n$, we can find a 
+$U_{\lambda_i} \in C$ such that $x_i \in U_{\lambda_i}$. Finally, 
+$\left\{U_{\lambda_0},U_{\lambda_1},\dots,U_{\lambda_n}\right\}$ is the finite subcover we need. 
+Now, the closed sets of $(\Z,\tau_{cofinite})$ are finite subsets and $\Z$. Since $K$ is infinite 
+and $K \subset \overline{K}$, we see that $\overline{K} = \Z$. But, $K$ is not open in 
+$\overline{K}=\Z$ because $\Z \backslash K = \Z_{<0}$ is infinite.
+
+
+%In $(\Z,\tau_{cofinite})$, a set is open if and only if its complement is finite or if it is the 
+%empty set. Therefore, the only closed sets are finite subsets of $\Z$ and $\Z$ itself. Since $\bar{K}$ 
+%is closed, either $\bar{K}$ is finite or $\bar{K} = \Z$. But, $K \subset \bar{K}$. If $K$ is finite, 
+%then $\bar{K} = K$. So, $K$ is open in $\bar{K}$. Otherwise, if $K$ is infinite, we have $\bar{K} = 
+%\Z$. I claim that $K$ must be open. Suppose that $K$ is not open. Then, $\Z \backslash K$ is infinite. 
+%So, we can enumerate
+
+%So, $\bar{K}$ endowed 
+%with the subspace topology induced by $(\Z,\tau_{cofinite})$ has the discrete topology. To see why 
+%this is true, let $ U\subset K$ be arbitrary. Then, $U = (\Z\backslash K \cup U) \cap K$. But, 
+%$\Z \backslash (\Z\backslash K \cup U) = K \backslash U$ is finite. So, $\Z\backslash K \cup U$ is 
+%open in $(\Z,\tau_{cofinite})$. This means that $U = (\Z\backslash K \cup U) \cap K$ is open in the 
+%subspace topology.  Since $U$ is arbitrary, the subspace topology is discrete.
+%So, $K$ is open in $\bar{K}$.
+
+\end{enumerate}
+\newpage
+\subsection*{Question 3}
+
+\begin{enumerate}[label=\alph*)]
+
+\item For reference, $Z= \{f:[2,4]\to\R: \forall x \in [2,4], 4\leq f(x) \leq 8\}$
+We can define $F: Z \to Z$ by $F(f) = \left( x \mapsto \sqrt{f\left( \frac{x+2}{2} \right) + x+10} 
+\right)$ for any $f\in Z$. This map is well-defined because $\sqrt{f\left( \frac{x+2}{2} \right) + 
+x+10} \leq \sqrt{8+4+10}<8$ and $\sqrt{f\left( \frac{x+2}{2} \right) + x+10} \geq \sqrt{4+2+10}>4$ for 
+any $x\in[2,4]$. Now, with respect to the supremum norm, we have 
+\begin{align*}
+    \sup_{x\in[2,4]} |F(f)(x) - F(g)(x)|
+    &= \sup_{x\in[2,4]} \left| \sqrt{f\left( \frac{x+2}{2} \right) + x + 10 } 
+    - \sqrt{ g\left( \frac{x+2}{2} \right) + x + 10 } \right|\\ 
+    &= \sup_{x\in[2,4]} \left| \frac{ f\left( \frac{x+2}{2} \right) + x + 10
+    - g\left( \frac{x+2}{2} \right) - x - 10 }
+    {\sqrt{f\left( \frac{x+2}{2} \right) + x + 10 } 
+    + \sqrt{ g\left( \frac{x+2}{2} \right) + x + 10 }} \right|\\ 
+    &= \sup_{x\in[2,4]} \left| \frac{ f\left( \frac{x+2}{2} \right) - g\left( \frac{x+2}{2} \right)}
+    {\sqrt{4 + 2 + 10 } + \sqrt{ 4 + 2 + 10 }} \right|\\ 
+    &= \sup_{x\in[2,3]} \left| \frac{ f\left( x \right) - g\left( x \right)}
+    {8} \right|\\ 
+    &\leq \frac{1}{8} \sup_{x\in[2,4]} \left| f\left( x \right) - g\left( x \right) \right|. 
+\end{align*} 
+So, $F$ is a contraction map. Let $B([2,4])$ be the set of real valued bounded functions on $[2,4]$. 
+Since $Z \subset B([2,4]) $ and we know that $B([2,4])$ with the supremum norm is complete, all 
+we have to show is that $Z$ is closed to deduce that $B([2,4])$ is also complete. Let $(f_n)_{n\in\N} 
+\subset Z$ be a sequence in $Z$ that is convergent in $B([2,4])$. Denote its limit by $f$. Then, 
+$4\leq f_n(x) \leq 8$ for each $x\in[2,4]$. As $n\to \infty$, we have $4\leq f(x) \leq 8$. So, 
+$f\in Z$ which shows that $Z$ is closed in $B([2,4])$. Hence, $Z$ is complete. Finally, by Banach's \
+fixed point theorem, there exists a unique $f\in Z$ such that $F(f) =  f$. So, there is a unique 
+$f\in Z$ such that 
+$$
+f(x)^2 = f\left( \frac{x+2}{2} \right) + x + 10 
+$$ for all $x\in[2,4]$. 
+
+\item The result is clear if $X=\emptyset$ or $Y=\emptyset$. So we shall assume that we are not in 
+these cases.
+
+Fix $(z_1,z_2) \in (X \times Y)^a$. Then, for every open neighborhood $U$ of $(z_1,z_2)$, we have 
+$$U \cap (X \times Y) \backslash \{(z_1,z_2)\} \neq \emptyset.$$ In particular, we can choose $U = 
+A \times B$ where $A$ and $B$ are neighborhoods of $z_1$ and $z_2$ respectively. But, 
+$$\emptyset \neq 
+(A \times B) \cap (X \times Y) \backslash \{(z_1,z_2)\} = (A \cap X) \times (B \cap Y) \backslash 
+\{(z_1,z_2)\} = (A \backslash \{z_1\} \times Y) \cup (X \times B \backslash \{z_2\}).$$ 
+So, $A \backslash \{z_1\} \times Y \neq \emptyset$ or $X \times 
+B \backslash \{z_2\} \neq \emptyset$. Hence, $A \backslash \{z_1\} \neq \emptyset$ or 
+$B \backslash \{z_2\} \neq \emptyset$. Suppose that $A \backslash \{z_1\} = A \cap (X \backslash \{z_1\} )
+\neq \emptyset$ for all open neighborhood $A$ of $z_1$. Then, we have 
+$z_1\in X^a$. Otherwise, if $A \backslash \{z_1\} =A \cap( X \backslash \{z_1\} )= \emptyset$ for some 
+$A$ open neighborhood $A$ of $z_1$, then we can let $B$ be arbitrary. So, 
+$B \backslash \{z_2\} \neq \emptyset$ for any open neighborhood $B$ of $z_2$. Therefore, $z_2\in Y^a$. 
+We have $z_1\in X^a$ or $z_2\in Y^a$. Therefore, $(z_1,z_2)\in (X^a \times Y) \cup (X \times Y^a)$.
+Hence, we have $(X \times Y)^a \subset (X^a \times Y) \cup (X \times Y^a)$.\\
+
+Fix $(z_1,z_2) \in (X^a \times Y) \cup (X \times Y^a)$. So, we have $(z_1,z_2) \in X^a \times Y$ or 
+$(z_1,z_2) \in X \times Y^a$. Suppose that $(z_1,z_2) \in X^a \times Y$. Then, $z_1\in X^a$. So, for 
+every open neighborhood $A$ of $z_1$, we have $A \backslash \{z_1\} = A \cap (X \backslash \{z_1\} )\neq 
+\emptyset$. Now, let $U$ be an arbitrary open neighborhood of $(z_1,z_2)$. Then, there exists open 
+neighborhoods $A$ of $z_1$ and $B$ of $z_2$ such that $(z_1,z_2) \in A \times B \subset U$. Therefore, 
+\begin{align*}
+    U \cap (X \times Y) \backslash \{(z_1,z_2)\} &\supset (A\times B) \cap \left((X \times Y) \backslash 
+    \{(z_1,z_2)\}\right)\\ 
+    &= (A \cap X) \times (B \cap Y) \backslash \{(z_1,z_2)\}\\ 
+    &= (A \times B) \backslash \{(z_1,z_2)\}\\ 
+    &= (A \backslash \{z_1\}\times Y) \cup (X \times B \backslash \{z_2\})\\ 
+    &\neq \emptyset.
+\end{align*} 
+Since $U$ is arbitrary, we have $(z_1,z_2) \in (X \times Y)^a$. A similar argument holds for 
+$(z_1,z_2) \in X \times Y^a$. Finally, we have $(X^a \times Y) \cup (X \times Y^a) 
+\subset (X \times Y)^a$.
+
+\end{enumerate}
+
+\subsection*{Question 4}
+
+\begin{enumerate}[label=\roman*)]
+
+\item Denote $Z=\{x \in X: f(x) \neq g(x) \}. $Fix $x\in X \backslash Z$. Then, $f(x) \neq g(x)$. 
+So, there exists open sets $U,V \subset Y$ such that $f(x) \in U$, $g(x) \in V$ but $U \cap V = 
+\emptyset$. Since, $f$ and $g$ are continuous, $f^{-1}(U)$ and $g^{-1}(V)$ are both open in $X$. 
+Now, $x \in f^{-1}(U) \cap g^{-1}(V)$ means that $f^{-1}(U) \cap g^{-1}(V) \neq \emptyset$. 
+Furthermore, $f^{-1}(U) \cap g^{-1}(V)$ is open in $X$. Finally, $f^{-1}(U) \cap g^{-1}(V) 
+\subset X \backslash Z$ because 
+\begin{align*}
+    x\in f^{-1}(U) \cap g^{-1}(V) &\implies 
+f(x) \in U , g(x) \in V \\&\implies f(x) \neq g(x)\\& \implies x\notin Z.
+\end{align*}
+
+So, for every $x \in  X \backslash Z$, we can find an open set $W=f^{-1}(U) \cap g^{-1}(V)$ such that $x\in W \subset (X \backslash Z)$. Hence, $X \backslash Z$ is open in $X$ and so $Z$ is closed in $X$. 
+
+\item Take $X=\R$ with the usual topology and $Y=\R$ with the indiscrete topology. 
+Since $\tau_Y=\{\emptyset,\R\}$, it is clearly non-Hausdorff. Then, take 
+$F,G: X\to Y$ to be given by $F(x)=1$ and 
+$$
+G(x) = \begin{cases}
+    1 &x>0\\
+    0 &x\leq 0
+\end{cases}
+$$ for every $x\in\R$. Clearly, $F$ and $G$ are continuous (in fact any map $K:X\to Y$ is ), and 
+$$\{x\in X: F(x)=G(x)\} = \R^+$$ is not closed in $X$.
+
+\end{enumerate}
+\newpage
+\subsection*{Question 5}
+
+\begin{enumerate}[label=\alph*)]
+
+\item Note that $[0,2]$ is compact. For each $x\in [0,2]$ and for any $n\in\N$, we have 
+$$0\leq g_n(x) = \frac{2\sqrt{x}}{n} + \int_0^x (f_n(t))^2 dt \leq 
+\frac{2\sqrt{2}}{n} + 9\int_0^x t^2 dt \leq 2\sqrt{2} + 9\frac{x^3}{3} \leq 
+2\sqrt{2} + 24.$$ Therefore, $\{g_n\}_{n\in\N}$ is a point-wise bounded (in fact uniformly 
+bounded) family of functions. Furthermore, let $x\in[0,2]$ be arbitrary and let $\epsilon>0$ be given. 
+Since $(x\mapsto\sqrt{x})$ is uniformly continuous on $[0,2]$, there is a $\delta_1>0$ such that 
+whenever $|x-y|<\delta$, we have $|\sqrt{x}-\sqrt{y}|\leq \frac{\epsilon}{4}$.
+Take $\delta = \min(\delta_1, \frac{\epsilon}{72})$. Then, for any $n\in\N$ and $y\in [0,2]$, 
+whenever $|x-y|<\delta$, 
+\begin{align*}
+    |g_n(x) - g_n(y)| 
+    &= \left| \frac{2\sqrt{x}}{n} + \int_0^x (f_n(t))^2 dt 
+    - \frac{2\sqrt{y}}{n} - \int_0^y (f_n(t))^2 dt\right|\\
+    &\leq \left| \frac{2\sqrt{x}}{n} - \frac{2\sqrt{y}}{n} \right| 
+    + \left| \int_0^x (f_n(t))^2 dt  - \int_0^y (f_n(t))^2 dt\right|\\ 
+    &\leq \frac{2}{n}\left| \sqrt{x} - \sqrt{y} \right| 
+    + \left|\int_x^y (f_n(t))^2 dt\right|\\ 
+    &\leq \frac{2}{1}\times\frac{\epsilon}{4}
+    + \left|\int_x^y 9t^2 dt\right|\\ 
+    &\leq \frac{\epsilon}{2} 
+    + 3\left|y^3-x^3\right|\\ 
+    &\leq \frac{\epsilon}{2} 
+    + 3\left|(y-x)(x^2+xy+y^2)\right|\\ 
+    &< \frac{\epsilon}{2} 
+    + 36\delta\\ 
+    &< \epsilon. 
+\end{align*}
+Remark: To show that $(x\mapsto\sqrt{x})$ is uniformly continuous on $[0,2]$, take $\delta=\epsilon^2$. 
+Therefore, $\{g_n\}_{n\in\N}$ is a point-wise equicontinuous (in fact uniformly 
+equicontinuous) family of functions. By the Arzela-Ascoli theorem, $(g_n)_{n\in\N}$ has a subsequence 
+which converges uniformly to some continuous function on $[0,2]$. \\
+
+\item Denote $K := \bigcap_{n\in\N} K_n$. Suppose that $K$ is not connected. Then, there exists open 
+sets $G,H\subset X$ such that $G \cap H \cap K = \emptyset$, $K \subset G \cup H$, $G \cap K \neq 
+\emptyset$ and $H \cap K \neq \emptyset$. Since $X$ is metrizable, we can choose $G$ and $H$ to be 
+disjoint. But, for each $n\in\N$, $K_n$ is connected. So, we have either $G \cap H \cap K_n \neq \emptyset$, 
+$K_n \not\subset G \cup H$, $G \cap K_n = \emptyset$, or $H \cap K_n = \emptyset$. But, $G \cap K_n 
+\supset G \cap K \neq \emptyset$ and $H \cap K_n \supset H \cap K \neq \emptyset$ so $G \cap K_n = 
+\emptyset$ and $H \cap K_n = \emptyset$ are not possible. This leaves us with $G \cap H \cap K_n \neq 
+\emptyset$ or $K_n \not\subset G \cup H$. Since $G$ and $H$ are chosen to be disjoint, we only have 
+$K_n \not\subset G \cup H$. For each $n\in\N$, take $F_n = K_n \backslash (G \cup H)$. Since $X$ is a 
+metric space, it is Hausdorff. In a Hausdorff space, compact sets are closed. Thus, $K_n$ is closed. 
+Therefore, $F_n$ is a closed subset of a compact set and is therefore also compact. Also, 
+we have $F_{n+1} = K_{n+1} \backslash (G \cup H) \subset K_{n} \backslash (G \cup H) = F_n$ Finally, 
+$\bigcap_{n\in \N} F_n = \bigcap_{n\in \N} K_n \backslash (G \cup H) = K \backslash (G \cup H) 
+= \emptyset$ which is a contradiction. 
+
+\end{enumerate}
+
+\end{document}
