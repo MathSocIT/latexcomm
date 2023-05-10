@@ -1,0 +1,131 @@
+
+\documentclass{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\setlength\parindent{0pt}
+\title{MA4262 - Measure and Integration Suggested Solutions}
+\author{(Semester 1, AY2022/2023)}
+\date{Written by: Chow Boon Wei\\Audited by: Matthew Fan}
+
+\begin{document}\maketitle
+All claims in this paper are true. 
+
+\subsection*{Question 1}
+
+Suppose that $x\in \{ x \in \Omega: \liminf_{k\to\infty} f_k (x) > 1 \}$. Then, we have 
+\begin{align*}
+    \liminf_{k\to\infty} f_k (x) > 1
+    &\iff \exists n\in\Z_{\geq 1}, \liminf_{k\to\infty} f_k(x) > 1 + \frac{1}{n} \\
+    &\iff \exists n\in\Z_{\geq 1}, \lim_{m\to\infty}\inf_{k\geq m} f_k(x) > 1 + \frac{1}{n} \\
+    &\iff \exists n\in\Z_{\geq 1}, \exists m\in\Z_{\geq 1}, \inf_{k\geq m} f_k(x) > 1 + \frac{1}{n} \\
+    &\iff \exists n\in\Z_{\geq 1}, \exists m\in\Z_{\geq 1}, \forall k\in \Z_{\geq m}, f_k(x) > 1 + \frac{1}{n} \\
+    &\iff \exists r\in\Z_{\geq 1}, \forall k\in \Z_{\geq r}, f_k(x) > 1 + \frac{1}{r} 
+\end{align*}
+where the last step can be done by taking $r=\max(n,k)$. 
+\subsection*{Question 2}
+
+\begin{enumerate}[label=(\roman*)]
+    \item Suppose that $E \in \Sigma^{\uparrow}_{\downarrow}$. Then, there exists $A,B\in \Sigma$ such 
+    that $A \subset E \subset B$ and $\mu(B \backslash A) = 0$. Then, $X \backslash B \subset X \backslash E 
+    \subset X \backslash A$. Since $\Sigma$ is a sigma algebra, we have $X \backslash A \in\Sigma$ and 
+    $X \backslash B \in \Sigma$. 
+    Finally, $\mu((X \backslash A)\backslash(X \backslash B)) = \mu(B\backslash A) = 0$. 
+    So, $X \backslash E \in \Sigma^{\uparrow}_{\downarrow}$. 
+
+    \item For each $i\in\Z_{\geq 1}$, we have $E_i \in \Sigma^{\uparrow}_{\downarrow}$. 
+    Then, there exists $A_i,B_i\in \Sigma$ such that $A_i \subset E_i \subset B_i$ and 
+    $\mu(B_i \backslash A_i) = 0$. Then, we have 
+    $$ \bigcup_{i=1}^\infty A_i \subset \bigcup_{i=1}^\infty E_i \subset \bigcup_{i=1}^\infty B_i.$$ 
+    Since $\Sigma$ is a sigma algebra, we have $\bigcup_{i=1}^\infty A_i \in\Sigma$ and 
+    $\bigcup_{i=1}^\infty B_i \in \Sigma$. 
+    Finally, 
+    \begin{equation}
+        \mu\left( 
+            \left(\bigcup_{i=1}^\infty A_i \right) \backslash \left( \bigcup_{i=1}^\infty B_i \right) 
+        \right) 
+        = \mu\left( 
+            \bigcup_{i=1}^\infty \left( A_i \backslash \left( \bigcup_{i=1}^\infty B_i \right) \right) 
+        \right)
+        \leq \mu\left( 
+            \bigcup_{i=1}^\infty \left( A_i \backslash B_i \right) 
+        \right)
+        \leq \sum_{i=1}^\infty \mu\left(  A_i \backslash B_i \right) = 0. 
+    \end{equation}
+
+    \item Suppose that $\mu(B_1)=\infty$ or $\mu(B_2)=\infty$. Without loss of generality, take it that 
+    $\mu(B_1) = \infty$. Then, $\mu(A_1) = \infty$. Since, $A_1 \subset E \subset B_2$, we also have 
+    $\mu(B_2) = \infty$. So, we have $\mu(B_1) = \mu(B_2)$. 
+
+    Now, suppose that $\mu(B_1)<\infty$ and $\mu(B_2)<\infty$. 
+    Clearly, $B_2 \supset E \supset A_1$. 
+    Then $$0 \leq \mu(B_1\backslash B_2) = \mu(B_1)-\mu(B_2) \leq \mu(B_1\backslash A_1 ) = 0.$$
+    So, $\mu(B_1) = \mu(B_2)$. 
+
+    \item Keep the same notation as in (ii). Generally, we have  
+    $$ \sum_{i=1}^\infty \mu^{\uparrow}(E_i) = \sum_{i=1}^\infty \mu(B_i) 
+    \geq \mu\left( \bigcup_{i=1}^\infty B_i \right) = \mu^{\uparrow}\left( \bigcup_{i=1}^\infty E_i \right).$$ 
+    Suppose that $\mu\left( \bigcup_{i=1}^\infty B_i \right) = \infty$. Then, 
+    $ \sum_{i=1}^\infty \mu^{\uparrow}(E_i) \leq \infty = \mu\left( \bigcup_{i=1}^\infty B_i \right) = 
+    \mu^{\uparrow}\left( \bigcup_{i=1}^\infty E_i \right)$. So the result clearly holds. 
+    Now, suppose that $\mu\left( \bigcup_{i=1}^\infty B_i \right) < \infty$.  
+    For any $\epsilon>0$, and $n$ large enough, we also have 
+    $$ \mu^{\uparrow}\left( \bigcup_{i=1}^\infty E_i \right) = \mu\left( \bigcup_{i=1}^\infty B_i \right) 
+    = \lim_{n\to\infty}\mu\left( \bigcup_{i=1}^n B_i \right) 
+    \geq \mu\left( \bigcup_{i=1}^n B_i \right) - \epsilon. 
+    $$ Now, it is clear that (1) also holds for finite union and sums. So, 
+    $$
+    \mu\left( \bigcup_{i=1}^n B_i \right) - \epsilon 
+    = \mu\left( \bigcup_{i=1}^n A_i \right) - \epsilon 
+    = \sum_{i=1}^n \mu\left( A_i \right) - \epsilon
+    = \sum_{i=1}^n \mu\left( B_i \right) - \epsilon
+    = \sum_{i=1}^n \mu^{\uparrow}\left( E_i \right) - \epsilon. $$
+    Letting $n\to\infty$ and $\epsilon\to 0$, we have $\mu^{\uparrow}\left( \bigcup_{i=1}^\infty E_i \right) 
+    \geq \sum_{i=1}^\infty \mu^{\uparrow}\left( E_i \right)$. 
+
+    \item Let $A,B \in \Sigma$ be such that $A \subset E_o \subset B$ and $\mu(B\backslash A)=0$. 
+    We have $\emptyset \subset D \subset E_o \subset B$. Since $\mu(B\backslash \emptyset ) = 
+    \mu(B) = \mu^\uparrow(E_0) = 0$, we have $\mu^\uparrow(D) = \mu(B) = \mu^\uparrow(E_0) = 0$.
+
+\end{enumerate}
+
+\subsection*{Question 3}
+
+By the Chebyshev inequality, we have 
+$\mathbf{P}({\mathbf{X}>t}) \leq \frac{1}{t}\int_{\Omega} \mathbf{X} d\mathbf{P} = E(\mathbf{X})$.  
+
+\subsection*{Question 4}
+ 
+\begin{enumerate}[label=(\roman*)]
+    \item Abbreviate $\mathbf{x} = (x_1,x_2,\dots)$. We have 
+        $$
+        \left\{ \mathbf{x} \in \Omega_\infty : 
+        \left| \frac{1}{N}\sum_{i=1}^N x_i - \frac{1}{2} \right| \leq \frac{1}{k}\right\} 
+        = P_N^{-1}\left( \left\{ (x_1,\dots,x_N) \in \Omega_N : 
+        \left| \frac{1}{N}\sum_{i=1}^N x_i - \frac{1}{2} \right| \leq \frac{1}{k}\right\} \right) 
+        \in \mathcal{F}_N \subset \mathcal{F}_{\textrm{coin}_\infty}.
+        $$
+    \item We have  
+        \begin{align*}
+        \left\{ \mathbf{x} \in \Omega_\infty : 
+        \lim_{N \to \infty} \frac{1}{N}\sum_{i=1}^N x_i = \frac{1}{2} \right\} &= 
+        \left\{ \mathbf{x} \in \Omega_\infty : 
+        \lim_{N \to \infty} \left| \frac{1}{N}\sum_{i=1}^N x_i - \frac{1}{2} \right| = 0\right\}\\ 
+        &= 
+        \bigcap_{k=1}^\infty \left\{ \mathbf{x} \in \Omega_\infty : 
+        \lim_{N \to \infty} \left| \frac{1}{N}\sum_{i=1}^N x_i - \frac{1}{2} \right| \leq \frac{1}{k}\right\}\\ 
+        &= 
+        \bigcap_{k=1}^\infty \bigcup_{m=1}^\infty \bigcap_{N=m}^\infty \left\{ \mathbf{x} \in \Omega_\infty : 
+        \left| \frac{1}{N}\sum_{i=1}^N x_i - \frac{1}{2} \right| \leq \frac{1}{k}\right\}\\ 
+        \end{align*} 
+    by the $\epsilon-N$ definition of limits. 
+    \item Sigma algebra is closed under countable intersections and unions. 
+\end{enumerate}
+
+\end{document}
