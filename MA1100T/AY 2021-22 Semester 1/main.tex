@@ -1,0 +1,618 @@
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb, graphicx, multicol, array}
+ 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+ 
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+
+
+\begin{document}
+\setlength{\parindent}{0pt}
+ 
+\title{MA1100T - Basic Discrete Mathematics (T) Suggested Solutions}
+\author{(Semester 1, AY2021/2022)}
+\date{Written by: Chin Zhe Ning\\Audited by: Chow Yong Lam}
+\maketitle
+ 
+\section{True or False}
+\begin{problem}{1}
+For any uncountable set $A$, the power set $\mathcal{P}(A)$ is uncountable.
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+
+\end{proof}
+
+\begin{problem}{2}
+For any positive integers $a$, $b$, $c \in \mathbb{Z}_{> 0}$, if $a$ is relatively prime to $b$ and $a$ is relatively prime to $c$, ten $a$ is relatively prime to $bc$.
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+
+\end{proof}
+
+\begin{problem}{3}
+For any infinite set $A$ and any infinite set $B$, the set $A \times B$ is infinite.
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+
+\end{proof}
+
+\begin{problem}{4}
+Let $I$ be an uncountable indexing set, and suppose for each $i \in I$, the set $X_i$ is an uncountable set. Then $\bigcup_{i \in I} X_{i}$ is uncountable.
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+
+\end{proof}
+
+\begin{problem}{5}
+For any countable set $S$ and for any map $f : S \rightarrow S$ from $S$ to itself, if $f$ is surjective, then $f$ is injective. 
+\end{problem}
+
+\begin{proof}[Ans]
+False. Consider $f : \mathbb{N} \to \mathbb{N}$ such that
+\[f(n) = \begin{cases}
+    1 & n = 1 \\
+    n - 1 & n > 1.
+\end{cases}\]
+for $n \in \mathbb{N}$. Then $f$ is surjective since $\forall y \in \mathbb{N}$, $f(y + 1) = y$. But $f$ is not injective since $f (1) = f(2)$ and $1 \neq 2$.
+\end{proof}
+
+\begin{problem}{6}
+For any finite set $A$ and any infinite set $B$, the set $A \times B$ is infinite.
+\end{problem}
+
+\begin{proof}[Ans]
+False. Let $A$ be the empty set which is finite. Then $A \times B = \{(a, b) : a \in A \land b \in B\}$ is also empty.
+
+\end{proof}
+
+\begin{problem}{7}
+There exists a countable set $A$ and a countable set $B$ such that the set $\text{Maps}(A, B)$ is uncountable.
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+
+\end{proof}
+
+\begin{problem}{8}
+Let $I$ be a countable indexing set, and suppose for each $i \in I$, the set $X_i$ is a countable set. Then $\bigcup_{i \in I} X_i$ is countable.
+\end{problem}
+
+\begin{proof}[Ans]
+True. Axiom of Choice needed.
+\end{proof}
+
+\begin{problem}{9}
+There are only finitely many prime numbers $p$ such that
+for any positive integer $a \in \mathbb{Z}_{>0}$, one has $p \mid a$.
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+\end{proof}
+
+\begin{problem}{10}
+There exists a set $B$ such that for any set $A$, there exists an injective map
+$f : A \rightarrow B$.
+
+\end{problem}
+
+\begin{proof}[Ans]
+False. $\mathcal{P}(B)$ does not inject into $B$.
+\end{proof}
+
+\begin{problem}{11}
+For any finite set $A$, the power set $\mathcal{P}(A)$ is finite.
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+\end{proof}
+
+\begin{problem}{12}
+There exist integers $x$, $y \in \mathbb{Z}$ such that $15x^2 - 7y^2 = 9$.
+\end{problem}
+
+\begin{proof}[Ans]
+False. Note that $9 \equiv 15x^2 - 7y^2 \equiv 3y^2 \pmod{5} \Rightarrow y^2 \equiv 3 \pmod{5}$. It is easy to see that $3$ is not a quadratic residue mod 5. 
+\end{proof}
+
+\begin{problem}{13}
+For any finite set $S$ and for any map $f : S \rightarrow S$ from $S$ to itself,
+if $f$ is injective, then $f$ is surjective.
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+\end{proof}
+
+\begin{problem}{14}
+For any finite set $S$ and for any map $f : S \rightarrow S$ from $S$ to itself,
+if $f$ is surjective, then $f$ is injective.
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+\end{proof}
+
+\begin{problem}{15}
+There exists a set $B$ such that for any set $A$,
+every map $f : A \rightarrow B$ is surjective.
+\end{problem}
+
+\begin{proof}[Ans]
+True. Let $B = \emptyset$. If $f : A \to B$ is a function, then $A = \emptyset$. Hence, $f$ is vacuously surjective.
+\end{proof}
+
+\begin{problem}{16}
+Let $a \in \mathbb{Z}_{>0}$ be a positive integer with the following property:\newline
+$(\forall d \in \mathbb{Z}_{>0}) \left[(d \mid a) \Leftrightarrow
+((d = 1) \lor (d = a)) \right]$. Then $a$ is a prime number.
+\end{problem}
+
+\begin{proof}[Ans]
+False. This holds for $a = 1$.
+\end{proof}
+
+\begin{problem}{17}
+There exists a set $B$ such that for any set $A$,
+every map $f : A \rightarrow B$ is injective.
+
+\end{problem}
+
+\begin{proof}[Ans]
+True. Let $B = \emptyset$. If $f : A \to B$ is a function, then $A = \emptyset$. Therefore, $f$ is vacuously injective.
+\end{proof}
+
+\begin{problem}{18}
+There exists an integer $n \in \mathbb{Z}$ such that $17 \mid (n^2+1)$.
+\end{problem}
+
+\begin{proof}[Ans]
+True. It holds for $n = 4$.
+\end{proof}
+
+\begin{problem}{19}
+Let $I$ be a finite indexing set, and suppose for each $i \in I$,
+the set $X_i$ is a finite set. Then $\bigcup_{i \in I} X_i$ is finite.
+
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+\end{proof}
+
+\begin{problem}{20}
+Let $a \in \mathbb{Z}_{>0}$ be a prime number. Then $a$ has the following property:
+$(\forall d \in \mathbb{Z}_{>0}) \left[(d \mid a) \Leftrightarrow
+((d = 1) \lor (d = a)) \right]$.
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+\end{proof}
+
+\begin{problem}{21}
+ For any infinite set $A$, the power set $\mathcal{P}(A)$ is infinite.
+
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+\end{proof}
+
+\begin{problem}{22}
+For any integers $a$, $b$, $c \in \mathbb{Z}$, if $a \mid b$ and $a \mid c$,
+then for any integers $m$, $n \in \mathbb{Z}$, one has $a \mid (bm+cn)$.
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+\end{proof}
+
+\begin{problem}{23}
+For any finite set $A$ and any infinite set $B$,
+the set $\text{Maps}(A, B)$ is countable.
+\end{problem}
+
+\begin{proof}[Ans]
+False. Pick $B$ to be uncountable.
+\end{proof}
+
+\begin{problem}{24}
+Let $a \in \mathbb{Z}_{>0}$ be a prime number. Then $a$ has the following property:
+$(\forall b, c \in \mathbb{Z}_{>0})\left[(a \mid bc) 
+\Leftrightarrow ((a \mid b) \lor (a \mid c) \right]$.
+
+\end{problem}
+
+\begin{proof}[Ans]
+True. 
+\end{proof}
+
+\begin{problem}{25}
+There exist integers $x, y \in Z$ such that $15x - 7y = 9$.
+\end{problem}
+
+\begin{proof}[Ans]
+True. Pick $x = 2$, $y = 3$.
+\end{proof}
+
+\begin{problem}{26}
+There are only finitely many prime numbers $p$ for which
+there exists a positive integer $a \in \mathbb{Z}_{>0}$ such that $p \mid a$.
+\end{problem}
+
+\begin{proof}[Ans]
+False. For each prime number $p$, choose $a = p$.
+\end{proof}
+
+\begin{problem}{27}
+For any positive integers $a, b, c \in \mathbb{Z}_{>0}$, if $a$ is relatively prime to $bc$,
+then $a$ is relatively prime to $b$ and $a$ is relatively prime to $c$.
+
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+\end{proof}
+
+\begin{problem}{28}
+For any integers $m, n \in \mathbb{Z}$, if $5 \mid (m^2+n^2)$, then $5 \mid m$ and $5 \mid n$.
+
+\end{problem}
+
+\begin{proof}[Ans]
+False. Pick $m = 1$ and $n = 2$.
+\end{proof}
+
+\begin{problem}{29}
+For any positive integers $a, b, d \in \mathbb{Z}_{>0}$,
+if $d \mid \gcd(a, b)$, then for any integers $m, n \in \mathbb{Z}$, one has $d \mid am+bn$.
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+\end{proof}
+
+\begin{problem}{30}
+For any countable set $A$ and any countable set $B$,
+the set $A \times B$ is countable.
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+\end{proof}
+
+\begin{problem}{31}
+For any infinite set $A$ and any finite set $B$, the set $\text{Maps}(A, B)$ is countable.
+\end{problem}
+
+\begin{proof}[Ans]
+False. Pick $A$ to be uncountable.
+\end{proof}
+
+\begin{problem}{32}
+For any $n \in \mathbb{Z}$, there exists $ k \in \mathbb{Z}$ such that $n^2=4k$ or $n^2=4k-1$.
+\end{problem}
+
+\begin{proof}[Ans]
+False. Pick $n = 1$. Then $ 4 \nmid n^2 = 1$ and $4 \nmid n^2 + 1 = 2$.
+\end{proof}
+
+\begin{problem}{33}
+For any $n \in \mathbb{Z}$, there exists $k \in \mathbb{Z}$ such that $n^2=8k$ or $n^2=8k+1$ or $n^2=8k+4$. 
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+\end{proof}
+
+\begin{problem}{34}
+There are only finitely many positive integers $a \in \mathbb{Z}_{>0} $ for which there exists a prime numbers $p$ such that $p \mid a$.
+\end{problem}
+
+\begin{proof}[Ans]
+False. All even positive integers are divisible by $p = 2$ and there are infinitely many even positive integers.
+\end{proof}
+
+\begin{problem}{35}
+For any countable set $A$, the power set $\mathcal{P}(A)$ is countable.
+\end{problem}
+
+\begin{proof}[Ans]
+False. Cantor's Theorem.
+\end{proof}
+
+\begin{problem}{36}
+There exists a countable set $A$ and an uncountable set $B$ such that the set $\text{Maps}(A, B)$ is uncountable.
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+\end{proof}
+
+\begin{problem}{37}
+Let $I$ be an uncountable indexing set, and suppose for each $i \in I$, the set $X_i$ is a countable set. Then $\bigcup_{i \in I} X_i$ is uncountable.
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+\end{proof}
+
+\begin{problem}{38}
+Let $I$ be an infinite indexing set, and suppose for each $i \in I$, the set $X_i$ is an infinite set. Then $\bigcup_{i \in I} X_i$ is infinite.
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+\end{proof}
+
+\begin{problem}{39}
+There exists a set $B$ such that for any set $A$, there exists a surjective map $f : A \rightarrow B$.
+\end{problem}
+
+\begin{proof}[Ans]
+False. If $A$ is empty, then all elements in the codomain (nonempty) will not be reached by $f$. If the codomain is empty, then for $A \neq \emptyset$ there exist no map $f : A \rightarrow B$.
+\end{proof}
+
+\begin{problem}{40}
+For any integer $n \in \mathbb{Z}$ with $n > 4$, if $n$ is prime, then $n$ does not divide $(n-1)!$.
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+\end{proof}
+
+\begin{problem}{41}
+There exists an uncountable set $A$ and a countable set $B$ such that the set $\text{Maps}(A, B)$ is uncountable. 
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+\end{proof}
+
+\begin{problem}{42}
+For any integer $n \in \mathbb{Z}$ with $ n>4$, if $n$ is not prime, then $n$ divides $(n-1)!$.
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+\end{proof}
+
+\begin{problem}{43}
+For any integers $l, m, n \in \mathbb{Z}$, if $7 \mid (l^2 + m^2 + n^2)$, then $7 \mid l$ or $7 \mid m$ or $7 \mid n$.
+\end{problem}
+
+\begin{proof}[Ans]
+False. Pick $l = 1$, $m = 2$, and $n = 3$. Then $7 \mid 1^2 + 2^2 + 3^2 = 14$ however $7 \nmid 1, 2, 3$.
+\end{proof}
+
+\begin{problem}{44}
+For any finite set $A$ and finite set $B$, the set $A \times B$ is finite.
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+\end{proof}
+
+\begin{problem}{45}
+For any integers $m, n \in \mathbb{Z}$, if $7 \mid (m^2 + n^2)$, then $7 \mid m$ and $7 \mid n$.
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+\end{proof}
+
+\begin{problem}{46}
+Let $a \in \mathbb{Z}_{>0}$ be a positive integer with the following property: \newline $(\forall b, c \in \mathbb{Z}_{>0}) \left[ (a \mid bc) \Leftrightarrow (a \mid b) \lor (a \mid c) \right]$. Then $a$ is a prime number. \end{problem}
+
+\begin{proof}[Ans]
+False. This also holds for $a = 1$.
+\end{proof}
+
+\begin{problem}{47}
+There exists an uncountable set $A$ and an uncountable set $B$ such that the set $\text{Maps}(A, B)$ is uncountable.
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+\end{proof}
+
+\begin{problem}{48}
+There are only finitely many positive integers $a \in \mathbb{Z}_{>0}$ such that for any prime numbers $p$, one has $p \mid a$.
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+\end{proof}
+
+\begin{problem}{49}
+There exists an integer $n \in \mathbb{Z}$ such that $19 \mid (n^2 + 1)$.
+\end{problem}
+
+\begin{proof}[Ans]
+False. Note that $18$ is not a quadratic residue modulo 19.
+\end{proof}
+
+\begin{problem}{50}
+For any uncountable set $A$ and any uncountable set $B$, the set $A \times B$ is uncountable.
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+\end{proof}
+
+\begin{problem}{51}
+For any countable set $A$ and any uncountable set $B$, the set $A\times B$ is uncountable.
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+\end{proof}
+
+\begin{problem}{52}
+Let $I$ be a finite indexing set, and suppose for each $i \in I$, the set $X_i$ is an infinite set. Then $\bigcup_{i \in I} X_i$ is infinite.
+\end{problem}
+
+\begin{proof}[Ans]
+False. If $I$ is empty, $\bigcup_{i \in I} X_i$ is empty.
+\end{proof}
+
+\begin{problem}{53}
+For any finite set $A$ and any finite set $B$, the set $\text{Maps}(A, B)$ is countable.
+\end{problem}
+
+\begin{proof}[Ans]
+False. Let $A = B = \{1\}$. Then $\text{Maps}(A, B)$ has cardinality 1.
+\end{proof}
+
+\begin{problem}{54}
+For any integers $l, m, n \in \mathbb{Z}$, if $5 \mid (l^2 + m^2 + n^2)$,then $5 \mid l$ or $5 \mid m$ or $5 \mid n$.  
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+\end{proof}
+
+\begin{problem}{55}
+For any infinite set $A$ and any infinite set $B$, the set $\text{Maps}(A, B)$ is uncountable.
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+\end{proof}
+
+\begin{problem}{56}
+Let $I$ be an infinite indexing set, and suppose for each $i \in I$, the set $X_i$ is a finite set. Then $\bigcup_{i \in I} X_i$ is infinite.
+\end{problem}
+
+\begin{proof}[Ans]
+False. $X_i = \emptyset$ for all $i \in I$ means that $\bigcup_{i \in I} X_i = \empty$ is finite.
+\end{proof}
+
+\begin{problem}{57}
+For any integers $a, b, c \in \mathbb{Z}$, if for any integers $m, n \in \mathbb{Z}$, one has $a \mid (bm + cn)$, then $a \mid b$ and $a \mid c$.
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+\end{proof}
+
+\begin{problem}{58}
+For any countable set $S$ and for any map $f : S \rightarrow S$ from $S$ to itself, if $f$ is injective, then $f$ is surjective.
+\end{problem}
+
+\begin{proof}[Ans]
+False. Consider $f : \mathbb{N} \to \mathbb{N}$ defined by $f(n) = 2n$.
+\end{proof}
+
+\begin{problem}{59}
+Let $I$ be a countable indexing set, and suppose for each $i \in I$, the set $X_i$ is an uncountable set. Then $\bigcup_{i \in I} X_i$ is uncountable.
+\end{problem}
+
+\begin{proof}[Ans]
+True.
+\end{proof}
+
+\begin{problem}{60}
+For any positive integers $a, b, d \in \mathbb{Z}_{>0}$, if for any integers $m,n \in \mathbb{Z}$, one has $d \mid am+ bn$, then $d \mid \gcd(a, b)$.
+\end{problem}
+
+\begin{proof}[Solution]
+True. Direct application of Bezout's Identity.
+\end{proof}
+\newpage
+
+\section{Prove or Disprove/Proving Questions}
+
+\begin{problem}{1}[10 points] Prove or disprove: For any sets $A$ and $B$, there exists a unique set $X$ with the following property:
+\[\text{For any set }T\text{, one has  } T \subseteq X \text{  if and only if   } T \cup B \subseteq A\]
+
+\end{problem}
+
+\begin{proof}[Solution] Disprove by counterexample. Take $A = \{1\}$ and $B = \{1, 2\}$ and suppose there exists such a set $X$. If $T$ is the empty set, then $T \subseteq X$ is true. It follows from the property of $X$ that $T \cup B \subseteq A$. But $T \cup B = \{1, 2\} \not\subseteq A$ which is a contradiction.
+\end{proof}
+
+\newpage
+
+\begin{problem}{2}[10 points] Prove or disprove: For any sets $A$ and $B$, there is a unique set $X$ with the following property:
+\[\text{For any set }T\text{,  one has  } T\supseteq X \text{   if and only if  } T\cup B \supseteq A\]
+
+\end{problem}
+
+\begin{proof}[Solution] The statement is true, let $X = A - B$. We will show that $X$ has the desired properties.
+\\
+
+$(\Rightarrow)$ Suppose $T \supseteq A - B$. Let $x \in A$. If $x \in B$ then $x \in T \cup B$. Else, $x \notin B \Rightarrow x \in A - B \subseteq T \subseteq T \cup B$. This shows that $T \cup B \supseteq A$. 
+\\
+
+$(\Leftarrow)$ Suppose $T \cup B \supseteq A$. Let $x \in A - B$, then $x \in A $ and $x \notin B$. Since $T \cup B \supseteq A$, $x \in A \Rightarrow x \in T \lor x \in B$. But $x \notin B$ hence $x \in T$. This shows that $T \supseteq A - B$.
+\\
+
+To show that $X$ is unique, suppose that another set $Y$ satisfies the given conditions. Then $T \supseteq X$ if and only if $T \cup B \supseteq A$ if and only if $T \supseteq Y$. Then picking $T = X$ and $T = Y$ yields $X \supseteq Y$ and $Y \supseteq X$. Therefore, we must have $X = Y$.
+\end{proof}
+
+\newpage
+
+\begin{problem}{3}[10 points]
+Let $X$ be any set such that $\emptyset \in X$ and such that for any $x \in X$, one has $\{x\} \in X$. The sequence $A_1, A_2, ...$ of elements of $X$ is defined recursively as follows:
+\[A_1 := \emptyset \text{, and for each } n \in \mathbb{N} \text{, we let } A_{n+1} := \{A_n \}. \]
+Show that for any $i, j \in \mathbb{N}$ with $ i \neq j$ one has $A_i \neq A_j$.
+\end{problem}
+
+\begin{proof}[Solution]
+Let $P(n)$ be the proposition that for any $i, j \in \mathbb{N}$ with $i, j \leq n$ and $i \neq j$, $A_i \neq A_j$. We shall prove $P(n)$ for all $n$ via induction.
+\\
+
+(Base case) If $n = 1$, then the proposition is vacuously true as $i$ and $j$ must both be equal to 1. If $n = 2$ then $i = 1$ and $j = 2$ without loss of generality. Then $A_1 = \emptyset$ and $A_2 = \{\emptyset\}$ so $A_1 \neq A_2$. This proves the base case.
+\\
+
+(Inductive Step) Suppose that $P(n)$ is true for some positive integer $n \geq 2$. We will prove $P(n+1)$ is true. Let $i, j \leq n+1$. Note if $i,j \leq n$ then by assumption, $A_i \neq A_j$. Hence, $i$ or $j$ must be $n+1$. Without loss of generality, let $i = n + 1$. Since $j = n + 1 \Rightarrow i = j$, we must have $j \leq n$. If $j = 1$ then $A_{n+1} \neq A_1$ since $A_1$ is empty and $A_{n+1}$ is not. Otherwise, $j > 1$. Suppose toward a contradiction that $A_{n+1} =  A_{j}$. Since $A_{n}$ and $A_{j-1}$ are the only elements of the sets $A_{n+1}$ and $A_{j}$ respectively, $A_{n} = A_{j-1}$. But $n, j - 1 \in \mathbb{N}$ and $n, j - 1 \leq n$ with $n \neq j - 1$ therefore by assumption $A_n \neq A_{j - 1}$. This is a contradiction, hence, $A_{n+1} \neq A{j}$. We have shown that $P(n+1)$ is true which completes the inductive step.
+\\
+
+Now for any $i, j \in \mathbb{N}$, take $n = \max{i,j}$. Since $i,j \leq n$ and $i \neq j$, $P(n)$ witnesses $A_i \neq A_j$ as desired. 
+\end{proof}
+
+\newpage
+
+\begin{problem}{4}[10 points]
+Let $X, Y$ be sets and let $f : X \rightarrow Y$ be a map. Prove or disprove: $f$ is injective if and only if for any set $T$, the ``post-composition with $f$" map
+\[\Phi_T : \text{Maps}(T, X) \longrightarrow \text{Maps}(T, Y) \text{, } \quad \phi \longmapsto f \circ \phi \text{, } \quad \text{is injective.}\]
+\end{problem}
+
+\begin{proof}[Solution]
+True.
+\\
+
+$(\Rightarrow)$ Suppose $f$ is injective. Let $\phi_1,\phi_2 \in \text{Maps}(T, X)$ such that $\Phi_T(\phi_1) = \Phi(\phi_2)$. This implies that $f \circ \phi_1 = f \circ \phi_2$. Hence, for all $t \in T$, $f(\phi_1(t)) = f(\phi_2(t))$. Since  $f$ is injective, $\phi_1(t) = \phi_2(t)$ for all $t \in T$. Therefore, $\phi_1$ and $\phi_2$ are the same function. This proves that $\Phi_T$ is injective.
+\\
+
+$(\Leftarrow)$ Suppose $\Phi_T$ is injective for any set $T$. Pick $T = \{0\}$, then $\Phi_T$ is injective. For all $x, y \in X$ such that $f(x) = f(y)$, choose functions $\phi_x, \phi_y \in \text{Maps(T, X)}$ such that $\phi_x(0) = x$ and $\phi_y(0) = y$. Then $f(x) = f(y) \Rightarrow f(\phi_x(t)) = f(\phi_y(t))$ for all $t \in T = \{0\}$, i.e. $f \circ \phi_x = f \circ \phi_y$. But then $\Phi_T(\phi_x) = f \circ \phi_x = f \circ \phi_y = \Phi_T(\phi_y)$. Since $\Phi_T$ is injective, it follows that $\phi_x = \phi_y$. Hence, $x = \phi_x(0) = \phi_y(0) = y$. We conclude that $f$ is injective.
+\end{proof}
+
+\newpage
+
+\begin{problem}{5}[10 points]
+Let $X, Y$ be sets and let $f : X \rightarrow Y$ be a map. Prove or disprove: $f$ is surjective if and only if for any set $T$, the ``pre-composition with $f$" map
+\[\Psi_T : \text{Maps}(Y, T) \longrightarrow \text{Maps}(X, T) \text{, } \quad \psi \longmapsto \psi \circ f \text{, } \quad \text{is surjective.}\]
+\end{problem}
+
+\begin{proof}[Solution]
+False. Consider the sets $X = \{1, 2\}$, $Y = \{3\}$. We will prove that for set $T = X$, $\Psi_T$ is not surjective. Define the function $f : X \to Y$ by $f(x) = 3$. Since $f(X) = \{3\} = Y$, so $f$ is surjective. For any $\psi \in \text{Maps}(Y, T)$, note that $\psi(f(1)) = \psi(3) = \psi(f(2))$ but $1 \neq 2$. Hence, $\psi \circ f$ is not injective, and is therefore not the identity function, $\text{id}_X$. This proves that $\text{id}_X \notin \text{Range}(\Psi_T)$. Since, $T = X$, $\text{id}_X \in \text{Maps}(X, T)$ hence, $\Psi_T$ is not surjective. We conclude that the forward direction does not hold, hence the statement is false.
+\end{proof}
+
+\end{document}
