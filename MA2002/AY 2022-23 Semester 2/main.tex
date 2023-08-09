@@ -1,0 +1,411 @@
+\documentclass[11pt]{article}
+
+
+%packages
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{amssymb,amsmath,amsfonts,xcolor,graphicx,float,titling,hyperref,enumerate}
+\usepackage[headings]{fullpage}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{pgfplots}
+\usepackage{enumerate}
+\usepackage{xfrac}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+\usetikzlibrary{plotmarks}
+\hypersetup{
+  colorlinks   = true,    % Colours links instead of ugly boxes
+  urlcolor     = blue,    % Colour for external hyperlinks
+  linkcolor    = blue,    % Colour of internal links
+  citecolor    = red      % Colour of citations
+}
+
+\parindent 0pt
+
+\pagestyle{fancy}
+
+\lhead{PYP Solutions Initiative • NUS MATHSOC}
+\rhead{\thepage}
+% \cfoot{} % could use this but feels irritating seeing this
+\cfoot{Linear Algebra}
+
+\title{%
+  MA2001 - Linear Algebra Suggested Solutions  \\ 
+  \large (Semester 2: AY2022/23) \\ }
+    
+\author{%
+  \large
+    Written by: James Liu \\
+    Audited by: Agrawal Naman}
+\date{}
+
+%start of document
+\begin{document}
+%title
+
+\maketitle
+
+\section*{Question 1}
+\begin{enumerate}[(a)]
+    \item 
+    \begin{align*}
+        y &= \left(\frac{1}{x}\right)^{\ln x}
+    \end{align*}
+    Taking natural log both sides, 
+    \begin{align*}
+        \ln y &= \ln x \ln \frac{1}{x} \\
+        &= -(\ln x)^2 
+    \end{align*}
+    Then by taking derivatives both sides,
+    \begin{align*}
+        \frac{y'}{y} &= \frac{-2\ln x}{x}\\
+        \implies \frac{dy}{dx} &= \frac{-2y\ln x}{x}\\
+        &= -2\left(\frac{1}{x}\right)^{\ln x} \frac{\ln x}{x}   
+    \end{align*}
+    Equation of tangent line at $x=e$: 
+    \begin{align*}
+        \text{slope} \ m &= -2\left(\frac{1}{e}\right)^{\ln e}\frac{\ln e}{e}\\
+        &= -2\cdot \frac{1}{e}\cdot \frac{1}{e}\\
+        &= \frac{-2}{e^2}
+    \end{align*}
+    So $\displaystyle y= \frac{-2}{e^2}(x-e)+\frac{1}{e}$. \\
+    Hence, at $x=0$: \begin{align*}
+        y&= \frac{-2}{e^2}(-e)+\frac{1}{e}\\
+        &= \frac{2}{e}+\frac{1}{e}\\
+        &= \frac{3}{e}
+    \end{align*}
+    
+    \item 
+    By definition, define volume $V=a^2b= 128$, i.e., $\displaystyle b=\frac{128}{a^2}.$ Similarly, define cost $C=2a^2+\frac{1}{2}\cdot 4ab= 2a^2+2ab.$
+    Then \begin{align*}
+        C(a)&=2a^2+2a \frac{128}{a^2}\\
+        &= 2\left(a^2+\frac{128}{a}\right)
+    \end{align*}
+    By taking derivative with respect to $a$, \begin{align*}
+        \frac{dC(a)}{da}&=0 \\ 
+        \implies 2\left(2a-\frac{128}{a^2}\right)&=0\\
+        \implies a&=4
+    \end{align*}
+    Now, apply Second Derivative Test, 
+    \begin{align*}
+        \frac{d^2C(a)}{da^2}= 2 \left(2+\frac{2\cdot 128}{a^3}\right)>0 \\ 
+    \end{align*}
+    So when $a=4$, we indeed minimise the cost.\\ 
+    Hence, the dimensions are as followed: 
+    \begin{align*}
+        &\text{(length, width, height)}\\
+        =& (a,a,b)\\
+        =& (4,4,\frac{128}{16})\\
+        =& (4,4,8)
+    \end{align*}
+\end{enumerate}
+\newpage
+\section*{Question 2}
+\begin{enumerate}[(a)]
+    \item \begin{align*}
+        &\lim_{x\to 0} \left(\frac{1}{x^2}-\frac{1}{\sin^2 x}\right)\\
+        =&\lim_{x \to 0} \left(\frac{\sin^2 x -x^2}{x^2\sin^2 x}\right)
+    \end{align*}
+    Notice that $\displaystyle \lim_{x\to 0}(\sin^2 x - x^2)=0$ and $\displaystyle \lim_{x\to 0}x^2\sin^2 x = 0$. \\
+    We can apply LH rule, 
+    \begin{align*}
+        =& \lim_{x\to 0}\frac{\frac{d}{dx}(\sin^2 x -x^2)}{\frac{d}{dx}(x^2 \sin^2 x)}\\
+        =& \lim_{x\to 0} \frac{2\sin x \cos x -2x}{2\sin x \cos x\cdot x^2+2x\sin^2 x}\\
+        =& \lim_{x\to 0}\frac{\frac{1}{2}\sin 2x-x}{\frac{1}{2}\sin 2x \cdot x+x\sin x }
+    \end{align*}
+    Again, $\displaystyle \lim_{x\to 0}\frac{1}{2}\sin 2x-x=0$ and $\displaystyle \lim_{x\to 0}\frac{1}{2}\sin 2x \cdot x+x\sin x=0.$\\
+    By LH rule, 
+    \begin{align*}
+        &\lim_{x\to 0}\frac{\cos 2x-1}{x\sin 2x +x^2 \cos 2x+\sin^2 x + x\sin2x}\\
+        =& \lim_{x\to 0} \frac{\cos 2x-1}{x^2 \cos 2x + \sin^2x +2x\sin 2x}
+    \end{align*}
+    Again, $\displaystyle \lim_{x\to 0} \cos 2x-1=0$ and $\displaystyle \lim_{x\to 0} x^2 \cos 2x + \sin^2 x +2x\sin 2x=0.$\\
+    By LH rule, 
+    \begin{align*}
+        &\lim_{x\to 0} \frac{-2\sin 2x}{-2x^2 \sin 2x+2x\cos 2x + \sin 2x+ 2\sin 2x +4x \cos 2x}\\
+        =& \lim_{x \to 0}\frac{-2\sin 2x}{6x\cos 2x +3 \sin 2x -2x^2 \sin 2x}
+    \end{align*}
+    Again, $\displaystyle \lim_{x\to 0} -2\sin 2x=0$ and $\displaystyle \lim_{x\to 0} 6x\cos 2x +3 \sin 2x -2x^2 \sin 2x=0.$\\
+    By LH rule,
+    \begin{align*}
+        &\lim_{x\to 0}\frac{-4\cos 2x}{-4x^2 \cos 2x -4x\sin 2x + 6\cos 2x -12 x \sin 2x + 6\cos 2x}\\
+        =& \lim_{x\to 0}\frac{-4\cos 2x}{-4x^2\cos 2x -16x\sin 2x+12 \cos 2x}
+    \end{align*}
+    Taking limit, we get: $\displaystyle \frac{-4}{0-0+12}=-\frac{1}{3}.$\\
+    Hence, $\displaystyle \lim_{x \to 0}\left(\frac{1}{x^2}-\frac{1}{\sin^2 x}\right)= -\frac{1}{3}.$
+
+    \item Let $f(x)=2\sin x -3x+5$. Notice that $f$ is continuous and differentiable in $\mathbb{R}$. \\
+    Now, consider $x=0$ and $x=\pi$, $f(0)=5$ and $f(\pi)=5-3\pi < 0.$\\
+    Apply IVT, $\exists c_1 \in (0,\pi)$ such that $f(c_1)=0.$\\
+    So the equation must have at least 1 solution. Now, assume there are 2 solutions: $c_1$ and $c_2$, i.e., $f(c_1)=0$ and $f(c_2)=0.$ \\
+    WLOG, suppose $c_1 <c_2$. By MVT, $\exists c_3 \in (c_1,c_2)$ such that $f'(c_3)=0.$ Then $2\cos x -3 = 0 \implies \cos x = \frac{3}{2}.$ Contradiction, since $
+    \lvert \cos x \rvert \leq 1.$\\
+    Hence, the equation $\displaystyle 2\sin x = 3x+5$ has exactly one solution. 
+\end{enumerate}
+
+\newpage
+
+\section*{Question 3} 
+\begin{enumerate}[(a)]
+    \item 
+    \begin{align*}
+        S= \lim_{n\to \infty} \sum_{k=1}^n \frac{n}{n^2+k^2}    
+    \end{align*}
+    By Riemann Sum:
+    Let $\triangle x = \frac{b-a}{n},$ then 
+    \begin{align*}
+        \int_a^b f(x) dx &= \lim_{n\to \infty}\sum_{k=1}^n f\left(a+k\cdot \frac{b-a}{n}\right)\frac{b-a}{n}\\
+        &= \lim_{n\to \infty}\sum_{k=1}^n f(a+k\triangle x)\triangle x
+    \end{align*}
+    We know:
+    \begin{align*}
+        \frac{n}{n^2+k^2}=\left(\frac{1}{1+(\frac{k}{n})^2}\right)\cdot \frac{1}{n}
+    \end{align*}
+    Now let $a=0,b=1$, and $f(x)=\frac{1}{1+x^2}$, then $\triangle x = \frac{1}{n}.$\\
+    Hence, 
+    \begin{align*}
+        S &= \int_0^1 \frac{1}{1+x^2}dx \\ 
+        &= \left[\tan^{-1} (x)\right]_0^1\\
+        &= \tan^{-1}(1)\\
+        &= \frac{\pi}{4}
+    \end{align*}
+    \item 
+    \begin{align*}
+        &\lim_{x\to 0}\frac{1}{ax-\sin x}\int_0^x \frac{t^2}{\sqrt{b+t^2}}dt \\
+        =& \lim_{n\to \infty} \frac{\int_0^x\frac{t^2}{\sqrt{b+t^2}}dt}{ax-\sin x}
+    \end{align*}
+    Notice that $\displaystyle \lim_{x\to 0}\int_0^x \frac{t^2}{\sqrt{b+t^2}}dt = \lim_{x\to 0} (ax-\sin x)=0.$\\
+    By LH rule, 
+    \begin{align*}
+        \lim_{x\to 0} \frac{\frac{d}{dx}(\int_0^x \frac{t^2}{\sqrt{b+t^2}}dt)}{\frac{d}{dx}(ax-\sin x)}&= 5\\
+        \implies \lim_{x\to 0} \frac{\frac{x^2}{\sqrt{b+x^2}}}{a-\cos x}&=5 \\ 
+        \implies \lim_{x\to 0} \frac{x^2}{(a-\cos x)\sqrt{b+x^2}}&=5 
+    \end{align*}
+    Consider two cases: 
+    \begin{itemize}
+        \item Case 1: $a=1$ 
+        \begin{align*}
+            \lim_{x\to 0}\frac{x^2}{(1-\cos x)\sqrt{b+x^2}}&=5\\
+            \implies \lim_{x\to 0} \frac{x^2}{\sin^2 x}\frac{(1+\cos x)}{\sqrt{b+x^2}}&= 5
+        \end{align*}
+        We know $\displaystyle \lim_{x\to 0}\frac{\sin x}{x}=1,$ then $\displaystyle \lim_{x\to 0}\frac{x^2}{\sin^2 x}=1.$\\
+        So $\frac{2}{\sqrt{b}}= 5$, then $b= \frac{4}{25}$.
+        \item Case 2: $a\neq 1$\\
+        Now consider two cases: 
+        \begin{itemize}
+            \item Case 1: $b=0$
+            \begin{align*}
+                \lim_{x\to 0}\frac{x}{a-\cos x}&=5 \\ 
+                \implies \frac{0}{a-1}&=5
+            \end{align*}
+            Contradiction, since $0\neq 5.$
+            \item Case 2: $b\neq 0$
+            \begin{align*}
+                \lim_{x\to 0}\frac{x^2}{(a-\cos x)\sqrt{b+x^2}}&= 5 \\
+                \implies \frac{0}{(a-1)\sqrt{b}}&=5
+            \end{align*}
+            Contradiction, since $0\neq 5.$
+        \end{itemize}
+    \end{itemize}
+    Hence, $a=1, b = \frac{4}{25}.$
+\end{enumerate}
+\newpage 
+\section*{Question 4}
+\begin{enumerate}[(a)]
+    \item 
+    \begin{align*}
+        I&= \int_0^\infty \frac{1}{1+e^x} dx 
+    \end{align*}
+    Let $e^x =t$, then $e^x dx = dt$, so $\displaystyle dx= \frac{dt}{e^x}=\frac{dt}{t}.$ \\
+    When $x=0,$ $t=e^0=1$. Similarly, when $x \to \infty$, $t\to \infty.$\\
+    By substitution, 
+    \begin{align*}
+        I&= \int_1^\infty \frac{1}{t(1+t)}dt \\
+        &= \int_1^ \infty \left[\frac{1}{t}-\frac{1}{1+t}\right]dt\\
+        &= \left[\ln{t} - \ln{(1+t)}\right]_1^\infty \\
+        &= \left[\ln{\frac{t}{1+t}}\right]_1^\infty \\
+        &= \lim_{t\to \infty} \ln{\frac{t}{1+t}}-\ln{\frac{1}{2}}
+    \end{align*}
+    Since $\ln{x}$ is continuous, then 
+    \begin{align*}
+        I&= \ln{(\lim_{t\to \infty}\frac{t}{1+t}})+\ln{2}\\
+        &= \ln{2} + \ln{\lim_{t \to \infty}\frac{1}{\frac{1}{t}+1}}\\
+        &= \ln{2} + ln{1} \\
+        &= \ln{2}
+    \end{align*}
+    \item
+    \begin{align*}
+        f(x)&= x^c (1-x)^d\\
+        \implies f'(x)&= cx^{c-1}(1-x)^d - d(1-x)^{d-1}x^c\\
+        &= x^{c-1}(1-x)^{d-1}[(1-x)c-dx]
+    \end{align*}
+    Because the local maxima of $f$ must be a critical point,  i.e., when $f'(x)=0$ or $f'(x)$ is undefined. Since $f'(x)$ is always well-defined, we solve for $f'(x)=0$. So $x=0$, $x=1$, $c-cx-dx=0$ or $x=\frac{c}{c+d}.$\\
+    Now, $f(0)=f(1)=0$, $f(\frac{c}{c+d})=(\frac{c}{c+d})^c(\frac{d}{c+d})^d>0.$\\
+    It is clear that $f(\frac{c}{c+d})>f(0)=f(1)=0.$\\
+    Having compared the values of critical points, given $0\leq x \leq1$, we also need to check the boundaries which has already been done in this case. \\
+    Hence, the global maximum value is $f(\frac{c}{c+d})=(\frac{c}{c+d})^c(\frac{d}{c+d})^d.$
+\end{enumerate}
+\newpage 
+\section*{Question 5}
+\begin{enumerate}[(a)]
+    \item 
+    \begin{align*}
+        I = \int_{-2}^3 \lvert x^2 -1 \rvert dx
+    \end{align*}
+    Note that 
+    \begin{align*}
+        \lvert x^2-1 \rvert 
+        =\Bigg\{\begin{array}{cc}
+             x^2-1, \ x\geq 1  \\
+             1-x^2, \ x \leq 1 
+        \end{array}
+    \end{align*}
+    Then 
+    \begin{align*}
+        I &= \int_{-2}^{-1}x^2-1 dx + \int_{-1}^1 1-x^2 dx + \int_1^3 x^2-1 dx\\
+        &= \left[\frac{x^3}{3}-x\right]_{-2}^{-1}+\left[x-\frac{x^3}{3}\right]_{-1}^1+\left[\frac{x^3}{3}-x\right]_1^3\\
+        &= \frac{-1}{3}+1+\frac{8}{3}-2+1-\frac{1}{3}-\frac{1}{3}+9-3-\frac{1}{3}+1\\
+        &= \frac{28}{3}
+    \end{align*}
+    \item 
+    Define radius $r(y)=y+2$ and height $h(y)=1+y^2-2y^2=1-y^2.$
+    Given the curves, we know they intersect at $y=1$ and $y=-1$, then
+    \begin{align*}
+        \text{volume} \  V &= \int_{-1}^1 2\pi r(y)h(y)dy \\
+        &= \int_{-1}^1 2\pi(y+2)(1-y^2)dy \\
+        &= 2\pi\int_{-1}^1 y+2-y^3-2y^2 dy\\
+        &= 2\pi \left[\frac{y^2}{2}+2y-\frac{y^4}{4}-\frac{2y^3}{3}\right]_{-1}^1\\
+        &= \frac{16\pi}{3}
+    \end{align*}
+\end{enumerate}
+\newpage
+\section*{Question 6}
+\begin{enumerate}[(a)]
+    \item Apply Squeeze Theorem, it is clear that $1-x^4 \leq f(x)\leq x^2+1$. \\
+    Now, calculate the limits of upper bound and lower bound
+    \begin{align*}
+        \lim_{x\to 0} x^2+1 = 0+1=1 \\
+        \lim_{x\to 0} 1-x^4 = 1-0=1 \\ 
+    \end{align*}
+    Hence, $\displaystyle \lim_{x\to 0}f(x)=1.$
+    \item 
+    We know 
+    \begin{align*}
+        \int_{0}^1 \lvert f(x) \rvert = \int_{0}^\frac{1}{2}\lvert f(x) \rvert dx + \int_{\frac{1}{2}}^1 \lvert f(x) \rvert dx
+    \end{align*}
+    Calculate the integrals separately by hint:
+    \begin{itemize}
+        \item 
+        $\displaystyle \int_{0}^\frac{1}{2} \lvert f(x) \rvert dx$: Take $x\in [0,\frac{1}{2}]$ and $f$ is continuous and differentiable on $[0,x]$. By MVT, $\exists c_x \in (0,x)$ such that $$f'(c_x)=\frac{f(x)-f(0)}{x-0}$$    
+        Then 
+        \begin{align*}
+            \frac{f(x)}{x}&=f'(x)\\
+            \implies \lvert \frac{f(x)}{x}\rvert &= \lvert f'(c_x)\rvert \leq M \\
+            \implies \lvert f(x) \rvert &\leq Mx\\
+            \implies \int_{0}^{\frac{1}{2}} \lvert f(x) \rvert dx &\leq \int_0^\frac{1}{2}Mx dx= \frac{M}{8}
+        \end{align*}
+        \item 
+        $\displaystyle \int_{\frac{1}{2}}^1\lvert f(x) \rvert dx:$
+        Similarly, take $x\in [\frac{1}{2},1]$ and $f$ is continuous and differentiable on $[x,1]$. By MVT, $\exists d_x \in (x,1)$ such that $$f'(d_x)=\frac{f(x)-f(1)}{x-1}$$    
+        Then 
+        \begin{align*}
+            \frac{f(x)}{x-1}&=f'(d_x)\\
+            \implies\frac{\lvert f(x)\rvert}{1-x} &= \lvert f'(d_x)\rvert \leq M \\
+            \implies \lvert f(x) \rvert &\leq M(1-x)\\
+            \implies \int_{\frac{1}{2}}^1 \lvert f(x) \rvert dx &\leq \int_\frac{1}{2}^1M(1-x) dx= \frac{M}{8}
+        \end{align*}
+    \end{itemize}
+    Hence, 
+    \begin{align*}
+        \int_{0}^1 \lvert f(x) \rvert dx \leq \frac{M}{8} + \frac{M}{8}= \frac{M}{4}
+    \end{align*}
+\end{enumerate}
+\newpage 
+\section*{Question 7}
+\begin{enumerate}[(a)]
+    \item
+    \begin{align*}
+        y = \frac{\ln{x}}{x+4x(\ln{x})^2}
+    \end{align*}
+    For $e \leq x \leq e^2$, 
+    \begin{align*}
+        \ln{x} \geq 1 \\
+        \implies y \geq 0
+    \end{align*}
+    Then 
+    \begin{align*}
+        \text{area} \ A &= \int_{e}^{e^2} \frac{\ln{x}}{x[1+4(\ln{x})^2]} dx
+    \end{align*}
+    Let $\ln{x}=t$, then $\displaystyle \frac{dx}{x}=dt.$
+    \begin{align*}
+        A &= \int_{\ln{e}}^{\ln{(e^2)}} \frac{t}{1+4t^2} dt \\
+        &= \int_{1}^2 \frac{t}{1+4t^2}dt
+    \end{align*}
+    Let $t^2 = v$, then $\displaystyle tdt = \frac{dv}{2}$.
+    \begin{align*}
+        A&= \int_{1^2}^{2^2} \frac{1}{2(1+4v)}dv \\
+        &= \left[ \frac{1}{8}\ln{\lvert 1 + 4v \rvert}_1^4 \right] \\
+        &= \frac{1}{8} \left[\ln{17}-\ln{5}\right]\\
+        &= \frac{1}{8}\ln{\frac{17}{5}}
+    \end{align*}
+    \item 
+    Apply formula, then 
+    \begin{align*}
+        \text{area} \ S  &= \int_{\frac{3}{4}}^{\frac{15}{4}} 2\pi \cdot \sqrt{y} \sqrt{1+(\frac{1}{2\sqrt{y})^2}} dy \\ 
+        &= 2\pi \int_{\frac{3}{4}}^{\frac{15}{4}} \sqrt{y+\frac{1}{4}} dy \\
+        &= 2\pi \left[\frac{2}{3}(y+\frac{1}{4})^\frac{3}{2}\right]_{\frac{3}{4}}^\frac{15}{4}\\
+        &= \frac{4\pi}{3}\left[4^{\frac{3}{2}}-1^{\frac{3}{2}}\right]\\
+        &= \frac{28\pi}{3}
+    \end{align*}
+\end{enumerate}
+\newpage
+\section*{Question 8}
+\begin{enumerate}[(a)]
+    \item 
+    \begin{align*}
+        \frac{dy}{dx}&=-(1+\frac{y}{x})\\
+        \implies \frac{dy}{dx}+\frac{y}{x}&=-1 
+    \end{align*}
+    Define $\displaystyle P(x)= \frac{1}{x}, \ Q(x) = -1$, then let $\displaystyle v(x)= e^{\int {P(x)dx}}= e^{\int \frac{1}{x}dx}= e^{\ln{x}} = x.$\\
+    We know 
+    \begin{align*}
+        y&=\frac{1}{v(x)}\int v(x)Q(x)dx\\
+        &= \frac{1}{x} {\int{-x}dx}\\
+        &= \frac{1}{x} ({-\frac{x^2}{2}}+C)\\
+        &= -\frac{x}{2}+\frac{C}{x}
+    \end{align*}
+    Since $(1,3)$ is a solution, then $\displaystyle C=\frac{7}{2}.$\\
+    
+    Hence, the equation is $\displaystyle y=-\frac{x}{2}+\frac{7}{2x}.$
+    \item 
+    Let $S$ be amount of salt at time $t$.\\
+    Define the rate of change of salt: 
+    \begin{align*}
+        \frac{dS}{dt}&= 3r - \frac{Sr}{100}\\
+        \implies \frac{dS}{dt}+\frac{Sr}{100}&=3r
+    \end{align*}
+    Solve the first order differential equation: \\
+    Define $\displaystyle P(t) = \frac{r}{100}, \ Q(t)=3r$, then let $\displaystyle v(t)=e^{\int{P(t)dt}}=e^{\int\frac{r}{100}dt}=e^{\frac{rt}{100}}.$\\
+    We know 
+    \begin{align*}
+        S &= \frac{1}{v(t)}\int v(t)Q(t)d\\
+        &= e^{-\frac{rt}{100}} \int{3re^{\frac{rt}{100}}dt}\\
+        &= e^{-\frac{rt}{100}}\cdot (300e^{\frac{rt}{100}}+C)\\
+        &= 300 + C e^{-\frac{rt}{100}}
+    \end{align*}
+    When $t=0$, it is given that $S=100$, then $C=100-300=-200.$\\
+    Now, when $t=45$ and $S=200$, then 
+    \begin{align*}
+        200 &= 300-200e^\frac{-45r}{100}\\
+        \implies e^{\frac{-45r}{100}}&=\frac{1}{2}\\
+        \implies \frac{45r}{100}&=\ln{2}\\
+        \implies r &= \frac{20\ln{2}}{9}
+    \end{align*}
+\end{enumerate}
+
+
+\end{document}
