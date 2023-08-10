@@ -1,0 +1,859 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage[headings]{fullpage}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{pgfplots}
+\usepackage{enumerate}
+\usepackage{xfrac}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+\usetikzlibrary{plotmarks}
+\hypersetup{
+  colorlinks   = true,    % Colours links instead of ugly boxes
+  urlcolor     = blue,    % Colour for external hyperlinks
+  linkcolor    = blue,    % Colour of internal links
+  citecolor    = red      % Colour of citations
+}
+
+\title{MAXXXX}
+\author{Maximus Pung Jun}
+\date{\today}
+
+\pgfplotsset{compat=1.18}
+
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+\newcommand{\RR}[0]{\mathbb{R}}
+\newcommand{\ZZ}[0]{\mathbb{Z}}
+\newcommand{\NN}[0]{\mathbb{N}}
+\newcommand{\QQ}[0]{\mathbb{Q}}
+\newcommand{\CC}[0]{\mathbb{C}}
+\newcommand{\Vector}[3]{\left( \begin{array}{c}
+#1 \\ #2 \\ #3 \end{array}\right)}
+\newcommand{\dd}[0]{\displaystyle}
+
+\pagestyle{fancy}
+
+\lhead{PYP Solutions Initiative • NUS MATHSOC}
+\rhead{\thepage}
+% \cfoot{} % could use this but feels irritating seeing this
+\cfoot{Linear Algebra}
+
+\title{%
+  MA2001 - Linear Algebra Suggested Solutions  \\ 
+  \large (Semester 2: AY2022/23) \\ }
+    
+\author{%
+  \large
+    Written by: Maximus Pung Jun \\
+    Audited by: Agrawal Naman}
+\date{}
+
+\begin{document}
+
+\maketitle 
+
+\section*{Question 1}
+We will form a system of three linear equations.
+\begin{eqnarray}
+    A &=& 55000 + \frac{B}{100}\times 10 +\frac{C}{100}\times 20 \notag\\
+    B &=& 77000 + \frac{C}{100}\times 20 +\frac{A}{100}\times 10 \notag\\
+    C &=& 99000 + \frac{A}{100}\times 10 +\frac{B}{100}\times 40 \notag
+\end{eqnarray}
+Simplifying, we get
+\begin{eqnarray}
+    10A - B - 2C &=& 550000 \notag\\
+    -A+10B -2C &=& 770000 \notag\\
+    -A - 4B+10C &=& 990000 \notag
+\end{eqnarray}
+Putting this in an augmented matrix, we get
+$$\left(\begin{array}{ccc|c}
+     10 & -1 & -2 & 550000\\
+     -1 & 10 & -2 & 770000\\
+     -1 & -4 & 10 & 990000\\
+    \end{array}\right) \xrightarrow[]{G.J.E}
+    \left(\begin{array}{ccc|c}
+     1 & 0 & 0 & 98000\\
+     0 & 1 & 0 & 118000\\
+     0 & 0 & 1 & 156000\\
+    \end{array}\right)$$
+Therefore, factories $A,B,C$ should produce 98000, 118000, 156000 units of $A,B,C$ respectively.
+\newpage
+\section*{Question 2}
+\begin{enumerate}[(i)]
+    \item $$\left(\begin{array}{ccc|c}
+     1 & -1 & 3 & 1\\
+     2 & 2 & -1 & 0\\
+     0 & 1 & 4 & 1\\
+     -1 & 2 & 2 & 1\\
+    \end{array}\right) \xrightarrow[\text{Gauss Jordan Elimination}]{\hdots}\left(\begin{array}{ccc|c}
+     1 & 0 & 0 & 4/23\\
+     0 & 1 & 0 & -1/23\\
+     0 & 0 & 1 & 6/23\\
+     0 & 0 & 0 & 17/23\\
+    \end{array}\right)
+    $$
+Since the last row is inconsistent, this linear system is inconsistent.
+
+\item Let $\bs{A} = \left(\begin{array}{ccc}
+     1 & -1 & 3 \\
+     2 & 2 & -1 \\
+     0 & 1 & 4 \\
+     -1 & 2 & 2 \\
+    \end{array}\right)$. We will solve $\bs{A}^\text{T}\bs{Ax}=\bs{A}^\text{T}\bs{b}$.
+    \begin{eqnarray}
+    \left(\begin{array}{cccc}
+     1 & 2 & 0 & -1\\
+     -1 & 2 & 1 & 2\\
+     3 & -1 & 4 & 2\\
+    \end{array}\right)\left(\begin{array}{ccc}
+     1 & -1 & 3 \\
+     2 & 2 & -1 \\
+    0 & 1 & 4 \\
+    -1 & 2 & 2 \\
+    \end{array}\right)\bs{x} &=& \left(\begin{array}{cccc}
+     1 & 2 & 0 & -1\\
+     -1 & 2 & 1 & 2\\
+     3 & -1 & 4 & 2\\
+    \end{array}\right)\left(\begin{array}{c}
+     1 \\
+     0 \\ 
+     1 \\
+    1 \\
+    \end{array}\right) \notag\\
+    \left(\begin{array}{ccc}
+     6 & 1 & -1 \\
+     1 & 10 & 3 \\
+    -1 & 3 & 30 \\
+    \end{array}\right)\bs{x} &=& \left(\begin{array}{c}
+     0 \\
+     2 \\
+    9 \\
+    \end{array}\right) \notag\\
+    \left(\begin{array}{ccc|c}
+     6 & 1 & -1 & 0\\
+     1 & 10 & 3 & 2 \\
+    -1 & 3 & 30 & 9\\
+    \end{array}\right) &\xrightarrow[]{G.J.E} &\left(\begin{array}{ccc|c}
+     1 & 0 & 0 & 0.0300\\
+     0 & 1 & 0 & 0.1100 \\
+    0 & 0 & 1 & 0.2900\\
+    \end{array}\right) \Rightarrow \bs{x} = \left(\begin{array}{c}
+     0.0300\\
+     0.1100 \\
+    0.2900\\
+    \end{array}\right)\notag
+    \end{eqnarray}
+
+\end{enumerate}
+
+\newpage
+
+
+\section*{Question 3}
+\begin{enumerate}[(i)]
+    \item 
+$$\bs{A} = \left(\begin{array}{cccccc}
+     1 & 2 & 8 & -3 & 1 & 1\\
+     1 & 2 & 8 & -3 & 0 & 4\\
+    1 & 3 & 11 & -4 & 3 & -4 \\
+    1 & 1 & 5 & -2 & 1 & 0 \\
+    \end{array}\right) \xrightarrow[]{G.J.E}\left(\begin{array}{cccccc}
+     1 & 0 & 2 & -1 & 0 & 2\\
+     0 & 1 & 3 & -1 & 0 & 1\\
+    0 & 0 & 0 & 0 & 1 & -3 \\
+    0 & 0 & 0 & 0 & 0 & 0 \\
+    \end{array}\right)$$
+
+    \item We take the nonzero rows of the reduced row echelon form of $\bs{A}$. 
+    $$S = \left\{ 
+    \left(\begin{array}{c}
+    1 \\
+    0 \\
+    2 \\
+    -1 \\
+    0 \\
+    2 \\
+    \end{array}\right), \left(\begin{array}{c}
+    0 \\
+    1 \\
+    3 \\
+    -1 \\
+    0 \\
+    1 \\
+    \end{array}\right),
+    \left(\begin{array}{c}
+    0 \\
+    0 \\
+    0 \\
+    0 \\
+    1 \\
+    -3 \\
+    \end{array}\right)
+    \right\}.$$
+    The extended basis will be 
+    $$\left\{ 
+    \left(\begin{array}{c}
+    1 \\
+    0 \\
+    2 \\
+    -1 \\
+    0 \\
+    2 \\
+    \end{array}\right), \left(\begin{array}{c}
+    0 \\
+    1 \\
+    3 \\
+    -1 \\
+    0 \\
+    1 \\
+    \end{array}\right),
+    \left(\begin{array}{c}
+    0 \\
+    0 \\
+    0 \\
+    0 \\
+    1 \\
+    -3 \\
+    \end{array}\right),
+    \left(\begin{array}{c}
+    0 \\
+    0 \\
+    0 \\
+    0 \\
+    0 \\
+    1 \\
+    \end{array}\right),
+    \left(\begin{array}{c}
+    0 \\
+    0 \\
+    0 \\
+    1 \\
+    0 \\
+    0 \\
+    \end{array}\right),
+    \left(\begin{array}{c}
+    0 \\
+    0 \\
+    1 \\
+    0 \\
+    0 \\
+    0 \\
+    \end{array}\right)
+    \right\}.$$
+    Note: The 3 vectors are chosen such that if those 3 vectors are added as rows to the original matrix, none of them reduce to the zero vector. This is done by placing ones in the positions corresponding to the location of the non-pivot columns in the RREF of the original matrix (i.e., 3, 4, and 6). 
+    \item We find the pivot columns of the reduced row echelon form of $\bs{A}$, then take the corresponding columns in $\bs{A}$.
+    $$\left\{ 
+    \left(\begin{array}{c}
+    1 \\
+    0 \\
+    3 \\
+    1 \\
+    \end{array}\right), \left(\begin{array}{c}
+    2 \\
+    2 \\
+    3 \\
+    1 \\
+    \end{array}\right),
+    \left(\begin{array}{c}
+    1 \\
+    1 \\
+    1 \\
+    1 \\
+    \end{array}\right)
+    \right\}.$$
+Using the Gram-Schmidt process,
+\begin{eqnarray}
+    \bs{v_1} &=& \left(\begin{array}{c}
+    1 \\
+    1 \\
+    1 \\
+    1 \\
+    \end{array}\right) \notag\\
+    \bs{v_2} &=& \left(\begin{array}{c}
+    1 \\
+    0 \\
+    3 \\
+    1 \\
+    \end{array}\right) - \frac{\left(\begin{array}{c}
+    1 \\
+    0 \\
+    3 \\
+    1 \\
+    \end{array}\right)\cdot \left(\begin{array}{c}
+    1 \\
+    1 \\
+    1 \\
+    1 \\
+    \end{array}\right)}{\left\|\left(\begin{array}{c}
+    1 \\
+    1 \\
+    1 \\
+    1 \\
+    \end{array}\right)\right\|^2} \left(\begin{array}{c}
+    1 \\
+    1 \\
+    1 \\
+    1 \\
+    \end{array}\right)= \frac{1}{4}\left(\begin{array}{c}
+    -1 \\
+    -5 \\
+    7 \\
+    -1 \\
+    \end{array}\right)\notag\\
+    \bs{v_3} &=& \left(\begin{array}{c}
+    2 \\
+    2 \\
+    3 \\
+    1 \\
+    \end{array}\right) - \frac{\left(\begin{array}{c}
+    2 \\
+    2 \\
+    3 \\
+    1 \\
+    \end{array}\right)\cdot \left(\begin{array}{c}
+    1 \\
+    1 \\
+    1 \\
+    1 \\
+    \end{array}\right)}{\left\|\left(\begin{array}{c}
+    1 \\
+    1 \\
+    1 \\
+    1 \\
+    \end{array}\right)\right\|^2}\left(\begin{array}{c}
+    1 \\
+    1 \\
+    1 \\
+    1 \\
+    \end{array}\right) - 
+    \frac{\left(\begin{array}{c}
+    2 \\
+    2 \\
+    3 \\
+    1 \\
+    \end{array}\right)\cdot \left(\begin{array}{c}
+    -1 \\
+    -5 \\
+    7 \\
+    -1 \\
+    \end{array}\right)}{\left\| \left(\begin{array}{c}
+    -1 \\
+    -5 \\
+    7 \\
+    -1 \\
+    \end{array}\right)\right\|^2}\left(\begin{array}{c}
+    -1 \\
+    -5 \\
+    7 \\
+    -1 \\
+    \end{array}\right)  = \frac{1}{19}\left(\begin{array}{c}
+    2 \\
+    10 \\
+    5 \\
+    -17 \\
+    \end{array}\right)\notag
+\end{eqnarray}
+Thus, an orthogonal basis for the column space of $\bs{A}$ would be $\left\{\left(\begin{array}{c}
+    1 \\
+    1 \\
+    1 \\
+    1 \\
+    \end{array}\right),\left(\begin{array}{c}
+    -1 \\
+    -5 \\
+    7 \\
+    -1 \\
+    \end{array}\right),\left(\begin{array}{c}
+    2 \\
+    10 \\
+    5 \\
+    -17 \\
+    \end{array}\right)\right\}$.
+\item 
+$$\bs{R} = \left(\begin{array}{cccccc}
+     1 & 0 & 2 & -1 & 0 & 2\\
+     0 & 1 & 3 & -1 & 0 & 1\\
+    0 & 0 & 0 & 0 & 1 & -3 \\
+    0 & 0 & 0 & 0 & 0 & 0 \\
+    \end{array}\right).$$
+We will solve the linear system $\bs{Rx} = \bs{0}$.
+\begin{eqnarray}
+    a +2c -d +2f &=& 0 \notag\\
+    b+3c-d+f &=& 0 \notag \\
+    e-3f &=& 0 \notag
+\end{eqnarray}
+
+By letting $c=t,d=s,f=q$, where $t,s,q$ are arbitrary, we get the solution 
+\begin{eqnarray}
+    a &=& -2t + s -2q \notag\\
+    b &=& -3t + s - q \notag\\
+    e = 3q \notag
+\end{eqnarray}
+Thus, the solution can be expressed as
+$$\bs{r} = t\left(\begin{array}{c}
+    -2 \\
+    -3 \\
+    1 \\
+    0 \\
+    0 \\
+    0 \\
+    \end{array}\right)+ s \left(\begin{array}{c}
+    1 \\
+    1 \\
+    0 \\
+    1 \\
+    0 \\
+    0 \\
+    \end{array}\right)+q\left(\begin{array}{c}
+    -2 \\
+    -1 \\
+    0 \\
+    0 \\
+    3 \\
+    1 \\
+    \end{array}\right),\text{ where } t,s,q\in\mathbb{R}.$$
+    Thus, a basis for the nullspace of $\bs{A}$ is 
+    $\left\{\left(\begin{array}{c}
+    -2 \\
+    -3 \\
+    1 \\
+    0 \\
+    0 \\
+    0 \\
+    \end{array}\right), \left(\begin{array}{c}
+    1 \\
+    1 \\
+    0 \\
+    1 \\
+    0 \\
+    0 \\
+    \end{array}\right),\left(\begin{array}{c}
+    -2 \\
+    -1 \\
+    0 \\
+    0 \\
+    3 \\
+    1 \\
+    \end{array}\right)\right\}.$
+
+
+\end{enumerate}
+
+\newpage
+
+\section*{Question 4}
+\begin{enumerate}[(i)]
+    \item 
+$$\bs{P} = \left(\begin{array}{ccc}
+     1 & 1 & 2 \\
+     2 & 4 & 1\\
+    3 & 8 & -2  \\
+    \end{array}\right).$$
+
+\begin{eqnarray}
+    \text{det}(\bs{P}) &=& \left|\begin{array}{ccc}
+     4 & 1 \\
+    8 & -2  \\
+    \end{array}\right| - \left|\begin{array}{ccc}
+     2 & 1 \\
+    3 & -2  \\
+    \end{array}\right|+2\left|\begin{array}{ccc}
+     2 & 4 \\
+    3 & 8  \\
+    \end{array}\right| \notag\\
+    &=& (-8-8) - (-4-3) +2(16-12) \notag\\
+    &=& -1 \notag
+\end{eqnarray}
+
+\item Consider the augmented matrix
+$$\left(\begin{array}{ccc|c}
+     1 & 2 & -2 & 0\\
+     1 & 0 & 3 & 0\\
+     1 & 2 & 0 & 0\\
+     1 & 3 & 4 & 0 \\
+    \end{array}\right) \xrightarrow[]{G.J.E} \left(\begin{array}{ccc|c}
+     1 & 0 & 0 & 0\\
+     0 & 1 & 0 & 0\\
+     0 & 0 & 1 & 0\\
+     0 & 0 & 0 & 0 \\
+    \end{array}\right).$$
+    Since the $\bs{0}$ is the unique solution to the augmented matrix, it follows that $S$ is linearly independent. Clearly, $S$ also spans $V$ (By definition of $V$). Thus, $S$ is a basis of $V$.
+
+\item $$T = \left(\begin{array}{ccc}
+     1 & 2 & -2 \\
+     1 & 0 & 3\\
+     1 & 2 & 0 \\
+     1 & 3 & 4 \\
+    \end{array}\right)\left(\begin{array}{ccc}
+     1 & 1 & 2 \\
+     2 & 4 & 1\\
+    3 & 8 & -2  \\
+    \end{array}\right) = \left(\begin{array}{ccc}
+     -1 & -7 & 8 \\
+     10 & 25 & -4\\
+     5 & 9 & 4 \\
+     19 & 45 & -3 \\
+    \end{array}\right).$$
+    \item Since $\bs{P}$ is the transition matrix from $T$ to $S$, it follows that the transition matrix from $S$ to $T$ is the matrix $\bs{P}^{-1}$. To find $\bs{P}^{-1}$, we consider the augmented matrix
+    $$\left(\begin{array}{ccc|ccc}
+     1 & 1 & 2 & 1 & 0 & 0 \\
+     2 & 4 & 1 & 0 & 1 & 0\\
+    3 & 8 & -2 & 0 & 0 & 1 \\
+    \end{array}\right) \xrightarrow[]{G.J.E} \left(\begin{array}{ccc|ccc}
+      1 & 0 & 0 & 16 & -18 & 7 \\
+      0 & 1 & 0 & -7 & 8 & -3\\
+     0 & 0 & 1 & -4 & 5 & -2\\
+    \end{array}\right).$$
+    Thus, we have the transition matrix from $S$ to $T$:
+    $$\bs{P}^{-1} = \left(\begin{array}{ccc}
+      16 & -18 & 7 \\
+      -7 & 8 & -3\\
+      -4 & 5 & -2\\
+    \end{array}\right)$$
+    
+\end{enumerate}
+\newpage
+
+\section*{Question 5}
+Observe that 
+$$\lambda\bs{I}-\bs{A} = \left(\begin{array}{ccc}
+      \lambda-8 & 2 & -2 \\
+      2 & \lambda-5 & -4\\
+      -2 & -4 & \lambda-5\\
+    \end{array}\right)$$
+Thus, we have
+\begin{eqnarray}
+    \text{det}(\bs{A}) &=& (\lambda-8)\left|\begin{array}{cc}
+      \lambda - 5 & -4 \\
+      -4 & \lambda - 5\\
+    \end{array}\right| - 2\left|\begin{array}{cc}
+      2 & -4 \\
+      -2 & \lambda - 5\\
+    \end{array}\right|  -2\left|\begin{array}{cc}
+      2 & \lambda - 5 \\
+      -2 & -4\\
+    \end{array}\right| \notag \\
+    &=& (\lambda - 8)[(\lambda-5)^2-16] - 2[2(\lambda-5)-8]-2[-8+2(\lambda-5)] \notag\\
+    &=& \lambda(\lambda - 9)^2 \notag
+\end{eqnarray}
+
+Solving, $\lambda(\lambda-9)^2=0 \Rightarrow \lambda=0 \text{ or } \lambda = 9$.
+\newline\\
+We will first find the solution for $\bs{Ax} = \bs{0}$. Consider the matrix
+$$\bs{A}=\left(\begin{array}{ccc}
+      8 & -2 & 2 \\
+      -2 & 5 & 4 \\
+      2 & 4 &  5 \\
+    \end{array}\right)\xrightarrow[]{G.J.E}\left(\begin{array}{ccc}
+      1 & 0 & 0.5 \\
+      0 & 1 & 1 \\
+      0 & 0 &  0 \\
+    \end{array}\right)$$
+    So, a basis of the solution set for this system is $\left\{\left(\begin{array}{c}
+      1 \\
+      2 \\
+      -2 \\
+    \end{array}\right)\right\}$.
+\newline\\
+Next, will find the solution for $\bs{Ax} = 9\bs{x} \Rightarrow (9\bs{I}-\bs{A})\bs{x} = \bs{0}$. Consider the matrix
+$$9\bs{I}-\bs{A}=\left(\begin{array}{ccc}
+      1 & 2 & -2 \\
+      2 & 4 & -4 \\
+      -2 & -4 &  4 \\
+    \end{array}\right)\xrightarrow[]{G.J.E}\left(\begin{array}{ccc}
+      1 & 2 & -2 \\
+      0 & 0 & 0 \\
+      0 & 0 &  0 \\
+    \end{array}\right)$$
+    So, a basis of the solution set for this system is $\left\{\left(\begin{array}{c}
+      -2 \\
+      1 \\
+      0 \\
+    \end{array}\right),\left(\begin{array}{c}
+      2 \\
+      0 \\
+      1 \\
+    \end{array}\right)\right\}$.
+    \newline\\
+    Thus, we have $$\bs{P_0} = \left(\begin{array}{ccc}
+      1 & -2 & 2 \\
+      2 & 1 & 0 \\
+      -2 & 0 &  1 \\
+    \end{array}\right)$$
+    Given $\bs{P_0} = \left(\begin{array}{ccc}
+      1 & -2 & 2 \\
+      2 & 1 & 0 \\
+      -2 & 0 &  1 \\
+    \end{array}\right)$, we will now find an orthonormal set of vectors that span $\text{colspace}(\bs{P_0})$ via the Gram-Schmidt Process.
+    \vfill
+\begin{center}
+    *Working is continued on the next page.*
+\end{center}
+\newpage 
+\begin{eqnarray}
+    \bs{v_1} &=& \left(\begin{array}{c}
+      2 \\
+      0 \\
+      1 \\
+    \end{array}\right) \notag\\
+    \bs{v_2} &=& \left(\begin{array}{c}
+      -2 \\
+      1 \\
+      0 \\
+    \end{array}\right) - \frac{\left(\begin{array}{c}
+      2 \\
+      0 \\
+      1 \\
+    \end{array}\right)\cdot \left(\begin{array}{c}
+      -2 \\
+      1 \\
+      0 \\
+    \end{array}\right)}{\left\| \left(\begin{array}{c}
+      -2 \\
+      1 \\
+      0 \\
+    \end{array}\right)\right\|^2}\left(\begin{array}{c}
+      2 \\
+      0 \\
+      1 \\
+    \end{array}\right) = \frac{1}{5}\left(\begin{array}{c}
+      -2 \\
+      5 \\
+      4 \\
+    \end{array}\right) \notag\\
+    \bs{v_3} &=& \left(\begin{array}{c}
+      1 \\
+      2 \\
+      -2 \\
+    \end{array}\right) \text{ Observe that } \bs{v_3}\cdot \bs{v_1} = \bs{v_3}\cdot\bs{v_2} = 0 .\notag
+\end{eqnarray}
+Now, we will find the unit vector of $\bs{v_1,v_2,v_3}$. 
+\begin{eqnarray}
+    \hat{\bs{v_1}} &=& \left(\begin{array}{c}
+      \frac{2}{\sqrt{5}} \\[0.2cm]
+      0 \\[0.2cm]
+      \frac{1}{\sqrt{5}} \\
+    \end{array}\right) \notag\\
+    \hat{\bs{v_2}} &=& \left(\begin{array}{c}
+      -\frac{2}{\sqrt{45}} \\[0.2cm]
+      \frac{5}{\sqrt{45}} \\[0.2cm]
+      \frac{4}{\sqrt{45}} \\
+    \end{array}\right) \notag\\
+    \hat{\bs{v_3}} &=& \left(\begin{array}{c}
+      \frac{1}{3} \\[0.2cm]
+      \frac{2}{3} \\[0.2cm]
+      -\frac{2}{3} \\
+    \end{array}\right)
+\end{eqnarray}
+Therefore, we have the orthogonal matrix $$\bs{P} = \left(\begin{array}{ccc}
+      \frac{2}{\sqrt{5}} & -\frac{2}{\sqrt{45}} & \frac{1}{3} \\[0.2cm]
+      0 &  \frac{5}{\sqrt{45}} & \frac{2}{3}\\[0.2cm]
+      \frac{1}{\sqrt{5}} &  \frac{4}{\sqrt{45}} & -\frac{2}{3} \\
+    \end{array}\right).$$
+
+\vfill
+
+\newpage
+
+\section*{Question 6}
+
+(1) For any square matrix \(A\), \(A^2 \neq -I\). FALSE
+\newline
+Proof: 
+$$\left(\begin{array}{cc}
+      0 & -1 \\
+      1 & 0
+    \end{array}\right)^2 = 
+    \left(\begin{array}{cc}
+      -1 & 0 \\
+      0 & -1
+    \end{array}\right)$$
+\newline
+(2) For any square matrix \(A\), \(A = 0\) if and only if \(\text{adj}(A) = 0\). FALSE
+\newline
+$$A = \left(\begin{array}{ccc}
+      1 & 1 & 1\\
+      2 & 2 & 2 \\
+      3 & 3 & 3 \\
+    \end{array}\right) \implies \text{adj}(A) = 
+    \left(\begin{array}{ccc}
+      0 & 0 & 0\\
+      0 & 0 & 0\\
+      0 & 0 & 0\\
+    \end{array}\right)$$
+Thus, adj$(A) = 0 \not\implies A = 0$ 
+\newline
+\newline
+(3) For any \(m \times n\) matrix \(A\), if \(\{v_1, \ldots, v_k\}\) is linearly independent in \(\mathbb{R}^n\) and \(A v_i \neq 0\) for all \(i\), then \(\{A v_1, \ldots , A v_k\}\) is linearly independent in \(\mathbb{R}^m\). FALSE
+\newline
+Proof: Suppose,
+$$\{v_1, v_2\} = \{(1, 0)^\top, (0, 1)^\top\}, A = 
+\left(\begin{array}{cc}
+      1 & 1\\
+      1 & 1
+    \end{array}\right)$$
+Clearly $Av_1 = Av_2 = (1, 1)^\top \neq 0$. But since $Av_1 = Av_2$, they are no longer independent.
+\newline
+\newline
+(4) For any subspace \(V\) of \(\mathbb{R}^n\), \((V^\perp)^\perp = V\), where \(V^\perp = \{v \in \mathbb{R}^n \,|\, v \text{ is orthogonal to } V\}\). TRUE
+\newline
+Proof: Let \(V\) be a subspace of \(\mathbb{R}^n\), and let \(v \in V\). We want to show that \(v \in (V^\perp)^\perp\).
+By definition, any vector \(r \in \mathbb{R}^n\) is orthogonal to all vectors of \(V^\perp\), and therefore belongs to \((V^\perp)^\perp\). Thus, \(r \in (V^\perp)^\perp\) for any \(r \in V\). Thus,
+$$V \subseteq (V^\perp)^\perp$$
+Now, choose any vector \(t\) in \((V^\perp)^\perp \subseteq \mathbb{R}^n\). Since \(\mathbb{R}^n\) is finite-dimensional and \(V\) is a subspace we use the following property: $\mathbb{R}^n = V \bigoplus V^\perp$. Thus, \(t\) can be decomposed as:
+\[ t = r + s \]
+where \(r \in V\) and \(s \in V^\perp\).
+We have that:
+\[ \langle t, s \rangle = \langle r + s, s \rangle = \langle r, s \rangle + \langle s, s \rangle \]
+Because \(t\), being in \((V^\perp)^\perp\), is orthogonal to all elements of \(V^\perp\), \(\langle t, s \rangle = 0\). Moreover, \(r\), being in \(V\), is orthogonal to all elements of \(V^\perp\), so \(\langle r, s \rangle = 0\). Therefore:
+\[ \langle s, s \rangle = \langle t, s \rangle - \langle r, s \rangle = 0 \]
+By the definiteness property of the inner product, this implies that \(s = 0\). Therefore, \(t = r \in V\). Thus, we have proved that the initial assumption that \(t \in (V^\perp)^\perp\) implies that \(t \in V\). In other words:
+\[ (V^\perp)^\perp \subseteq V \quad (1) \]
+By putting the inclusion relations (1) and (2) together, we obtain:
+\[ (V^\perp)^\perp = V \]
+Hence, we have shown that for any subspace \(V\) of \(\mathbb{R}^n\), \((V^\perp)^\perp = V\).
+\newline
+\newline
+(5) For any square matrix \(A\) of order \(n\) and \(u,v \in \mathbb{R}^n\), \((Au) \cdot v = u \cdot (Av)\). FALSE
+\newline
+Proof: Suppose,
+$$\{u, v\} = \{(1, 0)^\top, (0, 1)^\top\}, A = 
+\left(\begin{array}{cc}
+      1 & 1\\
+      0 & 1
+    \end{array}\right)$$
+Clearly,
+$$(Au) \cdot v = (1, 0)^\top \cdot (0, 1)^\top = 0$$ 
+However,
+$$u \cdot (Av) = (1, 0)^\top \cdot (1, 1)^\top = 1$$ 
+\newline
+\newline
+(6) If \(AB = BA\), and \(v\) is an eigenvector of \(B\), then \(Av\) is also an eigenvector of \(B\). TRUE
+\newline
+Proof: Let \(v\) be an eigenvector of \(B\) with corresponding eigenvalue \(\lambda\), i.e., \(Bv = \lambda v\). Then, pre-multiplying both sides by \(A\) gives \(A(Bv) = A(\lambda v)\), which simplifies to \(ABv = \lambda Av\). Since \(AB = BA\), we can further simplify this to \(\lambda Av = B(Av)\), which implies that \(Av\) is an eigenvector of \(B\) with the same eigenvalue \(\lambda\).
+\newline
+\newline
+(7) If \(A\) is diagonalizable, then there exists a matrix \(B\) such that \(B^3 = A\). TRUE
+\newline
+Proof: Suppose \(A\) is diagonalizable, which means it can be diagonalized as \(A = PDP^{-1}\), where \(D\) is a diagonal matrix and \(P\) is an invertible matrix formed by the eigenvectors of \(A\). Let \(B = P\Gamma P^{-1}\), where \(\Gamma\) is the diagonal matrix with \(\Gamma_{ii} = D_{ii}^{1/3}\). In other words, \(D_{ii}^{1/3}\) is the cube root of the \(i\)-th diagonal element of \(D\).
+Then, \(\Gamma^3 = D\), and hence:
+\[B^3 = (P\Gamma P^{-1})(P\Gamma P^{-1})(P\Gamma P^{-1}) = P\Gamma^3 P^{-1} = PD P^{-1} = A.\]
+We have shown that if \(A\) is diagonalizable, then there exists a matrix \(B\) (\(B = P\Gamma P^{-1}\)) such that \(B^3 = A\).
+\newline
+\newline
+(8) For any square matrix \(A\), there exist invertible matrices \(P\) and \(Q\) such that \(P^{-1}AQ\) is a diagonal matrix. FALSE
+\newline
+Proof: This statement is false for any nilpotent matrix A (s.t. $A \neq 0; A^n = 0; \text{ some } n $. Let us assusme that A is diagonalizable as above i.e., for some diagonalizable matrix $D$, we have invertible matrices $P$ and $Q$ such that:
+$$P^{-1} A Q = D \implies A = P D Q^{-1} \neq 0 \implies |D| \neq 0$$
+Thus for $A^n = 0$,
+$$A^n = (P D Q^{-1})^n = P D Q^{-1} P D Q^{-1} \cdots P D Q^{-1} = 0 \implies |P D Q^{-1} P D Q^{-1} \cdots P D Q^{-1}| = |0|$$
+Since, $P$ and $Q$ are invertible, $|P| \neq 0; |Q| \neq 0$. Also as earlier, $|D| \neq 0$. But this would mean that:
+$$|P D Q^{-1} P D Q^{-1} \cdots P D Q^{-1} = |P| |D| |Q^{-1} ||P|| D|| Q^{-1} |\cdots |P|| D| |Q^{-1}| \neq 0$$
+which is a contradiction. An exmaple of such a matrix is:
+$$A = 
+\left(\begin{array}{cc}
+      0 & 1\\
+      0 & 0
+    \end{array}\right)$$
+\newline
+(9) If \(T : \mathbb{R}^n \rightarrow \mathbb{R}^m\) is a linear transformation, then \(\{T(v) \,|\, v \in V\}\) is a vector space for every subspace \(V\) of \(\mathbb{R}^n\). TRUE
+\newline
+Proof: Let \(V\) be a subspace of \(\mathbb{R}^n\), and let \(W = \{T(v) \,|\, v \in V\}\). To show that \(W\) is a vector space, we need to verify that it satisfies the vector space axioms.
+\begin{itemize}
+    \item Closure under addition: Let \(w_1, w_2 \in W\). Then, there exist \(v_1, v_2 \in V\) such that \(w_1 = T(v_1)\) and \(w_2 = T(v_2)\). Since \(V\) is a subspace, \(v_1 + v_2 \in V\), and by linearity of \(T\), \(T(v_1 + v_2) = T(v_1) + T(v_2) = w_1 + w_2\), which shows closure under addition.
+    \item Closure under scalar multiplication: Let \(w \in W\) and \(c\) be a scalar. There exists \(v \in V\) such that \(w = T(v)\). Since \(V\) is a subspace, \(cv \in V\), and \(T(cv) = cT(v) = cw\), demonstrating closure under scalar multiplication.
+    \item Contains zero vector: \(T(\mathbf{0}) = \mathbf{0}\), where \(\mathbf{0}\) is the zero vector in \(\mathbb{R}^m\), so \(W\) contains the zero vector.
+\end{itemize}
+Since \(W\) satisfies all vector space axioms, it is a vector space. 
+\newline
+\newline
+(10) If \(T : \mathbb{R}^n \rightarrow \mathbb{R}^m\) is a linear transformation, then \(\{v \in \mathbb{R}^n \,|\, T(v) \in V\}\) is a vector space for every subspace \(V\) of \(\mathbb{R}^m\). TRUE
+\newline
+Proof: Let \(V\) be a subspace of \(\mathbb{R}^m\), and let \(W = \{v \in \mathbb{R}^n \,|\, T(v) \in V\}\). Similar to the proof in (9), we need to verify that \(W\) satisfies the vector space axioms.
+\begin{itemize}
+    \item Closure under addition: Let \(v_1, v_2 \in W\), meaning \(T(v_1) \in V\) and \(T(v_2) \in V\). Since \(V\) is a subspace, \(T(v_1) + T(v_2) \in V\). By linearity of \(T\), \(T(v_1 + v_2) = T(v_1) + T(v_2)\), so \(T(v_1 + v_2) \in V\), implying \(v_1 + v_2 \in W\).
+    \item Closure under scalar multiplication: Let \(v \in W\) and \(c\) be a scalar. Since \(T(v) \in V\), \(cT(v)\) is also in \(V\) (because \(V\) is a subspace). By linearity of \(T\), \(T(cv) = cT(v)\), so \(T(cv) \in V\), showing that \(cv \in W\).
+    \item Contains zero vector: \(T(\mathbf{0}) = \mathbf{0}\), where \(\mathbf{0}\) is the zero vector in \(\mathbb{R}^m\), so \(\mathbf{0} \in V\), and consequently, \(\mathbf{0} \in W\).
+\end{itemize}
+Since \(W\) satisfies all vector space axioms, it is a vector space.
+
+\newpage
+
+\section*{Question 7}
+
+\textbf{(i)} Let $\lambda$ be an eigenvalue of matrix $A$. This means there exists a non-zero vector $\mathbf{v}$ such that $A\mathbf{v} = \lambda \mathbf{v}$. Taking the transpose of both sides gives:
+\[
+\begin{aligned}
+A\mathbf{v} &= \lambda \mathbf{v} \\
+\mathbf{v}^T A^T &= \lambda \mathbf{v}^T \\
+\mathbf{v}^T (-A) &= \lambda \mathbf{v}^T \quad \text{(Since } A^T = -A \text{)} \\
+-\mathbf{v}^T A &= \lambda \mathbf{v}^T \\
+\end{aligned}
+\]
+Multiplying both sides by $\mathbf{v}$ gives:
+\[
+-\mathbf{v}^T A \mathbf{v} = \lambda \mathbf{v}^T \mathbf{v}
+\]
+Since $\mathbf{v}^T A \mathbf{v}$ is a scalar (dot product of vectors), we have:
+\[
+-\mathbf{v}^T A \mathbf{v} = \lambda \|\mathbf{v}\|^2 \implies -\mathbf{v}^T \lambda \mathbf{v} = \lambda \|\mathbf{v}\|^2 \implies -\lambda \|\mathbf{v}\|^2= \lambda \|\mathbf{v}\|^2 \implies \lambda = 0
+\]
+\newline
+\textbf{(ii)} Assume that $A$ is diagonalizable. This means that there exists an invertible matrix $P$ and a diagonal matrix $D$ such that $A = PDP^{-1}$. In part i), we showed that the eigenvalues of $A$ must be 0. Thus $D = 0$. As a result, we have:
+$$A = PDP^{-1} = P0P^{-1} = 0$$
+
+
+\newpage
+
+\section*{Question 8}
+
+\textbf{(a)} Given that $AB = 0$. According to the Rank-Nullity Theorem, we know that $\text{rank}(A) + \text{nullity}(A) = n$ and $\text{rank}(B) + \text{nullity}(B) = n$, where $n$ is the order of the matrices. Since $AB = 0$, the null space of $A$ contains the column space of $B$, so:
+$$\text{colsp}(B) \subseteq \text{nullsp}(A) \implies \text{rank}(B) \leq\text{nullity}(A)$$
+$$\implies \text{rank}(A) + \text{rank}(B) \leq \text{rank}(A) + \text{nullity}(A) = n$$
+\newline
+\textbf{(b)}
+$$\text{colsp}(A + B) = \text{colsp}(A) + \text{colsp}(B) - \text{colsp}(A) \cap \text{colsp}(B)$$
+$$\implies \text{rank}(A + B) = \text{rank}(A) + \text{rank}(B) - \text{dim}(\text{colsp}(A) \cap \text{colsp}(B))$$
+$$\implies  \text{rank}(A) + \text{rank}(B) =  \text{rank}(A + B) + \text{dim}(\text{colsp}(A) \cap \text{colsp}(B))$$
+Also,
+Now, since $AB = BA$:
+$$\text{colsp}(AB) \subseteq \text{colsp}(B); \text{colsp}(BA) = \text{colsp}(AB) \subseteq \in \text{colsp}(A)$$
+$$\implies \text{colsp}(AB) \subseteq \text{colsp}(A) \cap \text{colsp}(B) \implies $$
+$$\text{rank}(AB) \leq \text{rank}(\text{colsp}(A) \cap \text{colsp}(B))$$
+Therefore,
+$$\text{rank}(A) + \text{rank}(B) \geq   \text{rank}(A + B) + \text{rank}(AB)$$
+\newline
+\textbf{(c)} This is called as Sylvester's inequality. We begin with the given inequality:
+\[
+\text{{rank}}(A) + \text{{rank}}(B) \leq \text{{rank}}(AB) + n.
+\]
+By subtracting \(2n\) from both sides and then multiplying by \(-1\), we obtain the equivalent inequality:
+\[
+(n - \text{{rank}}(A)) + (n - \text{{rank}}(B)) \geq n - \text{{rank}}(AB).
+\]
+In essence, this transformation aligns the terms to bring \(n\) to one side of the inequality, facilitating the subsequent reasoning. Now, let's interpret this inequality in the context of the . Applying the rank-nullity theorem to the inequality, we can interpret the terms as follows: \(n - \text{{rank}}(A)\) represents the dimension of the \text{{nullsp}} of matrix \(A\),  \(n - \text{{rank}}(B)\) represents the dimension of the \text{{nullsp}} of matrix \(B\), and \(n - \text{{rank}}(AB)\) represents the dimension of the \text{{nullsp}} of the product matrix \(AB\). Thus, the inequality:
+\[
+(n - \text{{rank}}(A)) + (n - \text{{rank}}(B)) \geq n - \text{{rank}}(AB)
+\]
+can be interpreted as asserting that the sum of the dimensions of the \text{{nullsp}}s of matrices \(A\) and \(B\) is greater than or equal to the dimension of the \text{{nullsp}} of matrix \(AB\). This interpretation aligns with the rank-nullity theorem. Intuitively, this interpretation is reasonable because vectors that are mapped to the zero vector by \(AB\) are either first mapped to zero by \(B\) or subsequently by \(A\). In other words, the \text{{nullsp}} of \(AB\) contains vectors that are in the \text{{nullsp}} of both \(B\) and \(A\).
+\newline
+To formalize this intuition, we consider the containment of \text{{nullsp}}s: \(\text{{nullsp}}(B) \subseteq \text{{nullsp}}(AB)\). This implies that the vectors annihilated by \(B\) are also annihilated by \(AB\), which makes sense since \(B\) operates first. If we restrict the action of \(B\) to the \text{{nullsp}} of \(AB\), denoting this restricted map as \(\tilde{B} : \text{{nullsp}}(AB) \to \mathbb{R}^n\), it's evident that \(\text{{nullsp}}(\tilde{B}) = \text{{nullsp}}(B)\) since \(\tilde{B}\) behaves the same as \(B\) on the \text{{nullsp}} of \(AB\).
+\newline
+Since the image of \(\tilde{B}\) is contained in the \text{{nullsp}} of \(A\) due to the definition of the \text{{nullsp}} of \(AB\), we can conclude that \(\text{{rank}}(\tilde{B}) \leq \text{{nullsp}}(A)\). Finally, applying the rank-nullity theorem to \(\tilde{B}\) yields:
+\[
+\text{{nullity}}(AB) = \text{{nullity}}( \tilde{B}) + \text{{rank}}(\tilde{B}) \leq \text{{nullity}}(B) + \text{{nullity}}(A),
+\]
+which establishes the desired result.
+
+
+
+\vfill
+
+\begin{center}{\bf END OF DOCUMENT}\end{center}
+\end{document}
