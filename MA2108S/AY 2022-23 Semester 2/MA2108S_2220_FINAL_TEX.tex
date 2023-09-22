@@ -1,0 +1,173 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts, amssymb, amsthm, amsmath}
+\usepackage{geometry}
+\geometry{margin=1in}
+\newcommand{\qedwhite}{\hfill \ensuremath{\Box}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[proposition]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+
+\title{MA2108S AY 22/23 Finals}
+\author{Contributor: Teoh Tze Tzun \ \ \ Proofreader: Kek Yan Xin}
+\date{May 2023}
+
+\begin{document}
+\maketitle 
+
+\paragraph{Question 1(a)} Let $\{a_n\}$ be a sequence of real numbers. Suppose that $\sum a_n$ is absolutely convergent. For a real number $p \geq 1$, show that $\sum a_n^p$ is also absolutely convergent. \\
+\textit{Proof 1.} We shall first use induction to show that if $a_n\geq0$ for each $n$, then $\sum a_n^p \leq \left(\sum a_n \right)^p$. We shall prove the base case of $n = 2$. (The statement is trivially true for $n=1$.) 
+We can safely assume that $a_1, a_2 > 0$ (if $a_1 = 0$ or $a_2 = 0$, we have the case of $n=1$),
+\begin{align*}
+    a_1^p + a_2^p &\leq (a_1 + a_2)^p \\
+   \iff 1 + \left(\frac{a_2}{a_1}\right)^p &\leq \left(1 + \frac{a_2}{a_1}\right)^p 
+\end{align*}
+One can substitute $x = a_2/a_1$ and use differentiation to prove that the last inequality holds. As such, the case of $n = 2$ has been proven. \\
+Now, suppose the statement holds for some $n = k$, where $k$ is some positive integer. Then, 
+\begin{align*}
+    \sum_{i=1}^{k+1} a_i^p &\leq \left( \sum_{i=1}^k a_i \right)^p + a_{k+1}^p \\
+    &\leq \left( \sum_{i=1}^{k+1} a_i \right)^p \ \ \ \text{by case of $n=2$}.
+\end{align*}
+With this property, we then have
+$$ \sum_{i=1}^n |a_i|^p \leq \left( \sum_{i=1}^n |a_i| \right)^p, $$
+for all positive integers $n$. Since $\sum |a_n|$ is convergent, we have $\left( \sum_{i=1}^n |a_i| \right)^p$ to be a convergent sequence of nonnegative terms i.e. nondecreasing and bounded above. As $\sum_{i=1}^n |a_i|^p$ is a sum of nonnegative terms and is bounded above and therefore convergent as desired. \bigskip
+
+\noindent\textit{Proof 2.} Since $\sum a_n$ is absolutely convergent, we must have $|a_n|\to 0$. Hence, for some natural number $N$, we have, for $n\geq N$,
+\begin{align*}
+    |a_n| < 1\implies |a_n^p| = |a_n|^p \leq |a_n|.
+\end{align*}
+Since $\sum a_n$ is absolutely convergent and $|a_n^p|\leq|a_n|$ for $n\geq N$, by the comparison test, $\sum a_n^p$ is absolutely convergent.
+
+\pagebreak
+
+\paragraph{Question 1(b)} Suppose that $\sum a_n$ is convergent, is $\sum a_n^2$ necessarily convergent? If it has to be convergent, prove the statement. Otherwise, find a counterexample. \\
+\textit{Proof 1.} The statement is false. Let $a_n = (-1)^{n-1}\frac{1}{\sqrt{n}}$. It is well known that $\sum a_n^2$ diverges (harmonic series). We shall show that $\sum a_n$ does indeed converge. Let $m, n$ be positive integers $n < m$. We shall only consider the case where $m - n$ is odd (we can always increase $m$ by one if $m - n$ is even and the inequality below would still hold with minor modifications to the first line). Since $m - n$ is odd, we can pair the terms and have
+\begin{align*}
+    \left| \sum_{i=n}^m \frac{(-1)^{i-1}}{\sqrt{i}} \right| &= \left| \sum_{i=n}^{(m-n+1)/2} \left[ \frac{(-1)^{i-1}}{\sqrt{i}} + \frac{(-1)^{i}}{\sqrt{i+1}} \right] \right| \\
+    &= \left| \sum_{i=n}^{(m-n+1)/2} \left(\frac{1}{\sqrt{i}} - \frac{1}{\sqrt{i+1}}\right) \right| \\
+    &= \left| \sum_{i=n}^{(m-n+1)/2} \frac{1}{\sqrt{i}\sqrt{i+1}(\sqrt{i} + \sqrt{i+1})} \right| \\
+    &\leq \left| \sum_{i=n}^{(m-n+1)/2} \frac{1}{\sqrt{i}\sqrt{i}(\sqrt{i} + \sqrt{i})} \right| \\
+    &\leq \frac{1}{2} \left| \sum_{i=n}^{(m-n+1)/2} \frac{1}{i^{3/2}} \right|
+\end{align*}
+As $\sum 1/n^{3/2}$ is known to be convergent, by the Cauchy criterion, for every $\varepsilon > 0$, there exists positive integers $n, m$ such that 
+$$\left| \sum_{i=n}^{(m-n+1)/2} \frac{1}{i^{3/2}} \right| < 2\varepsilon.$$
+This proves that $\sum a_n$ is convergent and the proof is complete. \\
+
+\noindent\textit{Proof 2.} The statement is false. Let $a_n = (-1)^{n-1}\frac{1}{\sqrt{n}}$. Then 
+\begin{align*}
+    |a_{n+1}| = \frac{1}{\sqrt{n+1}} < \frac{1}{\sqrt{n}} = |a_n|
+\end{align*}
+and $|a_n| = \frac{1}{\sqrt{n}}\to 0$, so by the alternating series test, $\sum a_n$ converges, while $\sum a_n^2 = \sum \frac{1}{n}$ diverges.
+
+\pagebreak
+
+\paragraph{Question 2} Suppose that $f: \mathbb{R} \to \mathbb{R}$ is a continuous function with the following property: \\
+For each $\varepsilon > 0$, there is $R > 0$ such that 
+$$ |f(x)| < \varepsilon \ \ \ \text{for all $|x| > R$}.$$
+For such a function, first answer whether the following statement are true or false. If the statement is true, prove it. Otherwise, find a counterexample. \\
+\linebreak
+a) The function $f$ must be bounded on $\mathbb{R}$. \\
+\linebreak
+\textit{Proof.} Fix $\varepsilon = 1$. Then, there exists $R$ such that for all $|x| > R$, $|f(x)| < 1$. As f is continuous on the compact domain $[-R, R]$, there exists $a, b \in [-R, R]$ such that $f(a) \geq f(x)$ and $f(x) \leq f(x)$ for all $x \in [-R, R]$. Thus, $|f(x)| \leq \max\{|f(a)|, |f(b)|, 1\}$ and thus bounded. \\
+\linebreak
+b) The function $f$ must be uniformly continuous on $\mathbb{R}$. \\
+\linebreak
+\textit{Proof.} Let $\varepsilon > 0$, then there exists $R$ such that for all $|x| > R$, $|f(x)| < \varepsilon/2$. As $[-R, R]$ is compact and $f$ is continuous, $f$ is thus uniformly continuous on $[-R, R]$. \\
+\linebreak
+Therefore, if $x, y \in [-R, R]$, then there exists $\delta_1 > 0$ such that $|f(x) - f(y)| < \varepsilon/2$ for $|x-y|<\delta_1$. \\
+If $x, y \not\in[-R, R]$, then $|f(x) - f(y)| \leq 
+|f(x)| + |f(y)| < \varepsilon$. \\
+By continuity of $f$ at $x=R$, there exists $\delta_2 > 0$ such that for all $z$ where $|z - R| < \delta_2$, $|f(z) - f(R)| < \varepsilon / 2$. \\
+Similarly, if $x = -R$, there exists $\delta_3$ such that $|f(z) - f(-R)| < \varepsilon / 2$ whenever $|z + R| < \delta_3$. \\
+\linebreak
+Let $\delta = \min\{\delta_1, \delta_2, \delta_3, 2R\}$. Let $x,y\in\mathbb{R}$ such that $|x-y|<\delta$ and $|x|\leq |y|$ wlog. If $x,y\in [-R,R]$, then $|x-y|<\delta_1$ implies $|f(x)-f(y)|<\varepsilon$. If $x,y\notin [-R,R]$, we are done. Since $|x|\leq |y|$, this leaves the case $|x|\leq R, |y|>R$. 
+
+Suppose $x, y \geq 0$. Then we have $x \leq R < y$. Since $|x-y|<\delta_2$, we have $|x-R|<\delta_2$ and $|y-R|<\delta_2$, so that
+\begin{align*}
+    |f(x)-f(R)|&<\frac{\varepsilon}{2},\\
+    |f(R)-f(y)|&<\frac{\varepsilon}{2}.
+\end{align*}
+Then
+\begin{align*}
+    |f(x) - f(y)| &\leq |f(x) - f(R)| + |f(y) - f(R)| \\
+    &< \frac{\varepsilon}{2} + \frac{\varepsilon}{2} \\
+    &= \varepsilon.
+\end{align*}
+The case of $x,y\leq 0$ is similar, and so are the cases $x\geq 0, y\leq 0$ and $x\leq 0, y\geq 0$. This completes the proof that $f$ is uniformly continuous on $\mathbb{R}$. \\
+\linebreak
+c) There must be a point $\bar{x} \in \mathbb{R}$ such that 
+$$ f(\bar{x}) \geq f(x) \ \ \ \text{for all $x \in \mathbb{R}$}. $$
+\linebreak
+\textit{Counterexample.} Consider $f(x) = -e^{x^2}$. When $|x| > \sqrt{\ln \varepsilon}$, we have $f(x) < \varepsilon$. Yet, $\sup_{x\in\mathbb{R}} f(x) = 0$ and there does not exist $\bar{x}$ such that $f(\bar{x}) = 0$.
+
+\pagebreak
+
+\paragraph{Question 3} A function $f : \mathbb{R} \to \mathbb{R}$ is convex if it has the following property: \\
+For any $x, y \in \mathbb{R}$ and $t \in [0, 1]$, we have
+$$ f(tx + (1-t)y) \leq tf(x) + (1 - t)f(y). $$
+a) For a convex function $f : \mathbb{R} \to \mathbb{R}$, if it is differentiable at 0 with $f'(0) = 0$, show that $f(x) \geq f(0)$ for all $x \in \mathbb{R}$. \\
+\textit{Proof.} Let us consider the case when $x > 0$ (the case for $x < 0$ is similar). Let $0<\varepsilon<x$. Using the definition of convex, we have 
+\begin{align*}
+    f(\varepsilon) &\leq \frac{\varepsilon}{x}f(x) + \left(1-\frac{\varepsilon}{x}\right)f(0) \\
+    \frac{f(\varepsilon) - f(0)}{\varepsilon} &\leq \frac{f(x) - f(0)}{x}
+\end{align*}
+Using the definition of derivatives and taking limits as $\varepsilon \to 0^+$, we have
+$$ \frac{f(x) - f(0)}{x} \geq 0 \Rightarrow f(x) \geq f(0). $$
+b) For a convex function $f : \mathbb{R} \to \mathbb{R}$, suppose that is is twice differentiable on $\mathbb{R}$ with a continuous second derivative $f''$, show that is derivative $f'$ is monotone. \\
+\textit{Proof.} We shall use the following result from (\textit{Rudin 3rd Edition: Chapter 5 Q23}): \\
+Let $f$ be convex on $(a, b)$ and $a < s < t < u < b$, then
+$$ \frac{f(t) - f(s)}{t - s} \leq \frac{f(u) - f(s)}{u - s} \leq \frac{f(u) - f(t)}{u - t}. $$
+Let $x, q, y \in \mathbb{R}$ and $x < q < y$. We shall now show that 
+$$ f'(x) \leq \frac{f(q) - f(x)}{q - x}. $$
+Let $r \in \mathbb{R}$ and $x < r < q$. Using the first result, we have 
+\begin{align*}
+    \frac{f(r) - f(x)}{r - x} &\leq \frac{f(q) - f(x)}{q - x} \\
+    \lim_{r \to x^+} \frac{f(r) - f(x)}{r - x} &\leq \frac{f(q) - f(x)}{q - x} \\
+    f'(x) &\leq \frac{f(q) - f(x)}{q - x}
+\end{align*}
+Using a similar argument, we have 
+$$ f'(y) \geq \frac{f(y) - f(q)}{y - q}. $$
+By applying the first result once more, we have
+$$ f'(x) \leq \frac{f(q) - f(x)}{q - x} \leq \frac{f(y) - f(x)}{y - x} \leq \frac{f(y) - f(q)}{y - q} \leq f'(y). $$
+
+\pagebreak
+
+\paragraph{Question 4} In this question, let $f$ be a Riemann integrable function on [0, 1] with $\int_0^1 f(x) = 1$. Define $F$ as 
+$$ F(x) = \int_0^x f(t) \ dt \ \text{for all } x \in [0, 1]$$
+a) Can we always find a point $x \in [0, 1]$ such that $F(x) = \left(x - \frac{1}{2}\right)^2$ ? \\
+\textit{Solution.} Yes we can. Let 
+$$ g(x) = F(x) - \left(x - \frac{1}{2}\right)^2. $$
+Then, note that $g(0) = -\frac{1}{4}<0$ and $g(1) = \frac{3}{4}>0$. Since $F(x)$ is continuous on [0, 1] by the Fundamental Theorem of Calculus, we know $g(x)$ is continuous on [0,1], so by the Intermediate Value Theorem (IVT), there exists $x \in (0, 1)$ such that $g(x) = 0$ i.e. $F(x) = \left(x - \frac{1}{2}\right)^2$. \\
+\linebreak
+b) If $f$ is continuous and $f(x) \neq 0$, show that $F$ is injective (one-to-one) on $(0, 1)$. \\
+\textit{Solution.} Since $f(x) \neq 0$ and $f$ is continuous, by IVT, it is clear that either $f(x) < 0$ or $f(x) > 0$ for all $x \in [0, 1]$. Since $\int_0^1 f(x) \ dx = 1$, we must then have $f(x) > 0$. We shall now show that $f$ is strictly increasing on $[0, 1]$. Let $x, y \in [0, 1]$ and $y > x$. Then, 
+\begin{align*}
+    F(y) - F(x) &= \int_0^y f(t) \ dt - \int_0^x f(t) \ dt \\
+                &= \int_{x}^y f(t) \ dt \\
+                &> 0
+\end{align*}        
+This proves that $F$ is strictly increasing on $[0, 1]$ and thus injective on [0,1]. \\
+\linebreak
+c) Under the same assumption in b), show that we can find a function $g:[0, 1] \to [0, 1]$ that is continuous on $[0, 1]$ and differentiable on $(0, 1)$ such that $g(F(x)) = x$ for all $x \in [0, 1]$. \\
+\textit{Solution.} $F$ is injective on [0,1] as shown in (b). As $F(0) = 0$, $F(1) = 1$ and $F$ is continuous, it is clear by IVT that $F$ is surjective with range $[0, 1]$. $F$ is thus invertible and there exists a function $g: [0, 1] \to [0, 1]$ such that $g(x) = F^{-1}(x)$. \\
+\linebreak
+To show that $g$ is continuous, we shall first prove a lemma. \\
+\textit{Lemma:} Let $h:K \to B$, where $K$ is compact and $h$ is continuous and invertible. Then, $h^{-1}$ is continuous. \\
+\textit{Proof.} Let $V$ be an open set in $K$. It suffices to show that $(h^{-1})^{-1}(V) = h(V)$ is open in $B$. To see that, note that $h(V^c \cap K)$ is compact (since $V^c$ is closed, $K$ is compact and $h$ is continuous), thus closed. As $h$ is bijective, $h(V) = [h(V^c)]^c = [h(V^c \cap K)]^c$, thus $h(V)$ is open, and the proof is complete. \\
+Since $[0, 1]$ is compact, we can use this lemma with $h=F$ to conclude that $g=F^{-1}$ is continuous on [0,1]. \\
+\linebreak
+To show that $g$ is differentiable on $(0, 1)$, let $y \in (0, 1)$ and define a sequence $\{y_n\}_{n=1}^\infty$ such that $y_n \in (0, 1)$, $y_n \neq y$ for all $n \in \mathbb{Z}^+$ and $y_n \to y$ as $n \to \infty$. As $F$ is bijective, it follows that for each $n$, there is a unique $x_n$ such that $F(x_n) = y_n$, and a unique $x$ such that $F(x)=y$. Note that since $y_n\to y$ and $F^{-1}$ is continuous, we have $x_n\to x$. Note also that $F'(x)>0$ on (0,1) since $F$ is strictly increasing. Now, we will show that the following limit exists:
+\begin{align*}
+    \lim_{r \to y} \frac{g(r) - g(y)}{r - y} &= \lim_{n \to \infty} \frac{g(y_n) - g(y)}{y_n - y} \ \ \ \text{by continuity of }g\\
+    &= \lim_{n \to \infty} \frac{x_n - x}{F(x_n) - F(x)} \\
+    &= \lim_{n \to \infty} \left( \frac{F(x_n) - F(x)}{x_n - x} \right)^{-1} \\
+    &= \lim_{r \to x} \left( \frac{F(r) - F(x)}{r - x} \right)^{-1} \\
+    &= \frac{1}{F'(x)}.
+\end{align*}
+This proves that $g$ is differentiable on $(0, 1)$.
+
+\end{document}
