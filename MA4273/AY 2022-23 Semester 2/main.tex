@@ -1,0 +1,224 @@
+\documentclass{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{tikz-cd}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\mf}{\mathfrak}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\OO}{\mathcal{O}}
+
+%\setlength\parindent{0pt}
+
+\title{MA4273 - Algebraic Geometry of Curves and Surfaces \\Suggested Solutions}
+\author{(Semester 2, AY2022/2023)}
+\date{Written by: Chow Boon Wei}
+
+\begin{document}\maketitle
+
+\subsection*{Question 1}
+We are given that $X$ is affine and $f\in \mathcal{O}(U)$.
+So, for each $p\in U$, there exists an open neighborhood $V_p$ of $p$ and $g_p,h_p\in \mathcal{O}(X)$ 
+such that $h_p\big|_{V_p} \in \mathcal{O}(V_p)^\times = \emptyset$ and $f=\frac{g_p}{h_p}$ on $U$. 
+Now, $V_p$ is open in $U$ and so is open in $X$. Since $X$ is irreducible, $V_p$ is dense in $X$. 
+Without loss of generality, we may assume that $\gcd(h_p,g_p)=1$. 
+Let $q\in U$ be another point. Similarly, $V_q$ is also dense in $X$. So, $V_p \cap V_q \neq \emptyset$. 
+Then, $f=\frac{g_p}{h_p}=\frac{g_q}{h_q}$ on $V_p \cap V_q$. 
+Therefore, $h_qg_p=g_qh_p$ on $V_p \cap V_q$. Since $h_p$ does not divide $g_p$ and 
+$h_q$ does not divide $g_q$, we see that $h_p$ divides $h_q$ and $h_q$ divides $h_p$. So, $h_p = \lambda h_q$ 
+for some $\lambda \in k^\times$. This means that $h_p$ and $h_q$ have the same vanishing locus. So, 
+$h_p\big|_{V_p \cup V_q} \in \mathcal{O}(V_p \cup V_q)^\times$ and 
+$h_q\big|_{V_p \cup V_q} \in \mathcal{O}(V_p \cup V_q)^\times$.
+A similar argument shows that we have $g_p = \lambda g_q$. Now, on $V_p \cup V_q$, we have 
+$\frac{g_p}{h_p} = \frac{\lambda g_q}{\lambda h_q} = \frac{g_q}{h_q}$.
+So, $f = \frac{g_p}{h_p} = \frac{g_p}{h_p}$ has the same ratio on $V_p \cup V_q$. 
+Since $p,q$ is arbitrary, $f=\frac{g}{h}$ for some $g,h \in \mathcal{O}(X)$ with 
+$h\big|_U \in \mathcal{O}(U)^\times$. 
+\subsection*{Question 2}
+The restriction map is a morphism of rings. So, we just need to show that it is also an isomorphism of 
+rings. To do so, it suffices to show that it is bijective. 
+
+First, we shall show surjectivity. 
+Given an $f\in \mathcal{O}(U)$, the result of question $1$ tells us that $f=\frac{g}{h}$ for 
+some $f,g\in \mathcal{O}(X)$ with $g\big|_U \in \mathcal{O}(U)^\times$. Hence, the zero set of $h$ 
+is a subset of $Y$. Suppose for the sake of contradiction that $h \notin \mathcal{O}(X)^\times$.
+Let $\ell$ be an irreducible factor of $h$. Then, the zero set of $\ell$ is 
+contained in the zero set of $h$ which is in turn contained in $Y$. Now, this means that the 
+zero set of $\ell$ has codimension at least $2$. But, this is not possible because the zero set 
+of $\ell$ is a hypersurface and should have codimension $1$. So, we must have $h \in \mathcal{O}(X)^\times$. 
+Thus, we can extend $f=\frac{g}{h}$ to a regular function $F=\frac{g}{h}$on $X$. 
+
+Next, we shall show injective. Recall that $X$ is irreducible as a topological space. 
+Since $U$ is open in $X$, we see that $U$ is also dense in $X$. Thus, this map is injective because any 
+$f\in \mathcal{O}(U)$ is the restriction of a unique $F\in \mathcal{O}(X)$. 
+
+\subsection*{Question 3}
+Let $X$ be a pre-algebraic set such that $\OO(X)$ is a finitely generated $k$ algebra. 
+Then, we have a $k$ algebra homomorphism $\psi: k[x_1,\dots,x_n] \twoheadrightarrow \OO(X)$ for some $n\in\N$.  
+So, we have $\OO(X) \cong k[x_1,\dots,x_n] / I$ where $\ker(\psi) = I \subset k[x_1,\dots,x_n]$. 
+Consider an open affine cover $\{U_i\}_{i\in I}$ of $X$. 
+For each $i\in I$, we have a map $\OO(X) \to \OO(U_i)$ by restriction of the regular functions. 
+This defines a morphism $\phi_i: U_i \to Z(I)$. 
+Now, we will glue these morphisms together to get a morphism $X \to Z(I)$. 
+Let $i,j\in I$ be fixed. Take any $F\in \OO(X)$. Now, restriction of $F$ to $U_i$ 
+and then to $U_i \cap U_j$ is the same as restriction of $F$ to $U_j$ and then to 
+$U_i \cap U_j$. Therefore, the maps $\phi_i$ and $\phi_j$ agree when restriction to 
+the set $U_i \cap U_j$. Thus, the morphisms $\{\phi_i\}_{i\in I}$ glue to give a morphism 
+$\phi: X \to Z(I)$. Give the affine algebraic set $Z(I)$ the name $X^{\textrm{aff}}$. 
+
+Let $Y$ be another affine algebraic set and $f: X \to Y$ be a morphism. 
+Then, any $G \in \OO(Y)$ gives rise to an $f_*(G) \in \OO(X)$. This gives us a map 
+$\OO(Y) \to \OO(X)$ which induces a map $f^{\textrm{aff}}: X^{\textrm{aff}} \to Y$ 
+since $Y$ and $X^{\textrm{aff}}$ is defined by $\OO(X)$. To see that the diagram 
+commutes, we check locally. Let $U \subset X$ be any affine open subset of $X$. 
+Then, $f^{\textrm{aff}} \circ \phi$ is given by pullback of a regular function from $\OO(Y)$ to $\OO(X)$ 
+and then restricting to $\OO(U)$. But, this is the same as the pullback of a regular function by $f\big|_{U}$. 
+Therefore, the morphisms $f^{\textrm{aff}} \circ \phi$ and $f$ agree on any affine open $U \subset X$. 
+Hence, we have $f = f^{\textrm{aff}} \circ \phi$ which shows that the diagram commutes. 
+
+Finally, the same argument shows that the morphism $f^{\textrm{aff}}$ is unique. 
+To see this, let $G: X^{\textrm{aff}} \to Y$ be another such morphism making the diagram commute. 
+Then, by restricting to any open affine subset $U\subset X$, we see that 
+$G \circ \phi \big|_U = f \big|_U = f^{\textrm{aff}} \circ \phi \big|_U$. 
+Therefore, both of these maps induce the same map $\OO(Y) \to \OO(U)$. This means that 
+the restriction of $G_*: \OO(Y) \to \OO(X)$ and $f^{\textrm{aff}}_*: \OO(Y) \to \OO(X)$ 
+are the same when restricted to any open affine $U\subset X$. So, we have $G=f^{\textrm{aff}}$ which 
+gives us uniqueness. 
+
+\subsection*{Question 4}
+Let $X$ be a separated pre-algebraic set. Let $U,V$ be affine open subsets of $X$. 
+We want to show that $U \cap V$ is also an affine open subset of $X$. 
+It is clear that $U \cap V$ is open in $X$. We just have to show that it is affine. 
+Since $X$ is separated, the image of the diagonal morphism $\Delta: X \to X \times X$ is closed. 
+Therefore, the preimage of $U \times V$ under the diagonal morphism is $U \cap V$. 
+Now, diagonal morphism restricted to $U \cap V$ gives an isomorphism onto its image $U \times V$. 
+Therefore, it suffices to show that $U \times V$ is affine. But $U \times V$ is affine 
+because the (fibered) product of affine sets is affine. 
+
+\subsection*{Question 5}
+Consider the affine plane with double origin. Let $U$ and $V$ the two copies of $\A^2_k$ in $X$. 
+Then, it is clear that $U$ and $V$ are both affine open subsets. 
+But, $U \cap V = \A^2_k \backslash \{(0,0)\}$ is not affine. 
+%See corollary 3.2.24
+ 
+\subsection*{Question 6}
+Let $E=Z_h(y^2z-x^3+xz^2) \subset \PP^2_k$. 
+Eisenstein's criterion applied to $$y^2z-x^3+xz^2 = -x^3+y^2z+xz^2 \in k[y,z][x] = k[x,y,z]$$ 
+with the prime $z\in k[y,z]$ tells us that $y^2z-x^3+xz^2$ is irreducible. 
+Then, we see that $E$ is a projective curve. To show that $E$ is nonsingular, 
+we shall reduce to the affine case and use the Jacobian criterion. 
+Consider the affine piece $U_1 = \PP^2_k \backslash Z_h(z)$. Then, we have 
+$E \cap U_1 \cong Z(y^2-x^3+x) \subset \A^2_k$. Let $f = y^2-x^3+x \in k[x,y]$. Then, 
+$$
+J_f(x,y) 
+= 
+\begin{pmatrix}
+    f_x(x,y)
+    &f_y(x,y)
+\end{pmatrix}
+= 
+\begin{pmatrix}
+    -3x^2+1
+    &2y 
+\end{pmatrix}.
+$$
+If $y \neq 0$, the Jacobian has rank $1$ and so $(x,y)$ is not a singular point. 
+If $y = 0$, then $-x^3+x=0$. So, $x\in \{-1,0,1\}$ which means $-3x^2+1\neq 0$. 
+So, the Jacobian has rank $1$ and so $(x,y)$ is not a singular point. 
+Therefore, $f$ has no singular points in $U_1$. The only other possible singular point is 
+when $z=0$. But $z=0$ gives us $x=0$. So, the last point to check is $[0:1:0]$. 
+We can check this by reducing to the open piece $U_2 = \PP^2_k \backslash Z_h(y)$. 
+Then, we have 
+$E \cap U_2 \cong Z(z-x^3+xz^2) \subset \A^2_k$. Let $g = z-x^3+xz^2 \in k[x,z]$. Then, 
+$$
+J_g(0,0) 
+= 
+\begin{pmatrix}
+    g_x(0,0)
+    &g_z(0,0)
+\end{pmatrix}
+= 
+\begin{pmatrix}
+    1
+    &1 
+\end{pmatrix}
+$$ which has rank $1$. So, $[0:1:0]$ is not a singular point which completes the proof. 
+
+\subsection*{Question 7}
+Suppose for the sake of contradiction that $E$ is birational to $\PP^1_k$. 
+Since both $E$ and $\PP^1_k$ are nonsingular projective curves, 
+this isomorphism extends uniquely to an isomorphism. 
+Take $x,y,z$ to be the coordinates of $\PP^2_k$. 
+Then, $ E \cap U_3 = E \cap \PP^2_k \backslash Z(z) \cong Z(y^2-x^3+x) \subset \A^2_k$ is isomorphic 
+to a subset $V$ of $\PP^1_k$. However, when $z=0$, we have $y^2z-x^3+xz^2=-x^3=0$. Therefore, 
+$E \cap \PP^2_k \backslash Z(z) = E \backslash \{[0:1:0]\}$. This tells us that $V = \PP^1_k \backslash \{p\}$ 
+for some $p \in \PP^1_k$. But, $\PP^1_k \backslash \{p\} \cong \A^1_k$. This puts us in the affine case. 
+Thus, $Z(y^2-x^3+x)$ is isomorphic to $\A^1_k$. Hence, $\mathcal{O}(Z(y^2-x^3+x))$ and $\mathcal{O}(\A^1_k)$ 
+are isomorphic as rings. But, $\mathcal{O}(Z(y^2-x^3+x)) = A(Z(y^2-x^3+x)) = k[x,y]/(y^2-x^3+x)$ is 
+not a UFD and $\mathcal{O}(\A^1_k) = k[t]$ is a UFD. This is a contradiction. 
+
+\subsection*{Question 8}
+This is like the Veronese embedding.  
+Suppose that $[x:y:z]=[a:b:c] \in PP^2_k$, the $x=\lambda a$, $y=\lambda b$ and $z=\lambda c$ for some 
+$\lambda \in k^\times$. So,  
+$$
+x^2=\lambda^2a^2,xy=\lambda^2ab,xz=\lambda^2ac,y^2=\lambda^2b^2,yz=\lambda^2ac 
+\textrm{ and }
+z^2=\lambda^2c^2.
+$$ Hence, $[x^2:xy:xz:y^2:yz:z^2]=[a^2:ab:ac:b^2:ac:c^2]$ which shows that $\phi$ is well-defined. 
+
+To show that this is a morphism, it suffices to check on an open cover. 
+Naturally, we may pick the open cover $U_1 = \PP^2_k \backslash Z_h(x)$, 
+$U_2 = \PP^2_k \backslash Z_h(y)$ and $U_3 = \PP^2_k \backslash Z_h(z)$. 
+On $U_1 \cong \A^2_k$, we have $\phi(x,y) = [x^2:xy:x:y^2:y:1]$. 
+So, $\phi\big|_{U_1}$ is given by $6$ regular functions on $U_1 \cong \A^2_k$. 
+It is clear that these morphisms do not vanish simultaneously. 
+This tells us that $\phi\big|_{U_1}$ is a morphism $U_1 \to \PP^5_k$. 
+Similar arguments show that $\phi\big|_{U_2}$ and $\phi\big|_{U_3}$ are morphisms $U_2 \to \PP^5_k$ 
+and $U_3 \to \PP^5_k$. Therefore, $\phi: U \to \PP^5_k$ is a morphism. 
+
+Let $\phi([x:y:z]) = [x^2:xy:xz:y^2:yz:z^2]=[a^2:ab:ac:b^2:ac:c^2] = \phi([a:b:c]) \in \PP^5_k$ be given. 
+We cannot have $a=0,b=0$ and $c=0$ otherwise $[a:b:c]$ is not a point in $\PP^2_k$. 
+So, we either have $a \neq 0,b \neq 0$ or $c \neq 0$. Without loss of generality, suppose that $a\neq 0$. 
+Then, $a^2 \neq 0$. So, $x^2 = \lambda a^2$ for some $\lambda \in k^\times$. Hence, $\lambda = \frac{x^2}{a^2}$.
+Thus, $x = \frac{x}{a} a = \sqrt{\lambda} a$. If $b=0$, we get that $y^2 = \lambda^2b^2 = 0$. So, $y=0$. 
+If $b\neq 0$, then $y = \frac{y}{b} b = \sqrt{\lambda} b$. 
+Similarly, if $c=0$, we get that $z^2 = \lambda^2c^2 = 0$. 
+If $c\neq 0$, then $z = \frac{z}{c} c = \sqrt{\lambda} c$. 
+In any case, this means that $[x:y:z] = [a:b:c]$ which gives us injectivity. 
+\subsection*{Question 9} 
+We identify $\PP^5_k$ with the closed set $Z_h(b-d,f-h,c-g)$ where 
+$$
+\begin{bmatrix}
+    a &b  &c\\
+    d  &e &f\\
+    g  &h &i\\
+\end{bmatrix} 
+$$
+are the variables of $\PP^9_k$. Under this identification, we have 
+$$
+\phi([x:y:z]) = [x^2:xy:xz:y^2:yz:z^2] \cong  
+\begin{bmatrix}
+    x^2 &xy  &xz\\
+    xy  &y^2 &yz\\
+    xz  &yz  &z^2\\
+\end{bmatrix} 
+\cong  
+\begin{bmatrix}
+    x\\y\\z\\
+\end{bmatrix}
+\begin{bmatrix}
+    x &y &z\\
+\end{bmatrix}.
+$$ Hence, the image of $\phi$ are the "matrices" of rank one in $\PP^9_k$. 
+These are the matrices whose minors all have determinant zero. 
+So, the image of $\phi$ in $\PP^9_k$ is $$Z_h(ae-bd,af-cd,dh-eg,ei-fh,ah-bg,bi-ch,di-fg,af-cd,ai-cg).$$ 
+Thus, the image of $\phi$ in $\PP^6_k$ is $$ Z_h(ae-b^2,bf-ec,ei-f^2,af-bc,bi-fc,ai-c^2)$$ 
+which is closed in $\PP^6_k$. 
+
+\end{document}
