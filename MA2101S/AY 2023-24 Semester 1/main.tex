@@ -1,0 +1,290 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{xcolor}
+
+\title{MA2101S - Linear Algebra II (S) Suggested Solutions}
+\author{(Semester 1, AY2023/2024)}
+\date{Written by: Sarji Bona\\Audited by: Ikhoon Eom}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\nullity}{nullity}
+
+\begin{document}
+\maketitle
+
+\section*{Question 1}
+Let $F$ be a field, and let $V$ and $W$ be $F$-vector spaces (not necessarily finite dimensional). Let $T : V \to W$ be an $F$-linear map, and let $T^* : W^* \to V^*$ denote the transpose (or dual) of $T$, obtained by setting $T^*(g) := g \circ T$ for any $g \in W^*$. 
+\begin{enumerate}
+    \item[(a)] Show that $T$ is surjective if and only if $T^*$ is injective.
+    \item[(b)] Show that $T$ is injective if and only if $T^*$ is surjective.
+\end{enumerate}
+\textbf{Solution:} 
+\begin{enumerate}
+    \item[(a)] If $T$ is surjective, let $f, g \in W^*$ such that $T^*(f) = T^*(g)$. Then for all $v \in V$, $f(T(v)) = g(T(v))$. Since $(f - g)(T(v)) = 0$ for all $v \in V$ and $T$ is surjective, $(f - g)(w) = 0$ for all $w \in W$, implying $f = g$ and $T^*$ is injective. \\
+
+    If $T$ is not surjective, then $\im(T) \subsetneq W$. Extend a basis $\beta$ of $\im(T)$ to a basis $\beta \cup \beta'$ of $W$. Let $f \in W^*$ satisfying $f(w_i) = 0 \ \forall w_i \in \beta$ and $f(w_j) = 1 \ \forall w_j \in \beta'$. Note that $T^*(f) = 0$, but $f \ne 0$, so $T^*$ is not injective. \hfill  $\Box$
+    \item[(b)] If $T$ is injective, note that there exists a linear map $S : \im(T) \to V$ such that $S \circ T = \id_V$. Let $U$ be a subspace of $W$ such that $W = \im(T) \oplus U$. Fix $f \in V^*$, and let $g \in W^*$ satisfying $g(u) = 0 \ \forall u \in U$ and $g(w) = f(S(w)) \ \forall w \in \im(T)$. Then $(T^*(g))(v) = (g \circ T)(v) = g(T(v)) = f(S(T(v))) = f(v) \ \forall v \in V \Rightarrow T^*(g) = f$, hence, $T^*$ is surjective. \\
+
+    If $T^*$ is surjective, then $\im(T^*) = V^*$. For any $f \in V^*$, there exists $g \in W^*$ such that $f = T^*(g) = g \circ T$. So for all $v \in \Ker(T)$, $f(v) = 0$. Assume that there exists nonzero $v \in \Ker(T)$, then we can construct $f \in V^*$ such that $f(v) = 1$,  contradiction. Thus, $\Ker(T) = \{0\}$, implying that $T$ is injective. \hfill $\Box$
+    \end{enumerate}
+    
+\newpage
+
+\section*{Question 2}
+Let $F$ be a field, let $V$ be a finite dimensional $F$-vector space, and let $T \in \mathcal{L}(V)$ be an $F$-linear operator on $V$. Show that there exists a vector $v \in V$ with the following property: for any polynomial $f \in F[t]$, if $f(T)v = 0$ for in $V$, then $f(T) = 0$ in $\mathcal{L}(V)$. \\
+
+\noindent \textbf{Solution:} \\
+Let \[p_T(t) = (\phi_1(t))^{m_1}(\phi_2(t))^{m_2}\dots(\phi_k(t))^{m_k}\] be the minimal polynomial of $T$ where $\phi_1(t), \phi_2(t),\dots, \phi_k(t)$ are distinct irreducible monic polynomials and $m_1, m_2, \dots, m_k$ are positive integers. \\
+Then by the Primary Decomposition Theorem, we have \[V = \bigoplus_{i=1}^k W_i,\] where $W_i = \Ker(\phi_i(t)^{m_i})$ for all $i \in \{1, 2, \dots, k\}$, each of them being $T$-invariant. \\
+For each $i \in \{1, 2, \dots, k\}$, let $u_i \in W_i \ \backslash \ \Ker(\phi_i(t)^{m_i-1})$, and let $\displaystyle v = \sum_{i=1}^k u_i$. \\
+Let $f$ be any polynomial such that $f(T)v = 0$. Then $\displaystyle \sum_{i=1}^k f(T)u_i = 0$, implying $f(T)u_i = 0$ for all $i \in \{1, 2, \dots, k\}$. Note that for all $i \in \{1, 2, \dots, k\}$, the $T$-annihilator of $u_i$ is $\phi_i(t)^{m_i}$, so $\phi_i(t)^{m_i} \mid f(t)$. Thus, $p_T(t) \mid f(t)$, implying that $f(T) = 0$. \hfill $\Box$
+
+\newpage
+
+\section*{Question 3}
+Let $V$ be a $7$-dimensional $\mathbb{C}$-vector space, and let $T \in \mathcal{L}(V)$ be a linear operator on $V$, with Jordan canonical form \[
+\begin{pmatrix}
+    2 & 1 & 0 & & & & \\
+    0 & 2 & 1 & & & & \\
+    0 & 0 & 2 & & & & \\
+     & & & 2 & 1 & & \\
+     & & & 0 & 2 & & \\
+     & & & & & 3 & \\
+     & & & & & & 3
+\end{pmatrix}.
+\]
+For each eigenvalue $\lambda$ of $T$, we let $E_{\lambda}$ and $K_{\lambda}$ denote respectively the $\lambda$-eigenspace and the $\lambda$-generalized eigenspace of $T$, and we let $T|_{K_{\lambda}}$ denote the restriction of $T$ to $K_{\lambda}$. \\
+
+\noindent Determine, with as little computation as possible,
+\begin{enumerate}
+    \item[(a)] the characteristic polynomial of $T$; 
+\end{enumerate}
+and for each eigenvalue $\lambda$ of $T$:
+\begin{enumerate}
+    \item[(b)] the dimensions $\dim(E_{\lambda})$ and $\dim(K_{\lambda})$;
+    \item[(c)] the smallest $p \in \mathbb{Z}_{>0}$ such that $K_{\lambda} = \Ker(T|_{K_{\lambda}} - \lambda)^p$;
+    \item[(d)] the dimensions $\dim \Ker(T|_{K_{\lambda}} - \lambda)$, $\dim \Ker(T|_{K_{\lambda}} - \lambda)^2$, and $\dim \Ker(T|_{K_{\lambda}} - \lambda)^3$. 
+\end{enumerate}
+
+\noindent \textbf{Solution:}
+    \begin{enumerate}
+        \item[(a)] $\text{the characteristic polynomial of the JCF of } T = \mathbf{(t - 2)^5(t - 3)^2}$ 
+        \item[(b)] $\dim(E_2) = \text{number of Jordan blocks of eigenvalue 2} = \mathbf{2}$ \\
+        $\dim(E_3) = \text{number of Jordan blocks of eigenvalue 3} = \mathbf{2}$ \\
+        $\dim(K_2) = \text{number of times 2 appears in the diagonal of JCF} = \mathbf{5}$ \\
+        $\dim(K_3) = \text{number of times 3 appears in the diagonal of JCF} = \mathbf{2}$
+        \item[(c)] smallest $p$ for $K_2 = $ the size of the largest Jordan block corresponding to value $2 = \mathbf{3}$ \\
+        smallest $p$ for $K_3 = $ the size of the largest Jordan block corresponding to value $3 = \mathbf{1}$
+        \item[(d)] $\dim \Ker(T|_{K_2} - 2\id_V) = \dim(E_2) = \mathbf{2}$ \\
+        $\dim \Ker(T|_{K_3} - 3\id_V) = \dim(K_3) = \mathbf{2}$ \\
+        There are $2$ Jordan blocks of at least size $2$ and eigenvalue $2$, so \\
+        $\dim \Ker(T|_{K_2} - 2\id_V)^2 = \dim(E_2) + 2 = \mathbf{4}$ \\
+        $\dim \Ker(T|_{K_3} - 3\id_V)^2 = \dim(K_3) = \mathbf{2}$  \\
+        $\dim \Ker(T|_{K_2} - 2\id_V)^3 = \dim(K_2) = \mathbf{5}$ \\
+        $\dim \Ker(T|_{K_3} - 3\id_V)^3 = \dim(K_3) = \mathbf{2}$ \hfill $\Box$
+    \end{enumerate} 
+\newpage
+
+\section*{Question 4}
+Let $A \in \mathbb{M}_5(\mathbb{C})$ denote the $5 \times 5$ matrix \[
+A := \begin{pmatrix}
+    2 & 1 & 1 & 1 & 1 \\
+    0 & 2 & 0 & 0 & 1 \\
+    0 & 0 & 2 & 0 & 1 \\
+    0 & 0 & 0 & 2 & 1 \\
+    0 & 0 & 0 & 0 & 2
+\end{pmatrix}.
+\]
+Determine a Jordan canonical form $J \in \mathbb{M}_5(\mathbb{C})$ of $A$, as well as an invertible matrix \\
+$Q \in \mathrm{GL}_5(\mathbb{C})$ such that $Q^{-1}AQ = J$. \\
+
+\noindent \textbf{Solution:} Note that $2$ is the only eigenvalue of $A$. We see that \[A - 2I = \begin{pmatrix}
+    0 & 1 & 1 & 1 & 1 \\
+    0 & 0 & 0 & 0 & 1 \\
+    0 & 0 & 0 & 0 & 1 \\
+    0 & 0 & 0 & 0 & 1 \\
+    0 & 0 & 0 & 0 & 0
+\end{pmatrix}, (A - 2I)^2 = \begin{pmatrix}
+    0 & 0 & 0 & 0 & 3 \\
+    0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0
+\end{pmatrix}, (A - 2I)^3 = \begin{pmatrix}
+    0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0
+\end{pmatrix}. 
+\] Note that $\dim \Ker(A - 2I) = 3$, $\dim \Ker(A - 2I)^2 = 4$, and $\dim \Ker(A - 2I)^3 = 5$, so a JCF of $A$ contains $1$ Jordan block of size $3$ and $2$ Jordan blocks of size $1$.\\
+
+
+\noindent Note that $\begin{pmatrix}
+    0 \\
+    0 \\
+    0 \\
+    0 \\
+    1
+\end{pmatrix} \in \Ker(A - 2I)^3 \ \backslash \ \Ker(A - 2I)^2$ and $(A - 2I)\begin{pmatrix}
+    0 \\
+    0 \\
+    0 \\
+    0 \\
+    1
+\end{pmatrix} = \begin{pmatrix}
+    1 \\
+    1 \\
+    1 \\
+    1 \\
+    0
+\end{pmatrix}$, and \\
+\\
+
+\noindent $(A - 2I)^2\begin{pmatrix}
+    0 \\
+    0 \\
+    0 \\
+    0 \\
+    1
+\end{pmatrix} = \begin{pmatrix}
+    3 \\
+    0 \\
+    0 \\
+    0 \\
+    0
+\end{pmatrix}$, and we see that $\left\{ \begin{pmatrix}
+    3 \\
+    0 \\
+    0 \\
+    0 \\
+    0
+\end{pmatrix}, \begin{pmatrix}
+    0 \\
+    1 \\
+    -1 \\
+    0 \\
+    0
+\end{pmatrix}, \begin{pmatrix}
+    0 \\
+    0 \\
+    1 \\
+    -1 \\
+    0
+\end{pmatrix}\right\}$ is a basis for $\Ker(A - 2I)$. \\
+
+\noindent Hence, $J$ is a JCF of $A$ and $Q^{-1}AQ = J$ where \[\boxed{J = \begin{pmatrix}
+    2 & 1 & 0 & 0 & 0 \\
+    0 & 2 & 1 & 0 & 0 \\
+    0 & 0 & 2 & 0 & 0 \\
+    0 & 0 & 0 & 2 & 0 \\
+    0 & 0 & 0 & 0 & 2
+\end{pmatrix} \text{ and } Q = \begin{pmatrix}
+    3 & 1 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 1 & 0 \\
+    0 & 1 & 0 & -1 & 1 \\
+    0 & 1 & 0 & 0 & -1 \\
+    0 & 0 & 1 & 0 & 0
+\end{pmatrix}}.\] \hfill $\Box$
+
+\newpage
+
+\section*{Question 5}
+Determine a list of as many entries $A \in \mathbb{M}_8(\mathbb{R})$ as possible satisfying:
+\begin{enumerate}
+    \item[(i)] the characteristic polynomial of each matrix is $(t - 1)^4(t^2 + 3)^2$,
+    \item[(ii)] each matrix $A$ satisfies $(A - 1)^2(A^2 + 3)^2 = 0$ in $\mathbb{M}_8(\mathbb{R})$,
+    \item[(iii)] no two matrices in the list are similar to each other over $\mathbb{R}$ (i.e. they are pairwise not $\mathrm{GL}_8(\mathbb{R})$-conjugate to each other).
+\end{enumerate}
+
+\noindent \textbf{Solution:} The minimal polynomial of $A$ can only be $(t - 1)(t^2 + 3), (t - 1)^2(t^2 + 3),$ \\
+$(t - 1)(t^2 + 3)^2$, or $(t - 1)^2(t^2 + 3)^2$. We list all rational canonical forms satisfying (i), (ii): \\
+
+\noindent \textit{Case 1:} The minimal polynomial of $A$ is $(t - 1)(t^2 + 3)$. \\
+The only possible RCF is that with invariant factors $t - 1 \mid t - 1 \mid (t - 1)(t^2 + 3) \mid (t - 1)(t^2 + 3)$.  \\
+
+\noindent \textit{Case 2:} The minimal polynomial of $A$ is $(t - 1)^2(t^2 + 3)$. \\
+There are two possible RCFs, one with invariant factors $(t - 1)^2(t^2 + 3) \mid (t - 1)^2(t^2 + 3)$ and another with invariant factors $t - 1 \mid (t - 1)(t^2 + 3) \mid (t - 1)^2(t^2 + 3)$. \\
+
+\noindent \textit{Case 3:} The minimal polynomial of $A$ is $(t - 1)(t^2 + 3)^2$. \\
+The only possible RCF is that with invariant factors $t - 1 \mid t - 1 \mid t - 1 \mid (t - 1)(t^2 + 3)^2$. \\
+
+\noindent \textit{Case 4:} The minimal polynomial of $A$ is $(t - 1)^2(t^2 + 3)^2$. \\
+There are two possible RCFs, one with invariant factors $(t - 1)^2 \mid (t - 1)^2(t^2 + 3)^2$ and another with invariant factors $t - 1 \mid t - 1 \mid (t - 1)^2(t^2 + 3)^2$. \\
+
+\noindent These $6$ RCFs give us the following list (the blank spaces are to be filled with $0$s): 
+\[
+    \begin{pmatrix}
+        0 & -3 &  &  &  &  &  &  \\
+        1 & 0 &  &  &  &  &  &  \\
+         &  & 0 & -3 &  &  &  &  \\
+         &  & 1 & 0 &  &  &  &  \\
+         &  &  &  & 1 &  &  &  \\
+         &  &  &  &  & 1 &  &  \\
+         &  &  &  &  &  & 1 &  \\
+         &  &  &  &  &  &  & 1 
+    \end{pmatrix}, 
+    \begin{pmatrix}
+        0 & -3 &  &  &  &  &  &  \\
+        1 & 0 &  &  &  &  &  &  \\
+         &  & 0 & -3 &  &  &  &  \\
+         &  & 1 & 0 &  &  &  &  \\
+         &  &  &  & 0 & -1 &  &  \\
+         &  &  &  & 1 & 2 &  &  \\
+         &  &  &  &  &  & 0 & -1 \\
+         &  &  &  &  &  & 1 & 2 
+    \end{pmatrix},
+\]
+\[    
+    \begin{pmatrix}
+        0 & -3 &  &  &  &  &  &  \\
+        1 & 0 &  &  &  &  &  &  \\
+         &  & 0 & -3 &  &  &  &  \\
+         &  & 1 & 0 &  &  &  &  \\
+         &  &  &  & 0 & -1 &  &  \\
+         &  &  &  & 1 & 2 &  &  \\
+         &  &  &  &  &  & 1 &  \\
+         &  &  &  &  &  &  & 1 
+    \end{pmatrix},
+    \begin{pmatrix}
+        0 & 0 & 0 & -9 &  &  &  &  \\
+        1 & 0 & 0 & 0 &  &  &  &  \\
+        0 & 1 & 0 & -6 &  &  &  &  \\
+        0 & 0 & 1 & 0 &  &  &  &  \\
+         &  &  &  & 1 &  &  & \\
+         &  &  &  &  & 1 &  & \\
+         &  &  &  &  &  & 1 &  \\
+         &  &  &  &  &  &  & 1  
+    \end{pmatrix}, 
+\]
+\[
+    \begin{pmatrix}
+        0 & 0 & 0 & -9 &  &  &  &  \\
+        1 & 0 & 0 & 0 &  &  &  &  \\
+        0 & 1 & 0 & -6 &  &  &  &  \\
+        0 & 0 & 1 & 0 &  &  &  &  \\
+         &  &  &  & 0 & -1 &  & \\
+         &  &  &  & 1 & 2 &  & \\
+         &  &  &  &  &  & 0 & -1 \\
+         &  &  &  &  &  & 1 & 2  
+    \end{pmatrix},
+    \begin{pmatrix}
+        0 & 0 & 0 & -9 &  &  &  &  \\
+        1 & 0 & 0 & 0 &  &  &  &  \\
+        0 & 1 & 0 & -6 &  &  &  &  \\
+        0 & 0 & 1 & 0 &  &  &  &  \\
+         &  &  &  & 0 & -1 &  & \\
+         &  &  &  & 1 & 2 &  & \\
+         &  &  &  &  &  & 1 &  \\
+         &  &  &  &  &  &  & 1  
+    \end{pmatrix}.
+\]
+\\
+Since two similar matrices must have the same RCF, this list satisfies condition (iii) and there can only be at most $6$ entries in such a list. \hfill $\Box$
+\end{document}
