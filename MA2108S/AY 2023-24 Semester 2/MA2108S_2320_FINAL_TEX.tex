@@ -1,0 +1,72 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{graphicx,tipa}% http://ctan.org/pkg/{graphicx,tipa}
+\usepackage{pgfplots}
+\usetikzlibrary{intersections, fillbetween} % Ensure this library is included
+\usepgfplotslibrary{fillbetween} % Necessary for fill between feature
+
+\pgfplotsset{compat=1.17}
+
+\title{MA2108S - Mathematical Analysis I (S) Suggested Solutions}
+\author{(Semester 2, AY2023/2024)}
+\date{Written by: Sarji Bona\\Audited by: Thang Pang Ern}
+
+\begin{document}
+\maketitle
+
+\section*{Question 1}
+For each of the following statements, first answer whether it is true or false. If it is true, prove it. If it is false, find a counter example.
+\begin{enumerate}
+    \item[(a)] Let $(a_n)$ be a sequence in $\mathbb{R}$. Suppose that $\sum a_n$ is convergent, then $\sum a_n^2$ is also convergent.
+    \item[(b)] Let $(a_n)$ and $(b_n)$ be two convergent sequences in $\mathbb{R}$. Suppose that $\lim a_n \ge \lim b_n$, then there is an integer $N$ such that $a_n \ge b_n$ for all $n > N$.
+    \item[(c)] Let $X, Y$ and $Z$ be three metric spaces. Suppose that $f : X \to Y$ is continuous and that $g : Y \to Z$ is uniformly continuous. Then $g \circ f$ is uniformly continuous.
+    \item[(d)] For a function $f : \mathbb{R} \to \mathbb{R}$, define the graph of $f$ as a subset of $\mathbb{R}^2$ by \[\mathrm{Graph}(f) := \{(x, y) \in \mathbb{R}^2 : y = f(x) \text{ for some } x \in \mathbb{R}\}.\] If $f$ is continuous, then $\mathrm{Graph}(f)$ is closed in $\mathbb{R}^2$.
+\end{enumerate}
+
+\noindent \textbf{Solution:} 
+\begin{enumerate}
+    \item[(a)] False. Let $a_n = \frac{(-1)^n}{\sqrt{n}}$ for all $n$. By the alternating series test, $\sum a_n$ converges, but $\sum a_n^2 = \sum \frac{1}{n}$ diverges.
+    \item[(b)] False. Let $a_n = \frac{1}{2n}$ and $b_n = \frac{1}{n}$ for all $n$, then $\lim a_n = \lim b_n = 0$ but $a_n < b_n$ for all $n$.
+    \item[(c)] False. Let $X = Y = Z = \mathbb{R}$ and $f : x \mapsto x^2$ and $g : x \mapsto x$. Note that $f$ is continuous and $g$ is uniformly continuous, but $g \circ f : x \mapsto x^2$ is not uniformly continuous.
+    \item[(d)] True. Let $\{(x_n, f(x_n)\} \to (x, y) \in \mathbb{R}^2$ be a convergent sequence in $\mathrm{Graph}(f)$. Then $x_n \to x$ and since $f$ is continuous, $f(x_n) \to f(x)$. Hence, $y = f(x)$, so $(x, y) = (x, f(x)) \in \mathrm{Graph}(f)$. Therefore, $\mathrm{Graph}(f)$ is closed in $\mathbb{R}^2$.
+\end{enumerate}
+
+\newpage 
+
+\section*{Question 2}
+Determine whether the following series are convergent. Justify your answer. \\[0.5em]
+a) $\sum \frac{1}{n^2}\left(2 + \frac{3}{n}\right)$; \quad b) $\sum \frac{2^n}{n^n}$; \quad c) $\sum \cos\left(\frac{1}{n}\right)$. \\
+
+\noindent \textbf{Solution:}
+\begin{enumerate}
+    \item[(a)] Convergent. Since $\sum \frac{1}{n^2}$ and $\sum \frac{1}{n^3}$ both converge, $\sum \frac{1}{n^2}\left(2 + \frac{3}{n}\right) = 2\sum \frac{1}{n^2} + 3\sum \frac{1}{n^3}$ converges.
+    \item[(b)] Convergent. For all $n \ge 4$, $4^n \le n^n \Rightarrow \frac{2^n}{n^n} \le \frac{1}{2^n}$, so $\sum \frac{2^n}{n^n} = \sum_{n \le 3} \frac{2^n}{n^n} + \sum_{n \ge 4} \frac{2^n}{n^n} \le \sum_{n \le 3} \frac{2^n}{n^n} + \sum_{n \ge 4} \frac{1}{2^n}$ which converges to $\sum_{n \le 3} \frac{2^n}{n^n} + \frac{1}{8}$, hence $\sum \frac{2^n}{n^n}$ converges.
+    \item[(c)] Divergent. As $n \to \infty$, $\frac{1}{n} \to 0$, and $\cos\left(\frac{1}{n}\right) \to 1 \ne 0$. Hence, $\sum \cos\left(\frac{1}{n}\right)$ diverges.
+\end{enumerate}
+ 
+\section*{Question 3}
+Let $(x_n)$ be a sequence in a metric space $(X, d)$, we say that this sequence has \textit{Property P} if $\sum d(x_n, x_{n+1})$ is convergent. \begin{enumerate}
+    \item[(a)] If $X$ is complete and $(x_n)$ has Property P, then $(x_n)$ is convergent.
+    \item[(b)] If every sequence with Property P converges, show that $X$ is complete.
+\end{enumerate}
+
+\noindent \textbf{Solution:} 
+\begin{enumerate}
+    \item[(a)] If $X$ is complete and $(x_n)$ has Property $P$, then since $\sum d(x_n, x_{n+1})$ is convergent, for any $\varepsilon > 0$, there exists an integer $N$ such that \[\sum_{i=N}^{\infty} d(x_i, x_{i+1}) < \varepsilon.\] So for all $m > n \ge N$, we have \[d(x_n, x_m) \le \sum_{i=n}^{m-1} d(x_i, x_{i+1}) < d(x_i, x_{i+1}) < \varepsilon.\] Hence, $(x_n)$ is a Cauchy sequence, and since $X$ is complete, it must be convergent as well. \hfill $\Box$
+    \item[(b)] Let $(y_n)$ be any Cauchy sequence in $X$. Then we pick an strictly increasing sequence of indices $(n_k)$ such that $d(y_{n_k}, y_{n_{k+1}}) < \frac{1}{2^k}$ for all integers $k \ge 0$. If we create a sequence $(x_n)$ such that $x_k = y_{n_k}$ for all $k$, then $\sum d(x_n, x_{n+1}) = \sum d(y_{n_k}, y_{n_{k+1}}) < \sum \frac{1}{2^k} = 2$, so $(x_n)$ has Property P and must converge. Since $(x_n)$ is a convergent subsequence of $(y_n)$, we have that $(y_n)$ must be convergent, implying that $X$ is complete. \hfill $\Box$
+\end{enumerate}
+
+\section*{Question 4}
+Let $X$ be a subset of $\mathbb{R}^d$. Suppose that for every continuous $f : X \to \mathbb{R}$, we can find $\overline{x} \in X$ such that $f(\overline{x}) \ge f(x)$ for all $x \in X$. Show that $X$ is compact. \\
+
+\noindent \textbf{Solution:} If we let $f : x \to \lVert x \rVert$, we see that $f$ is continuous, hence, $f$ is bounded from above. If $X$ is unbounded, then $f$ is unbounded, but we know $f$ cannot go lower than $0$, so it must not be bounded from above, contradiction. Hence, $X$ is bounded. \\
+
+\noindent If $X$ is not closed, let $p$ be a limit point of $X$ that is not in $X$. We let $g : x \to \frac{1}{\lVert x - p \rVert}$, which is continuous, hence, it must be bounded from above. Thus, $\{\lVert x - p \rVert \mid x \in X\}$ must have a nonzero infimum, contradicting that $p$ is a limit point of $X$. Thus, $X$ is closed. \\
+
+\noindent Therefore, by the Heine-Borel Theorem, $X$ is compact. \hfill $\Box$
+
+\end{document}
