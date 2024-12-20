@@ -1,0 +1,587 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{subfig}
+\newcommand\mytab{\tab \hspace{+1cm}}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{geometry}
+\usepackage[most]{tcolorbox}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+\usepackage[utf8]{inputenc}
+\linespread{1.15}
+\usepackage{tikz,lipsum,lmodern}
+\usepackage{hyperref}
+\newtcolorbox{mybox}{
+enhanced,
+boxrule=0pt,frame hidden,
+borderline west={4pt}{0pt}{green!75!black},
+colback=green!10!white,
+sharp corners
+}
+\newtcolorbox{mybox2}{
+enhanced,
+boxrule=0pt,frame hidden,
+borderline west={4pt}{0pt}{blue!75!black},
+colback=blue!10!white,
+sharp corners
+}
+\usepackage{amsmath,amsfonts,amsthm,bm} % Math packages
+\usepackage[most]{tcolorbox}
+\usepackage{amssymb}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{mathptmx}
+\usepackage{natbib}
+\usepackage{wrapfig}
+\usepackage{url}
+\usepackage{pax}
+\usepackage{pdfpages}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{blindtext}
+\title{MA2001 - Linear Algebra I \\ AY23/24 Sem 2 Suggested Solutions}
+\author{Written by Thang Pang Ern \\ Audited by Sarji Elijah Bona}
+
+
+\begin{document}
+
+\maketitle\subsubsection*{Question 1}
+Let \( \mathbf{A} \) be a \( 4 \times 5 \) matrix and \( \mathbf{b} \) a \( 4 \times 1 \) matrix. By applying Gauss-Jordan Elimination to 
+\[
+\left(\begin{array}{c|c}
+\mathbf{A} & \mathbf{b}
+\end{array}\right)
+\]
+the following series of elementary row operations were performed:
+\begin{align*}
+  R_2 - 2R_1&\to R_2, \\
+  R_3 + R_1 &\to R_3\\
+  R_4 - R_2&\to R_4 \\
+ R_2 + R_3 &\to R_2 \\
+ R_1 + R_2 &\to R_1 
+\end{align*}
+and we obtained the reduced row-echelon form:
+\[
+\begin{pmatrix}
+\begin{array}{ccccc|c}
+1 & -1 & 0 & 0 & 1 & 1 \\
+0 &  0 & 1 & 0 & 0 & 0 \\
+0 &  0 & 0 & 1 & -2 & 1 \\
+0 &  0 & 0 & 0 &  0 & 0
+\end{array}
+\end{pmatrix}
+\]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\itemsep 0em
+    \item Find \( \mathbf{A} \) and \( \mathbf{b} \). (Indicate the elementary row operations used in each step.) 
+    \item Write down the solution set of the linear system \( \mathbf{Ax}=\mathbf{b} \) explicitly.
+\end{enumerate} 
+\newpage
+\noindent \textit{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item We have \begin{align*}
+        \begin{pmatrix}
+\begin{array}{ccccc|c}
+1 & -1 & 0 & 0 & 1 & 1 \\
+0 &  0 & 1 & 0 & 0 & 0 \\
+0 &  0 & 0 & 1 & -2 & 1 \\
+0 &  0 & 0 & 0 &  0 & 0
+\end{array}
+\end{pmatrix}&\xrightarrow{R_1-R_2\rightarrow R_1} \begin{pmatrix}
+\begin{array}{ccccc|c}
+1 & -1 & -1 & 0 & 1 & 1 \\
+0 &  0 & 1 & 0 & 0 & 0 \\
+0 &  0 & 0 & 1 & -2 & 1 \\
+0 &  0 & 0 & 0 &  0 & 0
+\end{array}
+\end{pmatrix} \\
+&\xrightarrow{R_2-R_3\rightarrow R_2} \begin{pmatrix}
+\begin{array}{ccccc|c}
+1 & -1 & -1 & 0 & 1 & 1 \\
+0 &  0 & 1 & -1 & 2 & -1 \\
+0 &  0 & 0 & 1 & -2 & 1 \\
+0 &  0 & 0 & 0 &  0 & 0
+\end{array}
+\end{pmatrix} \\
+&\xrightarrow{R_4 + R_2 \to R_4} \begin{pmatrix}
+\begin{array}{ccccc|c}
+1 & -1 & -1 & 0 & 1 & 1 \\
+0 &  0 & 1 & -1 & 2 & -1 \\
+0 &  0 & 0 & 1 & -2 & 1 \\
+0 &  0 & 1 & -1 & 2 & -1
+\end{array}
+\end{pmatrix} \\
+&\xrightarrow{R_3 - R_1 \to R_3} \begin{pmatrix}
+\begin{array}{ccccc|c}
+1 & -1 & -1 & 0 & 1 & 1 \\
+0 &  0 & 1 & -1 & 2 & -1 \\
+-1 & 1 & 1 & 1 & -3 & 0 \\
+0 &  0 & 1 & -1 & 2 & -1
+\end{array}
+\end{pmatrix} \\
+&\xrightarrow{R_2 + 2R_1 \to R_2} \begin{pmatrix}
+\begin{array}{ccccc|c}
+1 & -1 & -1 & 0 & 1 & 1 \\
+2 & -2 & -1 & -1 & 4 & 1 \\
+-1 & 1 & 1 & 1 & -3 & 0 \\
+0 &  0 & 1 & -1 & 2 & -1
+\end{array}
+\end{pmatrix}
+    \end{align*}
+so \begin{align*}
+    \mathbf{A}=\begin{pmatrix}
+        1 & -1 & -1 & 0 & 1 \\
+        2 & -2 & -1 & -1 & 4 \\
+        -1 & 1 & 1 & 1 & -3 \\
+        0 & 0 & 1 & -1 & 2
+    \end{pmatrix}\quad\text{and}\quad \mathbf{b}=\begin{pmatrix}
+        1 \\ 1 \\ 0 \\ -1
+    \end{pmatrix}.
+\end{align*}
+\item Based on the reduced row-echelon form, we have \begin{align*}
+    x_1-x_2+x_5&=1\\
+    x_3&=0\\
+    x_4-2x_5&=1
+\end{align*}
+So, $x_1=1+x_2-x_5$, $x_3=0$ and $x_4=1+2x_5$, which implies \begin{align*}
+    \begin{pmatrix}
+        x_1 \\ x_2 \\ x_3\\ x_4\\x_5
+    \end{pmatrix}=\begin{pmatrix}
+        1+x_2-x_5 \\ x_2 \\ 0 \\ 1+2x_5 \\ x_5
+    \end{pmatrix}=\begin{pmatrix}
+        1 \\ 0 \\ 0 \\ 1 \\ 0
+    \end{pmatrix}+x_2\begin{pmatrix}
+        1\\1\\0\\0\\0
+    \end{pmatrix}+x_5\begin{pmatrix}
+        -1\\0\\0\\2\\1
+    \end{pmatrix}.
+\end{align*}
+To conclude, the solution set is \begin{align*}
+    \left\{\mathbf{v}\in\mathbb{R}^5:\mathbf{v}=\begin{pmatrix}
+        1 \\ 0 \\ 0 \\ 1 \\ 0
+    \end{pmatrix}+s\begin{pmatrix}
+        1\\1\\0\\0\\0
+    \end{pmatrix}+t\begin{pmatrix}
+        -1\\0\\0\\2\\1
+    \end{pmatrix},s,t\in\mathbb{R}\right\}. \qed 
+\end{align*}
+\end{enumerate}
+\subsubsection*{Question 2}
+Let \( \mathbf{B} \) be a square matrix of order \( n \). Define 
+\[
+V = \{ \mathbf{u} \in \mathbb{R}^n \mid \mathbf{Bu} = \mathbf{B}^T \mathbf{u} \}.
+\]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\itemsep 0em
+    \item Show that \( V \) is a subspace of \( \mathbb{R}^n \).
+
+    \item Let \( n = 4 \) and 
+    \[
+    \mathbf{B} = \begin{pmatrix}
+        1 & 1 & 1 & 1 \\
+        1 & 2 & 3 & 4 \\
+        1 & 3 & 5 & 7 \\
+        0 & 2 & 4 & 0
+    \end{pmatrix}.
+    \]
+    \begin{enumerate}[label=\textbf{(\roman*)}]
+        \item Use Gaussian Elimination to find a row-echelon form of \( \mathbf{B} \) and hence write down a basis for the column space of \( \mathbf{B} \). 
+        \item Using the row-echelon form of \( \mathbf{B} \) from part \textbf{(i)}, write down a basis for the column space of \( \mathbf{B}^\text{T}\).
+        \item Find a basis for \( V \). 
+    \end{enumerate}
+\end{enumerate}
+\textit{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Note that $\mathbf{u}=\mathbf{0}$ satisfies $\mathbf{Bu} = \mathbf{B}^T \mathbf{u}$, so $V$ is non-empty.
+    \newline
+    \newline Next, let $\mathbf{u}_1,\mathbf{u}_2\in V$. Then, \begin{align*}
+        \mathbf{B}\left(\mathbf{u}_1+\mathbf{u}_2\right)=\mathbf{Bu}_1+\mathbf{Bu}_2=\mathbf{B}^\text{T}\mathbf{u}_1+\mathbf{B}^\text{T}\mathbf{u}_2=\mathbf{B}^\text{T}\left(\mathbf{u}_1+\mathbf{u}_2\right)
+        \end{align*}
+        so $V$ is closed under addition.
+        \newline
+        \newline Next, let $\alpha\in\mathbb{R}$ be arbitrary. Then, \begin{align*}
+            \mathbf{B}\left(\alpha \mathbf{u}\right)=\alpha\left(\mathbf{Bu}\right)=\alpha\left(\mathbf{B}^\text{T}\mathbf{u}\right)=\mathbf{B}^\text{T}\left(\alpha\mathbf{u}\right)
+        \end{align*}
+        so $V$ is closed under scalar multiplication.
+        \item \begin{enumerate}[label=\textbf{(\roman*)}]
+            \itemsep 0em
+            \item We have \begin{align*}
+                \mathbf{B}=\begin{pmatrix}
+    1 & 1 & 1 & 1 \\
+    1 & 2 & 3 & 4 \\
+    1 & 3 & 5 & 7 \\
+    0 & 2 & 4 & 0
+\end{pmatrix} &\xrightarrow{-R_1+R_2\rightarrow R_2\text{ and }-R_1+R_3\rightarrow R_3}\begin{pmatrix}
+    1 & 1 & 1 & 1 \\
+    0 & 1 & 2 & 3 \\
+    0 & 2 & 4 & 6 \\
+    0 & 2 & 4 & 0
+\end{pmatrix}\\
+&\xrightarrow{-2R_2+R_3\rightarrow R_3\text{ and }-2R_2+R_4\rightarrow R_4} \begin{pmatrix}
+    1 & 1 & 1 & 1 \\
+    0 & 1 & 2 & 3 \\
+    0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & -6
+\end{pmatrix}\\
+&\xrightarrow{R_4\times \left(-1/6\right)\rightarrow R_4}\begin{pmatrix}
+    1 & 1 & 1 & 1 \\
+    0 & 1 & 2 & 3 \\
+    0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 1
+\end{pmatrix}
+\end{align*}
+which is a row-echelon form of $\mathbf{B}$. A basis for the column space of $B$ is \begin{align*}
+    \left\{\begin{pmatrix}
+        1\\1\\1\\0
+    \end{pmatrix},\begin{pmatrix}
+        1\\2\\3\\2
+    \end{pmatrix},\begin{pmatrix}
+        1\\4\\7\\0
+    \end{pmatrix}\right\}.
+\end{align*}
+\item This is precisely the same as finding a basis for the row space of $\mathbf{B}$, which is \begin{align*}
+    \left\{\begin{pmatrix}
+        1 \\1\\1\\1
+    \end{pmatrix},\begin{pmatrix}
+        0\\1\\2\\3
+    \end{pmatrix},\begin{pmatrix}
+        0\\0\\0\\1
+    \end{pmatrix}\right\}.
+\end{align*}
+\item Note that \begin{align*}
+    \mathbf{B}-\mathbf{B}^\text{T}=\begin{pmatrix}
+        0 & 0 & 0 & 1 \\ 0 & 0 & 0 & 2 \\ 0 & 0 & 0 & 3 \\ -1 & -2 & -3 & 0
+    \end{pmatrix}.
+\end{align*}
+ It suffices to find a basis for the null space of $\mathbf{B}-\mathbf{B}^\text{T}$. Consider \begin{align*}
+     \begin{pmatrix}
+        0 & 0 & 0 & 1 \\ 0 & 0 & 0 & 2 \\ 0 & 0 & 0 & 3 \\ -1 & -2 & -3 & 0
+    \end{pmatrix}\begin{pmatrix}
+        w \\x\\y\\z
+    \end{pmatrix}=\begin{pmatrix}
+        0\\0\\0\\0
+    \end{pmatrix}.
+ \end{align*}
+ Then, $z=0$, $2z=0$, $3z=0$ and $-w-2x-3y=0$. These four equations imply $z=0$ and $w=-2x-3y$. As such, we can write \begin{align*}
+     \begin{pmatrix}
+         w\\x\\y\\z
+     \end{pmatrix}=\begin{pmatrix}
+         -2x-3y\\x\\y\\0
+     \end{pmatrix}=x\begin{pmatrix}
+         -2\\1\\0\\0
+     \end{pmatrix}+y\begin{pmatrix}
+         -3\\0\\1\\0
+     \end{pmatrix}.
+ \end{align*}
+ We conclude that the desired basis is \begin{align*}
+     \left\{\begin{pmatrix}
+         -2\\1\\0\\0
+     \end{pmatrix},\begin{pmatrix}
+         -3\\0\\1\\0
+     \end{pmatrix}\right\}.
+ \end{align*}\qed 
+        \end{enumerate}
+\end{enumerate}
+\subsubsection*{Question 3}
+Let $S=\left\{\mathbf{u}_1,\mathbf{u}_2,\mathbf{u}_3\right\}$, where $\mathbf{u}_1=\left(0,1,0,1\right)$, $\mathbf{u}_2=\left(-4,0,3,0\right)$ and $\mathbf{u}_3=\left(3,-1,4,-1\right)$.
+\newline Define $V=\operatorname{span}\left(S\right)$.
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\itemsep 0em
+    \item Follow the Gram-Schmidt Process to transform \( S \) into an orthonormal basis for \( V \). 
+    \item Find the projection of 
+    \[
+    b = (0, 1, 5, -1)
+    \]
+    onto \( V \). 
+    \item Find a least square solution to the system
+    \[
+    \begin{pmatrix}
+    0 & -4 & 3 \\
+    1 &  0 & -1 \\
+    0 &  3 &  4 \\
+    1 &  0 & -1
+    \end{pmatrix}
+    \begin{pmatrix}
+    x \\ y \\ z
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+    0 \\ 1 \\ 5 \\ -1
+    \end{pmatrix}.
+    \]
+\end{enumerate}
+\textit{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item We will apply the Gram-Schmidt process to transform \( S = \{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3\} \) into an orthonormal basis for \( V = \operatorname{span}(S) \).
+    \newline
+    \newline Set $\mathbf{v}_1=\mathbf{u}_1$. Then, \begin{align*}
+        \mathbf{v}_2=\mathbf{u}_2-\operatorname{proj}_{\mathbf{v}_1}(\mathbf{u}_2)=\mathbf{u}_2-\frac{\mathbf{u}_2\cdot \mathbf{v}_1}{\left\|\mathbf{v}_1\right\|^2}\mathbf{v}_1.
+    \end{align*}
+    Since $\mathbf{u}_2\cdot\mathbf{v}_1=0$, then $\mathbf{v}_2=\mathbf{u}_2$.
+    \newline
+    \newline Then, \begin{align*}
+        \mathbf{v}_3 &= \mathbf{u}_3 - \operatorname{proj}_{\mathbf{v}_1}(\mathbf{u}_3) - \operatorname{proj}_{\mathbf{v}_2}(\mathbf{u}_3)\\
+        &=\mathbf{u}_3-\frac{\mathbf{u}_3\cdot \mathbf{v}_1}{\left\|\mathbf{v}_1\right\|^2}\mathbf{v}_1-\frac{\mathbf{u}_3\cdot\mathbf{v}_2}{\left\|\mathbf{v}_2\right\|^2}\mathbf{v}_2 \\
+        &=\begin{pmatrix}
+            3\\-1\\4\\-1
+        \end{pmatrix}-\frac{-2}{2}\begin{pmatrix}
+            0\\1\\0\\1
+        \end{pmatrix}-0\\
+        &=\begin{pmatrix}
+            3\\0\\4\\0
+        \end{pmatrix}.
+    \end{align*}
+Lastly, we normalize $\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3$ to obtain \begin{align*}
+    \mathbf{e}_1=\begin{pmatrix}
+        0\\ 1/\sqrt{2} \\ 0 \\ 1/\sqrt{2}
+    \end{pmatrix},\mathbf{e}_2=\begin{pmatrix}
+        -4/5 \\ 0\\3/5 \\ 0
+    \end{pmatrix},\mathbf{e}_3=\begin{pmatrix}
+        3/5 \\ 0\\4/5 \\ 0
+    \end{pmatrix}.
+\end{align*}
+We conclude that an orthonormal basis for $V$ is $\left\{\mathbf{e}_1,\mathbf{e}_2,\mathbf{e}_3\right\}$.
+\item We have \begin{align*}
+    \operatorname{proj}_V\left(\mathbf{b}\right)&=\sum_{i=1}^{3}\frac{\mathbf{b}\cdot \mathbf{e}_i}{\left\|\mathbf{e}_i\right\|^2}\mathbf{e}_i\end{align*}
+which is equal to \[\left(\begin{pmatrix}
+        0\\1\\5\\-1
+    \end{pmatrix}\cdot \begin{pmatrix}
+        0 \\ 1/\sqrt{2} \\ 0\\ 1/\sqrt{2}
+    \end{pmatrix}\right)\begin{pmatrix}
+        0 \\ 1/\sqrt{2} \\ 0\\ 1/\sqrt{2}
+    \end{pmatrix}+\left(\begin{pmatrix}
+        0\\1\\5\\-1
+    \end{pmatrix}\cdot \begin{pmatrix}
+        -4/5 \\ 0 \\3/5 \\ 0
+    \end{pmatrix}\right)\begin{pmatrix}
+        -4/5 \\ 0 \\3/5 \\ 0
+    \end{pmatrix}+\left(\begin{pmatrix}
+        0\\1\\5\\-1
+    \end{pmatrix}\cdot \begin{pmatrix}
+        3/5 \\ 0 \\ 4/5 \\ 0
+    \end{pmatrix}\right)\begin{pmatrix}
+        3/5 \\ 0 \\ 4/5 \\0
+    \end{pmatrix}.\]
+    This simplifies to \[\begin{pmatrix}
+        0\\0\\5\\0
+    \end{pmatrix}.\]
+\item Let the coefficient matrix be $\mathbf{A}$. Then, the equation is of the form $\mathbf{Ax}=\mathbf{b}$. By considering $\mathbf{A}^\text{T}\mathbf{Ax}=\mathbf{A}^\text{T}\mathbf{b}$, we see that $\mathbf{x}=\left(4/5,3/5,4/5\right)$. \qed 
+\end{enumerate}
+\subsubsection*{Question 4}
+Let 
+\[
+\mathbf{C} = \begin{pmatrix}
+1 &  1 & -1 & -1 \\
+1 &  1 & -1 &  1 \\
+1 &  1 & -1 &  1 \\
+0 &  0 &  0 &  2
+\end{pmatrix}.
+\]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\itemsep 0em
+    \item Show that the eigenvalues of \( \mathbf{C} \) are \( 0, 1, 2 \).
+    \item Find a basis for the eigenspace of \( \mathbf{C} \) associated with the eigenvalue \( 0 \). 
+    \item Find a basis for the eigenspace of \( \mathbf{C} \) associated with the eigenvalue \( 1 \). 
+    \item Find a basis for the eigenspace of \( \mathbf{C} \) associated with the eigenvalue \( 2 \). 
+    \item Write down two \( 4 \times 4 \) matrices \( \mathbf{P} \) and \( \mathbf{D} \), where \( \mathbf{D} \) is a diagonal matrix and \( \mathbf{P} \) is an invertible matrix such that 
+    \[
+    \mathbf{P}^{-1}\mathbf{CP} = \mathbf{D}.
+    \]
+\end{enumerate}
+\newpage
+\noindent \textit{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item We have \begin{align*}
+        \mathbf{C}-\lambda\mathbf{I}=\begin{pmatrix}
+            1-\lambda & 1 & -1 & -1 \\ 1 & 1-\lambda & -1 & 1 \\ 1 & 1 & -1-\lambda & 1 \\ 0 & 0 & 0 & 2-\lambda
+        \end{pmatrix}
+    \end{align*}
+    so \begin{align*}
+        \operatorname{det}\left(\mathbf{C}-\lambda\mathbf{I}\right)=\lambda^2\left(\lambda^2-3\lambda+2\right)=\lambda^2\left(\lambda-1\right)\left(\lambda-2\right).
+    \end{align*}
+    So, the eigenvalues are 0, 1, 2.
+    \item When $\lambda=0$, we have \begin{align*}
+        \mathbf{C}=\begin{pmatrix}
+1 &  1 & -1 & -1 \\
+1 &  1 & -1 &  1 \\
+1 &  1 & -1 &  1 \\
+0 &  0 &  0 &  2
+\end{pmatrix}.
+    \end{align*}
+    One checks that a row-echelon form of $\mathbf{C}$ is \begin{align*}
+        \begin{pmatrix}
+            1 & 1 & -1 & -1 \\ 0 & 0 & 0 &2  \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0
+        \end{pmatrix}.
+    \end{align*}
+    Let $\left(v_1,v_2,v_3,v_4\right)$ be an eigenvector corresponding to the eigenvalue 0. Then, $2v_4=0$, so $v_4=0$, and $v_1+v_2-v_3-v_4=0$, so $v_1+v_2=v_3$. As such, a basis for the eigenspace is \begin{align*}
+        \left\{\begin{pmatrix}
+            -1 \\ 1 \\ 0 \\ 0
+        \end{pmatrix},\begin{pmatrix}
+            1 \\ 0 \\ 1 \\ 0
+        \end{pmatrix}\right\}.
+    \end{align*}
+    \item We have \begin{align*}
+        \mathbf{C}-\mathbf{I}=\begin{pmatrix}
+            0 & 1 & -1 & -1 \\ 1 & 0 & -1 & 1 \\ 1 & 1 & -2 & 1 \\ 0 & 0 & 0  & 1
+        \end{pmatrix}.
+    \end{align*}
+    A row echelon form of $\mathbf{C}-\mathbf{I}$ is \begin{align*}
+        \begin{pmatrix}
+            1 & 0 & -1 & 0 \\ 0 & 1 & -1 &0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 0 & 0
+        \end{pmatrix}.
+    \end{align*}
+    So, a basis for the eigenspace is \begin{align*}
+        \left\{\begin{pmatrix}
+            1  \\ 1 \\ 1\\0
+        \end{pmatrix}\right\}.
+    \end{align*}
+    \item We have \begin{align*}
+        \mathbf{C}-2\mathbf{I}=\begin{pmatrix}
+            -1 & 1 & -1 & -1 \\
+            1 & -1 & -1 & 1 \\
+            1 & 1 & -3 & 1 \\ 0 & 0 & 0 & 0
+        \end{pmatrix}.
+    \end{align*}
+    A row-echelon form of $\mathbf{C}-2\mathbf{I}$ is \begin{align*}
+        \begin{pmatrix}
+            1 & 0 & 0 & 1 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0
+        \end{pmatrix}
+    \end{align*}
+    so we conclude that a basis for the eigenspace is \begin{align*}
+        \left\{\begin{pmatrix}
+            1 \\0\\0\\-1
+        \end{pmatrix}\right\}.
+    \end{align*}
+    \item \begin{align*}
+        \mathbf{P}=\begin{pmatrix}
+            -1 & 1 & 1 & 1 \\ 1 & 0 & 1 & 0\\0&1&1&0\\0&0&0&-1
+        \end{pmatrix}\quad\text{and}\quad \mathbf{D}=\begin{pmatrix}
+            0 & 0 & 0 & 0 \\ 
+            0 & 0 & 0 & 0 \\
+            0 & 0 & 1 & 0 \\
+            0 & 0 & 0 & 2
+        \end{pmatrix}
+    \end{align*}\qed 
+\end{enumerate}
+\subsubsection*{Question 5}
+Determine which of the following statements are true.  Write down ‘True’ or ‘False’ in the boxes provided. Except part \textbf{(e)}, for each statement, if your answer is ‘True’, explain why the statement is always true; and if your answer is ‘False’, give a counter-example to justify that the statement is not always true.
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\itemsep 0em
+    \item If a linear system \( \mathbf{Ax}=\mathbf{b}\) has only one solution, then the homogeneous linear system \( \mathbf{Ax}=\mathbf{0} \) has only the trivial solution.
+    \item If a homogeneous linear system \( \mathbf{Ax}=\mathbf{0} \) has only the trivial solution, then any linear system of the form \( \mathbf{Ax}=\mathbf{b} \) has one solution.
+    \item If \( \mathbf{A} \) and \( \mathbf{B} \) are orthogonal matrices of the same order, then \( \mathbf{AB} \) is an orthogonal matrix.
+    \item Let 
+    \[
+    \mathbf{A} = \begin{pmatrix}
+    \mathbf{r}_1 \\ \mathbf{r}_2 \\ \vdots \\ \mathbf{r}_n
+    \end{pmatrix}
+    \]
+    be a square matrix, where \( \mathbf{r}_i \) is the \( i \)-th row of \( \mathbf{A} \). If \( \mathbf{A} \) is invertible, then so is the matrix 
+    \[
+    \begin{pmatrix}
+    \mathbf{r}_n \\ \mathbf{r}_{n-1} \\ \vdots \\ \mathbf{r}_1
+    \end{pmatrix}.
+    \]
+    \item There exists a \( 3 \times 3 \) matrix \( \mathbf{A} \) such that \( \mathbf{A}^2 + \mathbf{A} = \mathbf{I}_3 \) and \( 0 \) is an eigenvalue of \( \mathbf{A} \). 
+\end{enumerate}
+\textit{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item True. If the system $\mathbf{Ax}=\mathbf{b}$ has a unique solution, the matrix $\mathbf{A}$ is of full rank, which implies that its null space contains only the zero vector. The result follows.
+    \item False. Consider \begin{align*}
+        \begin{pmatrix}
+            1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0
+        \end{pmatrix}\mathbf{x}=\begin{pmatrix}
+            0\\0\\0\\0
+        \end{pmatrix}
+    \end{align*}
+    which only has the trivial solution $\mathbf{x}=\mathbf{0}\in\mathbb{R}^3$ but \begin{align*}
+        \begin{pmatrix}
+            1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0
+        \end{pmatrix}\mathbf{x}=\begin{pmatrix}
+            0\\0\\0\\1
+        \end{pmatrix}\quad\text{has no solution}.
+    \end{align*}
+    \item True. Since $\mathbf{A}$ and $\mathbf{B}$ are orthogonal, then $\mathbf{A}^\text{T}\mathbf{A}=\mathbf{I}$ and $\mathbf{B}^\text{T}\mathbf{B}=\mathbf{I}$. So, \begin{align*}
+        \left(\mathbf{AB}\right)^\text{T}\left(\mathbf{AB}\right)=\mathbf{B}^\text{T}\mathbf{A}^\text{T}\left(\mathbf{AB}\right)=\mathbf{B}^\text{T}\mathbf{IB}=\mathbf{B}^\text{T}\mathbf{B}=\mathbf{I}.
+    \end{align*}
+    This implies $\mathbf{AB}$ is orthogonal.
+    \item True. Let \begin{align*}
+        \mathbf{B}=\begin{pmatrix}
+            \mathbf{r}_n \\ \mathbf{r}_{n-1} \\ \vdots \\ \mathbf{r}_1
+        \end{pmatrix}.
+    \end{align*}
+    Observe that $\mathbf{B}$ can be obtained from $\mathbf{A}$ via a sequence of row swaps, i.e. $\mathbf{r}_1$ swaps with $\mathbf{r}_n$, $\mathbf{r}_2$ swaps with $\mathbf{r}_{n-1}$, and so on. Each of these row operations can be represented by some elementary matrix $\mathbf{E}$. As such, $\mathbf{B}=\left(\mathbf{E}_1\ldots \mathbf{E}_i\right)\mathbf{A}$, which is a product of invertible matrices since each elementary matrix is invertible. So, $\mathbf{B}$ is invertible.
+    \item False. We have $\mathbf{A}\left(\mathbf{A}+\mathbf{I}\right)=\mathbf{I}$, which implies $\mathbf{A}$ is invertible. However, 0 is an eigenvalue of $\mathbf{A}$, which contradicts the invertible matrix theorem. \qed 
+\end{enumerate}
+
+\subsubsection*{Question 6}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\itemsep 0em
+    \item Let \( \mathbf{A} \) be a matrix. Prove that \( \mathbf{A}=\mathbf{0} \) if and only if \( \mathbf{A}^\text{T}\mathbf{A} = \mathbf{0} \).
+    \item Let \( T \) be a linear operator on \( \mathbb{R}^n \). Suppose that \( \mathrm{rank}(T) = \mathrm{rank}(T \circ T) \).
+    \begin{enumerate}[label=\textbf{(\roman*)}]
+    \itemsep 0em
+        \item Prove that \( \ker(T) = \ker(T \circ T) \).
+        \item Prove that \( \mathrm{R}(T) \cap \ker(T) = \{\mathbf{0}\} \).
+    \end{enumerate}
+    \item Find an example of a linear transformation \( S : \mathbb{R}^4 \to \mathbb{R}^4 \) such that \( \mathrm{R}(S) = \ker(S) \). Can you find a linear transformation \( T : \mathbb{R}^5 \to \mathbb{R}^5 \) with the same property? Justify your answers.
+\end{enumerate}
+\textit{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item $(\implies)$ Suppose $\mathbf{A}=\mathbf{0}$. Then, $\mathbf{A}^\text{T}\mathbf{A}=\mathbf{A}^\text{T}\mathbf{0}=\mathbf{0}$.
+    \newline
+    \newline $(\impliedby)$ Suppose $\mathbf{A}^\text{T}\mathbf{A}=\mathbf{0}$. Suppose $\mathbf{A}$ is an $m\times n$ matrix with entries $a_{ij}$. By considering the first row of $\mathbf{A}^\text{T}$ and the first column of $\mathbf{A}$, we have \begin{align*}
+        a_{11}^2+a_{21}^2+\ldots+a_{m1}^2=0.
+    \end{align*}
+    Since the sum of squares is 0, it forces each square to be 0, and consequently, $a_{11}=a_{21}=\ldots=a_{m1}=0$.
+    \newline
+    \newline In general, by considering the $j^\text{th}$ row of $\mathbf{A}^\text{T}$ and the $j^\text{th}$ column of $\mathbf{A}$, where $1\le j \le n$, we have \begin{align*}
+        a_{1j}^2+a_{2j}^2+\ldots+a_{mj}^2=0.
+    \end{align*}
+    As such, $a_{1j}=a_{2j}=a_{mj}=0$ for all $1\le j \le n$. This forces $a_{ij}=0$ for all $1\le i \le m$ and $1\le j \le n$. So, $\mathbf{A}=\mathbf{0}$.
+    \item \begin{enumerate}[label=\textbf{(\roman*)}]
+        \itemsep 0em
+        \item We first prove that \begin{align*}
+            \operatorname{ker}\left(T\right)\subseteq \operatorname{ker}\left(T\circ T\right).
+        \end{align*}
+        Suppose $\mathbf{v}\in \operatorname{ker}\left(T\right)$. Then, $T\left(\mathbf{v}\right)=\mathbf{0}$, so $T\left(T\left(\mathbf{v}\right)\right)=T\left(\mathbf{0}\right)=\mathbf{0}$, so $\operatorname{ker}\left(T\right)\subseteq \operatorname{ker}\left(T\circ T\right)$. 
+        \newline
+        \newline Next, by the rank-nullity theorem, we have \begin{align*}
+            n=\operatorname{rank}\left(T\right)+\operatorname{dim}\left(\operatorname{ker}\left(T\right)\right)\quad\text{and}\quad n=\operatorname{rank}\left(T\circ T\right)+\operatorname{dim}\left(\operatorname{ker}\left(T\circ T\right)\right).
+        \end{align*}
+        Since $\operatorname{rank}\left(T\right)=\operatorname{rank}\left(T\circ T\right)$, then $\operatorname{dim}\left(\operatorname{ker}\left(T\right)\right)=\operatorname{dim}\left(\operatorname{ker}\left(T\circ T\right)\right)$. Since $\mathbb{R}^n$ is a finite-dimensional vector space, it forces $\operatorname{ker}\left(T\right)\supseteq \operatorname{ker}\left(T\circ T\right)$. We conclude that $\operatorname{ker}\left(T\right)= \operatorname{ker}\left(T\circ T\right)$.
+        \item Suppose $\mathbf{w}\in \operatorname{R}\left(T\right)\cap \operatorname{ker}\left(T\right)$. Since $\mathbf{w}\in \operatorname{R}\left(T\right)$, then there exists $\mathbf{v}\in \mathbb{R}^n$ such that $T\left(\mathbf{v}\right)=\mathbf{w}$. Also, since $\mathbf{w}\in\operatorname{ker}\left(T\right)$, then $T\left(\mathbf{w}\right)=\mathbf{0}$. So, $T^2\left(\mathbf{v}\right)=\mathbf{0}$, which implies $\mathbf{v}\in \operatorname{ker}\left(T\circ T\right)$.
+        \newline
+        \newline Consequently, $\mathbf{v}\in\operatorname{ker}\left(T\right)$ by \textbf{(i)}. As such, $T\left(\mathbf{v}\right)=\mathbf{0}$, so $\mathbf{w}=\mathbf{0}$. We conclude that $\operatorname{R}\left(T\right)\cap \operatorname{ker}\left(T\right)=\left\{\mathbf{0}\right\}$.
+    \end{enumerate}
+    \item By the rank-nullity theorem, we have $\operatorname{rank}\left(S\right)+\operatorname{nullity}\left(S\right)=4$, and because $\operatorname{rank}\left(S\right)=\operatorname{nullity}\left(S\right)$, then $\operatorname{rank}\left(S\right)=\operatorname{nullity}\left(S\right)=2$. As such, any row-echelon form of the matrix representation of the linear transformation should contain 2 pivots. As such, we consider \begin{align*}
+        S\left(\begin{pmatrix}
+            x_1\\x_2\\x_3\\x_4
+        \end{pmatrix}\right)=\begin{pmatrix}
+            x_1 \\ x_2\\0\\0
+        \end{pmatrix}
+    \end{align*}
+    We have $\operatorname{R}\left(S\right)=\operatorname{span}\left\{\left(1,0,0,0\right),\left(0,1,0,0\right)\right\}$ Also, $\operatorname{ker}\left(S\right)=\operatorname{span}\left\{\left(0,0,1,0\right),\left(0,0,0,1\right)\right\}$.
+    \newline
+    \newline However, there does not exist any linear transformation $T:\mathbb{R}^5\rightarrow\mathbb{R}^5$ with the same property, otherwise it would imply that $5=2\operatorname{rank}\left(T\right)$. However this is a contradiction as $\operatorname{rank}\left(T\right)$ must be a non-negative integer. \qed 
+\end{enumerate}
+\end{document}
