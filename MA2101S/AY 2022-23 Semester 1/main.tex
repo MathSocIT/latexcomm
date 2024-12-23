@@ -1,0 +1,262 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{xcolor}
+
+\title{MA2101S - Linear Algebra II (S) Suggested Solutions}
+\author{(Semester 1, AY2022/2023)}
+\date{Written by: Sarji Elijah Bona\\ Audited by: Ariana Goh Zhi Hui
+}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\nullity}{nullity}
+
+\begin{document}
+\maketitle
+
+\section*{Question 1}
+Given a linear operator \(\beta\) on a vector space \(U\), define \(T_\beta(U)\) as follows:
+\[
+T_\beta(U) := \{ u \in U \mid \dim(\langle u \rangle_\beta) < \infty \}.
+\]
+
+\noindent You may assume without proof that \(\dim(\langle u \rangle_\beta) < \infty\) if and only if \(f(\beta)(u) = 0_U\) for some nonzero \(f(x) \in F[x]\). \\[0.5em]
+\noindent Let \(\alpha\) be a linear operator on a vector space \(V\).
+
+\begin{enumerate}
+    \item[(a)] Show that \(T_\alpha(V)\) is a vector subspace of \(V\).
+    \item[(b)] Show that \(T_\alpha(V)\) is \(\alpha\)-invariant.
+    \item[(c)] Let \(\widetilde{V} = V / T_\alpha(V)\), and let \(\widetilde{\alpha}\) be the linear operator on \(\widetilde{V}\) defined by 
+    \[
+    \widetilde{\alpha}(v + T_\alpha(V)) = \alpha(v) + T_\alpha(V) \quad \text{for all } v \in V.
+    \]
+    Prove that 
+    \[
+    T_{\widetilde{\alpha}}(\widetilde{V}) = \{ 0_{\widetilde{V}} \}.
+    \]
+\end{enumerate}
+\textbf{Solution:} 
+\begin{enumerate}
+    \item[(a)] Note that $\dim(\langle 0_V \rangle_\alpha) = \dim(\{0_V\}) = 0 < \infty$, so $0_V \in T_{\alpha}(V)$, so $T_{\alpha}(V)$ is non-empty. Let $v_1, v_2 \in T_{\alpha}(V)$, then there exist $f(x), g(x) \in F[x]$ such that $f(\alpha)(v_1) = 0_V$ and $g(\alpha)(v_2) = 0_V$. Then $(fg)(\alpha)(v_1 + v_2) = f(\alpha)(g(\alpha)(v_1 + v_2)) = f(\alpha)(g(\alpha)(v_1)) = g(\alpha)(f(\alpha)(v_1)) = g(\alpha)(0_V) = 0_V$, implying $v_1 + v_2 \in T_\alpha(U)$.
+
+    \noindent Now, let $\lambda \in F$ and $v \in T_{\alpha}(V)$, if $\lambda \ne 0$, then $\langle \lambda v \rangle_\alpha = \langle v \rangle_\alpha$, so $\lambda v \in T_{\alpha}(V)$. If $\lambda = 0$, $\lambda v = 0_V \in T_{\alpha}(V)$. Therefore, $T_{\alpha}(V)$ is a vector subspace of $V$. \hfill $\Box$
+    \item[(b)] Let $v \in T_{\alpha}(V)$. Then there exists $f(x) \in F[x]$ such that $f(\alpha)(v) = 0_V$. So $f(\alpha)(\alpha(v)) = (\alpha \circ f(\alpha))(v) = \alpha(0_V) = 0_V$. Hence, $\dim(\langle \alpha(v) \rangle_\alpha) < \infty$ and $\alpha(v) \in T_\alpha(V)$. \hfill $\Box$
+    \item[(c)] Obviously, $0_{\widetilde{V}} \in T_{\widetilde{\alpha}}(\widetilde{V})$. Assume for some $v \in V$ that $v + T_\alpha(V) \in T_{\widetilde{\alpha}}(\widetilde{V})$. So there exists $f(x) \in F[x]$ such that $f(\widetilde{\alpha})(v + T_\alpha(V)) = 0_{\widetilde{V}} = T_\alpha(V)$. Note that $f(\widetilde{\alpha})(v + T_\alpha(V)) = f(\alpha)(v) + T_\alpha(V)$, so this implies $f(\alpha)(v) \in T_\alpha(v)$. There exists $g(x) \in F[x]$ such that $g(\alpha)(f(\alpha)(v)) = (g \circ f)(\alpha)(v) = 0$. Thus, $v \in T_{\alpha}(V)$, implying $T_{\widetilde{\alpha}}(\widetilde{V}) \subseteq \{T_\alpha(V)\} = \{0_{\widetilde{V}}\}$. Therefore, $T_{\widetilde{\alpha}}(\widetilde{V}) = \{ 0_{\widetilde{V}} \}$. \hfill $\Box$
+    \end{enumerate}
+
+\section*{Question 2}
+Let $\alpha$ be a linear operator on a vector space $V$, and let $U$ be an $\alpha$-invariant vector subspace of $V$. Let $\widetilde{\alpha}$ be the linear operator on $V/U$ defined by $\widetilde{\alpha}(v + U) = \alpha(v) + U$ for all $v \in V$.
+Suppose that
+\[
+V / U = \bigoplus_{i \in I} \langle v_i + U \rangle_{\widetilde{\alpha}},
+\]
+where for each \(i \in I\), \(\langle v_i + U \rangle_{\widetilde{\alpha}}\) is infinite-dimensional. (Note: \(I\) may be an infinite set.)
+
+\begin{enumerate}
+    \item[(a)] Prove that for each \(i \in I\), \(\langle v_i \rangle_{\alpha}\) is infinite-dimensional.
+    \item[(b)] Show further that
+    \[
+    V = U \oplus \bigoplus_{i \in I} \langle v_i \rangle_{\alpha}.
+    \]
+\end{enumerate}
+(You may assume without proof that \(\langle v \rangle_{\alpha}\) is infinite-dimensional if and only if \(f(\alpha)(v) \neq 0_V\) for all nonzero \(f(x) \in F[x]\).) \\
+
+\noindent \textbf{Solution:}
+\begin{enumerate}
+    \item[(a)] Assume for some $i \in I$, $\langle v_i \rangle_\alpha$ is finite-dimensional, i.e., there exists $f(x) \in F[x]$ such that $f(\alpha)(v_i) = 0_V$. Then $f(\widetilde{\alpha})(v_i + U) = f(\alpha)(v_i) + U = 0_V + U = U = 0_{V/U}$, which contradicts $\langle v_i + U \rangle_{\widetilde{\alpha}}$ being infinite-dimensional. Thus, for each $i \in I$, $\langle v_i \rangle_\alpha$ is infinite-dimensional. \hfill $\Box$
+    \item[(b)] Let $q : V \to V/U$ such that $q(v) = v + U$ for all $v \in V$. Then $q(f(\alpha)(v)) = f(\alpha)(v) + U = f(\widetilde{\alpha})(v + U)$ for any $f(x) \in F[x], v \in V$. We see for any $v \in V$, $v + U = \sum_{i \in I} f_i(\widetilde{\alpha})(v_i + U) = \sum_{i \in I} q(f_i(\alpha)(v_i)) = \sum_{i \in I} f_i(\alpha)(v_i) + U$, so $v - \sum_{i \in I} f_i(\alpha)(v_i) = u \in U$, implying $v = u + \sum_{i \in I} f_i(\alpha)(v_i) \in U + \sum_{i \in I} \langle v_i \rangle_\alpha$. Hence, $V = U + \sum_{i \in I} \langle v_i \rangle_\alpha$.
+    
+    \noindent To show the sum is direct, we show $U \cap \sum_{\i \in I} \langle v_i \rangle_\alpha = \{0_V\}$. Suppose $u \in U \cap \sum_{i \in I} \langle v_i \rangle_\alpha$. Then $u = \sum_{j \in J} f_j(\alpha)(v_j)$ for some finite $J \subseteq I$. So $q(u) = q(\sum_{j \in J} f_j(\alpha)(v_j)) = \sum_{j \in J} q(f_j(\alpha)(v_j)) \Rightarrow 0_{V/U} = \sum_{j \in J} f_j(\widetilde{\alpha})(v_j + U)$. Since $f_j(\widetilde{\alpha})(v_j + U) \in \langle v_j + U\rangle_{\widetilde{\alpha}}$ for some $j \in I$, we have $f_j(\widetilde{\alpha})(v_j + U) = 0_{V/U}$ for all $j \in J$ by the directness of $V/U = \bigoplus_{i \in I} \langle v_i + U \rangle_{\widetilde{\alpha}}$. But for each $i \in I$, since $\langle v_i + U \rangle_{\widetilde{\alpha}}$ is infinite-dimensional, $f_j$ must be $0$ for all $j \in J$. Hence, $u = \sum_{j \in J} f_j(\alpha)(v_j) = 0_V$ and $U \cap \sum_{\i \in I} \langle v_i \rangle_\alpha = \{0_V\}$. 
+    
+    \noindent Therefore, $V = U \oplus \bigoplus_{i \in I} \langle v_i \rangle_{\alpha}$. \hfill $\Box$
+\end{enumerate}
+
+\newpage
+
+\section*{Question 3}
+Let \(\alpha\) be a linear operator on a vector space \(V\), and suppose that 
+$V = \bigoplus_{j=1}^n \langle v_j \rangle_\alpha$ for some \(v_1, \ldots, v_n \in V\) with \(\dim(\langle v_j \rangle_\alpha) = \infty\) for all \(j\).
+
+\begin{enumerate}
+    \item[(a)] Prove that \(\langle v \rangle_\alpha\) is infinite-dimensional for all \(v \in V \setminus \{0_V\}.\)
+\end{enumerate}
+
+\noindent Let \(W\) be an \(\alpha\)-invariant vector subspace of \(V\), and let 
+\[V' = \bigoplus_{i=2}^n \langle v_i \rangle_\alpha.\]
+\begin{enumerate}
+    \item[(b)]  By considering the set $\Sigma := \{f(x) \in F[x] \mid f(\alpha)(v_1) \in W + V'\}$, or otherwise, show that there exists \(f(x) \in F[x]\) such that 
+    \[
+    \{w + V' \mid w \in W\} = \langle f(\alpha)(v_1) + V' \rangle_{\widetilde{\alpha}_{V'}}.
+    \]
+    Here, \(\widetilde{\alpha}_{V'} : V/V' \to V/V'\) is defined by \(\widetilde{\alpha}_{V'}(v + V') = \alpha(v) + V'\) for all \(v \in V\). 
+
+    \item[(c)] Let \(U = W \cap V'\). Show that the following statements are equivalent:
+    \begin{enumerate}
+        \item[(i)] \(f(x) = 0_{F[x]};\)
+        \item[(ii)] \(W \subseteq V';\) 
+        \item[(iii)] \(U = W.\) 
+    \end{enumerate}
+
+    \item[(d)] Assume first that \(W \nsubseteq V'\). Let \(w_1 \in W\) such that \(f(\alpha)(v_1) + V' = w_1 + V'\). Show that:
+    \begin{enumerate}
+        \item[(i)] \(w_1 \neq 0_V;\)
+        \item[(ii)] \(W / U = \langle w_1 + U \rangle_{\widetilde{\alpha}_U}\) (here \(\widetilde{\alpha}_U : V/U \to V/U\) is defined by \(\widetilde{\alpha}_U(v + U) = \alpha(v) + U\) for all \(v \in V\));
+        \item[(iii)] \(W = U \oplus \langle w_1 \rangle_\alpha.\) (Hint: Use Question 2.)
+    \end{enumerate}
+
+    \item[(e)] Now, disregard the assumption in (d) (so \(W\) may or may not be a subset of \(V'\)). Prove by induction on \(n\), or otherwise, that 
+    \[
+    W = \bigoplus_{j=1}^m \langle w_j \rangle_\alpha
+    \]
+    for some nonzero \(w_1, \ldots, w_m \in W\) with \(m \leq n.\)
+\end{enumerate}
+
+\noindent \textbf{Solution:}
+    \begin{enumerate}
+        \item[(a)] Assume there exists nonzero $v \in V$ such that $\langle v \rangle_\alpha$ is finite-dimensional. So there exists nonzero $f(x) \in F[x]$ satisfying $f(\alpha)(v) = 0_V$. Note that $v = \sum_{j=1}^n w_j$ where $w_j \in \langle v_j \rangle_\alpha$ for each $j \in \{1,2,\dots,n\}$. So $0_V = f(\alpha)(v) = f(\alpha)\left(\sum_{j=1}^n w_j\right) = \sum_{j=1}^n f(\alpha)(w_j)$. Since $\bigoplus_{j=1}^n \langle v_j \rangle_\alpha$ is direct, $f(\alpha)(w_j) = 0_V$ for all $j \in \{1,2,\dots,n\}$. Also $v \ne 0_V$, so there must exist $k \in  \{1,2,\dots,n\}$ such that $w_k \ne 0_V$. Then there exists $p(x) \in F[x]$ such that $p(\alpha)(v_k) = w_k \ne 0_V$, which implies $p(x) \ne 0$. Hence, $(f \circ p)(\alpha)(v_k) = f(\alpha)(w_k) = 0_V$. Since $(f \circ p)(x) \ne 0$, this contradicts $\langle v_k \rangle_\alpha$ being infinite-dimensional. Therefore, $\langle v \rangle_\alpha$ is infinite-dimensional for all $V \setminus \{0_V\}$.
+        \item[(b)] Consider the set $\Sigma := \{f(x) \in F[x] \mid f(\alpha)(v_1) \in W + V'\}$. Note that $0_{F[x]} \in \Sigma$ because $0_V \in W + V'$, so $\Sigma$ is non-empty.
+
+        Now let $f(x) \in \Sigma$ with the least degree. Then $f(\alpha)(v_1) \in W + V'$ and since $W + V'$ is $\alpha$-invariant, we have $h(\alpha)(f(\alpha)(v_1)) \in W + V'$ for all $h(x) \in F[x]$. Hence, \begin{align*}
+        \langle f(\alpha)(v_1) + V' \rangle_{\widetilde{\alpha}_{V'}} &= \{h(\widetilde{\alpha}_{V'})(f(\alpha)(v_1) + V') \mid h(x) \in F[x] \\
+        &= \{h(\alpha)(f(\alpha)(v_1)) + V' \mid h(x) \in F[x]\} \subseteq \{w + V' \mid w \in W\}.
+        \end{align*}
+        On the other hand, if $w \in W$, then $w = \sum_{i=1}^n g_i(\alpha)(v_1)$ where $g_1(\alpha)(v_1) \in W + V'$, so $g_1(x) \in \Sigma$. Then $g_1(x) = q(x)f(x) + r(x)$ where $\deg r < \deg f$ or $r(x) = 0$. So $r(\alpha)(v_1) = (g_1(\alpha) - q(\alpha)f(\alpha))(v_1) \in W + V'$ since $g_1(x), f(x) \in \Sigma$ and $W + V'$ is $\alpha$-invariant. Hence, $r(x) \in \Sigma$, and by the minimality of $f(x)$, we must have $r(x) = 0$. Thus, $g_1(x) = q(x)f(x)$, and therefore, \begin{align*} 
+        w + V' &= g_1(\alpha)(v_1) + V' = q(\alpha)(f(\alpha)(v_1)) + V' \\
+        &= q(\widetilde{\alpha}_{V'})(f(\alpha)(v_1) + V') \in \langle f(\alpha)(v_1) + V' \rangle_{\widetilde{\alpha}_{V'}}.\end{align*}
+        Thus, $\{w + V' \mid w \in W\} = \langle f(\alpha)(v_1) + V' \rangle_{\widetilde{\alpha}_{V'}}$. 
+        \hfill $\Box$
+        \item[(c)] If (i) is true, $\{w + V' \mid w \in W\} = \langle 0_{V/V'} \rangle_{\widetilde{\alpha}_{V'}} = \{0_{V/V'}\}$. For all $w \in W$, $w \in V'$, hence, $W \subseteq V'$ and (ii) is true. If (ii) is true, then if $f(x) \ne 0_{F[x]}$, then $\langle w_1 + V' \rangle_{\widetilde{\alpha}_{V'}} = \{0_{V/V'}\}$ for some non-zero $w_1 \in \langle v_1 \rangle_{\alpha}$. Since $V = \langle v_1 \rangle_{\alpha} \oplus V'$, we have $w_1 \notin V'$, hence, $w_1 + V' \ne 0_{V/V'}$, contradiction. Thus, $f(x) = 0_{F[x]}$, and (i) is true. Hence, (i) $\Leftrightarrow$ (ii).
+
+        Obviously, $W \subseteq V' \Leftrightarrow W \cap V' = W$, so (ii) $\Leftrightarrow$ (iii). Therefore, (i) $\Leftrightarrow$ (ii) $\Leftrightarrow$ (iii). \hfill $\Box$
+        \item[(d)] \begin{enumerate}
+            \item[(i)] If $w_1 = 0_V$, then $f(\alpha)(v_1) \in V'$. Since $f(\alpha)(v_1) \in \langle v_1 \rangle_\alpha$ and $V = \langle v_1 \rangle_\alpha \oplus V'$, we have $f(\alpha)(v_1) = 0$. Since $\langle v_1 \rangle_\alpha$ is infinite-dimensional, we must have $f(x) = 0$. But part (c) showed this implies $W \subseteq V'$, contradiction. Thus, $w_1 \ne 0_V$. \hfill $\Box$
+            \item[(ii)] Note that for all $g(x) \in F[x]$, $g(\widetilde{\alpha}_U)(w_1 + U) = g(\alpha)(w_1) + U \in W/U$ since $w_1 \in W$ and $W$ is $\alpha$-invariant, so $\langle w_1 + U \rangle_{\widetilde{\alpha}_U} \subseteq W/U$. Now, for any $w \in W$, from part (b), there exists $h(x) \in F[x]$ such that $w + V' = h(\widetilde{\alpha}_{V'})(f(\alpha)(v_1) + V') = h(\widetilde{\alpha}_{V'})(w_1 + V') = h(\alpha)(w_1) + V'$. Then $h(\alpha)(w_1) - w \in V'$ and $h(\alpha)(w_1) - w \in W$, hence, $h(\alpha)(w_1) - w \in U$. Thus, $w + U = h(\alpha)(w_1) + U$, implying $W/U \subseteq \langle w_1 + U \rangle_{\widetilde{\alpha}_U}$ and $W/U = \langle w_1 + U \rangle_{\widetilde{\alpha}_U}$. \hfill $\Box$
+            \item[(iii)] If there exists $g(x) \in F[x]$ such that $g(\widetilde{\alpha}_U)(w_1 + U) = 0_{V/U}$, then $g(\alpha)(w_1) \in U \subseteq V'$. So $g(\alpha)(f(\alpha)(v_1)) + V' = g(\widetilde{\alpha}_{V'})(f(\alpha)(v_1) + V') = g(\widetilde{\alpha}_{V'})(w_1 + V') = g(\alpha)(w_1) + V' = 0_{V/U}$, implying $g(x)f(x) = 0$. Since $f(x) \ne 0_{F[x]}$ from $W \nsubseteq V'$ and part (c), we have $g(x) = 0_{F[x]}$. Therefore, $\langle w_1 + U\rangle_{\widetilde{\alpha}_{V'}}$ is infinite-dimensional, and by Question 2, we have $W = U \oplus \langle w_1 \rangle_\alpha$. \hfill $\Box$
+        \end{enumerate}
+        \item[(e)] We induct on $n$. \\
+        \textbf{Base case:} $n = 1$. \\
+        We have $V = \langle v_1 \rangle_\alpha$ for non-zero $v_1$. Let $W \subseteq V$ be $\alpha$-invariant. If $W = \{0_V\}$, then it is a direct sum of $0$ $\alpha$-cyclic subspaces. \\
+        If $W \ne \{0_V\}$, then $V' = \{0_V\}$ and by part (b), there exists $f(x) \in F[x]$ such that $\langle f(\alpha)(v_1) + V' \rangle_{\widetilde{\alpha}_{V'}} = \{w + V' \mid w \in W\}$. If we let $w_1 = f(\alpha)(v_1)$, then there exists $w \in W$ such that $w_1 + V' = w + V' \Leftrightarrow w_1 = w$, so $w_1 \in W$ and $\langle w_1 \rangle_\alpha \subseteq W$. \\
+        For any $w \in W$, there exists $g(x) \in F[x]$ such that $w + V' = g(\alpha)(w_1) + V' \Leftrightarrow w = g(\alpha)(w_1) \in \langle w_1 \rangle_\alpha$. Therefore, $W = \langle w_1 \rangle_\alpha$ for non-zero $w_1$. We can express $W$ as a direct sum of $m \le n$ $\alpha$-cyclic subspaces. \\[0.75em]
+        \noindent \textbf{Induction step:} Assume it is true for $n = k$. \\
+        Let $V = \bigoplus_{j=1}^{k+1} \langle v_j \rangle_\alpha$ and $V' = \bigoplus_{j=2}^{k+1} \langle v_j \rangle_\alpha$. If $W \subseteq V'$, then by the induction hypothesis, we can express $W$ as the direct sum of at most $k$ $\alpha$-cyclic subspaces. \\
+        If $W \nsubseteq V'$, then by part (d), there exists non-zero $w_1 \in W$ such that $W = \langle w_1 \rangle_\alpha \oplus U$ where $U = W \cap V'$. Since $U$ is an $\alpha$-invariant vector subspace of $V'$, by the induction hypothesis, we can express $U$ as the direct sum of at most $k$ $\alpha$-cyclic subspaces. \\
+        Thus, $W$ can be expressed as the direct sum of at most $k + 1$ $\alpha$-cyclic subspaces. \\
+
+        Therefore by induction, for all $n$, $W$ can be expressed as the direct sum of at most $n$ $\alpha$-cyclic subspaces. \hfill $\Box$
+    \end{enumerate} 
+    
+\section*{Question 4}
+Let \(V\) be a vector space, and denote the vector space of linear operators on \(V\) by \(L(V, V)\). Let \(\mathcal{A}\) be a vector subspace of \(L(V, V)\), and let \(f : \mathcal{A} \to F\) be a function. Suppose that 
+\[
+U := \{ v \in V \mid \alpha(v) = f(\alpha)v \ \forall \alpha \in \mathcal{A} \} \neq \{ 0_V \}.
+\]
+\begin{enumerate}
+    \item[(a)] Prove that:
+    \begin{enumerate}
+        \item[(i)] \(U\) is a vector subspace of \(V\), and is \(\alpha\)-invariant for all \(\alpha \in \mathcal{A}\);
+        \item[(ii)] \(f\) is linear.
+    \end{enumerate}
+\end{enumerate}
+Let \(\beta\) be a linear operator on \(V\), and assume that \(\alpha \circ \beta - \beta \circ \alpha \in \mathcal{A}\) (but possibly \(\alpha \circ \beta, \beta \circ \alpha \notin \mathcal{A}\)) for all \(\alpha \in \mathcal{A}\). 
+\begin{enumerate}
+    \item[(b)] Let \(w \in U\) and assume that \(\dim(\langle w \rangle_\beta) = k \in \mathbb{Z}^+\). Let \(\mathcal{B}_0 = \emptyset\), and for each \(1 \leq i \leq k\), let \(\mathcal{B}_i = \{ w, \beta(w), \ldots, \beta^{i-1}(w) \}\).
+    You may assume without proof that \(\mathcal{B}_k\) is a basis for \(\langle w \rangle_\beta\).
+    \begin{enumerate}
+        \item[(i)] Show, by induction on \(i\) or otherwise, that 
+        \[
+        \alpha(\beta^i(w)) - f(\alpha) \beta^i(w) \in \text{span}(\mathcal{B}_i)
+        \]
+        for all \(\alpha \in \mathcal{A}\) and \(i \in \{ 0, 1, \ldots, k - 1 \}.\)
+
+        \item[(ii)] Deduce that, for each \(\alpha \in \mathcal{A}\), \(\langle w \rangle_\beta\) is \(\alpha\)-invariant, and write down all the information you can infer from (i) about the matrix representing the restricted linear operator \(\alpha|_{\langle w \rangle_\beta}\) with respect to \(\mathcal{B}_k\).
+
+        \item[(iii)] Hence, or otherwise, show that \(f(\alpha \circ \beta - \beta \circ \alpha) = 0_F\) for all \(\alpha \in \mathcal{A}\) when the characteristic of \(F\) does not divide \(k\). 
+
+        (Hint: \(\alpha \circ \beta - \beta \circ \alpha \in \mathcal{A}\), and \(\gamma \circ \delta - \delta \circ \gamma\) has zero trace whenever \(\gamma\) and \(\delta\) are linear operators acting on the same finite-dimensional space.)
+    \end{enumerate}
+
+    \item[(c)] Using (b)(iii), or otherwise, show that \(U\) is \(\beta\)-invariant when \(V\) is finite-dimensional and \(F\) has characteristic zero. 
+\end{enumerate}
+\noindent \textbf{Solution:} 
+\begin{enumerate}
+    \item[(a)] \begin{enumerate}
+        \item[(i)] Note that for any $\alpha \in \mathcal{A}$, we have $\alpha(0_V) = 0_V = f(\alpha) \cdot 0_V$, so $0_V \in U$ and $U$ is non-empty. For any $v_1, v_2 \in U$, we have $\alpha(v_1) = f(\alpha)v_1$ and $\alpha(v_2) = f(\alpha)v_2$ for all $\alpha \in \mathcal{A}$, which implies $\alpha(v_1 + v_2) = \alpha(v_1) + \alpha(v_2) = f(\alpha)v_1 + f(\alpha)v_2 = f(\alpha)(v_1 + v_2)$ for all $\alpha \in \mathcal{A}$, hence, $v_1 + v_2 \in U$. For any $v \in U$ and $\lambda \in F$, we have $\alpha(\lambda v) = \lambda \alpha(v) = \lambda f(\alpha)v = f(\alpha) \cdot (\lambda v)$ for all $\alpha \in \mathcal{A}$, hence, $\lambda v \in U$. Thus, $U$ is a vector subspace of $V$. For any $\alpha \in \mathcal{A}$ and $v \in U$, we have $\beta(\alpha(v)) = \beta(f(\alpha)v) = f(\alpha)\beta(v) = f(\alpha)f(\beta)v = f(\beta)\alpha(v)$ for all $\beta \in \mathcal{A}$, implying $\alpha(v) \in U$. Therefore, $U$ is an $\alpha$-invariant vector subspace of $V$ for all $\alpha \in \mathcal{A}$. \hfill $\Box$
+        \item[(ii)] For any $\alpha, \beta \in \mathcal{A}$, $\lambda \in F$, and $v \in U \setminus \{0_V\}$, we have $f(\alpha + \beta)v = (\alpha + \beta)(v) = \alpha(v) + \beta(v) = f(\alpha)v + f(\beta)v \Rightarrow f(\alpha + \beta) = f(\alpha) + f(\beta)$, and $f(\lambda\alpha)v = (\lambda\alpha)(v) = \lambda \alpha(v) = \lambda f(\alpha)v \Rightarrow f(\lambda \alpha) = \lambda f(\alpha)$. Thus, $f$ is linear. \hfill $\Box$
+    \end{enumerate}
+    \item[(b)] \begin{enumerate}
+        \item[(i)] \textbf{Base case:} $i = 0$. \\
+    For all $\alpha \in \mathcal{A}$, $\alpha(\beta^0(w)) - f(\alpha)\beta^0(w) = \alpha(w) - f(\alpha)w = 0_V \in \spn(\mathcal{B}_0)$ since $w \in U$.
+
+    \textbf{Induction step:} Assume for all $\alpha \in \mathcal{A}$, $\alpha(\beta^i(w)) - f(\alpha) \beta^i(w) \in \text{span}(\mathcal{B}_i)$ for some $i \in \{0, 1,\dots, k-2\}$. \\
+    Then \begin{align*}
+        \alpha(\beta^{i+1}(w)) &= (\alpha \circ \beta)(\beta^i(w)) = (\beta \circ \alpha)(\beta^i(w)) + (\alpha \circ \beta - \beta \circ \alpha)(\beta^i(w)) \\
+        &= \beta(\alpha(\beta^i(w))) + f(\alpha \circ \beta - \beta \circ \alpha)\beta^i(w)
+    \end{align*} and \begin{align*}
+        \alpha(\beta^{i+1}(w)) - f(\alpha)\beta^{i+1}(w) &= \beta(\alpha(\beta^i(w)) - f(\alpha)\beta^i(w)) + f(\alpha \circ \beta - \beta \circ \alpha)\beta^i(w).
+    \end{align*}
+    Since $\alpha(\beta^i(w)) - f(\alpha)\beta^i(w) \in \spn(\mathcal{B}_i)$, we have $\beta(\alpha(\beta^i(w)) - f(\alpha)\beta^i(w)) \in \spn(\mathcal{B}_{i+1})$; also, $\beta^i(w) \in \mathcal{B}_{i+1}$, thus, $\alpha(\beta^{i+1}(w)) - f(\alpha)\beta^{i+1}(w) \in \spn(\mathcal{B}_{i+1})$.
+
+    Therefore by induction on $i$, we have $\alpha(\beta^i(w)) - f(\alpha)\beta^i(w) \in \spn(\mathcal{B}_i)$ for all $\alpha \in \mathcal{A}$ and $i \in \{0, 1, \dots, k-1\}$. \hfill $\Box$
+    \item[(ii)] From part (i), for all $\alpha \in \mathcal{A}$ and $i \in \{0, 1, \dots, k-1\}$, we have $\alpha(\beta^i(w)) \in \langle w \rangle_\beta$ since $f(\alpha)\beta^i(w) \in \langle w \rangle_\beta$ and $\spn(\mathcal{B}_i) \subseteq \langle w \rangle_\beta$. Since $\langle w\rangle_\beta = \spn(\mathcal{B}_k)$, it is $\alpha$-invariant. \\
+    The matrix $[\alpha|_{\langle w \rangle_\beta}]_{\mathcal{B}_k}$ is an upper-triangular $k \times k$ matrix with all diagonal entries being $f(\alpha)$. \hfill $\Box$
+    \item[(iii)] Since $\alpha \circ \beta - \beta \circ \alpha \in \mathcal{A}$, the matrix $[\alpha \circ \beta - \beta \circ \alpha|_{\langle w \rangle_\beta}]_{\mathcal{B}_k}$ is an upper-triangular $k \times k$ matrix with all diagonal entries being $f(\alpha \circ \beta - \beta \circ \alpha)$, therefore, the trace of $\alpha \circ \beta - \beta \circ \alpha$ restricted to $\langle w \rangle_\beta$ is equal to $k \cdot f(\alpha \circ \beta - \beta \circ \alpha)$. This must equal $0_F$, so we have $f(\alpha \circ \beta - \beta \circ \alpha) = 0_F$ since $\mathrm{char}\,F$ does not divide $k$. \hfill $\Box$
+    \end{enumerate}
+    \item[(c)] If $V$ is finite-dimensional and $F$ has characteristic zero, then for all $v \in U$ and $\alpha \in \mathcal{A}$, $(\alpha \circ \beta - \beta \circ \alpha)(v) = f(\alpha \circ \beta - \beta \circ \alpha)v = 0_V$, hence, $(\alpha \circ \beta)(v) = (\beta \circ \alpha)(v)$. Then $\alpha(\beta(v)) = \beta(\alpha(v)) = \beta(f(\alpha)v) = f(\alpha)\beta(v)$. Thus, $\beta(v) \in U$, implying that $U$ is $\beta$-invariant. \hfill $\Box$
+\end{enumerate}
+
+\section*{Question 5}
+Let \( V \) be a vector space equipped with a nondegenerate symmetric bilinear form \( \phi \).
+
+\begin{enumerate}
+    \item[(a)] Let \( v \in V \setminus \{ 0_V \} \). Show that there exists a vector subspace \( W \) of \( V \) with \( \dim(W) \leq 2 \) such that \( v \in W \) and \( \phi|_{W \times W} \) is nondegenerate. 
+\end{enumerate}
+Now suppose that \( V \) is \textbf{infinite}-dimensional, and let \( U \) be a \textbf{finite}-dimensional vector subspace of \( V \). \\
+For any \( X \subseteq V \), define \(X^\perp := \{ v \in V \mid \phi(v, x) = 0_F \ \forall x \in X \}.\)
+\begin{enumerate} 
+    \item[(b)] Show by induction on \( \dim(U) \), or otherwise, that there is a finite-dimensional vector subspace \( W \) of \( V \) with \( U \subseteq W \) such that \( \phi|_{W \times W} \) is nondegenerate. 
+
+    (You may assume without proof that if \( X \) is a finite-dimensional vector subspace of \( V \) such that \( \phi|_{X \times X} \) is nondegenerate, then \( \phi|_{X^\perp \times X^\perp} \) is also nondegenerate.)
+
+    \item[(c)] Show further that \( U^\perp = (U^\perp \cap W) \oplus W^\perp. \)
+
+    \item[(d)] Hence, or otherwise, show that \( (U^\perp)^\perp = (U^\perp \cap W)^\perp \cap W. \)
+
+    \item[(e)] Deduce that \( (U^\perp)^\perp = U. \) 
+\end{enumerate}
+\noindent \textbf{Solution:} 
+\begin{enumerate}
+    \item[(a)] If $\phi(v, v) \ne 0_F$, then let $W = \spn(\{v\})$, which has dimension $1$. \\
+    If $\phi(v, v) = 0_F$, since $\phi$ is nondegenerate, there exists $u \in V \setminus \{0_V\}$ such that $\phi(u, v) \ne 0_F$. So we let $W = \spn(\{v, u\})$, which has dimension at most $2$, and that $\phi|_{W \times W}$ is nondegenerate. \hfill $\Box$
+    \item[(b)] We induct on $\dim(U)$. \\
+    \textbf{Base case:} $\dim(U) = 0$. \\
+    Then $U = \{0_V\}$. We can let $W = U$ and $\phi|_{W \times W}$ is trivially nondegenerate. 
+
+    \textbf{Inductive step:} Assume the statement holds for $\dim(U) \le n$ where $n \in \mathbb{N}$. \\
+    Let $U \subseteq V$ have dimension $n + 1$.  Let $U'$ be an $n$--dimensional subspace of $U$. By the induction hypothesis, there exists a finite-dimensional subspace $W' \supseteq U$ such that $\phi|_{W' \times W'}$ is nondegenerate. If $U \subseteq W'$, then we can let $W = W'$. Otherwise, there exists $u \in U \setminus W'$. Since $V = W' \oplus W'^\perp$, $u = w_0 + w_1$ for some unique $w_0 \in W'$ and $w_1 \in W'^\perp$. Since $\phi|_{W' \times W'}$ is nondegenerate, $\phi|_{W'^\perp \times W'^\perp}$ must be nondegenerate. So by part (a), there must exist finite-dimensional $X$ such that $w_1 \in X \subseteq W'^\perp$ and $\phi|_{X \times X}$ is nondegenerate. Now, let $W = W' + X$. Since $W' \cap W'^\perp = \{0_V\}$ and $X \subseteq W'^\perp$, we have $W = W' \oplus X$. So $u = w_0 + w_1 \in W' + X = W$ and $U = U' + \spn(\{u\}) \subseteq W' + X = W$. Also, if there exists $w = w' + x$ such that $\phi(w, v) = 0_F$ for all $v \in W$, then $\phi(w' + x, w'_1 + x_1) = 0_F$ for all $w'_1 \in W', x_1 \in X$, implying $\phi(w', w'_1) + \phi(w', x_1) + \phi(x, w'_1) + \phi(x, x_1) = \phi(w', w_1') + \phi(x, x_1) = 0_F$ for all $w_1' \in W', x_1 \in X$. Hence, $\phi(w', w'_1) = 0_F$ and $\phi(x, x_1) = 0_F$ for all $w_1' \in W', x_1 \in X$. But since $\phi|_{W' \times W'}$ and $\phi|_{X \times X}$ are both nondegenerate, this forces $w' = 0_V, x = 0_V$, and $w = 0_V$. Thus, $\phi|_{W \times W}$ is nondegenerate and $W$ satisfies the conditions.
+
+    By induction, we are done. \hfill $\Box$
+    \item[(c)] If $v \in W^\perp$, then $\phi(v, w) = 0$ for all $w \in W$. But $U \subseteq W$, so $\phi(v, u) = 0$ for all $u \in U$. Hence, $v \in U^\perp$, implying $W^\perp \subseteq U^\perp$. Thus, $U^\perp = V \cap U^\perp = (W^\perp \oplus W) \cap U^\perp = (W^\perp \cap U^\perp) \oplus (W \cap U^\perp) = W^\perp \oplus (W \cap U^\perp)$. \hfill $\Box$
+    \item[(d)] We prove the following claims: \\
+    \textit{Claim 1:} For any subspaces $A, B$ of $V$, $(A + B)^\perp = A^\perp \cap B^\perp$. \\
+    \textit{Proof:} Let $v \in (A + B)^\perp$. Then for all $a \in A, b \in B$, we have $\phi(v, a + b) = 0_F$. But we can just set $a = 0_V$ or $b = 0_V$, giving us $\phi(v, a) = 0_F$ for all $a \in A$ and $\phi(v, b) = 0_F$ for all $b \in B$, implying $v \in A^\perp \cap B^\perp$ and $(A + B)^\perp \subseteq A^\perp \cap B^\perp$.
+
+    Now let $w \in A^\perp \cap B^\perp$. Each element $c$ of $A + B$ can be expressed as $c = a + b$ for some $a \in A, b \in B$. But $\phi(w, a) = \phi(w, b) = 0_F$, so $\phi(w, c) = \phi(w, a) + \phi(w, b) = 0_F$. Hence, $w \in (A + B)^\perp$ and $A^\perp \cap B^\perp \subseteq (A + B)^\perp$. Therefore, $(A + B)^\perp = A^\perp \cap B^\perp$ and the claim is proven. \hfill $\blacksquare$ 
+    
+    \textit{Claim 2:} $(W^\perp)^\perp = W$. \\
+    \textit{Proof:} Note $\phi|_{W^\perp \times W^\perp}$ is nondegenerate and $V = W \oplus W^\perp$. \\
+    If $w \in W$, then for all $u \in W^\perp$, we must have $\phi(w, u) = 0_F$. Hence, $w \in (W^\perp)^\perp$. \\
+    If $w \in (W^\perp)^\perp$, then $w = w' + u$ for some $w' \in W$ and $u \in W^\perp$. It follows that $\phi(w, u') = 0_F$ for all $u' \in W^\perp$, so $\phi(w', u') + \phi(u, u') = 0_F$ for all $u' \in W^\perp$. But $\phi(w', u') = 0_F$, so $\phi(u, u') = 0_F$ for all $u' \in W^\perp$. This forces $u = 0_V$, so $w \in W$ and $(W^\perp)^\perp \subseteq W$. Therefore, $(W^\perp)^\perp = W$ and the claim is proven. \hfill $\blacksquare$
+
+    Since $U^\perp = (U^\perp \cap W) + W^\perp$ from part (c), by Claims 1 and 2, we have $(U^\perp)^\perp = (U^\perp \cap W)^\perp \cap (W^\perp)^\perp = (U^\perp \cap W)^\perp \cap W$. \hfill $\Box$
+
+    \item[(e)] Note that $W$ is a finite-dimensional vector space equipped with a nondegenerate symmetric bilinear form $\psi = \phi|_{W \times W}$. For any $X \subseteq W$, we have $X^{\perp_\psi} = \{w \in W \mid \psi(w, x) = 0_F \, \forall x \in X\} = X^\perp \cap W$. Then $(U^{\perp_\psi})^{\perp_\psi} = (U^{\perp_\psi})^\perp \cap W = (U^\perp \cap W)^\perp \cap W = (U^\perp)^\perp$. Since $(U^{\perp_\psi})^{\perp_\psi} = U$ from $W$ being finite-dimensional, we have $(U^\perp)^\perp = U$. \hfill $\Box$
+
+\end{enumerate}
+
+\end{document}
