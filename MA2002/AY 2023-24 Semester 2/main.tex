@@ -1,0 +1,425 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{subfig}
+\newcommand\mytab{\tab \hspace{+1cm}}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{geometry}
+\usepackage[most]{tcolorbox}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+\usepackage[utf8]{inputenc}
+\linespread{1.15}
+\usepackage{tikz,lipsum,lmodern}
+\usepackage{hyperref}
+\newtcolorbox{mybox}{
+enhanced,
+boxrule=0pt,frame hidden,
+borderline west={4pt}{0pt}{green!75!black},
+colback=green!10!white,
+sharp corners
+}
+\newtcolorbox{mybox2}{
+enhanced,
+boxrule=0pt,frame hidden,
+borderline west={4pt}{0pt}{blue!75!black},
+colback=blue!10!white,
+sharp corners
+}
+\usepackage{amsmath,amsfonts,amsthm,bm} % Math packages
+\usepackage[most]{tcolorbox}
+\usepackage{amssymb}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\usepackage{mathtools}
+\usepackage{amsmath}
+
+\usepackage{natbib}
+\usepackage{wrapfig}
+\usepackage{url}
+\usepackage{pax}
+\usepackage{pdfpages}
+\usepackage{graphicx}
+\usepackage{mathptmx}
+\usepackage{tikz}
+\usepackage{blindtext}
+\title{MA2002 AY23/24 Sem 2 Final}
+\author{Solution by Thang Pang Ern}
+
+\begin{document}
+
+\maketitle
+\subsubsection*{Question 1}
+Let \begin{align*}
+    f(x)=\begin{cases}
+        \dfrac{3\operatorname{sin}\left(\operatorname{sin}x\right)}{x} & \text{if }x>0;\\
+        x+a & \text{if }x\le 0.
+    \end{cases}
+\end{align*}
+\begin{enumerate}[label=\textbf{(\roman*)}]
+    \itemsep 0em
+    \item Find the value of $a$ such that $f$ is continuous at $x=0$.
+    \item Is there a value of $a$ such that $f$ is differentiable at $x=0$? Justify your answer.
+\end{enumerate}
+\textit{Solution.}
+\begin{enumerate}[label=\textbf{(\roman*)}]
+    \itemsep 0em
+    \item For $f$ to be continuous at $x=0$, the left and right limits must be equal. Note that \begin{align*}
+        \lim_{x\rightarrow 0^-}f\left(x\right)=\lim_{x\rightarrow 0^-}\left(x+a\right)=a.
+    \end{align*}
+    As such, we must have the right limit being equal to $a$. Note that \begin{align*}
+        \lim_{x\rightarrow 0^+}f\left(x\right)=\lim_{x\rightarrow 0^+}\frac{3\operatorname{sin}\left(\operatorname{sin}x\right)}{x}=\lim_{x\rightarrow 0^+}3\operatorname{cos}x\operatorname{cos}\left(\operatorname{sin}x\right)=3,
+    \end{align*}
+    where we used L'Hôpital's rule. Hence, $a=3$.
+    \item Suppose $f$ is differentiable at $x=0$. Then, the following limits must exist: \begin{align*}
+        \lim_{x\rightarrow 0^+}\frac{f\left(x\right)-f\left(0\right)}{x-0}\quad\text{and}\quad \lim_{x\rightarrow 0^-}\frac{f\left(x\right)-f\left(0\right)}{x-0}
+    \end{align*}
+    For the first limit, we see that \begin{align*}
+        \lim_{x\rightarrow 0^+}\frac{f\left(x\right)-f\left(0\right)}{x-0}=\lim_{x\rightarrow 0^+}\dfrac{\dfrac{3\operatorname{sin}\left(\operatorname{sin}x\right)}{x}-a}{x}=\lim_{x\rightarrow 0^+}\frac{3\operatorname{sin}\left(\operatorname{sin}x\right)-ax}{x^2}.
+    \end{align*}
+    By applying L'Hôpital's rule, this limit is equal to \begin{align*}
+        \lim_{x\rightarrow 0^+}\frac{3\operatorname{cos}x\operatorname{cos}\left(\operatorname{sin}x\right)-a}{2x}\quad \left(\ast\right).
+    \end{align*}
+    As for the other limit, we have \begin{align*}
+        \lim_{x\rightarrow 0^-}\frac{f\left(x\right)-f\left(0\right)}{x-0}=\lim_{x\rightarrow 0^-}\frac{x+a-a}{x-0}=1
+    \end{align*}
+    which forces the limit in $\left(\ast\right)$ to be 1 with the assumption that $f$ is differentiable at $x=0$. We shall consider two cases --- $a=0$ and $a=3$. To see why we need to consider $a=3$, one notes that the limit would become indeterminate. If $a=0$, then we have \begin{align*}
+        \lim_{x\rightarrow 0^+}\frac{3\operatorname{cos}x\operatorname{cos}\left(\operatorname{sin}x\right)}{2x}=\infty
+    \end{align*}
+    so $f$ is not differentiable if $a=0$. Now, suppose $a=3$, then we have 
+    \begin{align*}
+        \lim_{x\rightarrow 0^+}\frac{3\operatorname{cos}x\operatorname{cos}\left(\operatorname{sin}x\right)-3}{2x}=\frac{3}{2}\lim_{x\rightarrow 0^+}\frac{\operatorname{cos}x\operatorname{cos}\left(\operatorname{sin}x\right)-1}{x}
+    \end{align*}
+    so by L'Hôpital's rule, the limit becomes \begin{align*}
+        \frac{3}{2}\lim_{x\rightarrow 0^+}\left[\operatorname{cos}^2x\operatorname{sin}\left(\operatorname{sin}x\right)+\operatorname{sin}x\operatorname{cos}\left(\operatorname{sin}x\right)\right]=0
+    \end{align*}
+    Since \begin{align*}
+        \lim_{x\rightarrow 0^+}\frac{f\left(x\right)-f\left(0\right)}{x-0}=0\quad\text{but}\quad\lim_{x\rightarrow 0^-}\frac{f\left(x\right)-f\left(0\right)}{x-0}=1
+    \end{align*}
+    which are not equal, we conclude that there does not exist $a\in\mathbb{R}$ such that $f$ is differentiable at $x=0$. \qed 
+\end{enumerate}
+\textbf{\textsf{\textcolor{purple}{Remark:}}} Recall that if a function $f$ is differentiable at $x=c$, then it is continuous at $x=c$. As such, for \textbf{(ii)}, it suffices to only consider the case where $a=3$ since we know that from \textbf{(i)}, when $a=3$, then $f$ is continuous at $x=0$.
+\subsubsection*{Question 2}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Prove that $\operatorname{sin}^2x-3x=5$ has exactly one real root.
+    \item Find \begin{align*}
+        \lim_{x\rightarrow\infty}\left[\left(1+\frac{1}{x}\right)^{x^2}e^{-x}\right].
+    \end{align*}
+\end{enumerate}
+\textit{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Let $f\left(x\right)=\operatorname{sin}^2x-3x-5$. Then, $f\left(0\right)=-5<0$ and $f\left(-\pi\right)=3\pi-5>0$ since $\pi>3$. Since $f$ is continuous on $\left[-\pi,0\right]$, it follows by the intermediate value theorem that $f$ has at least one root on $\left(-\pi,0\right)$.
+    \newline
+    \newline We then prove that $f$ has at most one real root. We have $f'\left(x\right)=\operatorname{sin}2x-3$. Since the amplitude of $\operatorname{sin}2x$ is 1, we have $-1\le \operatorname{sin}2x\le 1$, so $f'\left(x\right)\le -1<0$. As such, $f$ is strictly decreasing for all $x\in\mathbb{R}$. It follows that $f$ has at most one real root.
+    \newline
+    \newline Since $f$ has at least one real root and at most one real root, we conclude that $f$ has exactly one real root.
+    \item Consider \begin{align*}
+        \operatorname{ln}\left[\left(1+\frac{1}{x}\right)^{x^2}e^{-x}\right]=x^2\operatorname{ln}\left(1+\frac{1}{x}\right)-x.
+    \end{align*}
+    So, \begin{align*}
+        \lim_{x\rightarrow \infty}\operatorname{ln}\left[\left(1+\frac{1}{x}\right)^{x^2}e^{-x}\right]&=\lim_{x\rightarrow\infty}\left[x^2\operatorname{ln}\left(1+\frac{1}{x}\right)-x\right]\\
+        &=\lim_{u\rightarrow 0}\left[\frac{\operatorname{ln}\left(1+u\right)}{u^2}-\frac{1}{u}\right]\quad\text{by substituting }u=\frac{1}{x}\\
+        &=\lim_{u\rightarrow 0}\frac{\operatorname{ln}\left(1+u\right)-u}{u^2}\\
+        &=\lim_{u\rightarrow 0}\frac{\frac{1}{1+u}-1}{2u}\quad \text{by L'Hôpital's rule}\\
+        &=\lim_{u\rightarrow 0}\frac{-u}{2u\left(1+u\right)}\\
+        &=-\frac{1}{2}\lim_{u\rightarrow 0}\frac{1}{1+u}
+    \end{align*}
+which evaluates to $-1/2$. Hence, the original limit evaluates to $e^{-1/2}=1/\sqrt{e}$. \qed 
+\end{enumerate}
+\textbf{\textsf{\textcolor{purple}{Remark:}}} If you try to apply L'Hôpital's rule to the original limit in \textbf{(b)}, you would realise that it does not work since the derivative of the numerator would become more complicated, whereas the derivative of the denominator would remain as $e^x$.
+\subsubsection*{Question 3}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Use the $\varepsilon$-$\delta$ definition to show that \begin{align*}
+        \lim_{x\rightarrow 1}\frac{\sqrt{x^2+3}}{x}=2.
+    \end{align*}
+    \item An auditorium with a flat floor has a large screen on one wall. The lower edge of the screen is 3ft above eye level and the upper edge of the screen is 10ft above the eye level. How far from the screen should you stand to maximise your viewing angle $\theta$? Give your answer in exact value.
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.5\textwidth]{Question 3 image.jpg}
+    \end{figure}
+\end{enumerate}
+\textit{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Let $\varepsilon>0$ be arbitrary. Then, choose $\delta=\operatorname{min}\left\{1/2,\varepsilon/15\right\}$. So, whenever $\left|x-1\right|<\delta$, we have the following: 
+    \begin{align*}
+        \left|\frac{\sqrt{x^2+3}}{x}-2\right|=\left|\frac{\sqrt{x^2+3}-2x}{x}\right|=\left|\frac{3-3x^2}{x\left(\sqrt{x^2+3}+2x\right)}\right|=3\cdot \frac{\left|1+x\right|\left|1-x\right|}{\left|x\right|\left|\sqrt{x^2+3}+2x\right|}
+    \end{align*}
+    Since $\left|x-1\right|<1/2$, then $-1/2<x-1<1/2$, which implies $1/2<x<3/2$ (consequently, $2/3<1/x<2$) and $3/2<x+1<5/2$. Moreover, as $\sqrt{x^2+3}+2x>1+\sqrt{13}/2>1$, we have \begin{align*}
+        3\cdot \frac{\left|1+x\right|\left|1-x\right|}{\left|x\right|\left|\sqrt{x^2+3}+2x\right|}\le 3\cdot \left(5/2\cdot \delta\cdot 2 \cdot 1\right)=15\delta\le\varepsilon.
+    \end{align*}
+    \item By applying Pythagoras' theorem twice, the lengths of the bottom slant line and the top slant line are \begin{align*}
+        \sqrt{x^2+9}\text{ and }\sqrt{x^2+100}\quad\text{respectively}.
+    \end{align*}
+    By applying the cosine rule on the top triangle, we have \begin{align*}
+        7^2&=\left(\sqrt{x^2+9}\right)^2+\left(\sqrt{x^2+100}\right)^2-2\sqrt{x^2+9}\sqrt{x^2+100}\operatorname{cos}\theta\\
+        \operatorname{cos}\theta&=\frac{30+x^2}{\sqrt{\left(x^2+9\right)\left(x^2+100\right)}}
+    \end{align*}
+    By implicit differentiation, we have \begin{align*}
+        -\operatorname{sin}\theta\frac{d\theta}{dx}&=\frac{49x\left(x^2-30\right)}{\left[\left(x^2+9\right)\left(x^2+100\right)\right]^{3/2}}\quad\text{after some tedious work}.
+    \end{align*}
+    Setting $d\theta/dx=0$, we have $x=0$ or $x=\pm \sqrt{30}$. Since $x>0$, we only accept $x=\sqrt{30}$. Subsequently, one can use the first derivative test to deduce that when $x=\sqrt{30}$, $\theta$ is at a maximum. \qed 
+\end{enumerate}
+\textbf{\textsf{\textcolor{purple}{Remark:}}} If you consider $\delta=\operatorname{min}\left\{1,\varepsilon/k\right\}$ (where $k$ is to be found but it is not possible to be deduced), you would run into a problem because it is not possible to find an upper bound for $1/x$.
+\subsubsection*{Question 4}
+Let $f\left(x\right)=\displaystyle \int_{0}^{x}\left(2-t\right)^{1/3}\left(t-3\right)^{2/3}\text{ }dt$, $x\in \left(-5,5\right)$. In the domain $\left(-5,5\right)$,
+\begin{enumerate}[label=\textbf{(\roman*)}]
+    \itemsep 0em
+    \item find $\dfrac{d^2}{dx^2}f\left(x\right)$;
+    \item find all open interval(s) on which $f$ is increasing and the interval(s) on which $f$ is decreasing;
+    \item find all open interval(s) on which $f$ is concave up and the interval(s) on which $f$ is concave down;
+    \item find the value(s) of $x$ at which $f$ has local minimum and local maximum, if any.
+    \item find the value(s) of $x$ at which $f$ has inflection point(s), if any.
+\end{enumerate}
+\textit{Solution.}
+\begin{enumerate}[label=\textbf{(\roman*)}]
+    \itemsep 0em
+    \item By the fundamental theorem of calculus, we have \begin{align*}
+        \frac{d^2}{dx^2}f\left(x\right)&=\frac{d}{dx}\left[\left(2-x\right)^{1/3}\left(x-3\right)^{2/3}]\right]\\
+        &=\frac{2}{3}\left(2-x\right)^{1/3}\left(x-3\right)^{-1/3}-\frac{1}{3}\left(2-x\right)^{-2/3}\left(x-3\right)^{2/3}\\
+        &=\frac{2}{3}\left(\frac{2-x}{x-3}\right)^{1/3}-\frac{1}{3}\left(\frac{x-3}{2-x}\right)^{2/3}
+    \end{align*}
+    \item From \textbf{(i)}, we have \begin{align*}
+        f'\left(x\right)=\left(2-x\right)^{1/3}\left(x-3\right)^{2/3}.
+    \end{align*}
+    Cubing both sides, we obtain \begin{align*}
+        \left[f'\left(x\right)\right]^3=\left(2-x\right)\left(x-3\right)^2.
+    \end{align*}
+    $f$ is increasing if $f'>0$, or equivalently, $\left(f'\right)^3>0$, so we must have $x<2$; $f$ is decreasing if $f'<0$, or equivalently, $\left(f'\right)'<0$, so we must have $2<x<3$ or $x>3$.
+    \item Recall that we obtained an expression for $f''$ in \textbf{(i)}. We manipulate the expression first, i.e. \begin{align*}
+        f''\left(x\right)&=\frac{2}{3}\left(\frac{2-x}{x-3}\right)^{1/3}-\frac{1}{3}\left(\frac{x-3}{2-x}\right)^{2/3}\\
+        &=\frac{2}{3}u^{1/3}-\frac{1}{3}u^{-2/3}\quad\text{where }u=\frac{2-x}{x-3}
+    \end{align*}
+    For $f$ to be concave up, we must have $f''>0$, so \begin{align*}
+        \frac{2}{3}u^{1/3}-\frac{1}{3}u^{-2/3}&>0\\
+        2u^{1/3}-u^{-2/3}&>0\\
+        \frac{2u-1}{u^{2/3}}&>0\quad\text{by multiplying by }\frac{u^{2/3}}{u^{2/3}}
+    \end{align*}
+    The solution to this inequality is $u>1/2$, so \begin{align*}
+        \frac{2-x}{x-3}>\frac{1}{2}.
+    \end{align*}
+    Solving this inequality, we have $7/3<x<3$ (keep in mind that $x=3$ is a vertical asymptote of the graph of $y=f''$). Hence, $f$ is increasing on $7/3<x<3$.
+    \newline
+    \newline So, $f$ would be a decreasing function on $x<2$ or $2<x<7/3$ or $x>3$, again keeping in mind that $x=2$ is a vertical asymptote of the graph of $y=f''$).
+    \item From \textbf{(i)}, we have \begin{align*}
+        f'\left(x\right)=\left(2-x\right)^{1/3}\left(x-3\right)^{2/3}.
+    \end{align*}
+    Setting $f'=0$, we have $x=2$ or $x=3$. One can use the first derivative test to verify that the turning point at $x=2$ is a maximum point.
+    \item Based on the expression of $f'$, one can use the first derivative test to show that the turning point at $x=3$ is a point of inflection. \qed 
+\end{enumerate}
+\subsubsection*{Question 5}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Let $f$ be any positive continuous function on $\left[0,\pi/2\right]$. Find \begin{align*}
+        \int_{0}^{\pi/2}\frac{f\left(\operatorname{cos}x\right)}{f\left(\operatorname{cos}x\right)+f\left(\operatorname{sin}x\right)}\text{ }dx.
+    \end{align*}
+    \textit{Hint:} Use the identity $\operatorname{cos}\left(\pi/2-x\right)=\operatorname{sin}x$.
+    \item Use Riemann sum to find \begin{align*}
+        \lim_{n\rightarrow\infty}\sum_{k=1}^{n}\operatorname{ln}\sqrt[n]{1+\frac{k}{n}}.
+    \end{align*}
+\end{enumerate}
+\textit{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Let the original integral be $I$. Using the substitution $u=\pi/2-x$, we have $du=-dx$, so \begin{align*}
+        I&=-\int_{\pi/2}^{0}\frac{f\left(\operatorname{cos}\left(\pi/2-u\right)\right)}{f\left(\operatorname{cos}\left(\pi/2-u\right)\right)+f\left(\operatorname{sin}\left(\pi/2-u\right)\right)}\text{ }du\\
+        &=\int_{0}^{\pi/2}\frac{f\left(\operatorname{sin}u\right)}{f\left(\operatorname{sin}u\right)+f\left(\operatorname{cos}u\right)}\text{ }du\\
+        &=\int_{0}^{\pi/2}\frac{f\left(\operatorname{sin}x\right)}{f\left(\operatorname{sin}x\right)+f\left(\operatorname{cos}x\right)}\text{ }dx
+    \end{align*}
+    So, \begin{align*}
+        I+I=\int_{0}^{\pi/2}\frac{f\left(\operatorname{cos}x\right)}{f\left(\operatorname{cos}x\right)+f\left(\operatorname{sin}x\right)}\text{ }dx+\int_{0}^{\pi/2}\frac{f\left(\operatorname{sin}x\right)}{f\left(\operatorname{sin}x\right)+f\left(\operatorname{cos}x\right)}\text{ }dx=\int_{0}^{\pi/2}1\text{ }dx=\frac{\pi}{2}.
+    \end{align*}
+    Hence, $I=\pi/4$.
+    \item We have \begin{align*}
+        \lim_{n\rightarrow\infty}\sum_{k=1}^{n}\operatorname{ln}\sqrt[n]{1+\frac{k}{n}}=\lim_{n\rightarrow\infty}\frac{1}{n}\sum_{k=1}^{n}\operatorname{ln}\left(1+\frac{k}{n}\right)
+    \end{align*}
+    Recall that \begin{align*}
+        \lim_{n\rightarrow\infty}\frac{1}{n}\sum_{k=1}^{n}f\left(\frac{k}{n}\right)=\int_{0}^{1}f\left(x\right)\text{ }dx.
+    \end{align*}
+    So, the limit becomes \begin{align*}
+        \int_{0}^{1}\operatorname{ln}\left(1+x\right)\text{ }dx.
+    \end{align*}
+    Using integration by parts, we have \begin{align*}
+        \int_{0}^{1}\operatorname{ln}\left(1+x\right)\text{ }dx&=\left[x\operatorname{ln}\left(1+x\right)\right]_{0}^{1}-\int_{0}^{1}\frac{x}{x+1}\text{ }dx=\operatorname{ln}2-\int_{0}^{1}1-\frac{1}{x+1}\text{ }dx
+    \end{align*}
+    which evaluates to $2\operatorname{ln}2-1$. \qed 
+\end{enumerate}
+\newpage
+\subsubsection*{Question 6}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Find \begin{align*}
+        \int\frac{7x^2-13x+13}{\left(x-2\right)\left(x^2-2x+3\right)}\text{ }dx.
+    \end{align*}
+    \item For what value(s) of $a$ does \begin{align*}
+        \int_{1}^{\infty}\frac{ax}{x^2+1}-\frac{1}{2x}\text{ }dx
+    \end{align*}
+    converge? Evaluate the corresponding integral(s).
+\end{enumerate}
+\textit{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Note that $x^2-2x+3=\left(x-1\right)^2+2$, which cannot be split into linear factors with real coefficients. In fact, recall that such polynomials are said to be irreducible over $\mathbb{R}$. So, there exist $A,B,C\in\mathbb{R}$ such that \begin{align*}
+        \frac{7x^2-13x+13}{\left(x-2\right)\left(x^2-2x+3\right)}=\frac{A}{x-2}+\frac{Bx+C}{\left(x-1\right)^2+2}.
+    \end{align*}
+    Hence, \begin{align*}
+        7x^2-13x+13&=A\left[\left(x-1\right)^2+2\right]+\left(Bx+C\right)\left(x-2\right)\\
+        &=\left(A+B\right)x^2+\left(-2A-2B+C\right)x+3A-2C
+    \end{align*}
+    This implies $A+B=7$, $-2A-2B+C=-13$ and $3A-2C=13$. Substituting $B=7-A$ and $C=\frac{1}{2}\left(3A-13\right)$ into the second equation, we have \begin{align*}
+        -2A-2\left(7-A\right)+\frac{1}{2}\left(3A-13\right)=-13\quad\text{so }A=5.
+    \end{align*}
+    Consequently, $B=2$ and $C=1$. Hence, the partial fraction decomposition of the integrand is \begin{align*}
+        \frac{5}{x-2}+\frac{2x+1}{\left(x-1\right)^2+2}.
+    \end{align*}
+    Integrating, we obtain 
+    \begin{align*}
+        \int\frac{5}{x-2}\text{ }dx+\int\frac{2x+1}{\left(x-1\right)^2+2}\text{ }dx&=5\operatorname{ln}\left|x-2\right|+\int\frac{2x-2}{\left(x-1\right)^2+2}\text{ }dx+\int\frac{3}{\left(x-1\right)^2+2}\text{ }dx\\
+        &=5\operatorname{ln}\left|x-2\right|+\operatorname{ln}\left[\left(x-1\right)^2+2\right]+\frac{3}{\sqrt{2}}\operatorname{tan}^{-1}\left(\frac{x-1}{\sqrt{2}}\right)+c
+    \end{align*}
+    \item We have 
+    \begin{align*}
+        \int_{1}^{\infty}\frac{ax}{x^2+1}-\frac{1}{2x}\text{ }dx&=\frac{1}{2}\left[a\operatorname{ln}\left(x^2+1\right)-\operatorname{ln}x\right]_{1}^{\infty}\\
+        &=\frac{1}{2}\lim_{R\rightarrow\infty}\operatorname{ln}\left[\frac{\left(R^2+1\right)^a}{R}\right]-\frac{a}{2}\operatorname{ln}2
+    \end{align*}
+    Note that the second expression $a\operatorname{ln}2/2$ is not affected by $R$, so it suffices to consider the first expression. Hence, we must have \begin{align*}
+        \lim_{R\rightarrow\infty}\operatorname{ln}\left[\frac{\left(R^2+1\right)^a}{R}\right]=0\quad\text{so}\quad\lim_{R\rightarrow\infty}\quad \frac{\left(R^2+1\right)^a}{R}=1.
+    \end{align*}
+    By L'Hôpital's rule, one can deduce that $a=1/2$. \qed 
+\end{enumerate}
+\subsubsection*{Question 7}
+Determine whether the following statements are true or false. Circle the correct option for each part. You need not show your working.
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item If $f$ and $g$ are continuous on $\mathbb{R}$ and \begin{align*}
+        \lim_{x\rightarrow\infty}f\left(x\right)=\lim_{x\rightarrow\infty}g\left(x\right)=\infty,\quad\text{then}\quad \lim_{x\rightarrow\infty}\left(f\left(x\right)-g\left(x\right)\right)=0.
+    \end{align*}
+    \item Suppose $f$ is continuous on $\mathbb{R}$. If $f$ is increasing on the open interval $\left(0,1\right)$ and increasing on $\left(1,2\right)$, then $f$ is increasing on $\left(0,2\right)$.
+    \item If $f$ is differentiable on $\mathbb{R}$ and $f'\left(c\right)=0$, then $f$ has a local minimum or maximum at $x=c$.
+    \item \begin{align*}
+        \int_{0}^{1}x-x^2\text{ }dx=\int_{0}^{1}\sqrt{y}-y\text{ }dy
+    \end{align*}
+    \item If $f$ is continuous and $0<f\left(x\right)<g\left(x\right)$ on the interval $\left[0,\infty\right)$, and \begin{align*}
+        \int_{0}^{\infty}g\left(x\right)\text{ }dx\text{ converges},\quad\text{then}\quad \int_{0}^{\infty}f\left(x\right)\text{ converges.}
+    \end{align*}
+\end{enumerate}
+\textit{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item False. Consider $f\left(x\right)=2x$ and $g\left(x\right)=x$ but \begin{align*}
+        \lim_{x\rightarrow\infty}\left(f\left(x\right)-g\left(x\right)\right)=\infty.
+    \end{align*}
+    \item True. Since $f$ is continuous on $\mathbb{R}$, then $f\left(1\right)$ exists. So, given any $1<a<b<2$, we must have $f\left(a\right)<f\left(b\right)$, i.e. $f$ is increasing on $\left(0,2\right)$.
+    \item False. $f$ can have a point of inflection. For example, let $f\left(x\right)=x^3$. Then, $f'\left(0\right)=0$, but the point at $x=0$ is neither a local minimum nor maximum.
+    \item True. One can verify manually by integrating both sides.
+    \item True. Since the integral of $g$ converges, then \begin{align*}
+        \text{there exists }M\in\mathbb{R}\quad\text{such that}\quad \int_{0}^{\infty}g\left(x\right)\text{ }dx=M.
+    \end{align*}
+    So, \begin{align*}
+        0<\int_{0}^{\infty}f\left(x\right)\text{ }dx<M\quad\text{which shows that}\quad \int_{0}^{\infty}f\left(x\right)\text{ }dx\text{ converges}.
+    \end{align*}\qed 
+\end{enumerate}
+\newpage
+\subsubsection*{Question 8}
+Let $f\left(x\right)=-x^2+4x+2$ and $g\left(x\right)=x^2-6x+10$.
+\begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.5\textwidth]{Question 8 image.jpg}
+    \end{figure}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Find the area of the shaded region $R$ bounded by $f$ and $g$.
+    \item Find the volume of the solid generated when $R$ is revolved about the $y$-axis.
+\end{enumerate}
+\textit{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item We first find the intersection points. Setting $f\left(x\right)=g\left(x\right)$, we have $2x^2-10x+8=0$, so $x^2-5x+4=0$. The roots are $x=1$ and $x=4$. Since $f\ge g$ on $\left[1,4\right]$, then the area of the shaded region $R$ is \begin{align*}
+        \int_{1}^{4}f\left(x\right)-g\left(x\right)\text{ }dx=\int_{1}^{4}-2x^{2}+10x-8\text{ }dx=9.
+    \end{align*}
+    \item Using the shell method, we have \begin{align*}
+        \text{volume}=\int_{1}^{4}2\pi x\left(f\left(x\right)-g\left(x\right)\right)\text{ }dx=2\pi\int_{1}^{4}x\left(-2x^2+10x-8\right)\text{ }dx=45\pi.
+    \end{align*}\qed 
+\end{enumerate}
+\subsubsection*{Question 9}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em 
+    \item Let $f:\left[0,\infty\right)\rightarrow\mathbb{R}$ be continuous and $f\left(0\right)=0$. Suppose that $f'\left(x\right)$ exists for all $x\in\left(0,\infty\right)$ and $f'$ is increasing on $\left(0,\infty\right)$. Show that the function $g\left(x\right)=f\left(x\right)/x$ is increasing on $\left(0,\infty\right)$.
+\item Find the length of the curve \begin{align*}
+    y=x^{3/2}-\frac{x^{1/2}}{3}\quad\text{where }1\le x\le 2.
+\end{align*}
+\end{enumerate}
+\textit{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item We have \begin{align*}
+        g'\left(x\right)=\frac{xf'\left(x\right)-f\left(x\right)}{x^2}.
+    \end{align*}
+    Since $f$ is increasing on $\left(0,\infty\right)$, then it is increasing on $\left(0,x\right)$. By the mean-value theorem, there exists $c\in \left(0,x\right)$ such that \begin{align*}
+        f'\left(c\right)=\frac{f\left(x\right)-f\left(0\right)}{x-0}=\frac{f\left(x\right)}{x}.
+    \end{align*}
+    As $f'$ is increasing on $\left(0,x\right)$, then $f'\left(c\right)<f'\left(x\right)$, so $f\left(x\right)/x<f'\left(x\right)$. Hence, $f\left(x\right)<xf'\left(x\right)$, or equivalently, $xf'\left(x\right)-f\left(x\right)>0$. This is in fact the expression in the numerator of $g'$. As for the denominator, it is $x^2$, which is $>0$ for all $x\in \left(0,\infty\right)$. It follows that $g'>0$ for all $x\in\left(0,\infty\right)$, so $g$ is increasing.
+    \item We have \begin{align*}
+        \frac{dy}{dx}=\frac{3}{2}x^{1/2}-\frac{1}{6x^{1/2}}\quad\text{which implies}\quad \left(\frac{dy}{dx}\right)^2=\frac{9}{4}x-\frac{1}{2}+\frac{1}{36x}.
+    \end{align*}
+    Hence, the arc length is given by \begin{align*}
+        \int_{1}^{2}\sqrt{1+\left(\frac{dy}{dx}\right)^2}\text{ }dx=\int_{1}^{2}\frac{3}{2}x^{1/2}+\frac{1}{6x^{1/2}}\text{ }dx=\frac{7\sqrt{2}-4}{3}.
+    \end{align*}\qed 
+\end{enumerate}
+\subsubsection*{Question 10}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Solve the following initial value problem. \begin{align*}
+        y+\left(3x-xy+2\right)\frac{dy}{dx}=0\quad y\left(2\right)=-1\quad y<0.
+    \end{align*}
+    \textit{Hint:} consider $dx/dy$.
+    \item Pure water flows into a tank at rate of $16\text{ L/min}$, and the stirred mixture flows out of the tank at a rate of 20 L/min. The tank initially holds 800 liters of solution containing 25 kg of salt. When will the tank have exactly 5 kg of salt? Give your answer to the nearest integer in the unit of minute.
+\end{enumerate}
+\textit{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item We have $y\text{ }dx+\left(3x-xy+2\right)\text{ }dy=0$, so \begin{align*}
+        y\frac{dx}{dy}+x\left(3-y\right)+2&=0\\
+        \frac{dx}{dy}+x\cdot \frac{3-y}{y}&=-\frac{2}{y}
+    \end{align*}
+    The integrating factor is \begin{align*}
+        \operatorname{exp}\left(\int \frac{3-y}{y}\text{ }dy\right)=\operatorname{exp}\left(\int \frac{3}{y}-1\text{ }dy\right)=\operatorname{exp}\left(3\operatorname{ln}y-y\right)=\frac{y^3}{e^y}.
+    \end{align*}
+    Here, $\operatorname{exp}\left(x\right)$ is the same as $e^x$. Multiplying both sides by the integrating factor, then considering the product rule, we have \begin{align*}
+        \frac{d}{dy}\left(\frac{xy^3}{e^y}\right)&=-\frac{2}{y}\cdot \frac{y^3}{e^y}\\
+        &=-2e^{-y}y^2
+    \end{align*}
+    Integrating by parts twice, we have \begin{align*}
+        xe^{-y}y^3=2e^{-y}\left(y^2+2y+2\right)+c.
+    \end{align*}
+    When $x=2$, $y=-1$, so $c=-4e$. Hence, \begin{align*}
+        x=2y^{-3}\left(y^2+2y+2\right)-4e^{y+1}y^{-3}.
+    \end{align*}
+    \item Let the mass of salt at time $t$ be $m\left(t\right)$. Then, \begin{align*}
+        m'\left(t\right)=-20\cdot \frac{m\left(t\right)}{800-4t}.
+    \end{align*}
+    Hence, \begin{align*}
+        \frac{m'\left(t\right)}{m\left(t\right)}=-\frac{20}{800-4t}.
+    \end{align*}
+    Integrating both sides yields \begin{align*}
+        \operatorname{ln}m=5\operatorname{ln}\left|t-200\right|+c.
+    \end{align*}
+    When $t=0$, we have $m=25$, so $c=\operatorname{ln}25-5\operatorname{ln}200$. As such, when $m=5$, we have \begin{align*}
+        \operatorname{ln}5=5\operatorname{ln}\left|t-200\right|+\operatorname{ln}25-5\operatorname{ln}200.
+    \end{align*}
+    Solving and taking the minimum of the $t$ values, we have $t\approx 55\text{ minutes}$. \qed 
+\end{enumerate}
+\end{document}
