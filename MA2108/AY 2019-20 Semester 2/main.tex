@@ -1,0 +1,581 @@
+\documentclass[11pt]{amsart}
+\usepackage{amscd,amssymb}
+\usepackage{graphicx}
+%\usepackage{amsmath,amssymb,enumerate}
+\usepackage[all]{xy}
+\usepackage{mathrsfs}
+\linespread{1.15}
+\theoremstyle{plain}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{amscd, amssymb, latexsym, amsmath, amscd}
+\usepackage{xcolor}
+%\usepackage[all]{xy}
+%\usepackage{pb-diagram}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows}
+\usetikzlibrary{decorations.markings}
+\tikzset{->-/.style={decoration={
+  markings,
+  mark=at position .5 with {\arrow{>}}},postaction={decorate}}}
+
+\pagestyle{myheadings}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{thm}[equation]{Theorem}
+\newtheorem{prop}[equation]{Proposition}
+\newtheorem{cor}[equation]{Corollary}
+\newtheorem{exe}[equation]{Exercise}
+\newtheorem{con}[equation]{Conjecture}
+\newtheorem{lemma}[equation]{Lemma}
+\newtheorem{rem}[equation]{Remark}
+\newtheorem{question}[equation]{Question}
+\newtheorem{defn}[equation]{Definition}
+\numberwithin{equation}{section}
+
+
+% The following are only to be used in Math 
+
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\B}{\mathbb B}
+\newcommand{\Sc}{\mathbb S}
+\newcommand{\D}{\mathbb D}
+\newcommand{\G}{\mathfrak G}
+\newcommand{\oO}{\mathcal O}
+\newcommand{\F}{\mathbb F}
+\newcommand{\h}{\mathbb H}
+\newcommand{\hH}{\mathcal H}
+\newcommand{\A}{\mathbb A}
+\newcommand{\I}{\mathcal A}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Pp}{\mathbb P}
+\newcommand{\E}{\mathcal E}
+\newcommand{\s}{\text sym}
+%\newcommand{\qed}{\hfill $\Box$ \hfill \\}
+\def\M{{\rm M}}
+
+
+\def\Hom{{\rm Hom}}
+\def\Aut{{\rm Aut}}
+\def\ord{{\rm ord}}
+\def\G{{\rm G}}
+\def\SL{{\rm SL}}
+\def\disc{{\rm disc}}
+\def\charact{{\rm char}}
+\def\PSL{{\rm PSL}}
+\def\GSp{{\rm GSp}}
+\def\CSp{{\rm CSp}}
+\def\PGSp{{\rm PGSp}}
+\def\PGSO{{\rm PGSO}}
+\def\Sp{{\rm Sp}}
+\def\Spin{{\rm Spin}}
+\def\GU{{\rm GU}}
+\def\SU{{\rm SU}}
+\def\U{{\rm U}}
+\def\GO{{\rm GO}}
+\def\GL{{\rm GL}}
+\def\PGL{{\rm PGL}}
+\def\GSO{{\rm GSO}}
+\def\Gal{{\rm Gal}}
+\def\SO{{\rm SO}}
+\def\Ind{{\rm Ind}}
+\def\Sp{{\rm Sp}}
+\def\Mp{{\rm Mp}}
+\def\sign{{\rm sign}}
+\def\O{{\rm O}}
+\def\Sym{{\rm Sym}}
+\def\Stab{{\rm Stab}}
+\def\tr{{\rm tr\,}}
+\def\ad{{\rm ad\, }}
+\def\Ad{{\rm Ad\, }}
+\def\rank{{\rm rank\,}}
+\def\Res{{\rm Res}}
+\def\der{{\rm der}}
+
+
+%\usepackage{amsfonts,amssymb,theorem} 
+%\usepackage{theorem}
+%\usepackage[all]{xy}
+\def\e{\epsilon}
+\def\gg{{\mathfrak{g}}}
+\def\gh{{\mathfrak{h}}}
+\def\A{{\mathbb A}}
+\def\ws{{\widetilde{\Sp}}}
+\def\wpi{{\widetilde{\pi}}}
+\def\GG{{\mathbb G}}
+\def\NN{{\mathbb N}}
+\def\P{{\mathbb P}}
+\def\R{{\mathbb R}}
+\def\V{{\mathbb V}}
+\def\Va{{V_{\alpha}}}
+\def\X{{\mathbb X}}
+\def\Z{{\mathbb Z}}
+\def\T{{\mathbb T}}
+\def\gm{{\Gamma}}
+\def\vr{{\varphi}}
+\def\wx{{\widehat{X}}}
+\def\wy{{\widehat{Y}}}
+\def\wm{{\widehat{M}}}
+\def\gk{{\mathfrak{k}}}
+\def\gp{{\mathfrak{p}}}
+\def\aa{{\mathfrak{{\huge a}}}}
+\def\md{{\medskip}}
+\def\ep{{\epsilon}}
+\def\bl{{\bullet}}
+\def\ms{\:\raisebox{-0.6ex}{$\stackrel{\circ}{B}$}\:}
+\def\gs{\:\raisebox{-1.6ex}{$\stackrel{\circ}{A}^c$}\:}
+\def\gg{\:\raisebox{-1.6ex}{$\stackrel{\longrightarrow}{\eta \times \eta}$}\:}
+\def\ll{\:\raisebox{-0.6ex}{$\stackrel{\lim}{\rightarrow}$}\:}
+\def\gk{\:\raisebox{-1.6ex}{$\stackrel{\hookrightarrow}{\rm g}$}\:}
+\def\gi{\:\raisebox{-0.6ex}{$\stackrel{\rm dfn}{=}$}\:}
+\def\op{\:\raisebox{-0.1ex}{$\stackrel{0}{P}$}\:}
+\def\om{\:\raisebox{-0.1ex}{$\stackrel{0}{\Omega}$}\:}
+\def\X{\widehat{X}} 
+\def\Y{\widehat{Y}} 
+%\def\A{{\mathbb A}_{f}}
+\def\AA{{\mathbb A}} 
+%\def\C{{\bf C}}
+\def\T{{\bf T}}
+\def\M{{\cal M}}
+
+\def\QQ{{\mathbb Q}}
+\def\RR{{\mathbb R}}
+\def\PP{{\mathbb P}}
+\def\SS{{\mathbb S}}
+\def\CC{{\mathbb C}}
+\def\ZZ{{\bf Z}}
+\def\H{{\cal H}} 
+%\def\ll{{\lambda_1}}
+\def\L{{\stackrel{m}{\wedge}}}
+\def\g{{\bf g}}
+\def\b{{\bf b}}
+\def\f{{\bf f}}
+\def\h{{\bf h}}
+\def\k{{\bf k}}
+\def\n{{\bf n}}
+\def\q{{\bf q}}
+\def\u{{\bf u}} 
+\def\wp{{W^{\perp}}}
+\def\p{{\bf p}}
+\def\w{{\bf w}}
+\def\CL{{\cal C}}
+\def\G{{\mathbb G}} 
+\def\wg{{\widehat{G}}}
+\def\CT{{\cal T}} 
+
+\setlength{\oddsidemargin}{0.2in}
+\setlength{\evensidemargin}{0.2in}
+\setlength{\textwidth}{6.1in}
+\usepackage[paper=a4paper, left=15mm, right=15mm, top=15mm, bottom=15mm]{geometry}
+\usepackage{mathptmx}
+
+\title {MA2108 MATHEMATICAL ANALYSIS I\\ FINAL EXAM (2019/2020 SEMESTER II)}
+
+ 
+\author{Joshua Kim Kwan}
+\author{Thang Pang Ern}
+
+\address{} \email{}
+\address{}\email{}
+ 
+\begin{document}
+\maketitle
+\noindent
+
+\textbf{Question 1 (10 points).} Let $a_{1}\geq 0$, $a_{n+1}=\dfrac{3\left(1+a_{n}\right)}{3+a_{n}}$, $n=1,2,\dots$. 
+\vskip 5pt
+\begin{enumerate}[label=\textbf{(\roman*)}]
+    \itemsep 0em
+    \item Prove that $\left(a_{n}\right)$ converges. 
+    \item Find the limit. 
+\end{enumerate}
+\noindent\emph{Solution.}
+\begin{enumerate}[label=\textbf{(\roman*)}]
+    \itemsep 0em
+    \item We first show that $0\leq a_{n}\leq\sqrt{3}$ (resp. $\sqrt{3}\leq a_{n}$) when $0\leq a_{1}\leq\sqrt{3}$ (resp. $\sqrt{3}\leq a_{1}$) by induction on $n\in\mathbb{Z}^{+}$. Note that
+\begin{align*}
+    a_{n+1}=\frac{3\left(1+a_{n}\right)}{3+a_{n}}=3-\frac{6}{3+a_{n}}.
+\end{align*}
+When $n=1$, if $0\leq a_{1}\leq\sqrt{3}$, then
+\begin{align*}
+    1=3-\frac{6}{3+0}\leq a_{2}\leq3-\frac{6}{3+\sqrt{3}}=\sqrt{3}.
+\end{align*}
+When $n=1$, if $a_{1}\geq\sqrt{3}$, then we see that
+\begin{align*}
+    \sqrt{3}=3-\frac{6}{3+\sqrt{3}}\leq a_{2}.
+\end{align*}
+Suppose that for $n=1,2,\dots,k-1$, we have $0\leq a_{n}\leq\sqrt{3}$ (resp. $\sqrt{3}\leq a_{n}$) when $0\leq a_{1}\leq\sqrt{3}$ (resp. $\sqrt{3}\leq a_{1}$). When $n=k$ and $0\leq a_{k-1}\leq\sqrt{3}$, then
+\begin{align*}
+    1=3-\frac{6}{3+0}\leq a_{k}\leq3-\frac{6}{3+\sqrt{3}}=\sqrt{3}.
+\end{align*}
+When $n=k$ and $\sqrt{3}\leq a_{k-1}$, then
+\begin{align*}
+    \sqrt{3}=3-\frac{6}{3+\sqrt{3}}\leq a_{k}.
+\end{align*}
+Hence, $0\leq a_{n}\leq\sqrt{3}$ (resp. $\sqrt{3}\leq a_{n}$) when $0\leq a_{1}\leq\sqrt{3}$ (resp. $\sqrt{3}\leq a_{1}$).
+\newline
+\newline Next, we show by induction on $n\in\mathbb{Z}^{+}$ that $\left(a_{n}\right)$ is monotonically increasing (resp. monotonically decreasing) when $0\leq a_{1}\leq\sqrt{3}$ (resp. $\sqrt{3}\leq a_{1}$). When $n=1$, we have
+\begin{align*}
+    a_{2}=\frac{3\left(1+a_{n}\right)}{3+a_{n}}=\frac{\left(\sqrt{3}-a_{1}\right)\left(\sqrt{3}+a_{1}\right)}{3+a_{1}}\begin{cases}
+        \geq 0&\text{ if }0\leq a_{1}\leq\sqrt{3}
+        \\
+        \leq 0&\text{ if }a_{1}\geq\sqrt{3}.
+    \end{cases}
+\end{align*}
+Suppose that for $n=1,2,\dots,k-1$, $\left(a_{n}\right)$ is monotonically increasing (resp. monotonically decreasing) when $0\leq a_{1}\leq\sqrt{3}$ (resp. $\sqrt{3}\leq a_{1}$). When $n=k$, we have
+\begin{align*}
+    a_{k}=\frac{3\left(1+a_{k-1}\right)}{3+a_{k-1}}=\frac{\left(\sqrt{3}-a_{k-1}\right)\left(\sqrt{3}+a_{k-1}\right)}{3+a_{k-1}}\begin{cases}
+        \geq 0&\text{ if }0\leq a_{k-1}\leq\sqrt{3}
+        \\
+        \leq 0&\text{ if }a_{k-1}\geq\sqrt{3}.
+    \end{cases}
+\end{align*}
+so that $\left(a_{n}\right)$ is monotonically increasing (resp. monotonically decreasing) when $0\leq a_{1}\leq\sqrt{3}$ (resp. $\sqrt{3}\leq a_{1}$).
+\newline
+\newline Now, note that if $0\leq a_{1}\leq\sqrt{3}$, then $\left(a_{n}\right)$ is a bounded, monotonically increasing sequence of real numbers. By the monotone convergence theorem, $\left(a_{n}\right)$ converges. If $a_{1}\geq\sqrt{3}$, then $\left(a_{n}\right)$ is a bounded, monotonically increasing sequence of real numbers. By the monotone convergence theorem, $\left(a_{n}\right)$ converges. If $a_{1}=\sqrt{3}$, then $\left(a_{n}\right)$ is the constant sequence $\sqrt{3}$. Thus, in all cases, $\left(a_{n}\right)$ converges.
+\item Let 
+\begin{align*}
+    L=\lim_{n\to\infty}a_{n}.
+\end{align*}
+Then $3+a_{n}\to 3+L$, $3\left(1+a_{n}\right)\to3\left(1+L\right)$ and $a_{n+1}\toL$ as $n\to\infty$. This implies that 
+\begin{align*}
+    L=\frac{3\left(1+L\right)}{3+L}
+\end{align*}
+and so $L=\sqrt{3}$ since $a_{n}\geq 0$ for all $n\in\mathbb{Z}^{+}$ and so $L\geq 0$. \qed 
+\end{enumerate}
+\textbf{Question 2 (10 points).} Let $\left(a_n\right)$ be a sequence in $\mathbb{R}$. 
+\begin{enumerate}[label=\textbf{(\roman*)}]
+    \itemsep 0em
+    \item Prove that if
+\begin{align*}
+    \lim_{n\to\infty}a_{n}=a,
+\end{align*}
+then 
+\begin{align*}
+    \lim_{n\to\infty}\frac{a_{1}+a_{2}+\dots+a_{n}}{n}=a.
+\end{align*}
+\item Suppose that the sequence
+\begin{align*}
+    \left(\frac{a_{1}+a_{2}+\dots+a_{n}}{n}\right)
+\end{align*}
+converges, can we deduce that $\left(a_{n}\right)$ converges\footnote{Interested readers can look up Cesàro summation.}? Justify your answer. 
+\end{enumerate}
+\noindent\emph{Solution.}
+\begin{enumerate}[label=\textbf{(\roman*)}]
+    \itemsep 0em
+    \item Let $\epsilon>0$. Then there exists $K>0$ such that for $n\geq K$, $\left|a_{n}-a\right|<\epsilon/2$. Now, let
+\begin{align*}
+    n>\max\left\{2K,\frac{2K\cdot\max\left\{\left|a_{1}-a\right|,\dots,\left|a_{K}-a\right|\right\}}{\epsilon}\right\}.
+\end{align*}
+Then
+\begin{align*}
+    \left|\frac{a_{1}+a_{2}+\dots+a_{n}}{n}-a\right|&\leq\left|\frac{a_{1}-a}{n}\right|+\dots+\left|\frac{a_{K}-a}{n}\right|+\dots+\left|\frac{a_{n}-a}{n}\right|
+    \\
+    &\leq\frac{K}{n}\max_{i=1,\dots,n}\left|a_{i}-a\right|+\sum_{i=K+1}^{n}\frac{\epsilon}{2n}
+    \\
+    &\leq\frac{K}{n}\max_{i=1,\dots,n}\left|a_{i}-a\right|+\sum_{i=K+1}^{n}\frac{\epsilon}{2(n-K)}
+    \\
+    &\leq\frac{\epsilon}{2}+\frac{\epsilon}{2}
+    \\
+    &=\epsilon.
+\end{align*}
+Therefore, 
+\begin{align*}
+    \lim_{n\to\infty}\frac{a_{1}+a_{2}+\dots+a_{n}}{n}=a.
+\end{align*}
+\item No. Let $a_{n}=(-1)^{n}$ for each $n\in\mathbb{Z}^{+}$. Then
+\begin{align*}
+    \frac{a_{1}+a_{2}+\dots+a_{n}}{n}=\begin{cases}
+        0&\text{ if }n\text{ is even}
+        \\
+        -\frac{1}{n}&\text{ if }n\text{ is odd}.
+    \end{cases}
+\end{align*}
+so that $\frac{a_{1}+a_{2}+\dots+a_{n}}{n}\to0$ as $n\to\infty$. But $\left(a_{n}\right)$ is not a convergent sequence. \qed 
+\end{enumerate}
+\newpage\noindent\textbf{Question 3 (15 points).} Let $\left(x_{n}\right)$ and $\left(y_{n}\right)$ be two bounded sequences in $\mathbb{R}$. 
+\begin{enumerate}[label=\textbf{(\roman*)}]
+    \itemsep 0em
+    \item Prove that
+\begin{align*}
+    \liminf x_{n}+\liminf y_{n}\leq\liminf\left(x_{n}+y_{n}\right).
+\end{align*} % Proof looks too long. Is having up to 4th index really necessary?
+\item Suppose there exists an $N\in\mathbb{N}$ such that when $n>N$, one has $x_{n}\leq y_{n}$. Prove that
+\begin{align*}
+    \liminf x_{n}\leq\liminf y_{n}.
+\end{align*}
+\end{enumerate}
+\noindent\emph{Solution.}
+\begin{enumerate}[label=\textbf{(\roman*)}]
+    \itemsep 0em
+    \item Since $\left(x_{n}\right)$ and $\left(y_{n}\right)$ are bounded sequences in $\mathbb{R}$, then there exist $M_{x},M_{y}\in\mathbb{R}$ such that $\left|x_{n}\right|\leq M_{x}$ and $\left|y_{n}\right|\leq M_{y}$ for all $n\in\mathbb{Z}^{+}$. Let $z_{n}=x_{n}+y_{n}$. Then $z_{n}$ is a bounded sequence since
+\begin{align*}
+    \left|z_{n}\right|=\left|x_{n}+y_{n}\right|\leq\left|x_{n}\right|+\left|y_{n}\right|\leq M_{x}+M_{y}.
+\end{align*}
+ Since $\left(z_{n}\right)$ is a bounded sequence, then by the Bolzano-Weierstrass theorem, there exists a subsequence $\left(z_{n_{k}}\right)$ of $\left(z_{n}\right)$ such that $z_{n_{k}}$ converges to some $z_{0}\in\mathbb{R}$. Write $z_{n_{k}}=x_{n_{k}}+y_{n_{k}}$. Then $\left(x_{n_{k}}\right)$ and $\left(y_{n_{k}}\right)$ are bounded subsequences of $\left(x_{n}\right)$ and $\left(y_{n}\right)$ respectively. By the Bolzano-Weierstrass theorem, there exists a convergent subsequence $\left(x_{n_{k_{\ell}}}\right)$ of $\left(x_{n_{k}}\right)$. Consider the subsequence $\left(y_{n_{k_{\ell}}}\right)$. By the Bolzano-Weierstrass theorem, there exists a convergent subsequence $\left(y_{n_{k_{\ell_{m}}}}\right)$ of $\left(y_{n_{k_{\ell}}}\right)$. Now, $\left(x_{n_{k_{\ell_{m}}}}\right)$ is a subsequence of the convergent sequence $\left(x_{n_{k_{\ell}}}\right)$, and so $\left(x_{n_{k_{\ell_{m}}}}\right)$ is also convergent. The subsequence $\left(z_{n_{k_{\ell_{m}}}}\right)$ is a subsequence of the convergent sequence $\left(z_{n_{k}}\right)$ and so $\left(z_{n_{k_{\ell_{m}}}}\right)$ is also convergent. 
+\begin{align*}
+z_{0}=\lim_{k\to\infty}z_{n_{k}}=\lim_{m\to\infty}z_{n_{k_{\ell_{m}}}}=\lim_{m\to\infty}\left(x_{n_{k_{\ell_{m}}}}+y_{n_{k_{\ell_{m}}}}\right)=x_{0}+y_{0}\geq\inf S\left(x_{n}\right)+\inf S\left(y_{n}\right).
+\end{align*}
+Since $\left(z_{n_{k}}\right)$ was an arbitrary convergent subsequence of $\left(z_{n}\right)$, then 
+\begin{align*}
+\liminf\left(x_{n}+y_{n}\right)=\inf S\left(z_{n}\right)\geq\inf S\left(x_{n}\right)+\inf S\left(y_{n}\right)=\liminf x_{n}+\liminf y_{n}.
+\end{align*}
+\item We may assume that $x_{n}\leq y_{n}$ since the subsequential limit of any sequence does not depend on the first (finite) $K$ terms. Since $\left(x_{n}\right)$ and $\left(y_{n}\right)$ are bounded sequences in $\mathbb{R}$, by the Bolzano-Weierstrass theorem, there exists a convergent subsequence $\left(y_{n_{k}}\right)$ of $\left(y_{n}\right)$, which converges to some $y_{0}\in\mathbb{R}$. Consider the corresponding subsequence $\left(x_{n_{k}}\right)$ of $\left(x_{n}\right)$, and so $\left(x_{n_{k}}\right)$ is also a bounded sequence. By the Bolzano-Weierstrass theorem, there exists a convergent subsequence $\left(x_{n_{k_{\ell}}}\right)$ of $\left(x_{n_{k}}\right)$ which converges to some $x_{0}\in\mathbb{R}$. The subsequence $\left(y_{n_{k_{\ell}}}\right)$ is a subsequence of the convergent sequence $\left(y_{n_{k}}\right)$ and so $\left(y_{n_{k_{\ell}}}\right)$ also converges to the same $y_{0}\in\mathbb{R}$. Now,
+\begin{align*}
+\liminf x_{n}\leq x_{0}=\lim_{\ell\to\infty}x_{n_{k_{\ell}}}\leq\lim_{\ell\to\infty}y_{n_{k_{\ell}}}=\lim_{k\to\infty}y_{n_{k}}=y_{0}
+\end{align*}
+Since $\left(y_{n_{k}}\right)$ was an arbitrary convergent subsequence of $\left(y_{n}\right)$, then 
+\begin{align*}
+    \liminf x_{n}\leq\liminf y_{n}.
+\end{align*} \qed 
+\end{enumerate}
+\noindent\textbf{Question 4 (15 points).} 
+\begin{enumerate}[label=\textbf{(\roman*)}]
+    \itemsep 0em
+    \item Use definition to prove that 
+\begin{align*}
+    \lim_{x\to+\infty}\frac{3x^{2}+2x-1}{x^{2}-2}=3.
+\end{align*}
+\item Find
+\begin{align*}
+    \lim_{x\to0}\frac{\sqrt{1+\tan x}-\sqrt{1+\sin x}}{x+\sqrt{1+\sin^{2}x}-1}.
+\end{align*}
+\item Suppose
+\begin{align*}
+    \lim_{x\to 1}\frac{3x^{2}+bx+c}{x^{2}-1}=2.
+\end{align*}
+Find $b$ and $c$.
+\end{enumerate}
+\noindent\emph{Solution.}
+\begin{enumerate}[label=\textbf{(\roman*)}]
+    \itemsep 0em
+    \item Let $\epsilon>0$ and let
+\begin{align*}
+    K=\max\left\{\sqrt{2}+2,\frac{10+\epsilon\sqrt{2}}{\epsilon}\right\}.
+\end{align*}
+Note that
+\begin{align*}
+\left|\frac{3x^{2}+2x-1}{x^{2}-2}-3\right|&=\left|\frac{2x+5}{\left(x+\sqrt{2}\right)\left(x-\sqrt{2}\right)}\right|
+\\
+&\leq\left|\frac{2x}{\left(x+\sqrt{2}\right)\left(x-\sqrt{2}\right)}\right|+\left|\frac{5}{\left(x+\sqrt{2}\right)\left(x-\sqrt{2}\right)}\right|\quad\text{by triangle inequality}
+\\
+&\leq\left|\frac{2x}{x\left(x-\sqrt{2}\right)}\right|+\left|\frac{5}{x-\sqrt{2}}\right|
+\\
+&=\left|\frac{2}{x-\sqrt{2}}\right|+\left|\frac{5}{x-\sqrt{2}}\right|.
+\end{align*}
+Now for any $x>K$, we have
+\begin{align*}
+    x&>K>\frac{4+\epsilon\sqrt{2}}{\epsilon}\Longleftrightarrow\frac{2}{x-\sqrt{2}}<\frac{\epsilon}{2}
+    \\
+    x&>K>\frac{10+\epsilon\sqrt{2}}{\epsilon}\Longleftrightarrow\frac{5}{x-\sqrt{2}}<\frac{\epsilon}{2}.
+\end{align*}
+Hence,
+\begin{align*}
+\left|\frac{3x^{2}+2x-1}{x^{2}-2}-3\right|&\leq\left|\frac{2}{x-\sqrt{2}}\right|+\left|\frac{5}{x-\sqrt{2}}\right|<\frac{\epsilon}{2}+\frac{\epsilon}{2}=\epsilon.
+\end{align*}
+Therefore,
+\begin{align*}
+    \lim_{x\to+\infty}\frac{3x^{2}+2x-1}{x^{2}-2}=3.
+\end{align*}
+\item Note that for any $x\in\mathbb{R}$, we have $\sqrt{1+\sin^{2}x}\geq 1$. Then
+\begin{align*}
+    0\leq\left|\frac{\sqrt{1+\tan x}-\sqrt{1+\sin x}}{x+\sqrt{1+\sin^{2}x}-1}\right|\leq\left|\frac{\sqrt{1+\tan x}-\sqrt{1+\sin x}}{x-1}\right|.
+\end{align*}
+Since
+\begin{align*}
+    \lim_{x\to0}0=0\quad\text{and}\quad 
+    \lim_{x\to0}\left|\frac{\sqrt{1+\tan x}-\sqrt{1+\sin x}}{x-1}\right|=\left|\frac{0}{-1}\right|=0,
+\end{align*}
+then by squeeze theorem, 
+\begin{align*}
+    \lim_{x\to0}\frac{\sqrt{1+\tan x}-\sqrt{1+\sin x}}{x+\sqrt{1+\sin^{2}x}-1}=0.
+\end{align*}
+\item Note that
+\begin{align*}
+    \frac{3x^{2}+bx+c}{x-1}=3x+(b+3)+\frac{b+c+3}{x-1}.
+\end{align*}
+Then
+\begin{align*}
+    \lim_{x\to 1}\frac{3x^{2}+bx+c}{x-1}=\lim_{x\to1}\left(\left(\frac{3x^{2}+bx+c}{x^{2}-1}\right)\left(x+1\right)\right)=\lim_{x\to1}\left(\frac{3x^{2}+bx+c}{x^{2}-1}\right)\cdot\lim_{x\to 1}\left(x+1\right)=4.
+\end{align*}
+In order for 
+\begin{align*}
+    \lim_{x\to 1}\frac{3x^{2}+bx+c}{x-1}=4
+\end{align*}
+we must have $b+c+3=0$, or equivalently, $b=-c-3$. This implies that
+\begin{align*}
+    4=\lim_{x\to1}\left(3x+b+3\right)=6+b
+\end{align*}
+so that $b=-2$. This implies that $c=-1$.  \qed 
+\end{enumerate}
+\noindent\textbf{Question 5 (15 points).} Prove that the function $f(x)=\sqrt{x(x-1)}$ is uniformly continuous on $\left[1,+\infty\right)$. 
+\newline
+\newline\textit{Solution.} Let $\epsilon>0$. We first show that $f(x)$ is uniformly continuous on $[2,+\infty)$. Let $x,y\in[2,+\infty)$. Choose $\delta_{1}=\frac{2}{3}\epsilon$, so that if $|x-y|<\delta_{1}$, then
+\begin{align*}
+\left|f(x)-f(y)\right|&=\left|\sqrt{x(x-1)}-\sqrt{y(y-1)}\right|
+\\
+&=\left|\frac{x(x-1)-y(y-1)}{\sqrt{x(x-1)}+\sqrt{y(y-1)}}\right|
+\\
+&\leq\left|\frac{x(x-1)-y(y-1)}{\sqrt{(x-1)^{2}}+\sqrt{(y-1)^{2}}}\right|
+\\
+&=\left|\frac{x(x-1)-y(y-1)}{(x-1)+(y-1)}\right|
+\\
+&=|x-y|\left|\frac{x+y-1}{x+y-2}\right|
+\\
+&=|x-y|\left|1+\frac{1}{x+y-2}\right|
+\\
+&\leq|x-y|\cdot \frac{3}{2}<\delta_{1}=\epsilon.
+\end{align*}
+Hence, $f(x)$ is uniformly continuous on $[2,+\infty)$. On the other hand, since $f(x)$ is continuous on $[1,10]$, then $f(x)$ is uniformly continuous on $[1,10]$ as $[1,10]$ is a compact interval (or closed and bounded if you wish by the Heine-Borel theorem)\footnote{There is a result, known as the Heine-Cantor theorem, which states that if $f:K\to\mathbb{R}$ where $K$ is a compact subset of $\mathbb{R}$, then $f$ is uniformly continuous.}. Now let $\delta=\min\left\{\delta_{1},1/10\right\}$. Then for any $x,y\in[1,+\infty)$ satisfying $|x-y|<\delta$, we must have $x,y\in[1,10]$ or $x,y\in[2,+\infty)$. Therefore, $f(x)$ is uniformly continuous on $[1,+\infty)$. \qed 
+\newline
+\newline\textbf{Question 6 (15 points).}
+\begin{enumerate}[label=\textbf{(\roman*)}]
+    \itemsep 0em
+    \item Let $f$ be an increasing function on $[a,b]$ and $f\left([a,b]\right)=\left[f(a),f(b)\right]$. Prove that $f$ is continuous on $[a,b]$.
+    \item Let $f:\mathbb{R}\longrightarrow\mathbb{R}$ be a continuous function. Suppose for any two rational numbers $r_{1},r_{2},r_{1}<r_{2}$, we have $f\left(r_{1}\right)<f\left(r_{2}\right)$. Prove that $f$ is strictly increasing on $\mathbb{R}$. 
+\end{enumerate}
+\noindent\emph{Solution.}
+\begin{enumerate}[label=\textbf{(\roman*)}]
+    \itemsep 0em
+    \item Suppose on the contrary that $f$ is not continuous at some $c\in[a,b]$. 
+    \begin{itemize}
+        \itemsep 0em
+        \item \textbf{Case 1:} Suppose $c$ is not an end point, so $c\in(a,b)$. Let
+        \begin{align*}
+    L_{1}=\sup\left\{f(x):x\in\left(a,c\right)\right\}\quad\text{and}\quad 
+    L_{2}=\inf\left\{f(x):x\in\left(c,b\right)\right\}.
+\end{align*}
+Since $f$ is increasing, then $L_{1}\leq f(c)\leq L_{2}$. Without loss of generality, we may assume that $L_{1}<f(c)\leq L_{2}$. Then there exists $y\in\left(L_{1},f(c)\right)\subseteq\left[f(a),f(b)\right]$. This implies that there exists $d\in(a,b)$ such that $f(d)=y$. If $d<c$, then by the definition of $L_{1}$ and that $f$ is increasing, we must have $f(d)\leq L_{1}$. But this means that $f(d)\leq L_{1}<f(d)$, which is a contradiction. If $d>c$, since $f$ is increasing, then $f(c)<f(d)$, contradicting that $f(d)\leq f(c)<f(d)$. Thus, $c=d$, so that $f(c)=f(d)$. But since $y=f(d)\in\left(L_{1},f(c)\right)$, then $f(d)<f(c)$, which is a contradiction. Thus, $f$ must be continuous at $c$ when $c$ is not an end point.
+\item \textbf{Case 2:} Suppose $c$ is an end point. Say $c=a$ and $f$ are not continuous at $a$. Let
+\begin{align*}
+    L_{3}=\inf\left\{f(x):x\in(a,b]\right\}.
+\end{align*}
+Then $L_{3}>f(a)$. Pick $y\in\left(f(a),L_{3}\right)\subseteq\left[f(a),f(b)\right]$. Then there exists $d\in[a,b]$ such that $f(d)=y$. If $d>a$, then $L_{3}\leq f(d)$. By the definition of $y$, we have $f(a)<f(d)<L_{3}\leq f(d)$, which is a contradiction. This means that we must have $d=a$. But this means that $f(a)<y=f(d)=f(a)$, which is a contradiction. Thus, $f$ is continuous at $c=a$. If $f$ is not continuous at $b$, then we also get a contradiction using a similar argument. 
+    \end{itemize}
+Therefore, $f$ is continuous on $[a,b]$.
+\item We argue by contradiction. Suppose there exist real numbers \(x<y\) such that \(f\left(x\right)\ge f\left(y\right)\). There are two cases to consider.
+\begin{itemize}
+    \itemsep 0em
+    \item \textbf{Case 1:} Suppose $f\left(x\right)=f\left(y\right)$. Since \(f\) is continuous on the closed interval \([x,y]\), by the extreme value theorem, $f$ attains a minimum and a maximum on \([x,y]\). As \(f(x)=f(y)\) and \(f\) is non-constant on any interval, the only possibility is that 
+\[
+f(x)=f(y)=\min\{f(z):z\in[x,y]\}=\max\{f(z):z\in[x,y]\}.
+\]
+Thus, \(f\) is be constant on \([x,y]\). As $\mathbb{Q}$ is dense in $\mathbb{R}$ (or any closed sub-interval of $\mathbb{R}$), there exist $r_1,r_2\in \left[x,y\right]$ with $r_1<r_2$ such that $f\left(r_1\right)=f\left(r_2\right)$. This contradicts our assumption that for any two rationals with \(r_1<r_2\), it holds that \(f(r_1)<f(r_2)\). 
+\item \textbf{Case 2:} Suppose \(f(x) > f(y)\). Define $\varepsilon=f\left(x\right)-f\left(y\right)>0$. By the intermediate value theorem, since \(f\) is continuous on \([x,y]\), it attains every value between \(f(x)\) and \(f(y)\). In particular, there exist $c,d\in \left[x,y\right]$ where $c<d$ such that
+\[
+f(c) = f(x)-\frac{\varepsilon}{3} \quad \text{and} \quad f(d) = f(x)-\frac{2\varepsilon}{3}.
+\]
+Again, using the fact that $\mathbb{Q}$ is dense in $\mathbb{R}$, we can find $r_1,r_2\in\mathbb{Q}$ such that $x<r_1<c$ and $d<r_2<y$. The continuity of \(f\) ensures that if we choose \(r_1\) close enough to \(c\), then
+\[
+f(r_1) > f(c) = f(x)-\frac{\varepsilon}{3},
+\]
+and if we choose \(r_2\) close enough to \(d\), then
+\[
+f(r_2) < f(d) = f(x)-\frac{2\varepsilon}{3}.
+\]
+Thus,
+\[
+f(r_1) > f(x)-\frac{\varepsilon}{3} > f(x)-\frac{2\varepsilon}{3} > f(r_2).
+\]
+However, this means that we have found two rational numbers \(r_1<r_2\) such that $f\left(r_1\right)>f\left(r_2\right)$, contradicting the hypothesis that for any two rational numbers \(r_1<r_2\) we have $f\left(r_1\right)<f\left(r_2\right)$. \qed 
+\end{itemize}
+\end{enumerate}
+\noindent Here is an alternative solution to Question 6\textbf{(ii)}.
+\newline\textit{Solution.} We first observe that $f$ cannot be the constant function on any non-empty interval. Let $a,b\in\mathbb{R}$ with $a<b$. If $f(a)<f(b)$, then we are done.
+\newline
+\newline We claim that if $f(a)>f(b)$, then there exists rational numbers $r_{1},r_{2}$ such that $f\left(r_{1}\right)>f\left(r_{2}\right)$. To see why this holds, let
+\begin{align*}
+    \epsilon=\frac{f(a)-f(b)}{4}.
+\end{align*}
+Then $f(a)>f(a)-\epsilon>f(b)+\epsilon>f(b)$. By the intermediate value theorem, there exists $d_{1}\in(a,b)$ such that $f\left(d_{1}\right)=f(a)-\epsilon$. Then there exists $\delta_{1}>0$ such that for all $x\in\left(a,a+\delta_{1}\right)$, $f(x)\geq f\left(d_{1}\right)$. By the intermediate value theorem, there exists $d_{2}\in(a,b)$ such that $f\left(d_{2}\right)=f(b)+\epsilon$. Then there exists $\delta_{2}>0$ such that for all $x\in\left(b-\delta_{2},b\right)$, $f(x)\leq f\left(d_{2}\right)$. Note that $\left(a,a+\delta_{1}\right)\cap\left(b-\delta_{2},b\right)=\emptyset$. By the Archimedian property for real numbers, there exists rational numbers $r_{1},r_{2}$ such that $r_{1}\in\left(a,a+\delta_{1}\right)$ and $r_{2}\in\left(b-\delta_{2},b\right)$. This implies that
+\begin{align*}
+    f\left(r_{1}\right)\geq f\left(d_{1}\right)>f\left(d_{2}\right)\geq f\left(r_{2}\right)
+\end{align*}
+which proves the claim. To tackle the problem, we shall consider two cases.
+\begin{itemize}
+    \itemsep 0em
+    \item \textbf{Case 1:} $f(a)=f(b)$. Since $f$ is continuous, then $f$ attains absolute maximum and absolute minimum on $[a,b]$. This means that there exist $c_{\text{min}}, c_{\text{max}}\in[a,b]$ such that $f\left(c_{\text{max}}\right)\geq f(x)\geq f\left(c_{\text{min}}\right)$ for all $x\in[a,b]$. By claim 1, we must have $a\leq c_{\text{min}}<c_{\text{max}}\leq b$. If $c_{\text{max}}<b$, and $f\left(c_{\text{max}}\right)=f(b)$, then since $f$ cannot be constant on any interval, there exists $y\in\left(c_{\text{max}},b\right)$ such that $f(y)<f\left(c_{\text{max}}\right)$, and by the claim, we get a contradiction. If $c_{\text{max}}<b$ and $f\left(c_{\text{max}}\right)>f(b)$, by the claim, we also get a contradiction. Hence, $c_{\text{max}}=b$. If $a<c_{\text{min}}$, and $f(b)=f(a)>f\left(c_{\text{min}}\right)$, by the claim, we get a contradiction. If $a<c_{\text{min}}$ and $f(b)=f(a)=f\left(c_{\text{min}}\right)$, then $f$ is constant on $[a,b]$, which is a contradiction. Hence, $a=c_{\text{min}}$. But this implies that on $[a,b]$,
+\begin{align*}
+f\left(c_{\text{min}}\right)=f(a)=f(b)=f\left(c_{\text{max}}\right)
+\end{align*}
+so that $f$ is constant on $[a,b]$, which is a contradiction.
+\item Suppose $f\left(a\right)>f\left(b\right)$. By the claim, we will get a contradiction. Hence, we must have $f(a)<f(b)$ and so $f$ is increasing on $\mathbb{R}$.  \qed 
+\end{itemize}
+\noindent\textbf{Question 7 (10 points).} Let $f$ be continuous on $[0,1]$ and $f(0)=f(1)$. Prove that for any positive integer $n$, there exists $\xi\in[0,1]$ such that
+\begin{align*}
+    f\left(\xi+\frac{1}{n}\right)=f\left(\xi\right).
+\end{align*}
+\textit{Solution.} Let 
+\begin{align*}
+    g(x)=f\left(x+\frac{1}{n}\right)-f(x).
+\end{align*}
+Then we observe that the following sum telescopes:
+\begin{align*}
+    \sum_{k=0}^{n-1}g\left(\frac{k}{n}\right)=f(1)-f(0)=0
+\end{align*}
+If there exists $0\leq k\leq n-1$ such that $g\left(k/n\right)=0$, then
+\begin{align*}
+    f\left(\frac{k}{n}+\frac{1}{n}\right)=f\left(\frac{k}{n}\right).
+\end{align*}
+If for all $0\leq k\leq n-1$, $g\left(k/n\right)\neq 0$, then there exists $0\leq m_{1}\neq m_{2}\leq n-1$ such that $g\left(m_{1}/n\right)>0$ and $g\left(m_{2}/n\right)<0$. By the intermediate value theorem, there exists $\xi\in[a,b]$ such that $g\left(\xi\right)=0$, or equivalently, 
+\begin{align*}
+    f\left(\xi+\frac{1}{n}\right)=f\left(\xi\right).
+\end{align*}
+\qed 
+\newline
+\newline\textbf{Question 8 (10 points).} Let $f:\left(a,+\infty\right)\longrightarrow\mathbb{R}$ be a function such that it is bounded in any interval $(a,b)$ and 
+\begin{align*}
+    \lim_{x\to+\infty}\left[f(x+1)-f(x)\right]=A.
+\end{align*}
+Prove that
+\begin{align*}
+    \lim_{x\to+\infty}\frac{f(x)}{x}=A.
+\end{align*}
+\textit{Solution.} 
+Let $\epsilon>0$. Since 
+\begin{align*}
+    \lim_{x\to+\infty}\left[f(x+1)-f(x)\right]=A
+\end{align*}
+then 
+\begin{align*}
+    &\lim_{x\to+\infty}\left(f(x+M)-f(x)\right)
+    \\
+    &=\lim_{x\to+\infty}\left(f(x+M)-f(x+M-1)+f(x+M-1)-f(x+M-2)+\dots+f(x+1)-f(x)\right)
+    \\
+    &=MA.
+\end{align*}
+There exists $K_{1}$ such that for all $x>K_{1}$,
+\begin{align*}
+    \left|f\left(x+M\right)-f(x)-MA\right|<\epsilon.
+\end{align*}
+Since $f$ is bounded in any open interval, for any $[N,N+1]$, there exists $K_{N}\in\mathbb{R}$ such that $\left|f(x)\right|\leq K_{N}$ for all $x\in[N,N+1]$. Next, for any $y>N$, there exists an integer $M$ such that $y=x+M$, where $x\in[N,N+1]$ so that
+\begin{align*}
+\left|f(y)-yA\right|&=\left|f\left(x+M\right)-MA+MA-yA\right|
+\\
+&\leq\left|f(x+M) - MA\right| + \left|(M-y)A\right|
+\\
+&<M\epsilon+K+(N+1)|A| 
+\\
+&\leq(y-N)\epsilon+K+(N+1)|A|
+\\
+&=y\epsilon+C,
+\end{align*}
+where $C=-N\epsilon+K+(N+1)|A|$ is independent of $y$. So
+\begin{align*}
+    \left|\frac{f(y)}{y}-A\right|\leq\epsilon+\frac{C}{y}.
+\end{align*}
+Choose $N_{2}>N$ such that for all $y>N_{2}$, $C/y<\epsilon$. Hence, 
+\begin{align*}
+    \left|\frac{f(y)}{y}-A\right|\leq\epsilon+\frac{C}{y}<2\epsilon.
+\end{align*}
+Therefore,
+\begin{align*}
+    \lim_{x\to+\infty}\frac{f(x)}{x}=A.
+\end{align*} \qed 
+
+\end{document}
