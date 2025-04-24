@@ -1,0 +1,221 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{subfig}
+\newcommand\mytab{\tab \hspace{+1cm}}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tikz-cd}
+\usepackage{geometry}
+\usepackage[most]{tcolorbox}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+\usepackage[utf8]{inputenc}
+\linespread{1.15}
+\usepackage{tikz,lipsum,lmodern}
+\usepackage{hyperref}
+\newtcolorbox{mybox}{
+enhanced,
+boxrule=0pt,frame hidden,
+borderline west={4pt}{0pt}{green!75!black},
+colback=green!10!white,
+sharp corners
+}
+\newtcolorbox{mybox2}{
+enhanced,
+boxrule=0pt,frame hidden,
+borderline west={4pt}{0pt}{blue!75!black},
+colback=blue!10!white,
+sharp corners
+}
+\usepackage{amsmath,amsfonts,amsthm,bm} % Math packages
+\usepackage[most]{tcolorbox}
+\usepackage{amssymb}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\usepackage{mathtools}
+\usepackage{amsmath}
+
+\usepackage{natbib}
+\usepackage{wrapfig}
+\usepackage{url}
+\usepackage{pax}
+\usepackage{pdfpages}
+\usepackage{graphicx}
+\usepackage{mathptmx}
+\usepackage{tikz}
+\usepackage{blindtext}
+\title{MA2202 AY23/24 Sem 2 Final}
+\author{
+  Solution by Thang Pang Ern\\
+  Audited by Ong See Hai
+}
+\date{}
+
+
+\begin{document}
+
+\maketitle
+\subsubsection*{Question 1}
+Let $G$ be a group, and let $x\in G$ be an element of finite order $n<\infty$. Show that for any $r,s\in\mathbb{Z}_{>0}$ such that $n=rs$, the element $x^r\in G$ is of finite order equal to $s$.
+\newline
+\newline\textit{Solution.}  Suppose there exists $k\in\mathbb{Z}_{>0}$ such that $x^k=e$. Then, the smallest such $k$ is $n$. Since $n=rs$, then $\left(x^r\right)^s=x^{rs}=x^n=e$, so the order of $x^{r}$ divides $s$. Suppose there exists some other $t\in\mathbb{Z}_{>0}$ such that $\left(x^r\right)^t=e$, so $x^{rt}=e$. By the definition of the order of an element, $n\mid rt$, so $rs\mid rt$.
+\newline
+\newline Since $r>0$, then $s\mid t$. Thus, any exponent $t$ for which $\left(x^r\right)^t=e$ must be a multiple of $s$, and so the smallest such $t$ is precisely $s$. \qed 
+\subsubsection*{Question 2}
+Let $G$ be a group, and let $H$ and $K$ be subgroups of $G$. Show that the union $H\cup K$ is a subgroup of $G$ if and only if either $H\subseteq K$ or $K\subseteq H$.
+\newline
+\newline\textit{Solution.} For the reverse direction, if $H\subseteq K$, $H\cup K=K$. Since $K$ is a subgroup of $G$, then $H\cup K$ is also a subgroup of $G$. Similarly, if $K\subseteq H$, then $H\cup K=H$, and we repeat the earlier process, which shows that $H\cup K$ is also a subgroup of $G$.
+\newline
+\newline For the forward direction, we prove using contraposition. That is, we wish to show \begin{align*}
+    \text{if neither }H\subseteq K\text{ nor }K\subseteq H\quad\text{then}\quad H\cup K\text{ is not a subgroup of }G.
+\end{align*}
+With this, choose $h\in H\setminus K$ and $k\in K\setminus H$. Note that for any $h,k\in H\cup K$, we have $hk\in H\cup K$. Either $hk\in H$ or $hk\in K$. If $hk\in H$, then $h^{-1}hk\in H$, so $k\in H$, which is a contradiction as $k\in K\setminus H$. Similarly, if $hk\in K$, then $hkk^{-1}\in K$, so $h\in K$. Again, this is a contradiction as $h\in H\setminus K$. We conclude that $H\cup K$ is not a subgroup of $G$. \qed 
+\newpage
+\subsubsection*{Question 3}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Determine the order of the centralizer of $(1\,2)(3\,4)$ in the symmetric group $S_6$, and justify your answer.
+\item Show that there does not exist any element of order $18$ in the symmetric group $S_9$.
+\end{enumerate}
+\noindent\emph{Solution.}\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Recall that if an element in $S_n$ has $m_\ell$ cycles of length $\ell$, then its centralizer has size
+    \[\prod_{\ell}\left(\ell^{m_\ell}\cdot m_{\ell}!\right).\]
+    Here $x=\left(1\,2\right)\left(3\,4\right)$ has two $2$–cycles and two fixed points (i.e. two $1$–cycles), so \[\left|C_{S_6\left(x\right)}\right|=\left(2^2\cdot 2!\right)\times \left(1^2\cdot 2!\right)=16.\]
+    Equivalently, one can see that any $g\in C_{S_6}\left(x\right)$ may either
+    \begin{itemize}
+    \itemsep 0em
+      \item rotate each of the two $2$–cycles independently in $2$ ways each,
+      \item permute the mentioned two $2$-cycles in $2!$ ways,
+      \item permute the two fixed points in $2!$ ways,
+    \end{itemize}
+    so the order is $2^2\cdot2!\cdot2!=16$.
+  \item Say $\sigma\in S_9$ has order $18=2\cdot 3^2$. Then, $\operatorname{lcm}\left(\ell_1,\ldots,\ell_k\right)=2\cdot 3^2$, where $\ell_i$ denotes the length of each cycle.
+  \newline
+  \newline So, there exists $\ell_i$ which is divisible by $3^2=9$. The only cycle of length divisible by 9 in $S_9$ is a single $9$–cycle, but that alone has order $9$, not $18$, and it already uses up all $9$ points so no disjoint $2$–cycle can appear. Hence, no permutation in $S_9$ can have order $18$. \qed 
+\end{enumerate}
+\subsubsection*{Question 4}
+Let $G$ be a group and $N\unlhd G$ be a normal subgroup. Suppose $\Gamma$ is a group and $q:G\to\Gamma$ is a homomorphism with $\ker(q)\supseteq N$ satisfying the following universal property:
+\begin{quote}
+  For any group $H$ and any homomorphism $f:G\to H$ with $\ker(f)\supseteq N$, there exists a unique homomorphism $f':\Gamma\to H$ such that $f = f'\circ q$.
+\end{quote}
+Show that $\Gamma\cong G/N$.
+\newline
+\newline\textit{Solution.} Define $\pi:G\to G/N$ be the canonical quotient map which is surjective. So, $\operatorname{ker}\pi=N\subseteq \operatorname{ker}q$. By the universal property of \(q\), for any group $H$ and any homomorphism $f:G\to H$, there exists a unique homomorphism $f':\Gamma\to H$ such that $f=f'\circ q$. In particular, we can choose \[H=G/N\quad q:G\to \Gamma\quad \pi=f\quad u=f',\]
+so we construct \begin{align*}
+    u:G/N\to \Gamma\quad\text{such that}\quad \pi=u\circ q.
+\end{align*}
+As such, we have the following diagram:
+\[
+\begin{tikzcd}[row sep=large,column sep=large]
+  & G \ar[dl,"\pi"'] \ar[dr,"q"] & \\
+  G/N \ar[rr,bend left=15,"v"]   &              & \Gamma \ar[ll,"u"]
+\end{tikzcd}
+\]
+On the other hand, since \(\ker q\supseteq N=\ker\pi\), the universal property of \(\pi\) yields a unique
+\[
+v: G/N\longrightarrow \Gamma\quad\text{with}\quad q=v\circ \pi.
+\]
+It now suffices to check that \(u\) and \(v\) are inverses.  First,
+\[
+(u\circ v)\circ\pi
+=u\circ(v\circ\pi)
+=u\circ q
+=\pi,
+\]
+so by uniqueness of the factorisation through \(\pi\), we get \(u\circ v=\mathrm{id}_{G/N}\).  Similarly,
+\[
+(v\circ u)\circ q
+=v\circ(u\circ q)
+=v\circ\pi
+=q,
+\]
+and the uniqueness of the factorisation through \(q\) forces \(v\circ u=\mathrm{id}_\Gamma\).  Hence \(u\) is an isomorphism, which implies that $\Gamma\cong G/N$. \qed 
+\subsubsection*{Question 5}
+Prove or disprove: For any infinite set $X$, there exists a non-trivial proper normal subgroup $N$ in the group $\mathrm{Perm}(X)$ of permutations on $X$.
+\newline
+\newline\textit{Solution.} The statement is true. To approach this question, one can take some infinite set as an example, say $X=\mathbb{R}$, and try to construct a corresponding non-trivial proper normal subgroup $N$. Thereafter, generalise the claim. In particular, the set \[N=\left\{\sigma\in \operatorname{Perm}\left(X\right):\text{the set }\left\{\sigma\left(x\right)\ne x\right\}\text{ is finite}\right\}\quad\text{is}\quad\text{an example}.\]
+We prove that $N$ satisfies the mentioned claims. Since $\sigma,\tau \in \operatorname{Perm}\left(X\right)$ each permute finitely many points, then so does $\sigma\tau$ and $\sigma^{-1}$ (in fact $\sigma=\sigma^{-1}$), so $N\le \operatorname{Perm}\left(X\right)$. $N\unlhd \operatorname{Perm}\left(X\right)$ is clear as well.
+\newline
+\newline Lastly, to establish properness, when $X$ is infinite, there exist permutations of $X$ whose support is infinite. In particular, we can choose an infinite cycle, so any such permutation $\sigma \in \operatorname{Perm}\left(X\right)\setminus N$. Note that throughout our discussion, $N$ can be taken to not be the trivial group $\left\{e\right\}$ since we can choose any transposition $\sigma=\left(x\, y\right)$ which permutes precisely two points (and two is finite). \qed 
+\newpage
+\subsubsection*{Question 6}
+Let $G$ be a group, and let $N\unlhd  G$ be a proper normal subgroup of $G$. Suppose the only subgroups $H$ of $G$ satisfying $N\subseteq H\subseteq G$ are $H=N$ and $H=G$. Show that the index $[G:N]$ is finite and equal to a prime number.
+\newline
+\newline\textit{Solution.} Recall the lattice isomorphism theorem, which states that if $G$ is a group and $\pi:G\to G/N$ denotes the canonical projection, then \[H\to \pi\left(H\right)\quad\text{and}\quad X\to \pi^{-1}\left(X\right)\]
+set up inverse bijections \[\left\{H\le G:N\subseteq H\subseteq G\right\}\leftrightarrow\left\{X\le G/N\right\}.\]
+Using this, we see that the only subgroups of $G/N$ are $\left\{e_{G/N}\right\}$ and $G/N$. Next, take any non-trivial coset $gN\ne N$. Its cyclic subgroup $\left\langle gN\right\rangle$ is non-trivial, so $\left\langle gN\right\rangle = G/N$. As such, $G/N$ is a cyclic group.
+\newline
+\newline Suppose on the contrary that $\left\langle gN\right\rangle$ is infinite. Then, for each $k\ge 2$, $\left\langle\left(gN\right)^k\right\rangle$ would be a proper non-trivial subgroup of $G/N$, which is a contradiction, so $\left\langle gN\right\rangle$ is finite. Consequently, $\left[G:N\right]$ is finite, say of order $m$. In other words, $\left[G:N\right]=m$, which is finite.
+\newline
+\newline Lastly, we prove that $\left|G/N\right|$ is prime. Recall that any finite cyclic group $\mathbb{Z}/m\mathbb{Z}$ has a unique subgroup of order $d$ for every $d\mid m$. By way of contradiction, if $m$ were composite, then we can write $m=ab$ with $1<a<m$. So, $\left\langle \left(gN\right)^a\right\rangle$ is a proper non-trivial subgroup of order $b$, which again is a contradiction as there are no proper subgroups of $G/N$. Hence, $m$ has no proper divisors other than 1 and itself, which implies $m$ is prime. \qed 
+\subsubsection*{Question 7}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Describe, up to isomorphism, all groups $G$ with the following property: there exists $n\in\mathbb{Z}_{>0}$ and an injective homomorphism $G\hookrightarrow S_n$.
+\item Describe, up to isomorphism, all groups $G$ with the following property: there exists $n\in\mathbb{Z}_{>0}$ and a surjective homomorphism $S_n\twoheadrightarrow G$.
+\end{enumerate}
+\noindent\emph{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item By Cayley's theorem, every group $G$ is isomorphic to some subgroup of a symmetric group $S_n$. Since every subgroup of $S_n$ is finite, then $G$ is precisely the set of all finite groups, up to isomorphism.
+    \item Recall that a surjection exhibits, i.e. $G\cong S_n/N$ for some $N\unlhd S_n$. We consider a few cases.
+    \newline
+    \newline For $n\ge 5$, the only normal subgroups are $\left\{e\right\},A_n,S_n$ so the only non-trivial proper quotient is $S_n/A_n\cong \mathbb{Z}/2\mathbb{Z}$. Aside from the trivial quotient $S_n/S_n\cong \left\{e\right\}$ and the identity map $S_n/\left\{e\right\}\cong S_n$, there are no others.
+    \newline
+    \newline If $n=4$, besides $\left\{e\right\},A_4,S_4$, we recall that the Klein four-group $V$ is $\unlhd S_4$, and that $S_4/V\cong S_3$. If $n=3$, the only non-trivial proper normal subgroup is $A_3$, so $S_3/A_3\cong \mathbb{Z}/2\mathbb{Z}$. If $n=2$ or $n=1$, there are no non-trivial proper quotients.
+    \newline
+    \newline To conclude, all such groups $G$, up to isomorphism, are $\left\{e\right\}$, $\mathbb{Z}/2\mathbb{Z}$ or $S_k$ for $k\ge 3$. \qed 
+\end{enumerate}
+\subsubsection*{Question 8}
+Describe all elements of the automorphism group $\mathrm{Aut}(\mathbb{Z})$ of the group $\mathbb{Z}$.
+\newline
+\newline\textit{Solution.} Let $\varphi:\mathbb{Z}\to\mathbb{Z}$ be a group homomorphism. Then, $\varphi\left(n\right)=n\varphi\left(1\right)$ for all $n\in\mathbb{Z}$. Note that $\varphi$ is bijective if and only if $\varphi\left(1\right)$ is a generator of $\mathbb{Z}$. Recall that the only generators of the infinite cyclic group $\mathbb{Z}$ are $\pm 1$, so $\varphi\left(1\right)=\pm 1$. Consider the maps \begin{align*}
+    \varphi_+:\mathbb{Z}\to\mathbb{Z}\text{ where }n\mapsto n\quad\text{and}\quad \varphi_-:\mathbb{Z}\to\mathbb{Z}\text{ where }n\mapsto -n.
+\end{align*}
+Under composition, these maps satisfy the following: \begin{align*}
+    \varphi_+\circ \varphi_+=\varphi_+\quad \varphi_+\circ \varphi_-=\varphi_-\quad \varphi_-\circ \varphi_-=\varphi_+
+\end{align*}
+As such, we conclude that $\operatorname{Aut}\left(\mathbb{Z}\right)=\left\{\pm 1\right\}$. \qed 
+\subsubsection*{Question 9}
+Let $G$ be a finite group. Suppose $N\unlhd G$ is a normal subgroup such that $|N|$ and $[G:N]$ are relatively prime. Show that $N$ is the unique subgroup of $G$ of order $|N|$.
+\newline
+\newline\textit{Solution.} Let $K\le G$ be such that $\left|K\right|=\left|N\right|$. We will prove that $K=N$. Since $N\unlhd G$, then $NK\le G$, so $\textcolor{blue}{\left|NK\right|}\mid \left|G\right|$ by Lagrange's theorem. Recall that \begin{align*}
+    \textcolor{blue}{\left|NK\right|}=\frac{\left|N\right|\left|K\right|}{\left|N\cap K\right|}=\frac{\left|N\right|^2}{\left|N\cap K\right|}\quad\text{and}\quad \textcolor{red}{\left|G\right|}=\left|N\right|\cdot \left[G:N\right].
+\end{align*}
+So, \begin{align*}
+    \frac{\left|N\right|^2}{\left|N\cap K\right|}\mid \textcolor{red}{\left|G\right|}\quad\text{which implies}\quad \frac{\left|N\right|^2}{\left|N\cap K\right|}\mid \left|N\right|\cdot \left[G:N\right].
+\end{align*}
+As such, \begin{align*}
+    \frac{\left|N\right|}{\left|N\cap K\right|}\mid \left[G:N\right].
+\end{align*}
+Since $\operatorname{gcd}\left(\left|N\right|,\left[G:N\right]\right)=1$, then $\frac{\left|N\right|}{\left|N\cap K\right|}=1$, so $\left|N\right|=\left|N\cap K\right|$. Hence, $N\cap K=K$, which implies $K\subseteq N$. Since $\left|K\right|=\left|N\right|$ and $K\subseteq N$, then $K\supseteq N$. It follows that $K=N$. \qed 
+\newpage
+\subsubsection*{Question 10}
+Let $G$ be a finite group. Let $p$ be a prime and let $P\subseteq G$ be a $p$-Sylow subgroup. Suppose $P$ is abelian. Show that for any $x,y\in P$, if there exists $g\in G$ such that $gxg^{-1}=y$, then there exists $n\in N_G(P)$ such that $nxn^{-1}=y$.
+\newline
+\newline In other words, two elements of $P$ which are conjugate in $G$ are already conjugate in the normalizer $N_G\left(P\right)$ of $P$.
+\newline
+\newline\textit{Solution.} Let $x,y\in P$, and suppose there exists $g\in G$ such that $gxg^{-1}=y$. Since $y\in P$ and $P$ is abelian, then every element of $P$ commutes with $y$. So, $P\subseteq C_G\left(y\right)$. Likewise, $gPg^{-1}$ also contains $y$, so $gPg^{-1}\subseteq C_G\left(y\right)$.
+\newline
+\newline As $P$ and $gPg^{-1}$ are both Sylow $p$-subgroups of $C_G\left(y\right)$, then by Sylow's second theorem, they are conjugates in $C_G\left(y\right)$. That is to say, there exists $z\in C_G\left(y\right)$ such that \[zPz^{-1}=gPg^{-1}.\]
+Since $z\in C_G\left(y\right)$, then $zyz^{-1}=y$.
+\newline
+\newline We claim that $n=z^{-1}g$ normalizes $P$. To see why, \[nPn^{-1}=z^{-1}gPg^{-1}z=z^{-1}zPz^{-1}z=P\]
+so $n\in N_G\left(P\right)$. Next, we claim that $nxn^{-1}=y$. We have \begin{align*}
+    nxn^{-1}&=z^{-1}gxg^{-1}z\quad\text{since }n=z^{-1}g\\
+    &=z^{-1}yz\quad\text{since }gxg^{-1}=y\text{ as mentioned in the question}\\
+    &=y\quad \text{since }z\in C_G\left(y\right)
+\end{align*}
+as desired. \qed 
+\end{document}
