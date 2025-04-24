@@ -1,0 +1,504 @@
+\documentclass[11pt]{amsart}
+\usepackage{amscd,amssymb}
+\usepackage{graphicx}
+%\usepackage{amsmath,amssymb,enumerate}
+\usepackage[all]{xy}
+\usepackage{mathrsfs}
+\linespread{1.15}
+\theoremstyle{plain}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{amscd, amssymb, latexsym, amsmath, amscd}
+\usepackage{xcolor}
+%\usepackage[all]{xy}
+%\usepackage{pb-diagram}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows}
+\usetikzlibrary{decorations.markings}
+\tikzset{->-/.style={decoration={
+  markings,
+  mark=at position .5 with {\arrow{>}}},postaction={decorate}}}
+
+\pagestyle{myheadings}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{thm}[equation]{Theorem}
+\newtheorem{prop}[equation]{Proposition}
+\newtheorem{cor}[equation]{Corollary}
+\newtheorem{exe}[equation]{Exercise}
+\newtheorem{con}[equation]{Conjecture}
+\newtheorem{lemma}[equation]{Lemma}
+\newtheorem{rem}[equation]{Remark}
+\newtheorem{question}[equation]{Question}
+\newtheorem{defn}[equation]{Definition}
+\numberwithin{equation}{section}
+
+
+% The following are only to be used in Math 
+
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\B}{\mathbb B}
+\newcommand{\Sc}{\mathbb S}
+\newcommand{\D}{\mathbb D}
+\newcommand{\G}{\mathfrak G}
+\newcommand{\oO}{\mathcal O}
+\newcommand{\F}{\mathbb F}
+\newcommand{\h}{\mathbb H}
+\newcommand{\hH}{\mathcal H}
+\newcommand{\A}{\mathbb A}
+\newcommand{\I}{\mathcal A}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Pp}{\mathbb P}
+\newcommand{\E}{\mathcal E}
+\newcommand{\s}{\text sym}
+%\newcommand{\qed}{\hfill $\Box$ \hfill \\}
+\def\M{{\rm M}}
+
+
+\def\Hom{{\rm Hom}}
+\def\Aut{{\rm Aut}}
+\def\ord{{\rm ord}}
+\def\G{{\rm G}}
+\def\SL{{\rm SL}}
+\def\disc{{\rm disc}}
+\def\charact{{\rm char}}
+\def\PSL{{\rm PSL}}
+\def\GSp{{\rm GSp}}
+\def\CSp{{\rm CSp}}
+\def\PGSp{{\rm PGSp}}
+\def\PGSO{{\rm PGSO}}
+\def\Sp{{\rm Sp}}
+\def\Spin{{\rm Spin}}
+\def\GU{{\rm GU}}
+\def\SU{{\rm SU}}
+\def\U{{\rm U}}
+\def\GO{{\rm GO}}
+\def\GL{{\rm GL}}
+\def\PGL{{\rm PGL}}
+\def\GSO{{\rm GSO}}
+\def\Gal{{\rm Gal}}
+\def\SO{{\rm SO}}
+\def\Ind{{\rm Ind}}
+\def\Sp{{\rm Sp}}
+\def\Mp{{\rm Mp}}
+\def\sign{{\rm sign}}
+\def\O{{\rm O}}
+\def\Sym{{\rm Sym}}
+\def\Stab{{\rm Stab}}
+\def\tr{{\rm tr\,}}
+\def\ad{{\rm ad\, }}
+\def\Ad{{\rm Ad\, }}
+\def\rank{{\rm rank\,}}
+\def\Res{{\rm Res}}
+\def\der{{\rm der}}
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+
+%\usepackage{amsfonts,amssymb,theorem} 
+%\usepackage{theorem}
+%\usepackage[all]{xy}
+\def\e{\epsilon}
+\def\gg{{\mathfrak{g}}}
+\def\gh{{\mathfrak{h}}}
+\def\A{{\mathbb A}}
+\def\ws{{\widetilde{\Sp}}}
+\def\wpi{{\widetilde{\pi}}}
+\def\GG{{\mathbb G}}
+\def\NN{{\mathbb N}}
+\def\P{{\mathbb P}}
+\def\R{{\mathbb R}}
+\def\V{{\mathbb V}}
+\def\Va{{V_{\alpha}}}
+\def\X{{\mathbb X}}
+\def\Z{{\mathbb Z}}
+\def\T{{\mathbb T}}
+\def\gm{{\Gamma}}
+\def\vr{{\varphi}}
+\def\wx{{\widehat{X}}}
+\def\wy{{\widehat{Y}}}
+\def\wm{{\widehat{M}}}
+\def\gk{{\mathfrak{k}}}
+\def\gp{{\mathfrak{p}}}
+\def\aa{{\mathfrak{{\huge a}}}}
+\def\md{{\medskip}}
+\def\ep{{\epsilon}}
+\def\bl{{\bullet}}
+\def\ms{\:\raisebox{-0.6ex}{$\stackrel{\circ}{B}$}\:}
+\def\gs{\:\raisebox{-1.6ex}{$\stackrel{\circ}{A}^c$}\:}
+\def\gg{\:\raisebox{-1.6ex}{$\stackrel{\longrightarrow}{\eta \times \eta}$}\:}
+\def\ll{\:\raisebox{-0.6ex}{$\stackrel{\lim}{\rightarrow}$}\:}
+\def\gk{\:\raisebox{-1.6ex}{$\stackrel{\hookrightarrow}{\rm g}$}\:}
+\def\gi{\:\raisebox{-0.6ex}{$\stackrel{\rm dfn}{=}$}\:}
+\def\op{\:\raisebox{-0.1ex}{$\stackrel{0}{P}$}\:}
+\def\om{\:\raisebox{-0.1ex}{$\stackrel{0}{\Omega}$}\:}
+\def\X{\widehat{X}} 
+\def\Y{\widehat{Y}} 
+%\def\A{{\mathbb A}_{f}}
+\def\AA{{\mathbb A}} 
+%\def\C{{\bf C}}
+\def\T{{\bf T}}
+\def\M{{\cal M}}
+
+\def\QQ{{\mathbb Q}}
+\def\RR{{\mathbb R}}
+\def\PP{{\mathbb P}}
+\def\SS{{\mathbb S}}
+\def\CC{{\mathbb C}}
+\def\ZZ{{\bf Z}}
+\def\H{{\cal H}} 
+%\def\ll{{\lambda_1}}
+\def\L{{\stackrel{m}{\wedge}}}
+\def\g{{\bf g}}
+\def\b{{\bf b}}
+\def\f{{\bf f}}
+\def\h{{\bf h}}
+\def\k{{\bf k}}
+\def\n{{\bf n}}
+\def\q{{\bf q}}
+\def\u{{\bf u}} 
+\def\wp{{W^{\perp}}}
+\def\p{{\bf p}}
+\def\w{{\bf w}}
+\def\CL{{\cal C}}
+\def\G{{\mathbb G}} 
+\def\wg{{\widehat{G}}}
+\def\CT{{\cal T}} 
+
+\setlength{\oddsidemargin}{0.2in}
+\setlength{\evensidemargin}{0.2in}
+\setlength{\textwidth}{6.1in}
+\usepackage[paper=a4paper, left=15mm, right=15mm, top=15mm, bottom=15mm]{geometry}
+\usepackage{mathptmx}
+
+\title {MA3209 MATHEMATICAL ANALYSIS III\\ FINAL EXAM (2016/2017 SEMESTER 1)}
+
+ 
+\author{Joshua Kim Kwan}
+\author{Thang Pang Ern}
+
+\address{} \email{}
+\address{}\email{}
+%\subjclass[2000]{11S90, 17A75,  17C40}
+%\keywords{triality $Spin(8)$, minimal representation, theta correspondence} 
+ 
+\begin{document}
+\maketitle
+\noindent \textbf{Question 1 (18 points).} 
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Let $\left(X,d_{X}\right)$ and $\left(Y,d_{Y}\right)$ be metric spaces. Define $d:(X\times Y)\times (X\times Y)\longrightarrow\mathbb{R}$ by 
+\begin{align*}
+    d\left(\left(x_{1},y_{1}\right),\left(x_{2},y_{2}\right)\right)=\max\left\{d_{X}\left(x_{1},x_{2}\right),d_{Y}\left(y_{1},y_{2}\right)\right\}~,~x_{1},x_{2}\in X,y_{1},y_{2}\in Y.
+\end{align*}
+Show that $d$ is a metric on $X\times Y$.
+\item Let $C[0,1]$ be the metric space of all continuous real-valued functions on $[0,1]$, equipped with the uniform metric $d_{\infty}$. Let $g\in C[0,1]$ and
+\begin{align*}
+    S=\left\{f\in C[0,1]:f(x)<g(x)\text{ for all }x\in[0,1]\right\}.
+\end{align*}
+Is the set $S$ open in $C[0,1]$? Justify your answer.
+\end{enumerate}
+\noindent\emph{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item We verify the properties of a metric space:
+\begin{itemize}
+    \item For any $\left(x_{1},y_{1}\right),\left(x_{2},y_{2}\right)\in X\times Y$, since $d_{X},d_{Y}$ are metrics, then $d_{X}\left(x_{1},x_{2}\right)\geq 0$ and $d_{Y}\left(y_{1},y_{2}\right)\geq 0$, so that
+    \begin{align*}
+        d\left(\left(x_{1},y_{1}\right),\left(x_{2},y_{2}\right)\right)=\max\left\{d_{X}\left(x_{1},x_{2}\right),d_{Y}\left(y_{1},y_{2}\right)\right\}\geq 0.
+    \end{align*}
+    \item Suppose that $d\left(\left(x_{1},y_{1}\right),\left(x_{2},y_{2}\right)\right)=0$. Then we must have $d_{X}\left(x_{1},x_{2}\right)=0=d_{Y}\left(y_{1},y_{2}\right)$, which implies that $x_{1}=x_{2}$ and $y_{1}=y_{2}$. Hence, $\left(x_{1},y_{1}\right)=\left(x_{2},y_{2}\right)$. On the other hand, if $x_{1}=x_{2}$ and $y_{1}=y_{2}$, then $d_{X}\left(x_{1},x_{2}\right)=0=d_{Y}\left(y_{1},y_{2}\right)$, so that 
+    \begin{align*}
+        d\left(\left(x_{1},y_{1}\right),\left(x_{2},y_{2}\right)\right)=\max\left\{d_{X}\left(x_{1},x_{2}\right),d_{Y}\left(y_{1},y_{2}\right)\right\}=0.
+    \end{align*}
+    \item Since $d_{X},d_{Y}$ are metrics on $X$ and $Y$ respectively, then $d_{X}\left(x_{1},x_{2}\right)=d_{X}\left(x_{2},x_{1}\right)$ and $d_{Y}\left(y_{1},y_{2}\right)=d_{Y}\left(y_{2},y_{1}\right)$, so that
+    \begin{align*}
+        d\left(\left(x_{1},y_{1}\right),\left(x_{2},y_{2}\right)\right)=\max\left\{d_{X}\left(x_{1},x_{2}\right),d_{Y}\left(y_{1},y_{2}\right)\right\}=\max\left\{d_{X}\left(x_{2},x_{1}\right),d_{Y}\left(y_{2},y_{1}\right)\right\}=d\left(\left(x_{2},y_{2}\right),\left(x_{1},y_{1}\right)\right).
+    \end{align*}
+    \item For any $\left(x_{1},y_{1}\right),\left(x_{2},y_{2}\right),\left(x_{3},y_{3}\right)\in X\times Y$, since
+    \begin{align*}
+        d_{X}\left(x_{1},x_{2}\right)&\leq d_{X}\left(x_{1},x_{3}\right)+d_{X}\left(x_{3},x_{2}\right)\leq\max\left\{d_{X}\left(x_{1},x_{3}\right)+d_{X}\left(x_{3},x_{2}\right),d_{Y}\left(y_{1},y_{3}\right)+d_{Y}\left(y_{3},y_{2}\right)\right\}
+        \\
+        d_{Y}\left(y_{1},y_{2}\right)&\leq d_{Y}\left(y_{1},y_{3}\right)+d_{Y}\left(y_{3},y_{2}\right)\leq\max\left\{d_{X}\left(x_{1},x_{3}\right)+d_{X}\left(x_{3},x_{2}\right),d_{Y}\left(y_{1},y_{3}\right)+d_{Y}\left(y_{3},y_{2}\right)\right\}
+    \end{align*}
+    then
+    \begin{align*}
+        \max\left\{d_{X}\left(x_{1},x_{2}\right),d_{Y}\left(y_{1},y_{2}\right)\right\}&\leq\max\left\{d_{X}\left(x_{1},x_{3}\right)+d_{X}\left(x_{3},x_{2}\right),d_{Y}\left(y_{1},y_{3}\right)+d_{Y}\left(y_{3},y_{2}\right)\right\}
+        \\
+        &\leq\max\left\{d_{X}\left(x_{1},x_{3}\right),d_{Y}\left(y_{1},y_{3}\right)\right\}+\max\left\{d_{X}\left(x_{3},x_{2}\right),d_{Y}\left(y_{3},y_{2}\right)\right\}
+    \end{align*}
+    where we used that $\max\{a+b,c+d\}\leq\max\{a,c\}+\max\{b,d\}$, since $a+b\leq\max\{a,c\}+\max\{b,d\}$ and $c+d\leq\max\{a,c\}+\max\{b,d\}$. Hence,
+    \begin{align*}
+        d\left(\left(x_{1},y_{1}\right),\left(x_{2},y_{2}\right)\right)\leq d\left(\left(x_{1},y_{1}\right),\left(x_{3},y_{3}\right)\right)+d\left(\left(x_{3},y_{3}\right),\left(x_{2},y_{2}\right)\right).
+    \end{align*}
+\end{itemize}
+\item Yes. Let $f\in S$. Let 
+\begin{align*}
+    r_{f}=\frac{1}{2}\inf_{x\in[0,1]}\left|f(x)-g(x)\right|=\frac{1}{2}\min_{x\in[0,1]}\left|f(x)-g(x)\right|>0.
+\end{align*}
+Take any function $h$ in the open ball centred at $f$ of radius $r_f$, denoted by $B\left(f,r_f\right)$. This means that for all $x\in\left[0,1\right]$, we have $\left|h\left(x\right)-f\left(x\right)\right|<r_f$. So, $h\left(x\right)<f\left(x\right)+r_f$. By definition, for every $x\in \left[0,1\right]$, we have \[r_f<\frac{g\left(x\right)-f\left(x\right)}{2}\quad\text{so}\quad h\left(x\right)<f\left(x\right)+\frac{g\left(x\right)-f\left(x\right)}{2}=\frac{f\left(x\right)+g\left(x\right)}{2}.\]
+Since $\frac{1}{2}\left(f\left(x\right)+g\left(x\right)\right)<f\left(x\right)$, then $h\left(x\right)<g\left(x\right)$, so $h\in S$. Hence, $S$ is open in $C\left[0,1\right]$. \qed 
+\end{enumerate}
+\textbf{Question 2 (20 points).} Let $(X,d)$ be a metric space. 
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item For $x\in X$ and $r>0$, denote by $B[x,r]$ the closed ball $\left\{y\in X:d(y,x)\leq r\right\}$ in $X$. Suppose that whenever $\left\{B\left[x_{n},r_{n}\right]\right\}_{n=1}^{\infty}$ is a sequence of closed balls in $X$ satisfying the conditions
+\begin{align*}
+    B\left[x_{n},r_{n}\right]\supseteq B\left[x_{n+1},r_{n+1}\right],n=1,2,\dots,~\text{ and }~\lim_{n\to\infty}r_{n}=0,
+\end{align*}
+then the intersection $\bigcap_{n=1}^{\infty}B\left[x_{n},r_{n}\right]$ is non-empty. Prove that $(X,d)$ is complete.
+\item \begin{enumerate}[label=\textbf{(\roman*)}]
+    \itemsep 0em
+    \item Let $x\in X$. Prove that the singleton set $\{x\}$ is nowhere dense in $X$ if and only if $x$ is an accumulation point of $X$.
+    \item Suppose that $(X,d)$ is complete and every $x$ in $X$ is an accumulation point of $X$. Prove that $X$ is uncountable.
+\end{enumerate}
+\end{enumerate}
+\noindent\emph{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Let $\left\{x_{n}\right\}_{n=1}^{\infty}$ be a Cauchy sequence in $(X,d)$. So, there exists $N_{1}$ such that for all $n,m\geq N_{1}$, $d\left(x_{n},x_{m}\right)<2^{-3}$. In particular, $d\left(x_{N_{1}},x_{m}\right)<2^{-3}$. By applying the definition of a Cauchy sequence again, there exists $N_{2}\geq N_{1}$ such that for all $n,m\geq N_{2}$, $d\left(x_{n},x_{m}\right)<2^{-4}$. In particular, $d\left(x_{N_{2}},x_{m}\right)<2^{-4}$. Going in this manner, we can define $r_{k}=2^{1-k}$. As such, we obtain the following:
+\begin{itemize}
+    \item an increasing sequence of natural numbers $N_{1}\leq N_{2}\leq N_{3}\leq\dots$,
+    \item a subequence $\left\{x_{N_{k}}\right\}_{k=1}^{\infty}$
+    \item a sequence of closed balls $\left\{B\left[x_{N_{k}},r_{k}\right]\right\}_{k=1}^{\infty}$.
+\end{itemize}
+We first show that $B\left[x_{N_{k}},r_{k}\right]\supseteq B\left[x_{N_{k+1}},r_{k+1}\right]$. Let $z\in B\left[x_{N_{k+1}},r_{k+1}\right]$. Then
+\begin{align*}
+    d\left(z,x_{N_{k}}\right)&\leq d\left(z,x_{N_{k+1}}\right)+d\left(x_{N_{k+1}},x_{N_{k}}\right)\quad\text{by the triangle inequality}
+    \\
+    &\leq r_{k+1}+2^{-k-2}
+    \\
+    &=2^{-k}+2^{-2-k}
+    \\
+    &=\frac{5}{2^{k+2}}
+    \\
+    &<\frac{2}{2^{k}}
+    \\
+    &=r_{k}
+\end{align*}
+which implies that $z\in B\left[x_{N_{k}},r_{k}\right]$ for each $k\in\mathbb{N}$. By assumption, \[\bigcap_{k=1}^{\infty}B\left[x_{N_{k}},r_{k}\right]\neq\emptyset.\] Let $x\in\bigcap_{k=1}^{\infty}B\left[x_{N_{k}},r_{k}\right]$, so that $d\left(x,x_{N_{k}}\right)\leq r_{k}=2^{1-k}$ for each $k$. We will show that $x_{n}\to x$ as $n\to\infty$. Let $\epsilon>0$. Choose $K\in\mathbb{N}$ such that $2^{1-K}<\epsilon/2$. Then for any $n\geq N_{K}$,
+\begin{align*}
+    d\left(x_{n},x\right)\leq d\left(x_{n},x_{N_{K}}\right)+d\left(x_{N_{K}},x\right)\leq r_{K}+r_{K}=\frac{\epsilon}{2}+\frac{\epsilon}{2}=\epsilon
+\end{align*}
+and so $x_{n}\to x$ as $n\to\infty$. Thus, $(X,d)$ is complete.
+\item\begin{enumerate}[label=\textbf{(\roman*)}]
+    \itemsep 0em
+    \item For the forward direction, suppose that $x$ is not an accumulation point of $X$. Then there exists $r>0$ such that $B(x,r)\cap X\setminus\{x\}=\emptyset$. This implies that $B(x,r)\subseteq\{x\}$, and so $B(x,r)=\{x\}$. This implies that $B(x,r)\subseteq\{x\}\subseteq\overline{\{x\}}$, so that $x$ is an interior point of $\overline{\{x\}}$, contradicting that $\mathrm{int}\left(\overline{\{x\}}\right)=\emptyset$. Thus, if $\{x\}$ is nowhere dense in $X$, then $x$ is an accumulation point of $X$.
+    \newline
+    \newline For the reverse direction, suppose that $x$ is an accumulation point of $X$. Let $G\subseteq X$ be an open set. If $x\not\in G$, then for any open ball $B\subseteq G$, we have $B\cap\{x\}=\emptyset$. If $x\in G$, since $G$ is an open set, then there exists $r_{1}>0$ such that $B\left(x,r_{1}\right)\subseteq G$. Since $x$ is an accumulation point, then $B\left(x,r_{1}\right)\cap\left(X\setminus\{x\}\right)\neq\emptyset$. Let $y\in B\left(x,r_{1}\right)\cap\left(X\setminus\{x\}\right)$, so that $y\neq x$ and $d(x,y)>0$. Since $y\in B\left(x,r_{1}\right)$, there exists $r_{2}>0$ such that $B\left(y,r_{2}\right)\subseteq B\left(x,r_{1}\right)$. Let $r_{3}=d(x,y)/4>0$ and $r_{4}=\min\left\{r_{2},r_{3}\right\}>0$. We will show that $B\left(y,r_{4}\right)\subseteq G$ and $x\not\in B\left(y,r_{4}\right)$. From the definition of $r_{1},r_{2},r_{4}$, we have
+\begin{align*}
+    B\left(y,r_{4}\right)\subseteq B\left(y,r_{2}\right)\subseteq B\left(y,r_{1}\right)\subseteq G.
+\end{align*}
+If $x\in B\left(y,r_{4}\right)$, then
+\begin{align*}
+    d(x,y)<r_{4}\leq r_{3}=\frac{d(x,y)}{4}<d(x,y)
+\end{align*}
+which is a contradiction. Therefore, $x\not\in B\left(y,r_{4}\right)$. Hence, $B\left(y,r_{4}\right)\subseteq G$ such that $B\left(y,r_{4}\right)\cap\{x\}=\emptyset$ and so $\{x\}$ is nowhere dense in $X$.
+\item Suppose on the contrary that $X$ is countable. Then, we can enumerate the elments of $X$, i.e. $X=\left\{x_{1},x_{2},\dots\right\}$. For each $n\in\mathbb{N}$, define $U_{n}=X\setminus\left\{x_{n}\right\}$. Since every point in $X$ is an accumulation point, then each $x_n$ is not isolated, i.e. in every open neighbourhood around $x_n$, there is some other point from $X$. In other words, removing one point $x_n$ does not \emph{affect} the density of the remaining set. Hence, each $U_n$ is dense in $X$. 
+\newline
+\newline Recall the Baire category theorem, which states that in a complete metric space, the countable intersection of dense open sets is also dense. Since $(X,d)$ is complete, then by the Baire category theorem, $\bigcap_{n=1}^{\infty}U_{n}$ is dense in $(X,d)$. But this means $\bigcap_{n=1}^{\infty}U_{n}\neq\emptyset$, which is a contradiction since $x_{i}\not\in\bigcap_{n=1}^{\infty}U_{n}$ for all $i$. Therefore, $X$ is uncountable. \qed 
+\end{enumerate}
+\end{enumerate}
+\noindent\textbf{Question 3 (20 points).} Let $(X,d)$ be a metric space.
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item  Let $\left\{x_{n}\right\}_{n=1}^{\infty}$ be a sequence in $X$ converging to some $x\in X$. Is the set \[\left\{x_{n}:n\in\mathbb{N}\right\}\cup\{x\}\] compact? \underline{Justify your answer.}
+    \item Let $(X,d)$ be compact, and let $T:X\longrightarrow X$ be an isometry:
+\begin{align*}
+    d\left(T(x),T(y)\right)=d(x,y)
+\end{align*}
+for all $x,y\in X$. Determine if $T$ is surjective. \underline{Justify your answer.}
+\end{enumerate}
+\noindent\emph{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Yes, the set $S=\left\{x_{n}:n\in\mathbb{N}\right\}\cup\{x\}$ is compact. Let $\mathcal{G}$ be an open cover for $S$. Since $x\in S$, there exists an open set $U\in\mathcal{G}$ such that $x\in U$. Let $r>0$ be such that $B(x,r)\subseteq U$. Since $x_{n}\to x$ as $n\to\infty$, for a given $\epsilon=r>0$, there exists $M\in\mathbb{N}$ such that for all $n\geq M$, $x_{n}\in B\left(x,r\right)$. Since $\mathcal{G}$ is an open cover for $S$, then there exist open sets $U_{1},U_{2},\dots,U_{M-1}$ such that $x_{i}\in U_{i}$ for $i=1,2,\dots,M-1$. Then $\left\{U_{1},\dots,U_{M-1},U\right\}\subseteq\mathcal{G}$ is a finite subcover for $S$. Hence, $S$ is compact.
+    \item Yes, $T$ is surjective. Suppose on the contrary that $T$ is not surjective. Then there exists $a\in X$ such that $T(x)\neq a$ for all $x\in X$. Since $(X,d)$ is compact, then $(X,d)$ is sequentially compact. Consider a sequence $\left\{T^{n}(a)\right\}_{n=0}^{\infty}$. Then there exists a convergent subsequence $\left\{T^{n_{k}}(a)\right\}_{k=0}^{\infty}$, which converges to some $b\in X$. Since $\left\{T^{n_{k}}(a)\right\}_{k=0}^{\infty}$ is convergent, then $\left\{T^{n_{k}}(a)\right\}_{k=0}^{\infty}$ is Cauchy. Let $\epsilon>0$. Then there exists $K_{1}\in\mathbb{N}$ such that for all $k,\ell\geq K_{1}$, $d\left(T^{n_{k}}(a),T^{n_{\ell}}(a)\right)<\epsilon/2$. Next, since $T^{n_{k}}(a)\to b$ as $k\to\infty$, then there exists $K_{2}\in\mathbb{N}$ such that for all $k\geq K_{2}$, $d\left(T^{n_{k}}(a),b\right)<\epsilon/2$. Now, choose $K=\max\left\{K_{1},K_{2}\right\}$. Then for all $k,\ell\geq K$, we have
+\begin{align*}
+    d\left(a,T(b)\right)&=d\left(T^{n_{k}}(a),T^{n_{k}+1}(b)\right)\quad\text{since }T\text{ is an isometry}
+    \\
+    &\leq d\left(T^{n_{k}}(a),T^{n_{k}+n_{\ell}+1}(a)\right)+d\left(T^{n_{k}+n_{\ell}+1}(a),T^{n_{k}+1}(b)\right)
+    \\
+    &=d\left(T^{n_{k}}(a),T^{n_{k}+n_{\ell}+1}(a)\right)+d\left(T^{n_{\ell}}(a),b\right)
+    \\
+    &<\frac{\epsilon}{2}+\frac{\epsilon}{2}
+    \\
+    &=\epsilon.
+\end{align*}
+Since $\epsilon>0$ is arbitrary, then $d\left(a,T(b)\right)=0$, contradicting that $T(x)\neq a$ for all $x\in X$. Therefore, $T$ is surjective. \qed 
+\end{enumerate}
+\noindent\textbf{Question 4 (12 points).} Let $(X,d)$ be a metric space. Prove that the following conditions are equivalent:
+\begin{enumerate}
+    \itemsep 0em
+    \item $X$ is connected.
+    \item Every continuous function $f:X\longrightarrow\{1,2\}$ is a constant function, where $\{1,2\}$ is a subspace of $\mathbb{R}$ with the usual metric.
+\end{enumerate}
+\noindent\emph{Solution.} We first prove (1) implies (2). Suppose that $X$ is connected but $f:X\longrightarrow\{1,2\}$ is continuous but non-constant. Since $\{1,2\}$ is a subspace of $\mathbb{R}$ with the usual metric, then $\{1\}$ and $\{2\}$ are open sets in $\mathbb{R}$ under the usual metric since $\{1\}=B\left(1,1/2\right)$ and $\{2\}=B\left(2,1/2\right)$. Let $G=f^{-1}\left(\{1\}\right)$ and $H=f^{-1}\left(\{2\}\right)$. Since $f$ is continuous, then $G$ and $H$ are open in $(X,d)$. Moreover, $G\cap H=\emptyset$ since $f$ is a function. For any $x\in X$, $f(x)=1$ or $f(x)=2$, this implies that $x\in G$ or $x\in H$, and so $X=G\cup H$. The existence of such a partition $\left(G,H\right)$ contradicts that $X$ is connected.
+\newline
+\newline We then prove (2) implies (1) using contradiction. Suppose $X$ is disconnected, then there exist non-empty open sets $G,H\subseteq X$ such that $G\cap H=\emptyset$ and $X=G\cup H$. Define
+\begin{align*}
+    f(x)=\begin{cases}
+    1&\text{ if }x\in G
+    \\
+    2&\text{ if }x\in H
+    \end{cases}
+\end{align*}
+which is continuous but non-constant on $X$. To justify continuity, note that $G$ and $H$ are open in $X$ so the pre-images of the open sets $\left\{1\right\}$ and $\left\{2\right\}$ are open in $\left\{1,2\right\}$. $f$ being non-constant is clear as it takes on two values --- 1 and 2. This is a contradiction. So, $X$ must be connected. \qed 
+\newline
+\newline\textbf{Question 5 (14 points).}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Let $f:\left[a,\infty\right)\longrightarrow\left[a,\infty\right)$ be a differentiable function such that
+\begin{align*}
+    \sup\left\{\left|f'(x)\right|:a<x<\infty\right\}<1.
+\end{align*}
+Prove that $f$ has a unique fixed point in $\left[a,\infty\right)$. 
+\item \begin{enumerate}[label=\textbf{(\roman*)}]
+    \itemsep 0em
+    \item  Show that the function $g(x)=\left(1+\sqrt{x}\right)^{1/3}$ is a contraction mapping on the
+interval $\left[1,\infty\right)$.
+\item Deduce that the equation $x^{6}-2x^{3}-x+1=0$ has a root in $\left[1,\infty\right)$.
+\end{enumerate}
+\end{enumerate}
+\noindent\emph{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Note that for any $x\in\left(a,\infty\right)$,
+\begin{align*}
+    f'(x)=\lim_{y\to x}\frac{f(x)-f(y)}{x-y}<1\quad\text{since }\sup\left|f'\left(x\right)\right|<1,
+\end{align*}
+so there exists $M\in(0,1)$ such that $\left|f'(x)\right|\leq M<1$. In particular, since $f$ is differentiable, for any $x,y\in\left[a,\infty\right)$ with $x\neq y$, by the mean value theorem, there exists $c\in(x,y)$ such that 
+\begin{align*}
+    f'(c)=\frac{f(x)-f(y)}{x-y}=M<1
+\end{align*}
+so that $\left|f(x)-f(y)\right|\leq M|x-y|$. This shows that $f$ is a contraction mapping in $\left(\left[a,\infty\right),\text{usual metric}\right)$. Moreover, $\left(\left[a,\infty\right),\text{usual metric}\right)$ is complete. By Banach's fixed point theorem, $f$ has a fixed point in $\left[a,\infty\right)$.
+\item \begin{enumerate}[label=\textbf{(\roman*)}]
+    \itemsep 0em
+    \item We have
+\begin{align*}
+    \left|g(x)-g(y)\right|&=\left|\left(1+\sqrt{x}\right)^{1/3}-\left(1+\sqrt{y}\right)^{1/3}\right|
+    \\
+    &=\left|\frac{\left(1+\sqrt{x}\right)-\left(1+\sqrt{y}\right)}{\left(1+\sqrt{x}\right)^{2/3}+\left(1+\sqrt{x}\right)^{1/3}\left(1+\sqrt{y}\right)^{1/3}+\left(1+\sqrt{y}\right)^{2/3}}\right|
+    \\
+    &\leq\left|\frac{\sqrt{x}-\sqrt{y}}{1+1+1}\right|
+    \\
+    &=\frac{1}{3}\left|\sqrt{x}-\sqrt{y}\right|
+    \\
+    &=\frac{1}{3}\left|\frac{x-y}{\sqrt{x}+\sqrt{y}}\right|
+    \\
+    &\leq\frac{1}{6}|x-y|
+\end{align*}
+so that $g$ is a contraction mapping on the interval $\left[1,\infty\right)$.
+\item Let $g(x)=\left(1+\sqrt{x}\right)^{1/3}$. By \textbf{(bi)}, since $g$ is a contraction mapping on $\left(\left[1,\infty\right),\text{usual metric}\right)$, and $\left[1,\infty\right)$ is complete, then $g$ has a unique fixed point in $\left[1,\infty\right)$. This implies that there exists $\alpha\in\left[1,\infty\right)$ such that $g\left(\alpha\right)=\alpha$, or equivalently, $1+\sqrt{\alpha}=\alpha^{3}$. This is equivalent to
+\begin{align*}
+    \alpha^{6}-2\alpha^{3}-\alpha+1=0.
+\end{align*}
+Hence, the equation $x^{6}-2x^{3}-x+1=0$ has a root $\alpha$ in $\left[1,\infty\right)$. \qed 
+\end{enumerate}
+\end{enumerate}
+\noindent\textbf{Question 6 (16 points).}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Using the definition of differentiability, show that the function $F:\mathbb{R}^{3}\longrightarrow\mathbb{R}^{2}$ defined by \[F(x,y,z)=\left(x^{2}+y^{2}+z^{2},xy+yz\right)\] is differentiable at the point $(1,0,2)$. Find the Jacobian matrix $F'(1,0,2)$.
+    \item Using implicit function theorem, show that the system of equations 
+\begin{align*}
+    x^{2}-y^{2}-z^{2}-2&=0
+    \\
+    x-y+z-2&=0
+\end{align*}
+and the condition $(x,y,z)=(2,1,1)$ determine a continuously differentiable function $g(x)=(y,z)$ near the point $x=2$. Find $g'(2)$.
+\end{enumerate}
+\noindent\emph{Solution.}\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item First, note that
+\begin{align*}
+    F'(x,y,z)=\begin{pmatrix}
+        2x & 2y & 2z \\ y & x+z & y
+    \end{pmatrix}.
+\end{align*}
+Let
+\begin{align*}
+    A=\begin{pmatrix}
+        2 & 0 & 4
+        \\
+        0 & 3 & 0
+    \end{pmatrix}
+    \quad\text{and}\quad 
+    h&=\begin{pmatrix}
+        h_{1} \\ h_{2} \\ h_{3}
+    \end{pmatrix}.
+\end{align*}
+Then,
+\begin{align*}
+    &\lim_{\left(h_{1},h_{2},h_{3}\right)\to(0,0,0)}\frac{\left\Vert F\left(1+h_{1},h_{2},2+h_{3}\right)-F(1,0,2)-Ah\right\Vert}{\left\Vert h\right\Vert}
+    \\
+    =&\lim_{\left(h_{1},h_{2},h_{3}\right)\to(0,0,0)}\frac{\left\Vert \begin{pmatrix}
+        \left(1+h_{1}\right)^{2}+h_{2}^{2}+\left(2+h_{3}\right)^{2} \\ \left(1+h_{1}\right)h_{2}+h_{2}\left(2+h_{3}\right)
+    \end{pmatrix}-\begin{pmatrix}
+        5 \\ 0
+    \end{pmatrix}-\begin{pmatrix}
+        2h_{1}+4h_{3} \\ 3h_{2}
+    \end{pmatrix}\right\Vert}{\left\Vert \begin{pmatrix}
+        h_{1} \\ h_{2} \\ h_{3}
+    \end{pmatrix}\right\Vert} \\
+    =&\lim_{\left(h_{1},h_{2},h_{3}\right)\to(0,0,0)}\frac{\left\Vert \begin{pmatrix}
+        h_{1}^{2}+h_{2}^{2}+h_{3}^{2}+2h_{1}+4h_{3}-2h_{1}-4h_{3} \\ 3h_{2}+h_{1}h_{2}+h_{2}h_{3}-3h_{2}
+    \end{pmatrix}\right\Vert}{ \sqrt{h_1^2+h_2^2+h_3^2}}
+    \\
+\end{align*}
+which simplifies to
+\begin{align*}
+&=\lim_{\left(h_{1},h_{2},h_{3}\right)\to(0,0,0)}\frac{\left\Vert \begin{pmatrix}
+        h_{1}^{2}+h_{2}^{2}+h_{3}^{2} \\ h_{1}h_{2}+h_{2}h_{3}
+    \end{pmatrix}\right\Vert}{\sqrt{h_{1}^{2}+h_{2}^{2}+h_{3}^{2}}}
+    \\
+    &\leq\lim_{\left(h_{1},h_{2},h_{3}\right)\to(0,0,0)}\frac{\left|h_{1}^{2}+h_{2}^{2}+h_{3}^{2}\right|+\left|h_{2}\right|\left|h_{1}+h_{3}\right|}{\sqrt{h_{1}^{2}+h_{2}^{2}+h_{3}^{2}}}
+    \\
+    &\leq\lim_{\left(h_{1},h_{2},h_{3}\right)\to(0,0,0)}\frac{\left|h_{1}^{2}+h_{2}^{2}+h_{3}^{2}\right|+\left|h_{2}\right|\left|h_{1}\right|+\left|h_{2}\right|\left|h_{3}\right|}{\sqrt{h_{1}^{2}+h_{2}^{2}+h_{3}^{2}}}
+    \\
+    &\leq\lim_{\left(h_{1},h_{2},h_{3}\right)\to(0,0,0)}\sqrt{h_{1}^{2}+h_{2}^{2}+h_{3}^{2}}+\left|h_{1}\right|+\left|h_{3}\right|
+\end{align*}
+which is bounded above 0. Hence, $F$ is differentiable at $(1,0,2)$. The Jacobian matrix is given by
+\begin{align*}
+    F'(1,0,2)=\begin{pmatrix}
+        2 & 0 & 4
+        \\
+        0 & 3 & 0
+    \end{pmatrix}.
+\end{align*}
+\item Let $f:\mathbb{R}^{3}\longrightarrow\mathbb{R}^{2}$ be given by 
+\begin{align*}
+    f(x,y,z)=\left(x^{2}-y^{2}-z^{2}-2,x-y+z-2\right)=\left(f_{1},f_{2}\right).
+\end{align*}
+Then
+\begin{align*}
+    f'(x,y,z)&=\begin{pmatrix}
+        2x & -2y & 2z \\ 1 & -1 & 1
+    \end{pmatrix}
+    \\
+    f'(2,1,1)&=\begin{pmatrix}
+        4 & -2 & 2 \\ 1 & -1 & 1
+    \end{pmatrix}.
+\end{align*}
+Moreover, the matrix
+\begin{align*}
+    \begin{pmatrix}
+        -2 & 2 \\ -1 & 1
+    \end{pmatrix}
+\end{align*}
+is invertible. Note that $f$ is continuously differentiable on $\mathbb{R}^{2}$ since each component of $f$ is a polynomial in $x,y,z$. Now $f(2,1,1)=(0,0)$. By the implicit function theorem, there exists an open set $W\subseteq\mathbb{R}$ with $2\in W$ and a continuously differentiable function $g:W\longrightarrow\mathbb{R}^{2}$ such that $g(2)=(1,1)$ and $f\left(x,g(x)\right)=(0,0)$ for all $x\in W$. Furthermore,
+\begin{align*}
+    g'(2)=-f_{(y,z)}(2,1,1)^{-1}f_{x}(2,1,1)=-\begin{pmatrix}
+        -2 & -2 \\ -1 & 1
+    \end{pmatrix}^{-1}\begin{pmatrix}
+        4 \\ 1
+    \end{pmatrix}=\begin{pmatrix}
+        3/2 \\ 1/2
+    \end{pmatrix}.
+\end{align*}
+\end{enumerate}
+\qed 
+\end{document}
