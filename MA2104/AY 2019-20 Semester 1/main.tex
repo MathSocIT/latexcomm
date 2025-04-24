@@ -1,0 +1,334 @@
+\documentclass[12pt, twoside=false]{scrbook}
+\usepackage[sexy, von]{Evan2}
+\usepackage[math]{cellspace}
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+\usepackage{asymptote}
+\usepackage{array}
+\usepackage{mathptmx}
+\usepackage{cases}
+\usepackage{chessboard}
+\usepackage{ctex}
+\usepackage{circuitikz}
+\usepackage{chemfig}
+\usepackage{diagbox}
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage{hyperref}
+\usepackage{csquotes}
+\usepackage{addfont}
+\usepackage{lipsum}
+\usepackage{yfonts}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{sansmath}
+\usepackage{scalerel}
+\usepackage{setspace}
+\usepackage{spalign}
+\usepackage{sudoku}
+\usepackage{ulem}
+\usepackage{tabularray}
+\usepackage{amssymb}
+\usepackage{stackengine}
+\usepackage{tasks}
+\usepackage{tikz, tcolorbox}
+\usepackage{tikzlings}
+\usepackage{xfrac}
+\usepackage{tkz-euclide}
+\usepackage{marvosym}
+\usepackage{makecell}
+\usepackage{setspace}
+\setstretch{1.2}
+\usepackage{pgfplots}
+\usepackage{xcolor}
+
+\usetikzlibrary{math, shapes, nfold, fadings}
+
+\cellspacetoplimit 4pt
+\cellspacebottomlimit 4pt
+
+\addfont{OT1}{necker}{\necker}
+
+\addbibresource{A1.bib}
+\newcommand{\noi}{\noindent}
+\newcommand{\func}[3]{{#1}:\mathbb{#2}\longrightarrow\mathbb{#3}}
+\newcommand{\prob}{{\Large\sffamily \textbf{\underline{Practice Problems}}}}
+\newcommand{\term}[1]{\textcolor{blue}{\textbf{#1}}}
+\newcommand{\eqline}{\noalign{\smallskip} \hline \noalign{\smallskip}}
+\newcommand{\lb}{\text{lb }}
+\newcommand{\brac}[1]{\left({#1}\right)}
+\newcommand{\pos}{^{\text{th}}}
+\newcommand{\gr}{\varphi}
+\newcommand{\padic}[2]{\nu_{#1}\brac{{#2}}}
+\newcommand{\quadres}[2]{\brac{\cfrac{#1}{#2}}}
+\newcommand{\tcplx}[1]{\mathcal{O}\brac{{#1}}}
+\newcommand{\set}[1]{\left\{{#1}\right\}}
+\newcommand{\perm}[2]{\ _{{#1}}P_{{#2}}}
+\newcommand{\pb}[1]{P\brac{{#1}}}
+\newcommand{\defint}[4]{\int_{{#1}}^{{#2}}{{#3}}\text{d}{{#4}}}
+\newcommand{\stI}[2]{\genfrac{[}{]}{0pt}{}{#1}{#2}}
+\newcommand{\stII}[2]{\genfrac{\{}{\}}{0pt}{}{#1}{#2}}
+\newcommand{\stIII}[2]{\genfrac{\lfloor}{\rfloor}{0pt}{}{#1}{#2}}
+\newcommand{\vc}[1]{\textbf{{#1}}}
+\newcommand{\pvc}[1]{\left\langle {#1} \right\rangle}
+\newcommand{\proj}{\text{proj}}
+\newcommand{\comp}{\text{comp}}
+\newcommand{\Li}{\text{Li}}
+\newcommand{\re}[1]{\text{Re}({#1})}
+\newcommand{\LT}[2]{\mathcal{L}\set{{#1}}\brac{{#2}}}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle, draw, inner sep=2pt] (char) {#1};}}
+
+\renewcommand*{\proofname}{Proof}
+\def\thickhline{\noalign{\hrule height 2pt}}
+\renewcommand*{\sudokuformat}[1]{\Large\ttfamily#1}
+
+\input ArtNouvc.fd
+\renewcommand*\initfamily{\usefont{U}{ArtNouvc}{xl}{n}}
+
+\DeclareMathOperator*{\sumspade}{\scalerel*{\spadesuit}{\sum}}
+
+\tikzset{
+  on each segment/.style={
+    decorate,
+    decoration={
+      show path construction,
+      moveto code={},
+      lineto code={
+        \path [#1]
+        (\tikzinputsegmentfirst) -- (\tikzinputsegmentlast);
+      },
+      curveto code={
+        \path [#1] (\tikzinputsegmentfirst)
+        .. controls
+        (\tikzinputsegmentsupporta) and (\tikzinputsegmentsupportb)
+        ..
+        (\tikzinputsegmentlast);
+      },
+      closepath code={
+        \path [#1]
+        (\tikzinputsegmentfirst) -- (\tikzinputsegmentlast);
+      },
+    },
+  },
+  mid arrow/.style={postaction={decorate,decoration={
+        markings,
+        mark=at position .5 with {\arrow[#1]{stealth}}
+      }}},
+}
+
+\newcount\tmpnum
+\def\tallymarks#1{\leavevmode \lower1bp\vbox to9bp{}%
+   \tmpnum=#1
+   \loop \ifnum\tmpnum<5 \kern1bp \tallynum\tmpnum \else \tallyV \fi
+         \advance\tmpnum by-5
+         \ifnum\tmpnum>0 \repeat
+}
+\def\tallynum#1{\bgroup\tmpnum=#1\relax
+   \loop \ifnum\tmpnum>0
+         \kern1bp \tallyI \kern1bp
+         \advance\tmpnum by-1
+         \repeat
+   \egroup
+}
+\def\tallyI{\pdfliteral{q .5 w 0 -1 m 0 8 l S Q}}
+\def\tallyV{\kern1bp\pdfliteral{q .5 w -1 0 m 9 7 l S Q}\tallynum4\kern1bp }
+
+\tikzset{
+  side by side/.style args={#1:#2}{
+    postaction={path only,draw=#1,offset=+.5\pgflinewidth},
+    postaction={path only,draw=#2,offset=+-.5\pgflinewidth}},
+  side by side'/.style={path only,side by side={#1}},
+  offset/.code=
+    \tikz@addoption{%
+      \pgfgetpath\tikz@temp
+      \pgfsetpath\pgfutil@empty
+      \pgfoffsetpath\tikz@temp{#1}}}
+
+\RedeclareSectionCommand[
+style=section]
+{chapter}
+
+\renewcommand*{\chapterformat}%
+{\color{purple}\texttt{\S\textbf{\thechapter}}\enskip}
+\renewcommand*{\sectionformat}%
+{\color{purple}\texttt{\thesection}\enskip}
+\renewcommand*{\subsectionformat}%
+{\color{purple}\texttt{\thesubsection}\enskip}
+
+\newcounter{a}
+
+\title{MA2104 AY19/20 Sem 1 Final}
+\author{QHBoon}
+\date{}
+
+\setstretch{1.2}
+
+%-----------------------------Document Starts---------------------------------
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\begin{center}
+    \textsf{\textbf{\huge MA2104 AY19/20 Sem 1 Final}}\\
+    \ \\
+    \textsf{\textbf{\large Solution by:} \large Boon Qing Hong} \\
+    \textsf{\textbf{\large Audited by:} \large Thang Pang Ern}
+\end{center}
+
+\subsubsection*{Question 1} Suppose that a parametrized curve $\vc{r}(t)$ satisfies $\vc{r}'(t)=\pvc{1, t, e^t}$. Find the curvature $\kappa$ and the unit normal $\vc{N}$ to the curve when $t=0$.
+\newline
+\newline\textit{Solution.} Recall that the curvature of $\mathbf{r}\left(t\right)=\pvc{x(t), y(t), z(t)}$ is given by \[\kappa=\frac{\left\|\mathbf{r}'\left(t\right)\times \mathbf{r}''\left(t\right)\right\|}{\left\|\mathbf{r}'\left(t\right)\right\|^3}.\]
+We have \begin{align*}
+    \mathbf{r}\left(t\right)=\left\langle t,\frac{t^2}{2},e^t\right\rangle \quad \mathbf{r}'\left(t\right)=\left\langle 1,t,e^t\right\rangle \quad \mathbf{r}''\left(t\right)=\left\langle 0,1,e^t\right\rangle.
+\end{align*}
+So, $\mathbf{r}\left(0\right)=\left\langle 0,0,1\right\rangle$, $\mathbf{r}'\left(t\right)=\left\langle 1,0,1\right\rangle$, and $\mathbf{r}''\left(t\right)=\left\langle 0,1,1\right\rangle$. So, \begin{align*}
+    \kappa=\frac{\left\|\left\langle 1,0,1\right\rangle \times \left\langle 0,1,1\right\rangle \right\|}{\left\|\left\langle 1,0,1\right\rangle\right\|^3}=\frac{\sqrt{6}}{4}.
+\end{align*}
+For the second part, we first form the unit tangent vector, which is \[\mathbf{T}\left(t\right)=\frac{\mathbf{r}'\left(t\right)}{\left\|\mathbf{r}'\left(t\right)\right\|}=\frac{\left\langle 1,t,e^t\right\rangle}{\sqrt{1+t^2+e^{2t}}}.\]
+So, \begin{align*}
+    \mathbf{N}\left(t\right)=\frac{\mathbf{T}'\left(t\right)}{\left\|\mathbf{T}'\left(t\right)\right\|}.
+\end{align*}
+Note that \[\mathbf{T}'\left(t\right)=\frac{(1+t^2+e^{2t})\langle0,1,e^t\rangle-(t+e^{2t})\langle1,t,e^t\rangle}
+{(1+t^2+e^{2t})^{3/2}}.\]
+So, \[\mathbf{T}'\left(0\right)=\frac{\left\langle -1,2,1\right\rangle }{2\sqrt{2}}\quad\text{which implies}\quad \left\|\mathbf{T}'\left(0\right)\right\|=\frac{\sqrt{3}}{2}.\]
+Consequently, $\mathbf{N}\left(t\right)=\frac{1}{\sqrt{6}}\left\langle -1,2,1\right\rangle$.
+\qed 
+
+\subsubsection*{Question 2}
+Set up the following integral as an integral (or sum of integrals) with the order of integration ``$\text{d}y\text{d}x$''
+    $$\int_3^4\int_{3y-9}^{\sqrt{25-y^2}}f(x, y)\text{d}x\text{d}y$$
+\textit{Solution.} 
+Graphing out we have the following diagram:
+\begin{center}
+    \begin{tikzpicture}[scale=.6]
+        \draw[->] (-2, 0) -- (7, 0) node[right] {$x$};
+        \draw[->] (0, -7) -- (0, 7) node[right] {$y$};
+        \draw[domain=0:5.01, smooth, samples=500, draw=purple, line width=1.2pt] plot (\x,{(25-\x * \x)^0.5});
+        \draw[domain=0:5.01, smooth, samples=500, draw=purple, line width=1.2pt] plot (\x,{-(25-\x * \x)^0.5});
+        \draw[domain=0:5.01, smooth, samples=500, draw=purple, line width=1.2pt] plot (\x,3);
+        \draw[domain=0:5, smooth, samples=500, draw=purple, line width=1.2pt] plot (\x,{\x/3+3});
+        \node at (-0.5, 3){3};
+        \node at (-0.5, 5){5};
+        \node at (-0.5, 4){4};
+        \node at (4, -0.5){4};
+        \node at (3, -0.5){3};
+        \draw[dashed, draw=purple](3, 4) -- (0, 4);
+        \draw[dashed, draw=purple](4, 3) -- (4, 0);
+        \draw[dashed, draw=purple](3, 4) -- (3, 0);
+    \end{tikzpicture}
+\end{center}
+Note that the region is \[\left\{\left(x,y\right)\in\mathbb{R}^2:3y-9\le x\le \sqrt{25-y^2}\text{ and }3\le y\le 4\right\}.\]
+By considering $3y-9\le x$, we have $y\le \frac{x}{3}+3$. Since $3\le y$, then we have $3\le y\le \frac{x}{3}+3$. Conditioned to this, we have \[3\le \frac{x}{3}+3\le 4\quad\text{so}\quad 0\le x\le 3.\]
+Next, by considering $x\le \sqrt{25-y^2}$, we have $y^2\le 25-x^2$. Since $3\le y\le 4$, then $y$ is positive, so $3\le y\le \sqrt{25-x^2}$. Conditioned to this, we have \[3\le \sqrt{25-x^2}\le 4\quad\text{so}\quad 3 \le x \le 4.\]
+To conclude, the integral is given by
+$$\int_0^3\int_3^{x/3+3}f(x, y)\text{d}y\text{d}x+\int_3^4\int_3^{\sqrt{25-x^2}}f(x, y)\text{d}y\text{d}x$$ \qed 
+\subsubsection*{Question 3}
+    Evaluate the integral
+    $$\iiint_Ez\text{d}V$$
+    where $E$ is the (solid) tetrahedron with vertices $(1, 0, 0)$, $(0, -1, 0)$, $(0, 1, 0)$ and $(1, 0, 1)$.
+\newline
+\newline\textit{Solution.} Let $A(0, 1, 0)$, $B(0, -1, 0)$, $C(1, 0, 0)$ and $D(1, 0, 1)$. The plane $ABD$ is given by $z=x$ whereas the plane $ABC$ is given by $x+y=1$ and the plane $BCD$ is given by $x-y=1$. Thus we have 
+\begin{align*}
+    \int_0^1\int_0^x\int_{x-1}^{1-x}z\text{d}y\text{d}z\text{d}x &= \int_0^1\int_0^xz(2-2x)\text{d}z\text{d}x\\
+    &= \int_0^1\frac{x^2}{2}(2-2x)\text{d}x\\
+    &= \int_0^1x^2-x^3\text{d}x\\
+    &= \frac{1}{12}
+\end{align*} \qed 
+\subsubsection*{Question 4}
+Let $\vc{F}$ be the two dimensional vector field given by
+    $$\vc{F}(x, y)=\pvc{ye^{xy}+y, xe^{xy}+x+2y}$$
+    \begin{enumerate}[(a)]
+    \itemsep 0em
+        \item Find a potential function $f$ for the vector field $\vc{F}$.
+        \item Evaluate \[\displaystyle\int_C\vc{F}\cdot\text{d}\vc{r},\] where $C$ is the upper half of the circle of radius $1$ centered at the origin, traversed from the point $(1, 0)$ to the point $(-1, 0)$, followed by the line segment that runs from $(-1, 0)$ to $(0, 0)$.
+    \end{enumerate}
+\noindent\emph{Solution.}
+\begin{enumerate}[(a)]
+\itemsep 0em
+    \item We want to find some $f$ such that $\nabla f=\vc{F}$. By
+    \begin{align*}
+        f_x &= ye^{xy}+y \Longrightarrow f=e^{xy}+xy+g(y)\\
+        f_y &= xe^{xy}+x+2y \Longrightarrow f=e^{xy}+xy+y^2+h(x)
+    \end{align*}
+    We can set $g(y)=y^2$ and $h(x)=0$. This gives our potential function
+    $$f(x, y)=e^{xy}+xy+y^2.$$
+    \item Since $\vc{F}$ is conservative, consider the line segment from $(0, 0)$ to $(1, 0)$, say $\ell$. By the fundamental theorem of line integrals, we have 
+    $$\int_{C+\ell}\vc{F}\cdot\text{d}\vc{r}=0$$
+    The parametrization of $\ell$ is given by $\pvc{t, 0}$ for $0\leq t\leq 1$, so by the fundamental theorem of line integrals, we have 
+    \begin{align*}
+        \int_\ell\vc{F}\cdot\text{d}\vc{r} = \int_\ell\nabla f\cdot\text{d}\vc{r}= f(1, 0)-f(0,0)= 0.
+    \end{align*}
+    Hence we can conclude that $\displaystyle\int_C\vc{F}\cdot\text{d}\vc{r}=-\int_\ell\vc{F}\cdot\text{d}\vc{r}=0$. \qed 
+\end{enumerate}
+\subsubsection*{Question 5} 
+    Evaluate the given integral, where $E$ is the solid region inside the sphere $x^2+y^2+z^2=1$, outside the ellipsoid $x^2+y^2+7z^2=4$ and above the $xy$-plane.
+    $$\iiint_E\frac{z}{(x^2+y^2+z^2)^{3/2}}\text{d}V$$
+\textit{Solution.} We may use the spherical coordinates $\pvc{\rho\sin\varphi\cos\theta, \rho\sin\varphi\sin\theta, \rho\cos\varphi}$. Notice that the graph is circular symmetry with respect to the $z$-axis. Consider the cross section along the $xz$-plane.
+\begin{center}
+    \begin{tikzpicture}[scale=1.7]
+        \draw[->] (-2.5, 0) -- (2.5, 0) node[right] {$x$};
+        \draw[->] (0, -2) -- (0, 2) node[right] {$z$};
+        \draw[draw=purple](0, 0) circle (1);
+        \draw[draw=purple](0,0) ellipse (2 and 0.75592895);
+        \draw[draw=blue](0, 0) -- (1, 1.732);
+        \draw[draw=blue, dashed](0, 0) -- (1.5, 1.5);
+        \node at (0.1, 0.35){$\varphi$};
+    \end{tikzpicture}
+\end{center}
+The line $z=x\cot\varphi$ intersects the ellipse at \[\brac{\sqrt{\frac{4}{1+7\cot^2\varphi}}, \sqrt{\frac{4\cot^2\varphi}{1+7\cot^2\varphi}}}.\] This point is $\sqrt{\frac{4}{1+6\cos^2\varphi}}$ away from the origin. When $\sqrt{\frac{4}{1+6\cos^2\varphi}}=1$, we have $\varphi=\pi/4$. Hence the final integral is 
+\begin{align*}
+    \iiint_E\frac{z}{(x^2+y^2+z^2)^{3/2}}\text{d}V &= \int_0^{2\pi}\int_0^{\pi/4}\int_{\sqrt{\frac{4}{1+6\cos^2\varphi}}}^1\frac{\rho\cos\varphi}{(\rho^2)^{3/2}}\cdot \rho^2\sin\varphi\text{d}\rho\text{d}\varphi\text{d}\theta\\
+    &= \int_0^{2\pi}\int_0^{\pi/4}\cos\varphi\sin\varphi\brac{1-\sqrt{\frac{4}{1+6\cos^2\varphi}}}\text{d}\varphi\text{d}\theta\\
+    &= \frac{1}{2}\int_0^{2\pi}\int_0^{\pi/4}2\cos\varphi\sin\varphi\brac{1-\sqrt{\frac{4}{7-6\sin^2\varphi}}}\text{d}\varphi\text{d}\theta\\
+    &= \frac{1}{2}\int_0^{2\pi}\int_0^{1/2}\brac{1-\sqrt{\frac{4}{7-6t}}}\text{d}t\text{d}\theta\\
+    &= \frac{1}{2}\int_0^{2\pi}\frac{1}{2}+\frac{2}{3}(2-\sqrt{7})\text{d}\theta\\
+    &= \frac{\pi}{2}+\frac{2\pi}{3}(2-\sqrt{7})
+\end{align*}
+which simplifies to $\frac{\pi}{6}\left(11-4\sqrt{7}\right)$. \qed 
+\newline
+\newline \textbf{Remark:} Alternatively, to obtain the bounds of integration in Question 5, by converting $x^2+y^2+z^2=1$ to spherical coordinates, we have $\rho^2=1$. Since we are interested in the region inside this sphere, then $\rho \le 1$. Next, by converting $x^2+y^2+7z^2=4$ to spherical coordinates, we have $\rho^2+6\rho^2\cos^2\phi=4$ so $\rho \ge \frac{2}{\sqrt{1+6\cos^2\phi}}$. Hence, \[\frac{2}{\sqrt{1+6\cos^2\phi}}\le \rho \le 1.\]
+Next, to obtain the bounds for $\phi$, we consider the intersection point of the sphere and the ellipsoid. Substituting $x^2+y^2=1-z^2$ into $x^2+y^2+7z^2=4$, we have $z^2=\frac{1}{2}$, so $z=\frac{1}{\sqrt{2}}$. So, $x^2+y^2=\frac{1}{2}$. Hence, $\tan\phi= \frac{z}{\sqrt{x^2+y^2}}=1$, so $\phi=\frac{\pi}{4}$. Consequently, $0\le \phi\le \frac{\pi}{4}$.
+\subsubsection*{Question 6}
+Use the change of variables 
+    $$u=\ln x+\ln y, \quad v=\frac{y}{x}$$
+    to evaluate the integral
+    $$\iint_D\frac{1}{y^2}\text{d}x\text{d}y$$
+    where $d$ is the region in the first quadrant bounded by the curves $xy=e$, $xy=e^2$, $y=x$ and $y=2x$.
+\newline
+\newline \textit{Solution.} Note that $u=\ln \left(xy\right)$ so $xy=e^u$. Consequently, $x=\sqrt{\frac{e^u}{v}}$ and $y=\sqrt{e^uv}$, so the Jacobian determinant is given by
+$$\begin{vmatrix}
+    \displaystyle\frac{\partial x}{\partial u} & \displaystyle\frac{\partial x}{\partial v}\\
+    \displaystyle\frac{\partial y}{\partial u} & \displaystyle\frac{\partial y}{\partial v}
+\end{vmatrix}=\begin{vmatrix}
+    \displaystyle\frac{e^{u/2}}{2\sqrt{v}} & \displaystyle-\frac{e^{u/2}}{2\sqrt{v^3}}\\
+    \displaystyle\frac{e^{u/2}\sqrt{v}}{2} & \displaystyle\frac{e^{u/2}}{2\sqrt{v}}
+\end{vmatrix}=\frac{e^u}{2v}$$
+and the bounds are given by $1\leq u\leq 2$ and $1\leq v\leq 2$. So the integral is given by
+\begin{align*}
+    \iint_D\frac{1}{y^2}\text{d}x\text{d}y = \int_1^2\int_1^2\frac{1}{e^uv}\left|\frac{e^u}{2v}\right|\text{d}u\text{d}v= \frac{1}{2}\int_1^2\int_1^2\frac{1}{v^2}\text{d}u\text{d}v= \frac{1}{2}\int_1^2\frac{1}{2}\text{d}v= \frac{1}{4}.
+\end{align*}\qed 
+\subsubsection*{Question 7}
+Consider the surface $S$ that is the lateral surface of a cylinder, given by 
+    $$x^2+y^2=1, \quad 0\leq z\leq 1.$$
+    Endow $S$ with the ``outward'' pointing normal, i.e., at any point $P(x, y, z)$ on $S$, the normal vector is $\vc{n}=\pvc{x, y, 0}$. Let $\vc{F}$ be the vector field
+    $$\vc{F}(x, y, z)=\pvc{\frac{\sin(y^3)}{y^3+z^3+1}, \frac{e^{x^2}}{x^4+z^4+1}, 1+z-2z^3}.$$
+    Evaluate the surface integral
+    $$\iint_S\vc{F}\cdot\text{d}\vc{S}.$$
+\textit{Solution.} By the divergence theorem, 
+\begin{align*}
+    \iint_S\vc{F}\cdot\text{d}\vc{S}= \iiint_E\text{div } \vc{F}\cdot\text{d}V= \iiint_E 1-6z^2\text{d}V.
+\end{align*}
+Then, we can parametrize the cylinder (solid) by $\pvc{r\cos\theta, r\sin\theta, z}$ with the bounds $0\leq r\leq 1$, $0\leq \theta\leq 2\pi$, $0\leq z\leq 1$. So, the above integral becomes 
+\[\int_0^{2\pi}\int_0^1\int_0^1(1-6z^2)r\text{d}z\text{d}r\text{d}\theta \int_0^{2\pi}\text{d}\theta\cdot\int_0^1r\text{d}r\cdot\int_0^11-6z^2\text{d}z= 2\pi\cdot\frac{1}{2}\cdot(-1)= -\pi.\]
+\qed 
+
+
+\end{document}
