@@ -1,0 +1,545 @@
+\documentclass[11pt]{amsart}
+\usepackage{amscd,amssymb}
+\usepackage{graphicx}
+%\usepackage{amsmath,amssymb,enumerate}
+\usepackage[all]{xy}
+\usepackage{mathrsfs}
+\linespread{1.2}
+\theoremstyle{plain}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{amscd, amssymb, latexsym, amsmath, amscd}
+\usepackage{xcolor}
+%\usepackage[all]{xy}
+%\usepackage{pb-diagram}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows}
+\usetikzlibrary{decorations.markings}
+\tikzset{->-/.style={decoration={
+  markings,
+  mark=at position .5 with {\arrow{>}}},postaction={decorate}}}
+
+\pagestyle{myheadings}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{thm}[equation]{Theorem}
+\newtheorem{prop}[equation]{Proposition}
+\newtheorem{cor}[equation]{Corollary}
+\newtheorem{exe}[equation]{Exercise}
+\newtheorem{con}[equation]{Conjecture}
+\newtheorem{lemma}[equation]{Lemma}
+\newtheorem{rem}[equation]{Remark}
+\newtheorem{question}[equation]{Question}
+\newtheorem{defn}[equation]{Definition}
+\numberwithin{equation}{section}
+
+
+% The following are only to be used in Math 
+
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\B}{\mathbb B}
+\newcommand{\Sc}{\mathbb S}
+\newcommand{\D}{\mathbb D}
+\newcommand{\G}{\mathfrak G}
+\newcommand{\oO}{\mathcal O}
+\newcommand{\F}{\mathbb F}
+\newcommand{\h}{\mathbb H}
+\newcommand{\hH}{\mathcal H}
+\newcommand{\A}{\mathbb A}
+\newcommand{\I}{\mathcal A}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Pp}{\mathbb P}
+\newcommand{\E}{\mathcal E}
+\newcommand{\s}{\text sym}
+%\newcommand{\qed}{\hfill $\Box$ \hfill \\}
+\def\M{{\rm M}}
+
+
+\def\Hom{{\rm Hom}}
+\def\Aut{{\rm Aut}}
+\def\ord{{\rm ord}}
+\def\G{{\rm G}}
+\def\SL{{\rm SL}}
+\def\disc{{\rm disc}}
+\def\charact{{\rm char}}
+\def\PSL{{\rm PSL}}
+\def\GSp{{\rm GSp}}
+\def\CSp{{\rm CSp}}
+\def\PGSp{{\rm PGSp}}
+\def\PGSO{{\rm PGSO}}
+\def\Sp{{\rm Sp}}
+\def\Spin{{\rm Spin}}
+\def\GU{{\rm GU}}
+\def\SU{{\rm SU}}
+\def\U{{\rm U}}
+\def\GO{{\rm GO}}
+\def\GL{{\rm GL}}
+\def\PGL{{\rm PGL}}
+\def\GSO{{\rm GSO}}
+\def\Gal{{\rm Gal}}
+\def\SO{{\rm SO}}
+\def\Ind{{\rm Ind}}
+\def\Sp{{\rm Sp}}
+\def\Mp{{\rm Mp}}
+\def\sign{{\rm sign}}
+\def\O{{\rm O}}
+\def\Sym{{\rm Sym}}
+\def\Stab{{\rm Stab}}
+\def\tr{{\rm tr\,}}
+\def\ad{{\rm ad\, }}
+\def\Ad{{\rm Ad\, }}
+\def\rank{{\rm rank\,}}
+\def\Res{{\rm Res}}
+\def\der{{\rm der}}
+
+
+%\usepackage{amsfonts,amssymb,theorem} 
+%\usepackage{theorem}
+%\usepackage[all]{xy}
+\def\e{\epsilon}
+\def\gg{{\mathfrak{g}}}
+\def\gh{{\mathfrak{h}}}
+\def\A{{\mathbb A}}
+\def\ws{{\widetilde{\Sp}}}
+\def\wpi{{\widetilde{\pi}}}
+\def\GG{{\mathbb G}}
+\def\NN{{\mathbb N}}
+\def\P{{\mathbb P}}
+\def\R{{\mathbb R}}
+\def\V{{\mathbb V}}
+\def\Va{{V_{\alpha}}}
+\def\X{{\mathbb X}}
+\def\Z{{\mathbb Z}}
+\def\T{{\mathbb T}}
+\def\gm{{\Gamma}}
+\def\vr{{\varphi}}
+\def\wx{{\widehat{X}}}
+\def\wy{{\widehat{Y}}}
+\def\wm{{\widehat{M}}}
+\def\gk{{\mathfrak{k}}}
+\def\gp{{\mathfrak{p}}}
+\def\aa{{\mathfrak{{\huge a}}}}
+\def\md{{\medskip}}
+\def\ep{{\epsilon}}
+\def\bl{{\bullet}}
+\def\ms{\:\raisebox{-0.6ex}{$\stackrel{\circ}{B}$}\:}
+\def\gs{\:\raisebox{-1.6ex}{$\stackrel{\circ}{A}^c$}\:}
+\def\gg{\:\raisebox{-1.6ex}{$\stackrel{\longrightarrow}{\eta \times \eta}$}\:}
+\def\ll{\:\raisebox{-0.6ex}{$\stackrel{\lim}{\rightarrow}$}\:}
+\def\gk{\:\raisebox{-1.6ex}{$\stackrel{\hookrightarrow}{\rm g}$}\:}
+\def\gi{\:\raisebox{-0.6ex}{$\stackrel{\rm dfn}{=}$}\:}
+\def\op{\:\raisebox{-0.1ex}{$\stackrel{0}{P}$}\:}
+\def\om{\:\raisebox{-0.1ex}{$\stackrel{0}{\Omega}$}\:}
+\def\X{\widehat{X}} 
+\def\Y{\widehat{Y}} 
+%\def\A{{\mathbb A}_{f}}
+\def\AA{{\mathbb A}} 
+%\def\C{{\bf C}}
+\def\T{{\bf T}}
+\def\M{{\cal M}}
+
+\def\QQ{{\mathbb Q}}
+\def\RR{{\mathbb R}}
+\def\PP{{\mathbb P}}
+\def\SS{{\mathbb S}}
+\def\CC{{\mathbb C}}
+\def\ZZ{{\bf Z}}
+\def\H{{\cal H}} 
+%\def\ll{{\lambda_1}}
+\def\L{{\stackrel{m}{\wedge}}}
+\def\g{{\bf g}}
+\def\b{{\bf b}}
+\def\f{{\bf f}}
+\def\h{{\bf h}}
+\def\k{{\bf k}}
+\def\n{{\bf n}}
+\def\q{{\bf q}}
+\def\u{{\bf u}} 
+\def\wp{{W^{\perp}}}
+\def\p{{\bf p}}
+\def\w{{\bf w}}
+\def\CL{{\cal C}}
+\def\G{{\mathbb G}} 
+\def\wg{{\widehat{G}}}
+\def\CT{{\cal T}} 
+\usepackage{mathptmx}
+\usepackage[paper=a4paper, left=15mm, right=15mm, top=15mm, bottom=15mm]{geometry}
+
+
+
+\title {MA3110 MATHEMATICAL ANALYSIS II\\ FINAL EXAM (2015/2016 SEMESTER 1)}
+
+ 
+\author{Joshua Kim Kwan}
+\author{Thang Pang Ern}
+
+\address{} \email{}
+\address{}\email{}
+%\subjclass[2000]{11S90, 17A75,  17C40}
+%\keywords{triality $Spin(8)$, minimal representation, theta correspondence} 
+ 
+\begin{document}
+\maketitle
+\noindent
+
+\textbf{Question 1 (24 points)}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Let $g:\mathbb{R}\longrightarrow\mathbb{R}$ be differentiable at a given $c\in\mathbb{R}$. Prove that for every $\epsilon>0$, there exists $\delta>0$ such that if \[u\in \left(c-\delta,c\right]\text{ and }v\in \left[c,c+\delta\right)\quad\text{then}\quad \left|g(v)-g(u)-(v-u)g'(c)\right|\leq\epsilon(v-u).\]
+\item Let $f:(-1,1)\longrightarrow\mathbb{R}$ be infinitely differentiable on $(-1,1)$, $f(0)=1$ and
+\begin{itemize}
+\itemsep 0em
+    \item $\left|f^{(n)}(x)\right|\leq n!$ for every $x\in(-1,1)$ and for every $n\in\mathbb{N}$,
+    \item $f'\left(\frac{1}{m+1}\right)=0$ for every $m\in\mathbb{N}$.
+\end{itemize}
+\begin{enumerate}[label=\textbf{(\roman*)}]
+    \itemsep 0em
+    \item Find the value of $f^{(n)}(0)$ for each $n\in\mathbb{N}$.
+    \item Determine the value of $f(x)$ for every $x\in(-1,1)$. Justify your answers.
+\end{enumerate}
+\end{enumerate}
+\noindent\emph{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Since $g$ is differentiable at $c\in\mathbb{R}$, then
+\begin{align*}
+    g'(c)=\lim_{x\to c}\frac{g(x)-g(c)}{x-c}=\lim_{x\to c}\frac{g(c)-g(x)}{c-x}
+\end{align*}
+exists. This implies that both the right-hand and left-hand limits exist, i.e.
+\begin{align*}
+    \lim_{x\to c^{-}}\frac{g(x)-g(c)}{x-c}=g'(c)=\lim_{x\to c^{+}}\frac{g(c)-g(x)}{c-x}.
+\end{align*}
+Let $\epsilon>0$. Then there exists $\delta_{1}>0$ such that if $c-x<\delta_{1}$, then
+\begin{align*}
+    \frac{g(x)-g(c)}{x-c}-g'(c)\leq\left|\frac{g(x)-g(c)}{x-c}-g'(c)\right|<\epsilon.
+\end{align*}
+Using the same $\epsilon>0$, there exists $\delta_{2}>0$ such that if $x-c<\delta_{2}$, then
+\begin{align*}
+    \frac{g(c)-g(x)}{c-x}-g'(c)\leq\left|\frac{g(c)-g(x)}{c-x}-g'(c)\right|<\epsilon.
+\end{align*}
+Let $\delta=\min\left\{\delta_{1},\delta_{2}\right\}$. Let $u\in\left(c-\delta,c\right]$ and $v\in\left[c,c+\delta\right)$ so that $c-u<\delta$ and $v-c<\delta$ respectively. So, \[-\epsilon<\frac{g(c)-g(u)}{c-u}-g'(c)<\epsilon\quad\text{and}\quad -\epsilon<\frac{g(v)-g(c)}{v-c}-g'(c)<\epsilon\quad\text{respectively}.\]
+As such,
+\begin{align*}
+    -\epsilon(c-u)<g(c)-g(u)-g'(c)(c-u)<\epsilon(c-u)\quad\text{and}\quad -\epsilon(v-c)<g(v)-g(c)-g'(c)(v-c)<\epsilon(v-c).
+\end{align*}
+Adding both inequalities, we get
+\begin{align*}
+    -\epsilon(v-u)<g(v)-g(u)-g'(c)(v-u)&<\epsilon(v-u).
+\end{align*}
+so that
+\begin{align*}
+    \left|g(v)-g(u)-(v-u)g'(c)\right|\leq\epsilon(v-u).
+\end{align*}
+\item \begin{enumerate}[label=\textbf{(\roman*)}]
+    \itemsep 0em
+    \item We will show that $f^{(n)}(0)=0$ for all $n\in\mathbb{N}$. Since $f$ is infinitely differentiable, each $f^{(n)}$ is continuous. In particular, $f'(0)=0$ since 
+\begin{align*}
+    0=\lim_{m\to\infty}f'\left(\frac{1}{m+1}\right)=f'(0).
+\end{align*}
+Since $f'(0)=0$ and $f'\left(1/m+1\right)=0$ for each $m\in\mathbb{N}$, by the mean value theorem, there exists $a_{m}^{(2)}\in\left(0,1/(m+1)\right)$ such that $f''\left(a_{m}^{(2)}\right)=0$. Moreover, \[\lim_{m\to\infty}a_{m}^{(2)}= 0.\]
+Since $f''$ is continuous, then $f''(0)=0$. 
+\newline
+\newline Now suppose that $f^{(n-1)}(0)=0$ and there exists a sequence $\left\{a_{m}^{(n-1)}\right\}_{m=1}^{\infty}$ such that $f^{(n-1)}\left(a_{m}^{(n-1)}\right)=0$ for each $m$ and $a_{m}^{(n-1)}\to 0$ as $m\to\infty$. By a similar construction as above, by the mean value theorem, we can find a sequence $\left\{a_{m}^{(n)}\right\}_{m=1}^{\infty}$ such that $0<a_{m}^{(n)}<a_{m}^{(n-1)}$ for each $m$ and $a_{m}^{(n)}\to 0$ and $f^{(n)}\left(a_{m}^{(n)}\right)=0$ for each $m\in\mathbb{N}$. By the continuity of $f^{(n)}$, we have 
+\begin{align*}
+    0=\lim_{m\to\infty}f^{(n)}\left(a_{m}^{(n)}\right)=f^{(n)}(0).
+\end{align*}
+Hence, by induction, $f^{(n)}(0)$ for each $n\in\mathbb{N}$.
+\item Since $f$ is infinitely differentiable on $(-1,1)$, by Taylor's theorem, there exists $c\in\left(0,x\right)$ such that
+\begin{align*}
+    f(x)=\sum_{k=0}^{n}\frac{f^{(k)}(0)}{k!}x^{k}+\frac{f^{(n+1)}(c)}{(n+1)!}x^{n+1}=1+\frac{f^{(n+1)}(c)}{(n+1)!}x^{n+1}.
+\end{align*}
+But
+\begin{align*}
+    0\leq\left|f(x)-1\right|=\left|\frac{f^{(n+1)}(c)}{(n+1)!}x^{n+1}\right|\leq\left|x^{n+1}\right|.
+\end{align*}
+Since $|x|<1$, then 
+\begin{align*}
+    \lim_{n\to\infty}\left|x^{n+1}\right|=0
+\end{align*}
+so that by squeeze theorem, $\left|f(x)-1\right|=0$ for any $x\in(0,1)$. Therefore, $f(x)=1$ for all $x\in[0,1)$. By a similar argument, we see that $f(x)=1$ for all $x\in(-1,0]$. Therefore, $f(x)=1$ for all $x\in(-1,1)$. \qed 
+\end{enumerate}
+\end{enumerate}
+\noindent\textbf{Question 2 (26 points).} 
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Let $h$ be a bounded and integrable function on $[a,b]$.
+    \begin{enumerate}[label=\textbf{(\roman*)}]
+        \itemsep 0em
+        \item Using the Riemann Integrability Criterion, prove that the function $h^{3}$ is Riemann integrable on $[a,b]$.
+        \item Suppose that $h$ is continuous on $[a,b]$ and $\displaystyle \int_{a}^{b}h^{2}=0$. Prove that $h(x)=0$ for all $x\in[a,b]$.
+    \end{enumerate}
+    \item Using Riemann integrals of suitably chosen functions, evaluate the following limit:
+\begin{align*}
+    \lim_{n\to\infty}\dfrac{\displaystyle\sum_{k=1}^{n}\sqrt{k}}{\displaystyle\sum_{k=1}^{n}\sqrt{n+k}}
+\end{align*}
+\end{enumerate}
+\noindent\emph{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item \begin{enumerate}[label=\textbf{(\roman*)}]
+        \itemsep 0em
+        \item Since $h$ is bounded on $[a,b]$, then there exists $M\in\mathbb{R}^{+}$ such that $\left|h(x)\right|\leq M$\footnote{It is worth noting that we considered bounding $h^2$ instead tackling the question directly by bounding $h^3$ --- the reason will be apparent in just a bit when we consider some nice trick when dealing with $\left|h^3\left(u\right)-h^3\left(v\right)\right|$ for any $u,v\in \left[x_{k-1},x_k\right]$.} for all $x\in[a,b]$. This implies that $\left|h^{2}(x)\right|\leq M^{2}$ for all $x\in[a,b]$. Let $\epsilon>0$. Since $h$ is integrable, there exists $n\in\mathbb{N}$ and a partition $P$ of $[a,b]$ given by
+\begin{align*}
+    P=\left\{a=x_{0}<x_{1}<\dots<x_{n}=b\right\}
+\end{align*}
+where
+\begin{align*}
+    x_{k}=x_{0}+\frac{k(b-a)}{n}
+\end{align*}
+such that
+\begin{align*}
+    U(h,P)-L(h,P)<\frac{\epsilon}{3M^{2}}
+\end{align*}
+Let 
+\begin{align*}
+    m_{k}\left(h,P\right)&=\inf_{x\in\left[x_{k-1},x_{k}\right]}h(x)
+    \\
+    M_{k}\left(h,P\right)&=\sup_{x\in\left[x_{k-1},x_{k}\right]}h(x).
+\end{align*}
+Observe that for any $u,v\in\left[x_{k-1},x_{k}\right]$, we have
+\begin{align*}
+    \left|h^{3}(u)-h^{3}(v)\right|&=\left|h^{3}(u)-h^{2}(u)h(v)+h^{2}(u)h(v)-h^{3}(v)\right|
+    \\
+    &\leq\left|h^{3}(u)-h^{2}(u)h(v)\right|+\left|h^{2}(u)h(v)-h^{3}(v)\right|
+    \\
+    &\leq\left|h^{2}(u)\right|\left|h(u)-h(v)\right|+\left|h(v)\right|\left|h^{2}(u)-h^{2}(v)\right|
+    \\
+    &=\left|h^{2}(u)\right|\left|h(u)-h(v)\right|+\left|h(v)\right|\left|h^{2}(u)-h(u)h(v)+h(u)h(v)-h^{2}(v)\right|
+    \\
+    &\leq\left|h^{2}(u)\right|\left|h(u)-h(v)\right|+\left|h(v)\right|\left|h(u)\right|\left|h(u)-h(v)\right|+\left|h^{2}(v)\right|\left|h(u)-h(v)\right|
+    \\
+    &\leq 3M^{2}\left|h(u)-h(v)\right|
+    \\
+    &\leq 3M^{2}\left(M_{k}\left(h,P\right)-m_{k}\left(h,P\right)\right).
+\end{align*}
+This implies that 
+\begin{align*}
+    M_{k}\left(h^{3},P\right)-m_{k}\left(h^{3},P\right)\leq3M^{2}\left(M_{k}\left(h,P\right)-m_{k}\left(h,P\right)\right).
+\end{align*}
+Putting everything together,
+\begin{align*}
+    U\left(h^{3},P\right)-L\left(h^{3},P\right)&=\sum_{k=1}^{n}\left(M_{k}\left(h^{3},P\right)-m_{k}\left(h^{3},P\right)\right)\cdot\frac{b-a}{n}
+    \\
+    &\leq\sum_{k=1}^{n}3M^{2}\left(M_{k}\left(h,P\right)-m_{k}\left(h,P\right)\right)\cdot\frac{b-a}{n}
+    \\
+    &=3M^{2}\left(U\left(h,P\right)-L\left(h,P\right)\right)
+    \\
+    &<\epsilon
+\end{align*}
+so $h^{3}$ is integrable on $[a,b]$.
+\item Suppose that $h(x)\neq0$ for some $x\in[a,b]$. Without loss of generality, suppose that $h(c)>0$ for some $c\in(a,b)$. Then there exists $\delta>0$ such that $h(x)>0$ for all $x\in\left(c-\delta,c+\delta\right)$ with $c+\delta<b$ and $c-\delta>a$. Since $h$ is continuous, then $h^{2}$ is also continuous on $[a,b]$ and in particular, $h^{2}$ is continuous on $\left[c-\delta,c+\delta\right]$. Hence, $h^{2}$ attains the absolute maximum and absolute minimum on $[a,b]$. Let
+\begin{align*}
+    M&=\max_{x\in\left[c-\delta,c+\delta\right]}h^{2}(x)>0
+    \\
+    m&=\min_{x\in\left[c-\delta,c+\delta\right]}h^{2}(x)>0.
+\end{align*}
+This implies that $\left(h(x)\right)^{2}>0$ for all $x\in\left(c-\delta,c+\delta\right)$. Now,
+\begin{align*}
+    0=\int_{a}^{b}h^{2}=\int_{a}^{c-\delta}h^{2}+\int_{c-\delta}^{c+\delta}h^{2}+\int_{c+\delta}^{b}h^{2}\geq \int_{c-\delta}^{c+\delta}h^{2}>m\left(2\delta\right)>0
+\end{align*}
+which is a contradiction. Therefore, $h$ is identically zero on $[a,b]$. 
+    \end{enumerate}
+    \item We have
+\begin{align*}
+    \lim_{n\to\infty}\frac{\displaystyle\sum_{k=1}^{n}\sqrt{k}}{\displaystyle\sum_{k=1}^{n}\sqrt{n+k}}=\lim_{n\to\infty}\dfrac{\dfrac{1}{n^{3/2}}\displaystyle\sum_{k=1}^{n}\sqrt{k}}{\dfrac{1}{n^{3/2}}\displaystyle\sum_{k=1}^{n}\sqrt{n+k}}=\lim_{n\to\infty}\frac{\dfrac{1}{n}\displaystyle\sum_{k=1}^{n}\sqrt{k/n}}{\dfrac{1}{n}\displaystyle\sum_{k=1}^{n}\sqrt{1+(k/n)}}.
+\end{align*}
+We evaluate the numerator and denominator separately. Since
+\begin{align*}
+    \lim_{n\to\infty}\frac{1}{n}\sum_{k=1}^{n}\sqrt{\frac{k}{n}}&=\int_{0}^{1}\sqrt{x}\,dx=\frac{2}{3}
+    \\
+    \lim_{n\to\infty}\frac{1}{n}\displaystyle\sum_{k=1}^{n}\sqrt{1+\frac{k}{n}}&=\int_{0}^{1}\sqrt{1+x}\,dx=\frac{2^{3/2}}{3/2}-\frac{1}{3/2}=\frac{2}{3}\left(2^{3/2}-1\right)
+\end{align*}
+then
+\begin{align*}
+    \lim_{n\to\infty}\frac{\displaystyle\sum_{k=1}^{n}\sqrt{k}}{\displaystyle\sum_{k=1}^{n}\sqrt{n+k}}=\frac{2/3}{\frac{2}{3}\left(2^{3/2}-1\right)}=\frac{1}{2^{3/2}-1}.
+\end{align*} \qed 
+\end{enumerate}
+\textbf{Question 3 (30 points)}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Suppose that the sequence $\left\{f_{n}\right\}$ of functions converges uniformly to a function $f$ on a non-empty set $E$ and each $\left\{f_{n}\right\}$ is a bounded function on $E$ (i.e., there exists a positive constant $M_{n}$ such that $\left|f_{n}(x)\right|\leq M_{n}$ for every $x\in E$).
+    \begin{enumerate}[label=\textbf{(\roman*)}]
+        \itemsep 0em
+        \item Prove that $f$ is bounded on $E$.
+        \item Determine if the sequence $\left\{f_{n}\right\}$ is uniformly bounded on $E$.
+    \end{enumerate}
+    \item For every $n\in\mathbb{N}$, let $g_{n}(x)=\frac{1}{1+n^{3}x}$, $x>0$. For each of the following, state clearly the known results that you are using in obtaining your answers.
+    \begin{enumerate}[label=\textbf{(\roman*)}]
+        \itemsep 0em
+        \item Show that the series $\sum_{n=1}^{\infty}g_{n}(x)$ converges for every $x>0$.
+        \item Determine if the series $\sum_{n=1}^{\infty}g_{n}$ converges uniformly on the interval $\left[r,\infty\right)$, where $r>0$.
+        \item Determine if the series $\sum_{n=1}^{\infty}g_{n}$ converges uniformly on the interval $\left(0,\infty\right)$.
+        \item Determine if the series $\sum_{n=1}^{\infty}g_{n}'$ converges uniformly on $\left(0,\infty\right)$.
+        \item Let $g(x)=\sum_{n=1}^{\infty}g_{n}(x)$, $x>0$. Show that $g$ is differentiable on $\left(0,\infty\right)$ and
+\begin{align*}
+    g'(x)=-\sum_{n=1}^{\infty}\frac{n^{3}}{\left(1+n^{3}x\right)^{2}},x>0.
+\end{align*}
+    \end{enumerate}
+\end{enumerate}
+
+\noindent\emph{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item \begin{enumerate}[label=\textbf{(\roman*)}]
+        \itemsep 0em
+        \item Let $\epsilon=1>0$. Since $\left\{f_{n}\right\}$ converges uniformly to a function on $E$, there exists $N\in\mathbb{N}$ such that for all $x\in E$ and $n\geq N$, $\left|f_{n}(x)-f(x)\right|<1$. In particular, $\left|f_{N}(x)-f(x)\right|<1$, or equivalently, $\left|f\left(x\right)-f_N\left(x\right)\right|<1$. This implies that 
+\begin{align*}
+    -1-M_{N}<-1+f_{N}(x)<f(x)<1+f_{N}(x)\leq 1+M_{N}.
+\end{align*}
+Let $M=\max\left\{M_{1},M_{2},\dots,M_{N},M_{N+1}\right\}$. Then we see that $\left|f(x)\right|\leq 1+M$. So, $f$ is bounded on $E$. 
+\item Yes, the sequence $\left\{f_{n}\right\}$ is uniformly bounded on $E$. Let $\epsilon=1>0$. Since $\left\{f_{n}\right\}$ converges uniformly to a function on $E$, there exists $N\in\mathbb{N}$ such that for all $x\in E$ and $n\geq N$, $\left|f_{n}(x)-f(x)\right|<1$. This implies that 
+\begin{align*}
+    -1-M<-1+f(x)<f_{n}(x)<1+f(x)\leq 1+M
+\end{align*}
+for all $n\geq N$. Let $K=\max\left\{1+M,M_{1},\dots,M_{n}\right\}$. Then we see that $\left|f_{n}(x)\right|\leq K$ for all $n\in\mathbb{N}$.
+    \end{enumerate}
+    \item \begin{enumerate}[label=\textbf{(\roman*)}]
+        \itemsep 0em
+        \item Let $x>0$. Then 
+\begin{align*}
+    g_{n}(x)=\frac{1}{1+n^{3}x}\leq\frac{1}{n^{3}x}.
+\end{align*}
+Since the series
+\begin{align*}
+    \sum_{n=1}^{\infty}\frac{1}{n^{3}x}=\frac{1}{x}\sum_{n=1}^{\infty}\frac{1}{n^{3}}
+\end{align*}
+converges, then by the comparison test, the series $\sum_{n=1}^{\infty}g_{n}(x)$ converges for every $x>0$.
+\item Yes, the series $\sum_{n=1}^{\infty}g_{n}$ converges uniformly on the interval $\left[r,\infty\right)$, where $r>0$. Note that for any $x\geq r$, we have
+\begin{align*}
+    \left|g_{n}(x)\right|=g_{n}(x)=\frac{1}{1+n^{3}x}\leq\frac{1}{n^{3}r}
+\end{align*}
+and 
+\begin{align*}
+    \sum_{n=1}^{\infty}\frac{1}{rn^{3}}
+\end{align*}
+converges, then by the Weierstrass $M$-test, $\sum_{n=1}^{\infty}g_{n}$ converges uniformly on the interval $\left[r,\infty\right)$, where $r>0$.
+\item No, the series $\sum_{n=1}^{\infty}g_{n}$ does not converge uniformly on the interval $\left(0,\infty\right)$. Since
+\begin{align*}
+    \sup_{x\in\left(0,\infty\right)}\left|g_{n}(x)\right|=\sup_{x\in\left(0,\infty\right)}\left|\frac{1}{1+n^{3}x}\right|=\sup_{x\in\left[0,\infty\right)}\left|\frac{1}{1+n^{3}x}\right|\geq g_{n}(0)=1
+\end{align*}
+then $g_{n}\not\to 0$ uniformly on $\left(0,\infty\right)$. Therefore, the series $\sum_{n=1}^{\infty}g_{n}$ does not converge uniformly on the interval $\left(0,\infty\right)$.
+\item No, the series $\sum_{n=1}^{\infty}g_{n}'$ does not converge uniformly on $\left(0,\infty\right)$. Note that
+\begin{align*}
+    g_{n}'(x)=-\frac{n^{3}}{\left(1+n^{3}x\right)^{2}}.
+\end{align*}
+Since
+\begin{align*}
+    \sup_{x\in\left(0,\infty\right)}\left|g_{n}'(x)\right|=\sup_{x\in\left(0,\infty\right)}\left|-\frac{n^{3}}{\left(1+n^{3}x\right)^{2}}\right|=\sup_{x\in\left[0,\infty\right)}\left|-\frac{n^{3}}{\left(1+n^{3}x\right)^{2}}\right|\geq \left|g_{n}'(0)\right|=n^{3}\not\to 0
+\end{align*}
+then $g_{n}'$ does not converge uniformly to $0$ on $\left(0,\infty\right)$. Therefore, $\sum_{n=1}^{\infty}g_{n}'$ does not converge uniformly on $\left(0,\infty\right)$
+\item Let $y>0$. We will show that $g$ is differentiable at $y$. Let $m\in\mathbb{N}$ be such that $y\in\left[1/m,m\right]$. Note that the series $\sum_{n=1}^{\infty}g_{n}(y)$ converges on $\left[1/m,m\right]\subseteq\left(0,\infty\right)$ by \textbf{(bi)}. Next, for any $x\in\left[1/m,m\right]$,
+\begin{align*}
+    0\leq \frac{n^{3}}{\left(1+n^{3}x\right)^{2}}\leq\frac{n^{3}}{\left(1+(1/m)n^{3}\right)^{2}}\leq\frac{1}{(1/m)^{2}n^{3}}
+\end{align*}
+and $\sum_{n=1}^{\infty}\frac{1}{(1/m)^{2}n^{3}}$ converges. By the Weierstrass $M$-test, $\sum_{n=1}^{\infty}g_{n}'$ converges uniformly on $\left[1/m,m\right]$. Therefore, $\sum_{n=1}^{\infty}g_{n}$ converges uniformly to a differentiable function $g$ on $\left[1/m,m\right]$, and
+\begin{align*}
+    g'(x)=-\sum_{n=1}^{\infty}\frac{n^{3}}{\left(1+n^{3}x\right)^{2}}
+\end{align*}
+Since $y>0$ is arbitrary, then $g$ is differentiable on $\left(0,\infty\right)$. \qed 
+    \end{enumerate}
+\end{enumerate}
+
+\noindent \textbf{Question 4 (20 points)}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Consider the power series 
+\begin{align*}
+    \sum_{n=1}^{\infty}(-1)^{n-1}\frac{x^{2n+1}}{(2n+1)(2n-1)}.
+\end{align*} 
+\begin{enumerate}[label=\textbf{(\roman*)}]
+        \itemsep 0em
+        \item Find its radius of convergence and the set of all $x$ for which the series converges.
+        \item Find a closed form of its sum function on its interval of convergence. 
+        \newline (Hint: $\frac{d}{dx}\left(\tan^{-1}x\right)=\frac{1}{1+x^{2}}$.)
+        \item Evaluate the sum of the series 
+\begin{align*}
+    \sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{(2n+1)(2n-1)}.
+\end{align*}
+Justify your answer. 
+    \end{enumerate}
+    \item Let $h$ be defined by $h(x)=x^{2}e^{x^{3}}$ for $x\in\mathbb{R}$, and let $h^{(n)}$ be the $n$-th order derivative of $h$. Find the values of $h^{(2015)}(0)$ and $h^{(2016)}(0)$. Justify your answers.
+\end{enumerate}
+\noindent\emph{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item\begin{enumerate}[label=\textbf{(\roman*)}]
+        \itemsep 0em
+        \item We shall use the Cauchy-Hadamard formula. We have
+\begin{align*}
+    \limsup_{n\to\infty}\left|\frac{(-1)^{n-1}}{(2n+1)(2n-1)}\right|^{1/n}=\limsup_{n\to\infty}\frac{1}{(2n+1)^{1/n}(2n-1)^{1/n}}=1
+\end{align*}
+since
+\begin{align*}
+    \lim_{n\to\infty}(2n+1)^{1/n}&=\lim_{n\to\infty}e^{\frac{1}{n}\ln(2n+1)}=1\quad\text{and}\quad 
+    \lim_{n\to\infty}(2n-1)^{1/n}=\lim_{n\to\infty}e^{\frac{1}{n}\ln(2n-1)}=1.
+\end{align*}
+Hence, the radius of convergence is $1$ and the series converges for all $x\in(-1,1)$. 
+\newline
+\newline Next, for the endpoints $x=\pm1$, we use the alternating series test. Let \[x_n=\frac{1}{\left(2n+1\right)\left(2n-1\right)}.\]
+We see that $x_n\ge 0$ for all $n\in\mathbb{N}$, the sequence $\left\{x_n\right\}_{n=1}^{\infty}$ is a decreasing sequence, and $x_n\to 0$ as $n\to \infty$. By the alternating series test, the series converges at $\pm 1$. We conclude that the interval of convergence is $[-1,1]$.
+\item Note that
+\begin{align*}
+    \frac{1}{(2n+1)(2n-1)}=\frac{1}{2(2n-1)}-\frac{1}{2(2n+1)}.
+\end{align*}
+Then we can write
+\begin{align*}
+    \sum_{n=1}^{\infty}(-1)^{n-1}\frac{x^{2n+1}}{(2n+1)(2n-1)}=\sum_{n=1}^{\infty}(-1)^{n-1}\frac{x^{2n+1}}{2(2n-1)}-\sum_{n=1}^{\infty}(-1)^{n-1}\frac{x^{2n+1}}{2(2n+1)}.
+\end{align*}
+Since
+\begin{align*}
+    \frac{1}{1+x^{2}}=\sum_{n=0}^{\infty}(-1)^{n}x^{2n}=\sum_{n=1}^{\infty}(-1)^{n-1}x^{2n-2},
+\end{align*}
+then for any $x\in(-1,1)$, there exists $r>0$ such that $x\in[-r,r]$, where $r<1$, so that
+\begin{align*}
+    \int_{0}^{x}\sum_{n=1}^{\infty}(-1)^{n-1}t^{2n-2}\,dt&=\sum_{n=1}^{\infty}\int_{0}^{x}(-1)^{n-1}t^{2n-2}\,dt=\sum_{n=1}^{\infty}(-1)^{n-1}\frac{x^{2n-1}}{2n-1}
+    \\
+    \int_{0}^{x}\sum_{n=0}^{\infty}(-1)^{n}t^{2n}\,dt&=\sum_{n=0}^{\infty}\int_{0}^{x}(-1)^{n}t^{2n}\,dt=\sum_{n=0}^{\infty}(-1)^{n}\frac{x^{2n+1}}{2n+1}=x-\sum_{n=1}^{\infty}(-1)^{n-1}\frac{x^{2n+1}}{2n+1}.
+\end{align*}
+This implies that
+\begin{align*}
+    \sum_{n=1}^{\infty}(-1)^{n-1}\frac{x^{2n-1}}{2(2n-1)}&=\frac{1}{2}\int_{0}^{x}\frac{1}{1+t^{2}}\,dt=\frac{1}{2}\tan^{-1}x
+    \\
+    \sum_{n=1}^{\infty}(-1)^{n-1}\frac{x^{2n+1}}{2(2n+1)}&=x-\frac{1}{2}\int_{0}^{x}\frac{1}{1+t^{2}}\,dt=x-\frac{1}{2}\tan^{-1}x
+\end{align*}
+and so
+\begin{align*}
+    \sum_{n=1}^{\infty}(-1)^{n-1}\frac{x^{2n+1}}{(2n+1)(2n-1)}&=\sum_{n=1}^{\infty}(-1)^{n-1}\frac{x^{2n+1}}{2(2n-1)}-\sum_{n=1}^{\infty}(-1)^{n-1}\frac{x^{2n+1}}{2(2n+1)}
+    \\
+    &=\frac{x^{2}}{2}\tan^{-1}x-x+\frac{1}{2}\tan^{-1}x.
+\end{align*}
+\item When $x=1$, we have
+\begin{align*}
+    \sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{(2n+1)(2n-1)}=\frac{1}{2}\tan^{-1}1-1+\frac{1}{2}\tan^{-1}1=\frac{1}{2}\cdot\frac{\pi}{4}-1+\frac{1}{2}\cdot\frac{\pi}{4}=\frac{\pi}{4}-1.
+\end{align*}
+    \end{enumerate} 
+\item We start by writing \(h(x)\) in its power series form. Since
+\[
+e^{x^3}=\sum_{k=0}^{\infty}\frac{(x^3)^k}{k!}=\sum_{k=0}^{\infty}\frac{x^{3k}}{k!},
+\]
+multiplying by \(x^2\) gives
+\[
+h(x)=x^2e^{x^3}=\sum_{k=0}^{\infty}\frac{x^{2+3k}}{k!}.
+\]
+In a Taylor series expansion
+\[
+h(x)=\sum_{n=0}^{\infty}a_nx^n,
+\]
+the \(n\)th derivative at 0 is given by $h^{(n)}(0)=n!a_n$. From our series for \(h(x)\), the coefficient \(a_n\) is nonzero only if \(n\) is of the form \(3k+2\) (with \(k\ge0\)), in which case
+\[
+a_{3k+2}=\frac{1}{k!}.
+\]
+Thus,
+\[
+h^{(3k+2)}(0)=(3k+2)!\cdot\frac{1}{k!}.
+\]
+For \(h^{(2015)}(0)\), we need \(2015=3k+2\). Solving for \(k\), we have $k=671$, so \[h^{\left(2015\right)}\left(0\right)=\frac{\left(2015\right)!}{671!}.\]
+However, 2016 cannot be written as $3k+2$ since $2014$ is not divisible by 3. Hence, $h^{\left(2016\right)}\left(0\right)=0$. \qed 
+\end{enumerate}
+
+
+\end{document}
