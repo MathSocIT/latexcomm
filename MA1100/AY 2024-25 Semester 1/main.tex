@@ -1,0 +1,317 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{subfig}
+\newcommand\mytab{\tab \hspace{+1cm}}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tikz-cd}
+\usepackage{geometry}
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+\usepackage[most]{tcolorbox}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+\usepackage[utf8]{inputenc}
+\linespread{1.2}
+\usepackage{tikz,lipsum,lmodern}
+\usepackage{hyperref}
+\newtcolorbox{mybox}{
+enhanced,
+boxrule=0pt,frame hidden,
+borderline west={4pt}{0pt}{green!75!black},
+colback=green!10!white,
+sharp corners
+}
+\newtcolorbox{mybox2}{
+enhanced,
+boxrule=0pt,frame hidden,
+borderline west={4pt}{0pt}{blue!75!black},
+colback=blue!10!white,
+sharp corners
+}
+\usepackage{amsmath,amsfonts,amsthm,bm} % Math packages
+\usepackage[most]{tcolorbox}
+\usepackage{amssymb}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\usepackage{mathtools}
+\usepackage{amsmath}
+
+\usepackage{natbib}
+\usepackage{wrapfig}
+\usepackage{url}
+\usepackage{pax}
+\usepackage{pdfpages}
+\usepackage{graphicx}
+\usepackage{mathptmx}
+\usepackage{tikz}
+\usepackage{blindtext}
+\title{MA1100 AY24/25 Sem 1 Final}
+\author{
+  Solution by Malcolm Tan Jun Xi\\
+  Audited by Thang Pang Ern
+}
+\date{}
+
+
+\begin{document}
+
+\maketitle
+\subsubsection*{Question 1}
+In each part, write only "\textbf{True}" or "\textbf{False}" as your answer; any other word will be regarded as a non-answer. No justification is needed
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\itemsep 0em
+    \item Let $P,Q$ and $R$ be statements. Then \[\left(P\land Q\right)\Rightarrow R\quad\text{and}\quad P\Rightarrow\left(Q\Rightarrow R\right)\quad\text{are logically equivalent}.\] 
+    \item Let $P(x)$ and $Q(x)$ be predicates with free variable $x$ and universe $\mathcal{U}$. Then \[(\exists x\in\mathcal{U})[P(x)\lor Q(x)]\quad\text{and}\quad [(\exists x\in\mathcal{U})P(x)]\land[(\exists x\in\mathcal{U})Q(x)]\quad\text{are logically equivalent}.\] 
+    \item For any sets $X$ and $Y$, $\mathcal{P}(X-Y)=\mathcal{P}(X)-\mathcal{P}(Y)$.
+    \item For any sets $X,Y,Z$ and any functions $f:X\to Y$ and $g:Y\to Z$, \[\text{if }g\circ f\text{ is injective}\quad\text{then}\quad f\text{ is injective}.\]
+    \item Let $f:X\to Y$ be a function and let $I_X:X\to X$ be the identity function on $X$. If there exists a function $g:Y\to X$ such that $g\circ f=I_X$, then $f$ is invertible.
+    \item If $f:X\to Y$ is a function, then for all $A\subseteq Y$, we have $f[f^{-1}[A]]=A$
+    \item If $f: X\to Y$ is a function, then \[\text{for all }A,B\subseteq Y\quad\text{we have}\quad f^{-1}\left[A\cap B\right]=f^{-1}\left[A\right]\cap f^{-1}\left[B\right]\]
+    \item For each positive integer $n$, the number $n^2+n+41$ is a prime\footnote{A fun fact is that this is known as Euler's prime formula. It is an interesting expression that generates prime numbers for consecutive integer values of $n$, though only up to a certain point.}
+    \item For any prime numbers $p$ and $q$, we have $\gcd(p,q)=p$ or $\gcd(p,q)=q$
+    \item There are exactly 1022 surjective functions with domain $\mathbb{N}_{10}$ and codomain $\mathbb{N}_{2}$
+\end{enumerate}
+\newpage
+\noindent\emph{Solution:}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\itemsep 0em
+    \item \textbf{True}. By considering the truth table as shown, we have
+    
+    \begin{table}[h!]
+        \centering
+        \begin{tabular}{|c|c|c|c|c|c|c|} \hline 
+            $P$ & $Q$ & $R$ & $P\land Q$ & $Q\Rightarrow R$ & $(P\land Q)\Rightarrow R$ & $P\Rightarrow(Q\Rightarrow R)$\\ \hline 
+             T&  T&  T&  T&  T&  T& T\\ \hline 
+             T&  T&  F&  T&  F&  F& F\\ \hline 
+             T&  F&  T&  F&  T&  T& T\\ \hline 
+             T&  F&  F&  F&  T&  T& T\\ \hline 
+             F&  T&  T&  F&  T&  T& T\\ \hline 
+             F&  T&  F&  F&  F&  T& T\\ \hline 
+             F&  F&  T&  F&  T&  T& T\\ \hline 
+             F&  F&  F&  F&  T&  T& T\\ \hline
+        \end{tabular}
+    \end{table}
+    Therefore, there are logically equivalent.
+    \item \textbf{False}. Let $\mathcal{U}=\{1\}$. Let \[P\left(x\right):x\text{ is even}\quad\text{and}\quad Q\left(x\right):x\text{ is odd}.\]
+    So, $P(1)$ is false and $Q(1)$ is true. Then \[(\exists x\in\mathcal{U})[P(x)\lor Q(x)]\text{ is true}\quad\text{but}\quad [(\exists x\in\mathcal{U})P(x)]\land[(\exists x\in\mathcal{U})Q(x)]\text{ is false}. \] 
+    \item \textbf{False}. Let $X={1}$ and $Y={1}$. We have $X-Y=\emptyset$. Hence $\mathcal{P}(X-Y)=\{\emptyset\}$ while $\mathcal{P}(X)-\mathcal{P}(Y)=\emptyset$. Note that $\emptyset\neq\{\emptyset\}$. Therefore, they are not equal.
+    \item \textbf{True}. Suppose $f(x_1)=f(x_2)$, then $g(f(x_1))=g(f(x_2))$. Since $g\circ f$ is injective, then $x_1=x_2$. So $f$ is injective.
+    \item \textbf{False}. Let $X=\{1,2\}$ and $Y=\{a,b,c\}$. Define 
+    \begin{align*}
+        f:X\to Y\quad\text{where}\quad f(1)=a\text{ and } f(2)=b.
+    \end{align*}
+    Define
+    \begin{align*}
+        g:Y\to X\quad\text{where}\quad g(a)=1\text{ and }g(b)=2\text{ and } g(c)=1.
+    \end{align*}
+    Then, $\left(g\circ f\right)\left(1\right)=1$ and $\left(g\circ f\right)\left(2\right)=2$. So, there does not exist any element in $X$ that maps to $c\in Y$, hence $f$ is not surjective. So, $f$ is not invertible.
+    \item \textbf{False}. Let $X=\{1,2\}$ and $Y=\{a,b,c\}$. Define
+    \begin{align*}
+        f:X\to Y\quad\text{where}\quad f(1)=a\text{ and } f(2)=b.
+    \end{align*}
+    Now let $A=\{b,c\}\subseteq Y$ such that we have $f^{-1}[A]=\{2\}$ but  $f[f^{-1}[A]]=\{b\}\neq A$.
+    \item \textbf{True}. We first prove $\subseteq$. Let $x\in f^{-1}[A\cap B]$. Then, $f(x)\in A\cap B$, thus $f(x)\in A$ and $f(x)\in B$. As such $x\in f^{-1}[A]$ and $x\in f^{-1}[B]$. It follows that $x\in f^{-1}[A]\cap f^{-1}[B]$.
+    \newline
+    \newline We then prove $\supseteq$. Let $x\in f^{-1}[A]\cap f^{-1}[B] $ then  $x\in f^{-1}[A]$ and $x\in f^{-1}[B]$. Thus $f(x)\in A$ and $f(x)\in B$. As such, $f(x)\in A\cap B$ which follows that $x\in f^{-1}[A\cap B]$.
+    \item \textbf{False}. Consider $n=40$, so $40^2+40+41=41^2$. 
+    \item \textbf{False}. We can choose $p$ and $q$ to be distinct primes, then $p$ and $q$ are coprime. Hence, $\operatorname{gcd}(p,q)=1$.
+    \item \textbf{True}. To see why, as every element in the domain $\mathbb{N}_{10}$ has 2 choices in the codomain $\mathbb{N}_2$, then there are $2^{10}$ total functions. 
+    \newline
+    \newline Next, note that a function fails to be onto exactly when it avoids one of the two target values entirely. Suppose the function never hits $1\in\mathbb{N}_2$, then the function must map every element to 2. There is precisely $1^{10}=1$ function. On the other hand, if the function never hits $2\in\mathbb{N}_{2}$, it must map every element to 1. Again, there is only 1 function.
+    \newline
+    \newline As there are no other ways to miss a value, there are exactly \(2\) functions are not onto. So, the number of surjections is $2^{10}-2=1022$. \qed 
+\end{enumerate}
+\textbf{Question 2:} Let $a_1=11$, $a_2=21$ and $a_{n+1}=3a_n-2a_{n-1}$ for all integers $n$ with $n\geq 2$. Prove that for all positive integers $n$,
+\begin{align*}
+    a_n=5\cdot 2^n+1
+\end{align*}
+\emph{Solution:} We will prove this by strong induction.
+\newline
+\newline For the base case, we have $a_1=5\cdot 2^1+1=11$, so it is true. Next, suppose for all $1\le k \le n$, we have $a_k=5\cdot 2^k+1$. We will prove that $a_{k+1}=5\cdot 2^{k+1}+1$. To deduce this, we have
+\begin{align*}
+    a_{k+1}&=3a_k-2_{k-1}\\
+    &=3(5\cdot 2^k+1)-2(5\cdot 2^{k-1}+1)\\
+    &=15\cdot 2^k+3-5\cdot 2^k-2\\
+    &=10\cdot 2^k+1\\
+    &=5\cdot 2^{k+1}+1
+\end{align*}
+By the principle of strong mathematical induction, $a_n$ is true for all positive integers $n$.\qed
+\subsubsection*{Question 3}
+\begin{enumerate}[label=\textbf{(\roman*)}]
+\itemsep 0em
+    \item Prove that the square of any integer has one of the forms $4k$ or $4k+1$ where $k\in\mathbb{Z}$
+    \item Let $a$ and $b$ be two odd integers. Prove that $a^2+b^2$ is not a perfect square.
+\end{enumerate}
+\emph{Solution:}
+\begin{enumerate}[label=\textbf{(\roman*)}]
+\itemsep 0em
+    \item We will proceed with casework. 
+    \newline
+    \newline First, suppose $n$ is even. Then, there exists $m\in\mathbb{Z}$ such that $n=2m$. So, 
+    \begin{align*}
+        n^2=(2m)^2=4m^2=4k\quad\text{where } k=m^2\in\mathbb{Z}.
+    \end{align*}
+    Next, suppose $n$ is odd. Then, there exists $p\in\mathbb{Z}$ such that $n=2p+1$. So,
+    \begin{align*}
+        n^2=(2p+1)^2=4p^2+4p+1=4(p^2+p)+1=4k+1\quad\text{where } k=p^2+p\in\mathbb{Z}.
+    \end{align*}
+    Combining both cases, the result follows.
+    \item Let $a=2m+1$ and $b=2n+1$ for some $m,n\in\mathbb{Z}$. Then
+    \begin{align*}
+        a^2&=(2m+1)^2=4m^2+4m+1\\
+        b^2&=(2n+1)^2=4n^2+4n+1
+    \end{align*}
+    so \[a^2+b^2=4m^2+4m+1+4n^2+4n+1=4k+2\quad \text{where } k=m^2+n^2+m+n\in\mathbb{Z}.\]
+    By \textbf{(i)}, the square of any integer has one of the forms $4k$ or $4k+1$. Hence, $a^2+b^2$ is not a perfect square.\qed
+\end{enumerate}
+\subsubsection*{Question 4}
+For each $n\in\mathbb{Z}^+$, let
+\begin{align*}
+    A_n=\left(1-\frac{1}{n},n\right)=\left\{x\in\mathbb{R}\ |\ 1-\frac{1}{n}<x<n\right\}.
+\end{align*}
+Find the sets
+\begin{align*}
+    \bigcup_{n=1}^\infty A_n\qquad\text{and}\qquad \bigcap_{n=1}^\infty A_n
+\end{align*}
+Justify you answers.
+\newline
+\newline\textit{Solution.} We claim that \[\displaystyle{\bigcup_{n=1}^\infty A_n}=(0,\infty).\]
+To prove $\subseteq$, first let $x\in {\bigcup_{n=1}^\infty A_n}$. Then, there exists $n\in\mathbb{Z}^+$ such that 
+\begin{align*}
+    1-\frac{1}{n}<x<n
+\end{align*}
+When $n=1$, we have $0<x<1$. As $n\to\infty$, we have $x>1$. As such, $0<x$ which follows that $x\in (0,\infty)$
+\newline
+\newline To prove the reverse inclusion $\supseteq$, let $x\in (0,\infty)$. Then for some $n\in\mathbb{Z}^+$, we can pick $n>\operatorname{max}\{x,\frac{1}{x}\}$ such that we have
+\begin{align*}
+    x<n\qquad\text{or}\qquad \frac{1}{n}>x\implies -\frac{1}{n}<-x\implies1-\frac{1}{n}<1-x<x.
+\end{align*}
+Hence,
+\begin{align*}
+    1-\frac{1}{n}<x<n\implies x\in \displaystyle{\bigcup_{n=1}^\infty A_n}.
+\end{align*}
+We then claim that \[\displaystyle{\bigcap_{n=1}^\infty A_n=\emptyset}.\] Suppose for the sake of contradiction that the intersection is non empty. Then, there exists $x\in A_n$ such that
+\begin{align*}
+    1-\frac{1}{n}<x<n.
+\end{align*}
+Since $n$ is increasing, then $x<n$ is trivially satisfied for fixed $x$, since $n\to\infty$. As $n\to\infty$, the lower bound will be 1. As such $x\in (1,\infty)$. We have $A_1=(0,1)$ which is disjoint with $(1,\infty)$. Therefore, $x\notin A_1$ which is a contradiction. \qed
+\subsubsection*{Question 5}
+Let $X$ and $Y$ be nonempty sets and let $f:X\to Y$ be a function. Prove that if $f$ is surjective, then $X$ has a subset $Z$ such that the function $h:Z\to Y$ defined by
+\begin{align*}
+    h(x)=f(x)\quad \text{for all }x\in Z
+\end{align*}
+is a bijection.
+\newline
+\newline\textit{Solution.} Since $f$ is surjective, then for all $y\in Y$, there exists $x\in X$ such that $f\left(x\right)=y$. Define the set
+\begin{align*}
+    Z=\{x\in X\ |\ y\in Y\}\subseteq X\quad\text{so}\quad h(x)=f(x)=y.
+\end{align*}
+Suppose $h(x_1)=h(x_2)$, then $f(x_1)=f(x_2)$. which implies $y_1=y_2$. Since $f$ is surjective, then $x_1=x_2$ which also shows that $h(x)$ is injective.
+\newline
+\newline We then prove that $h$ is surjective. Let $y\in Y$. Then, by the definition of $Z$, there exists $x\in Z$ such that $h\left(x\right)=y$. This shows that $h(x)$ is surjective. Since $h(x)$ is both injective and surjective, then $h$ is a bijection.\qed
+\subsubsection*{Question 6}
+Let $R$ be an equivalence relation on the set $\mathbb{N}_6=\{1,2,3,4,5,6\}$ such that
+\begin{itemize}
+\itemsep 0em
+    \item $|[1]|<|[2]|<|[3]|$
+    \item $(3,4)\notin R$
+\end{itemize}
+\begin{enumerate}[label=\textbf{(\roman*)}]
+\itemsep 0em
+    \item List all the elements in each equivalence class of $R$
+    \item List all the elements of $R$
+\end{enumerate}
+\emph{Solution:}
+\begin{enumerate}[label=\textbf{(\roman*)}]
+    \itemsep 0em
+    \item The trick is to think of how the partition all 6 elements of $\mathbb{N}_6$ into 3 separate sets while separating elements 3 and 4. As such, let
+\begin{align*}
+    [1]&=\{1\}\\
+    [2]&=\{2,4\}\\
+    [3]&=\{3,5,6\}
+\end{align*}
+\item Recall that an equivalence relation includes all reflexive, symmetric, transitive pairs. So,
+\begin{align*}
+    R=\{(1,1),(2,2),(2,4),(4,2),(4,4),(3,3),(3,5),(5,3),(3,6),(6,3),(5,5),(5,6),(6,5),(6,6)\}
+\end{align*} \qed 
+\end{enumerate}
+\subsubsection*{Question 7}
+Let $X$ and $Y$ be two nonempty sets, and let $f:X\to Y$ be a surjective function. Let $\sim$ be the relation on $X$ defined by, for all $x,y\in X$,
+\begin{align*}
+    x\sim y\quad \text{if and only if}\quad f(x)=f(y)
+\end{align*}
+\begin{enumerate}[label=\textbf{(\roman*)}]
+\itemsep 0em
+    \item Prove that $\sim$ is an equivalence relation
+    \item Prove that $X/\sim$ is equinumerous with $Y$
+\end{enumerate}
+\emph{Solution:}
+\begin{enumerate}[label=\textbf{(\roman*)}]
+    \itemsep 0em
+    \item We have 
+\begin{align*}
+    x\sim x\iff f(x)=f(x)
+\end{align*}
+which is true for all $x\in X$. Hence $\sim $ is reflexive.
+\newline
+\newline
+Suppose $x\sim y$, then
+\begin{align*}
+    x\sim y\iff f(x)=f(y)\iff f(y)=f(x)\iff y\sim x
+\end{align*}
+Hence $\sim$ is symmetric.
+\newline
+\newline
+Suppose $x\sim y$ and $y\sim z$, then
+\begin{align*}
+    f(x)=f(y)\quad\text{and}\quad f(y)=f(z)
+\end{align*}
+so
+\begin{align*}
+    f(x)=f(z)\iff x\sim z
+\end{align*}
+Hence $\sim$ is transitive. Since $\sim$ is reflexive, symmetric and transitive, then $\sim$ is an equivalence relation.
+\item We can define $\varphi:X/\sim\to Y$ by
+\begin{align*}
+    \varphi([x])=f(x)
+\end{align*}
+Suppose $[x]=[x']$, then $x\sim x'\iff f(x)=f(x')\implies \varphi([x])=\varphi([x'])$. This shows $\varphi$ is a well-defined function.
+\newline
+\newline Next, suppose $\varphi([x])=\varphi([x'])$, then $f(x)=f(x')\implies x\sim x'\implies [x]=[x']$. This shows $\varphi$ is injective.
+\newline
+\newline Since it is given that $f$ is surjective, then for every $y\in Y$, there exist $x\in X$ such that $f(x)=y$. Then $ \varphi([x])=f(x)=y$ so $\varphi$ is surjective. Since $\varphi$ is injective and surjective, it is a bijection. Hence $X/\sim$ is equinumerous with $Y$. \qed 
+\end{enumerate}
+\subsubsection*{Question 8}
+Determine whether each of the following sets is finite, denumerable or uncountable. Justify your answers.
+\begin{enumerate}[label=\textbf{(\roman*)}]
+\itemsep 0em
+    \item $\mathbb{R}\setminus \mathbb{N}$
+    \item $\{(i,j)\in\mathbb{N}\times\mathbb{N}\ |\ i+j\leq 100\}$
+    \item $\{x\in\mathbb{R}\ |\ x^2\in\mathbb{Q}\}$
+\end{enumerate}
+\emph{Solution:}
+\begin{enumerate}[label=\textbf{(\roman*)}]
+    \itemsep 0em
+    \item It is known that $\mathbb{R}$ is uncountably infinite and $\mathbb{N}$ is countably infinite (also known as denumerable). We claim that in general, for any sets $X$ and $Y$ where $Y\subseteq X$, \[X\text{ is uncountably infinite }\text{ and }Y\text{ is denumerable}\quad\text{implies}\quad  X\setminus Y\text{ is uncountable}.\] In particular, $\mathbb{R}\setminus\mathbb{N}$ is uncountable. Suppose on the contrary that $X\setminus Y$ is countable. Then, because $X=Y\cup \left(X\setminus Y\right)$ (to be precise, this is a disjoint union, denoted by $\sqcup$), then $X$ is the union of two countable sets, which is also countable. This leads to a contradiction.
+    \item Let $n\in \{(i,j)\in\mathbb{N}\times\mathbb{N}\ |\ i+j\leq 100\}$. Note that for each $n=2,3,\ldots,100$, the number of pairs $(i,j)$ such that $i+j=n$ is $n-1$ because $1\le i,j\le n$. Since $1\le i \le n-1$ and $j=n-i$, the total number of pairs is
+\begin{align*}
+    \sum_{n=2}^{100}(n-1)=\sum_{k=1}^{99}k=\frac{99\cdot 100}{2}=4950
+\end{align*}
+Since there are finitely many pairs, the desired set is finite.
+\item Let the set be $S$. Note that
+\begin{align*}
+    \text{for every }q\in \mathbb{Q}\text{ there exists } \pm\sqrt{q}\in\mathbb{R}\quad\text{such that}\quad S=\bigcup_{q\in\mathbb{Q}_{\geq 0}}\{-\sqrt{q},\sqrt{q}\}.
+\end{align*}
+Since $\mathbb{Q}_{\geq 0}$ is countable and $\{-\sqrt{q},\sqrt{q}\}$, then as $S$ is the countable union of countable sets, it follows that $S$ is countable. \qed 
+\end{enumerate}
+\end{document}
