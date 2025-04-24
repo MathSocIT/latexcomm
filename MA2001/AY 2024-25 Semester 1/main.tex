@@ -1,0 +1,435 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{subfig}
+\newcommand\mytab{\tab \hspace{+1cm}}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{geometry}
+\usepackage[most]{tcolorbox}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+\usepackage[utf8]{inputenc}
+\linespread{1.15}
+\usepackage{tikz,lipsum,lmodern}
+\usepackage{hyperref}
+\newtcolorbox{mybox}{
+enhanced,
+boxrule=0pt,frame hidden,
+borderline west={4pt}{0pt}{green!75!black},
+colback=green!10!white,
+sharp corners
+}
+\newtcolorbox{mybox2}{
+enhanced,
+boxrule=0pt,frame hidden,
+borderline west={4pt}{0pt}{blue!75!black},
+colback=blue!10!white,
+sharp corners
+}
+\usepackage{amsmath,amsfonts,amsthm,bm} % Math packages
+\usepackage[most]{tcolorbox}
+\usepackage{amssymb}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\usepackage{mathtools}
+\usepackage{amsmath}
+
+\usepackage{natbib}
+\usepackage{wrapfig}
+\usepackage{url}
+\usepackage{pax}
+\usepackage{pdfpages}
+\usepackage{graphicx}
+\usepackage{mathptmx}
+\usepackage{tikz}
+\usepackage{blindtext}
+\title{MA2001 AY24/25 Sem 1 Final}
+\author{
+  Solution by Thang Pang Ern\\
+  Audited by Malcolm Tan Jun Xi
+}
+\date{}
+
+
+\begin{document}
+
+\maketitle
+\subsubsection*{Question 1}
+For each of the following systems of equations, say whether there is no solution, a unique solution, or infinitely many solutions (you do not need to provide a solution). Make sure to justify your answers.
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\itemsep 0em
+  \item
+    \[
+      \begin{aligned}
+        x - y + z &= 1\\
+        2x - y + z &= 4\\
+        4x - 3y + 3z &= 3
+      \end{aligned}
+    \]
+
+  \item
+    \[
+      \begin{aligned}
+        x + y &= 4\\
+        3x + y &= 10\\
+        x - y &= 2
+      \end{aligned}
+    \]
+
+  \item
+    \[
+      \begin{aligned}
+        2w - 2y + 3z &= -1\\
+        -x - y + 4z &= 2\\
+        -w + x - 10y &= -6
+      \end{aligned}
+    \]
+\end{enumerate}
+\emph{Solution.}\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Consider \begin{align*}
+        \begin{pmatrix}
+            1 & -1 & 1 & 1 \\ 2 & -1 & 1 & 4 \\ 4 & -3 & 3 & 3
+        \end{pmatrix}\xrightarrow{\text{RREF}}\begin{pmatrix}
+            1 & 0 &0&0\\0&1&-1&0\\0&0&0&1
+        \end{pmatrix}.
+    \end{align*}
+    The last row corresponds to $0x+0y+0z=1$, which is a contradiction, so the system has no solution.
+    \item By considering the first and third equation, we have $\left(x,y\right)=\left(3,1\right)$. Substituting this into the second equation, we have $3\cdot 3 +1\cdot 1=10$, which implies that the system is consistent and has a unique solution.
+    \item Consider \begin{align*}
+        \begin{pmatrix}
+            2&0&-2&3&-1\\0&-1&-1&4&2\\-1&1&-10&0&-6
+        \end{pmatrix}\xrightarrow{\text{RREF}}\begin{pmatrix}1&0&0&\frac{25}{24}&-\frac{1}{8}\\ 0&1&0&-\frac{85}{24}&-\frac{19}{8}\\ 0&0&1&-\frac{11}{24}&\frac{3}{8}\end{pmatrix}.
+    \end{align*}
+    This corresponds to \begin{align*}
+        w+\frac{25}{24}z=-\frac{1}{8}\quad x-\frac{85}{24}z=-\frac{19}{8}\quad y-\frac{11}{24}z=\frac{3}{8}.
+    \end{align*}
+    So, we can set $z$ to be a free variable, which yields infinitely many solutions to the system. \qed 
+\end{enumerate}
+\subsubsection*{Question 2}
+Which of the following sets are linearly independent?
+Justify all answers.
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\itemsep 0em
+  \item $\{(1,1,1),(1,2,2),(1,2,3)\}$
+  \item $\{(1,1,1,1),(1,0,-1,1),(-1,2,5,-1)\}$
+  \item The solution set of $\mathbf{Ax}=\mathbf{b}$, where $\mathbf{A}$ is square and invertible.
+  \item The solution set of $\mathbf{Ax}=\mathbf{0}$, where $\mathbf{A}$ is square and invertible.
+\end{enumerate}
+\noindent\emph{Solution.}\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Yes. The coefficient matrix is \begin{align*}
+        \begin{pmatrix}
+            1&1&1\\1&2&2\\1&2&3
+        \end{pmatrix}
+    \end{align*}
+    which has determinant 1. Since the determinant is non-zero, by the invertible matrix theorem, the set is a basis for $\mathbb{R}^3$. We conclude that the set is linearly independent.
+    \item Yes. Consider \begin{align*}
+        c_1\begin{pmatrix}
+            1\\1\\1\\1
+        \end{pmatrix}+c_2\begin{pmatrix}
+            1\\0\\-1\\1
+        \end{pmatrix}+c_3\begin{pmatrix}
+            -1\\2\\5\\1
+        \end{pmatrix}=\begin{pmatrix}
+            0\\0\\0\\0
+        \end{pmatrix}.
+    \end{align*}
+    This yields \begin{align*}
+        \begin{pmatrix}
+            1&1&-1\\1&0&2\\1&-1&5\\1&1&1
+        \end{pmatrix}\begin{pmatrix}
+            c_1\\c_2\\c_3
+        \end{pmatrix}=\begin{pmatrix}
+            0\\0\\0\\0
+        \end{pmatrix}.
+    \end{align*}
+    The first and fourth rows imply $c_1+c_2-c_3=0$ and $c_1+c_2+c_3=0$ respectively, so $c_3=0$. Hence, $c_1=-c_2$. By considering the second row, $c_1=0$, so $c_2=0$. Substituting $c_1=c_2=c_3=0$ into the third equation, we see that the system is consistent. Hence, the only solution is the trivial one, so the three vectors are linearly independent in $\mathbb{R}^4$.
+    \item Yes\footnote{We are under the assumption that $\mathbf{b}\ne \mathbf{0}$.} Since $\mathbf{A}$ is an invertible matrix, then $\mathbf{x}=\mathbf{A}^{-1}\mathbf{b}$, which is the only solution to the equation. A set containing one non‑zero vector is linearly independent, so the result follows. 
+    \item No. Let \begin{align*}
+        \mathbf{A}=\begin{pmatrix}
+            1&0\\0&1
+        \end{pmatrix}\quad \mathbf{x}_1=\begin{pmatrix}
+            1\\-1
+        \end{pmatrix}\quad \mathbf{x}_2=\begin{pmatrix}
+            -1\\1
+        \end{pmatrix}.
+    \end{align*}
+    Then, $\mathbf{x}_1$ and $\mathbf{x}_2$ satisfy the equation $\mathbf{Ax}=\mathbf{0}$, but $\mathbf{x}_1$ and $\mathbf{x}_2$ are linearly dependent since each vector is a scalar multiple of the other. \qed 
+\end{enumerate}
+\subsubsection*{Question 3}
+Consider the matrix
+\[
+  \mathbf{A}=
+  \begin{pmatrix}
+    1 & 3 & 3 & 2\\
+    2 & 6 & 9 & 7\\
+   -1 & -3 & 3 & 4
+  \end{pmatrix}.
+\]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\itemsep 0em
+  \item Find a basis for the column space of $\mathbf{A}$.
+  \item Find a basis for the row space of $\mathbf{A}$.
+  \item Find a basis for the null space of $\mathbf{A}$.
+\end{enumerate}
+\noindent\emph{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item We have \begin{align*}
+    \begin{pmatrix}
+    1 & 3 & 3 & 2\\
+    2 & 6 & 9 & 7\\
+   -1 & -3 & 3 & 4
+  \end{pmatrix}\xrightarrow{\text{RREF}}\begin{pmatrix}1&3&0&-1\\ 0&0&1&1\\ 0&0&0&0\end{pmatrix}.
+    \end{align*}
+    So, only the first and third columns are pivot columns. As such, a basis for the column space is \begin{align*}
+        \left\{\begin{pmatrix}
+            1\\0\\0
+        \end{pmatrix},\begin{pmatrix}
+            0\\1\\0
+        \end{pmatrix}\right\}.
+    \end{align*}
+    \item From the RREF in \textbf{(a)}, a basis would be \begin{align*}
+        \left\{\begin{pmatrix}
+            1\\3\\0\\-1
+        \end{pmatrix},\begin{pmatrix}
+            0\\0\\1\\1
+        \end{pmatrix}\right\}.
+    \end{align*}
+    \item From the RREF in \textbf{(a)}, suppose $\left(w,x,y,z\right)$ is contained in the nullspace of $\mathbf{A}$. Then, \begin{align*}
+        \begin{pmatrix}1&3&0&-1\\ 0&0&1&1\\ 0&0&0&0\end{pmatrix}\begin{pmatrix}
+            w\\x\\y\\z
+        \end{pmatrix}=\begin{pmatrix}
+            0\\0\\0
+        \end{pmatrix}.
+    \end{align*}
+    So, $w+3x-z=0$ and $y+z=0$. Setting $z$ to be a free variable, we have $y=-z$ and $w=z-3x$. This implies that $x$ is another free variable, so \begin{align*}
+        \begin{pmatrix}
+            w\\x\\y\\z
+        \end{pmatrix}=\begin{pmatrix}
+            -3x+z \\ x\\ -z \\ z
+        \end{pmatrix}=x\begin{pmatrix}
+            -3 \\ 1\\ 0\\0
+        \end{pmatrix}+z\begin{pmatrix}
+            1\\0\\-1\\1
+        \end{pmatrix}.
+    \end{align*}
+    A basis for the nullspace is \begin{align*}
+        \left\{\begin{pmatrix}
+            -3\\1\\0\\0
+        \end{pmatrix},\begin{pmatrix}
+            1\\0\\-1\\1
+        \end{pmatrix}\right\}.
+    \end{align*} \qed 
+\end{enumerate}
+\subsubsection*{Question 4}
+Let
+\[
+  \mathbf{M}=
+  \begin{pmatrix}
+    1 & 0 & 1\\
+    1 & 0 & 2\\
+    1 & 1 & 1\\
+    2 & 1 & 1
+  \end{pmatrix}
+  \quad
+  \mathbf{b}=
+  \begin{pmatrix}
+    2\\ 3\\ 1\\ 2
+  \end{pmatrix}.
+\]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\itemsep 0em
+  \item Find the least squares solution to $\mathbf{Mx}=\mathbf{b}$.
+  \item Find the orthogonal projection of $\mathbf{b}$ onto the column space of $\mathbf{M}$.
+  \item Show that for any matrix $\mathbf{X}$ with linearly independent columns, the matrix $\mathbf{X}^{\text{T}}\mathbf{X}$ is invertible.
+\end{enumerate}
+\noindent\emph{Solution.}\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Let $\mathbf{x}=\left(x,y,z\right)$. Consider $\mathbf{M}^\text{T}\mathbf{Mx}=\mathbf{M}^\text{T}\mathbf{b}$, so \begin{align*}
+        \begin{pmatrix}7&3&6\\ 3&2&2\\ 6&2&7\end{pmatrix}\begin{pmatrix}
+            x\\y\\z
+        \end{pmatrix}=\begin{pmatrix}10\\ 3\\ 11\end{pmatrix}\quad\text{so}\quad \begin{pmatrix}
+            x\\y\\z
+        \end{pmatrix}= \begin{pmatrix}7&3&6\\ 3&2&2\\ 6&2&7\end{pmatrix}^{-1}\begin{pmatrix}10\\ 3\\ 11\end{pmatrix}=\begin{pmatrix}1\\ -1\\ 1\end{pmatrix}.
+    \end{align*}
+    As such, the least squares solution is $\mathbf{x}=\left(1,-1,1\right)$.
+    \item The orthogonal projection is \begin{align*}
+        \mathbf{p}=\begin{pmatrix}
+    1 & 0 & 1\\
+    1 & 0 & 2\\
+    1 & 1 & 1\\
+    2 & 1 & 1
+  \end{pmatrix}\begin{pmatrix}
+      1\\-1\\1
+  \end{pmatrix}=\begin{pmatrix}
+      2\\3\\1\\2
+  \end{pmatrix}.
+    \end{align*}
+    Alternatively, one can work out manually by using the Gram-Schmidt process.
+    \item Suppose $\mathbf{X}$ is an $n\times n$ matrix. Let the columns of $\mathbf{X}$ be $\mathbf{c}_1,\ldots,\mathbf{c}_n$. Then, \begin{align*}
+        \mathbf{X}=\begin{pmatrix}
+            \mathbf{c}_1 & \ldots & \mathbf{c}_n
+        \end{pmatrix}\quad\text{so}\quad \mathbf{X}^\text{T}=\begin{pmatrix}
+            \mathbf{c}_1^\text{T} \\ \vdots \\ \mathbf{c}_n^\text{T}
+        \end{pmatrix}.
+    \end{align*}
+    As such, \begin{align*}
+        \mathbf{X}^\text{T}\mathbf{X}=\begin{pmatrix}
+            \mathbf{c}_1^\text{T}\mathbf{c}_1 & \mathbf{c}_1^\text{T}\mathbf{c}_2 & \ldots& \mathbf{c}_1^\text{T}\mathbf{c}_n \\ \vdots & \vdots & \ddots & \vdots \\ \mathbf{c}_n^\text{T}\mathbf{c}_1 &\mathbf{c}_n^\text{T}\mathbf{c}_2 & \ldots & \mathbf{c}_n^\text{T}\mathbf{c}_n
+        \end{pmatrix}
+    \end{align*}
+    The trick is to let \(\mathbf{y}=\left(a_1,\ldots,a_n\right)\in\mathbb R^{n}\) and compute the quadratic form associated with \(\mathbf{X}^\text{T}\mathbf{X}\), i.e. \begin{align*}
+        \mathbf{y}^\text{T}\left(\mathbf{X}^\text{T}\mathbf{X}\right)\mathbf{y}=\left(\sum_{i=1}^{n}a_i\mathbf{c}_i\right)^\text{T}\left(\sum_{j=1}^{n}a_j\mathbf{c}_j\right)=\sum_{1\le i,j\le n}a_ia_j\mathbf{c}_i^\text{T}\mathbf{c_j}=\left\|\sum_{i=1}^{n}a_i\mathbf{c}_i\right\|^2.
+    \end{align*}
+Because the columns \(\mathbf{c}_1,\ldots,\mathbf{c}_n\) are linearly independent, the only way the linear combination can be the zero vector is by taking all coefficients \(a_i=0\). Thus, $\mathbf{y}\ne \mathbf{0}$ implies that \[\left\|\sum_{i=1}^{n}a_i\mathbf{c}_i\right\|^2>0.\]
+So, $\mathbf{y}^\text{T}\left(\mathbf{X}^\text{T}\mathbf{X}\right)\mathbf{y}>0$, i.e. $\mathbf{X}^\text{T}\mathbf{X}$ is positive-definite. Positive‑definiteness forces all eigenvalues to be strictly positive, so \(0\) cannot be an eigenvalue. By the invertible matrix theorem, $\mathbf{X}^\text{T}\mathbf{X}$ is invertible. \qed 
+\end{enumerate}
+\subsubsection*{Question 5}
+Consider the matrix
+\[
+  \mathbf{S}=\begin{pmatrix}
+        1 & 0 & 1\\
+        0 & 1 & 0
+     \end{pmatrix}.
+\]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\itemsep 0em
+  \item Find the eigenvalues and eigenvectors of $\mathbf{SS}^\text{T}$.
+  \item Find the eigenvalues and eigenvectors of $\mathbf{S}^\text{T}\mathbf{S}$.
+  \item Prove that for any $m\times n$ matrix $\mathbf{B}$, all eigenvalues of $\mathbf{B}^{\text{T}}\mathbf{B}$ and of $\mathbf{BB}^{\text{T}}$ are non‑negative.
+  \item Prove that $\mathbf{B}^\text{T}\mathbf{B}$ and $\mathbf{BB}^{\text{T}}$ share the same non‑zero eigenvalues.
+\end{enumerate}
+\noindent\emph{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item We have \begin{align*}
+        \mathbf{SS}^\text{T}=\begin{pmatrix}2&0\\ 0&1\end{pmatrix}
+    \end{align*}
+    which is a diagonal matrix, so the eigenvalues of $\mathbf{SS}^\text{T}$ are 2 and 1. One can deduce that the corresponding eigenvectors are $\left(1,0\right)$ and $\left(0,1\right)$ respectively.
+    \item We have \begin{align*}
+        \mathbf{S}^\text{T}\mathbf{S}=\begin{pmatrix}1&0&1\\ 0&1&0\\ 1&0&1\end{pmatrix}
+    \end{align*}
+    which has \begin{align*}
+        \text{eigenvalues } 0,1,2\quad\text{and}\quad\text{corresponding respective eigenvectors }\begin{pmatrix}
+            -1\\0\\1
+        \end{pmatrix},\begin{pmatrix}
+            0\\1\\0
+        \end{pmatrix},\begin{pmatrix}
+            1\\0\\1
+        \end{pmatrix}.
+    \end{align*}
+    \item Let $\lambda$ be an eigenvalue of $\mathbf{B}^\text{T}\mathbf{B}$ with corresponding eigenvector $\mathbf{v}$. Then, \[\mathbf{B}^\text{T}\mathbf{B}\mathbf{v}=\lambda\mathbf{v}\quad \text{so}\quad \mathbf{v}^\text{T}\mathbf{B}^\text{T}\mathbf{B}\mathbf{v}=\lambda\mathbf{v}^\text{T}\mathbf{v}=\lambda\left\|\mathbf{v}\right\|^2.\]
+   Thus, $\left(\mathbf{Bv}\right)^\text{T}\left(\mathbf{Bv}\right)=\lambda\left\|\mathbf{v}\right\|^2$. Note that $\mathbf{Bv}$ is a column vector, say $\left(v_1,\ldots,v_m\right)\in\mathbb{R}^m$, so \begin{align*}
+       \left(\mathbf{Bv}\right)^\text{T}\left(\mathbf{Bv}\right)=v_1^2+\ldots+v_m^2.
+   \end{align*}
+    By definition, an eigenvector must be non-zero, so $\left\|\mathbf{v}\right\|^2>0$, but the sum of squares $v_1^2+\ldots+v_m^2$ is $\ge 0$, which forces $\lambda\ge 0$.
+    \newline
+    \newline Similarly, let $\mu$ be an eigenvalue of $\mathbf{BB}^\text{T}$ with corresponding eigenvector $\mathbf{w}$. Then, \begin{align*}
+        \mathbf{BB}^\text{T}\mathbf{w}=\mu\mathbf{w}\quad\text{so}\quad \mathbf{w}^\text{T}\mathbf{BB}^\text{T}\mathbf{w}=\mu\left\|\mathbf{w}\right\|^2.
+    \end{align*}
+    Thus, $\left(\mathbf{B}^\text{T}\mathbf{w}\right)^\text{T}\left(\mathbf{B}^\text{T}\mathbf{w}\right)=\mu\left\|\mathbf{w}\right\|^2$. In a similar fashion, note that $\mathbf{B}^\text{T}\mathbf{w}$ is a column vector, say $\left(w_1,\ldots,w_n\right)\in\mathbb{R}^n$, so \begin{align*}
+        \left(\mathbf{B}^\text{T}\mathbf{w}\right)^\text{T}\left(\mathbf{B}^\text{T}\mathbf{w}\right)=w_1^2+\ldots+w_n^2.
+    \end{align*}
+    By definition, an eigenvector must be non-zero, so $\left\|\mathbf{w}\right\|^2>0$, but the sum of squares $w_1^2+\ldots+w_n^2$ is $\ge 0$, which forces $\mu\ge 0$.
+    \item Let $\lambda \ne 0$ be an eigenvalue of $\mathbf{B}^\text{T}\mathbf{B}$ with corresponding eigenvector $\mathbf{v}$, so $\mathbf{B}^\text{T}\mathbf{B}\mathbf{v}= \lambda\mathbf{v}$, so \[\mathbf{BB}^\text{T}\mathbf{Bv}=\lambda\mathbf{Bv}\]
+    so $\lambda$ is an eigenvalue of $\mathbf{BB}^\text{T}$. Conversely, let $\mu\ne 0$ be an eigenvalue of $\mathbf{BB}^\text{T}$ with corresponding eigenvector $\mathbf{w}$, so $\mathbf{BB}^\text{T}\mathbf{w}=\lambda\mathbf{w}$, so \[\mathbf{B}^\text{T}\mathbf{BB}^\text{T}\mathbf{w}=\mu\mathbf{B}^\text{T}\mathbf{w}.\]
+    Thus, $\mu$ is an eigenvalue of $\mathbf{B}^\text{T}\mathbf{B}$. We conclude that $\mathbf{B}^\text{T}\mathbf{B}$ and $\mathbf{BB}^{\text{T}}$ share the same non‑zero eigenvalues. \qed 
+\end{enumerate} 
+\subsubsection*{Question 6}
+Consider the vector spaces $\mathbb R^m$ and $\mathbb R^n$.
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\itemsep 0em
+  \item Prove that there exists a linear transformation
+        \[T:\mathbb R^{n}\to\mathbb R^{m}\text{ with }\ker\left(T\right)=\{\mathbf{0}\}\quad\text{if and only if}\quad m\ge n.\]
+  \item Prove that there exists a linear transformation
+        \[T:\mathbb R^{n}\to\mathbb R^{m}\text{ with }R(T)=\mathbb R^{m}\quad\text{if and only if}\quad m\le n.\]
+\end{enumerate}
+\noindent\emph{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item For the forward direction, suppose $\operatorname{ker}\left(T\right)=\left\{\mathbf{0}\right\}$. Then, $T$ is injective, so $\operatorname{nullity}\left(T\right)=0$. By the rank-nullity theorem, $\operatorname{rank}\left(T\right)=n$. Since the image of $T$ is a subspace of $\mathbb{R}^m$, then $n\le m$.
+    \newline
+    \newline For the reverse direction, suppose $m\ge n$. For any vector in $\mathbb{R}^m$, we note that we can write it as $\left(y_1,\ldots,y_n,y_{n+1},y_m\right)$. Define \begin{align*}
+        T:\mathbb{R}^n\to \mathbb{R}^m\quad\text{where}\quad T\left(\left(x_1,\ldots,x_n\right)\right)=\left(x_1,\ldots,x_n,0,\ldots,0\right).
+    \end{align*}
+    Then, The first $n$ standard basis vectors of $\mathbb{R}^m$ form the columns of the matrix representation $T$. The basis vectors are linearly independent, so $T$ is injective and $\operatorname{ker}\left(T\right)=\left\{\mathbf{0}\right\}$.
+    \item For the forward direction, suppose $R\left(T\right)=\mathbb{R}^m$. Then, $\operatorname{rank}\left(T\right)=m$. By the rank-nullity theorem, $\operatorname{nullity}\left(T\right)=n-m$. Since the dimension of any subspace is $\ge 0$, then $n-m\ge 0$, so $n\ge m$.
+    \newline
+    \newline For the reverse direction, suppose $n \ge m$. Consider the linear transformation \begin{align*}
+        T:\mathbb{R}^n\to\mathbb{R}^m\quad\text{where}\quad T\left(\left(x_1,\ldots,x_n\right)\right)=\left(x_1,\ldots,x_m\right).
+    \end{align*}
+    Essentially, $T$ projects the vector $\left(x_1,\ldots,x_n\right)\in\mathbb{R}^n$ to its first $m$ coordinates, so $T$ is surjective because for any $\left(x_1,\ldots,x_m\right)\in\mathbb{R}^m$, there exists $\left(x_1,\ldots,x_n\right)\in\mathbb{R}^n$ such that the claim holds. Hence, $R\left(T\right)=\mathbb{R}^m$. \qed 
+\end{enumerate}
+\newpage
+\subsubsection*{Question 7}
+State whether each statement is \textbf{TRUE} or \textbf{FALSE}.
+No justification is required.
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\itemsep 0em
+  \item A square matrix with a $0$ on its diagonal is necessarily singular.
+  \item A system $\mathbf{Ax}=\mathbf{b}$ has a solution if and only if  $\operatorname{rank}\left(\mathbf{A}\right)=\operatorname{rank}\left(\mathbf{A}\mid \mathbf{b}\right)$.
+  \item The solution set of $\mathbf{Ax}=\mathbf{b}$ is a subspace of $\mathbb R^n$.
+  \item If $\mathbf{u},\mathbf{v},\mathbf{w}\in\mathbb R^n$ with $\mathbf{u}\ne \mathbf{0}$ and $\mathbf{u}\cdot \mathbf{v}=\mathbf{u}\cdot \mathbf{w}$, then $\mathbf{v}=\mathbf{w}$.
+  \item If $\mathbf{A}$ is an $m\times n$ matrix with $m>n$, the system $\mathbf{A}^\text{T}\mathbf{Ax}=\mathbf{A}^\text{T}\mathbf{b}$ always has a solution.
+  \item If $\mathbf{v}_1,\ldots,\mathbf{v}_n$ are linearly independent eigenvectors of $\mathbf{A}$, then applying Gram–Schmidt to them yields orthogonal eigenvectors of $\mathbf{A}$.
+  \item An $n\times n$ matrix with $n$ distinct eigenvalues must be diagonalizable.
+  \item Every square upper‐triangular matrix is diagonalizable.
+  \item Every square upper‐triangular matrix is orthogonally diagonalizable.
+  \item A linear transformation must send $\mathbf{0}$ to $\mathbf{0}$.
+\end{enumerate}
+\noindent\emph{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item False. Let \begin{align*}
+        \mathbf{A}=\begin{pmatrix}
+            0 & 1 \\1 & 0
+        \end{pmatrix}
+    \end{align*}
+    which is non-singular since it has non-zero determinant.
+     \item True\footnote{A fun fact is that this is known as the Rouché–Capelli theorem.}. To see why, write the augmented matrix and perform Gaussian elimination as follows:
+\[
+\begin{pmatrix}
+    \mathbf{A}\mid \mathbf{b}
+\end{pmatrix}\xrightarrow{\text{REF}}\;
+\begin{pmatrix}
+\ast & \ldots & \ast & | & \ast\\
+0 & \ddots & \ast & | & \ast\\
+\vdots & \ddots & \ddots & | & \vdots\\
+0 & \ldots & 0 & | & k
+\end{pmatrix}.
+\]
+If the last pivots occur only inside \(\mathbf{A}\), then no row is of the form \(\left(0\;0\;\ldots 0\,\mid k\right)\) with \(k\neq0\). The augmented column does not create a new pivot and the ranks stay equal, i.e. the system is consistent.  On the other hand, if such a row appears, the augmented column introduces an extra pivot, so \(\operatorname{rank}\left(\mathbf{A}\mid \mathbf{b}\right)=\operatorname{rank}\left(\mathbf{A}\right)+1\) and the system is inconsistent.   
+ \item False. The statement is true if and only if $\mathbf{b}=\mathbf{0}$.
+     \item False. Let $\mathbf{u}=\left(1,0\right),\mathbf{v}=\left(0,1\right),\mathbf{w}=\left(0,2\right)$. 
+     \item True. $\mathbf{A}^\text{T}\mathbf{b}$ lies in $C\left(\mathbf{A}^\text{T}\mathbf{A}\right)$ and $C\left(\mathbf{A}^\text{T}\mathbf{A}\right)=C\left(\mathbf{A}^\text{T}\right)$. So, the system is always consistent.
+     \item False. The Gram–Schmidt produces orthogonal vectors in the same span, but each new vector is a linear combination of several eigenvectors except in the special case where the vectors already belong to mutually orthogonal eigenspaces, the orthogonality step \emph{destroys} the eigenvector property. To see why, let \begin{align*}
+         \mathbf{A}=\mathbf{PDP}^{-1}\quad\text{where}\quad \mathbf{P}=\begin{pmatrix}
+            1 & 1 \\ 0 & 1
+         \end{pmatrix}\text{ and }\mathbf{D}=\begin{pmatrix}
+             1 & 0 \\ 0 & 2 
+         \end{pmatrix}.
+     \end{align*}
+     So, the eigenvectors are $\left(1,0\right)$ and $\left(1,1\right)$. By the Gram-Schmidt process, we obtain the orthogonal set $\left\{\left(1,0\right),\left(0,1\right)\right\}$ but $\left(0,1\right)$ is not an eigenvector of $\mathbf{A}$.
+     \item True. For every eigenvalue, its corresponding eigenspace is one-dimensional, so the matrix is diagonalisable.
+ \item False. To come up with a counterexample, we can come up with a $2\times 2$ upper triangular matrix with an eigenvalue of multiplicity 2 but its eigenspace is one-dimensional\footnote{We say that the algebraic multiplicity of the eigenvalue is 2 but the geometric multiplicity is 1.}. For example, let \begin{align*}
+     \mathbf{A}=\begin{pmatrix}
+         1 & 1 \\ 0 & 1
+     \end{pmatrix}.
+ \end{align*}
+ Then, $\mathbf{A}$ has an eigenvalue $\lambda=1$ of algebraic multiplicity 2. However, its corresponding eigenspace $\operatorname{span}\left\{\left(1,0\right)\right\}$ is one-dimensional, so $\mathbf{A}$ is not diagonalisable.
+  \item False. By the spectral theorem, a square matrix is orthogonally diagonalisable if and only if it is symmetric. As a counterexample, one can come up with an upper triangular matrix that is not symmetric.
+     \item True. By definition of a linear transformation, $T(\mathbf{x}+\mathbf{y})=T(\mathbf{x})+T(\mathbf{y})$. Setting $\mathbf{x}=\mathbf{y}=\mathbf{0}$, we have $T(\mathbf{0})=2T(\mathbf{0})$, so $T(\mathbf{0})=\mathbf{0}$. \qed 
+\end{enumerate}
+\end{document}
