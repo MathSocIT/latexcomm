@@ -1,0 +1,346 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{subfig}
+\newcommand\mytab{\tab \hspace{+1cm}}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{geometry}
+\usepackage[most]{tcolorbox}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+\usepackage[utf8]{inputenc}
+\linespread{1.15}
+\usepackage{tikz,lipsum,lmodern}
+\usepackage{hyperref}
+\newtcolorbox{mybox}{
+enhanced,
+boxrule=0pt,frame hidden,
+borderline west={4pt}{0pt}{green!75!black},
+colback=green!10!white,
+sharp corners
+}
+\newtcolorbox{mybox2}{
+enhanced,
+boxrule=0pt,frame hidden,
+borderline west={4pt}{0pt}{blue!75!black},
+colback=blue!10!white,
+sharp corners
+}
+\usepackage{amsmath,amsfonts,amsthm,bm} % Math packages
+\usepackage[most]{tcolorbox}
+\usepackage{amssymb}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\usepackage{mathtools}
+\usepackage{amsmath}
+
+\usepackage{natbib}
+\usepackage{wrapfig}
+\usepackage{url}
+\usepackage{pax}
+\usepackage{pdfpages}
+\usepackage{graphicx}
+\usepackage{mathptmx}
+\usepackage{tikz}
+\usepackage{blindtext}
+\title{MA2001 AY23/24 Sem 2 Final}
+\author{
+  Solution by Thang Pang Ern\\
+  Audited by Malcolm Tan Jun Xi
+}
+\date{}
+
+
+\begin{document}
+
+\maketitle
+\subsubsection*{Question 1}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Use Gaussian elimination to reduce the matrix \begin{align*}
+        \begin{pmatrix}
+            1 &0&1&1&2&3\\1&1&2&2&3&3\\0&2&2&2&0&0\\-1&0&1&3&2&1
+        \end{pmatrix}
+    \end{align*}
+    to a row-echelon form. Indicate clearly the row operations used in each step.
+    \item Let $\mathbf{u}_1=\left(1,1,0,-1\right)$, $\mathbf{u}_2=\left(0,1,2,0\right)$, $\mathbf{u}_3=\left(1,2,2,1\right)$ and $\mathbf{v}_1=\left(1,2,2,3\right)$, $\mathbf{v}_2=\left(2,3,0,2\right)$, $\mathbf{v}_3=\left(3,3,0,1\right)$. For each $i=1,2,3$, use \textbf{(a)} to determine whether $\mathbf{v}_i\in \operatorname{span}\left\{\mathbf{u}_1,\mathbf{u}_2,\mathbf{u}_3\right\}$. You do not need to explain your answers.
+\end{enumerate}
+\noindent\emph{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Working omitted. A row-echelon form is \[\begin{pmatrix}1&0&0&\textcolor{red}{-1}&\textcolor{blue}{0}&\textcolor{purple}{1}\\ 0&1&0&\textcolor{red}{-1}&\textcolor{blue}{0}&\textcolor{purple}{-2}\\ 0&0&1&\textcolor{red}{2}&\textcolor{blue}{0}&\textcolor{purple}{2}\\ 0&0&0&\textcolor{red}{0}&\textcolor{blue}{1}&\textcolor{purple}{0}\end{pmatrix}.\]
+    In fact, this matrix is in reduced row-echelon form.
+    \item Note that the matrix in \textbf{(a)} is \begin{align*}
+        \begin{pmatrix}
+            \mathbf{u}_1 & \mathbf{u}_2 & \mathbf{u}_3 & \mathbf{v}_1 & \mathbf{v}_2 & \mathbf{v}_3
+        \end{pmatrix}.
+    \end{align*}
+    By considering the red entries, we see that \[\mathbf{v}_1=-\mathbf{u}_1-\mathbf{u}_2+2\mathbf{u}_3.\]
+    By considering the blue entries, we see that $\mathbf{v}_2$ is not contained in the span of the $\mathbf{u}_i$'s. By considering the purple entries, \[\mathbf{v}_3=\mathbf{u}_1-2\mathbf{u}_2+2\mathbf{u}_3.\]
+    Hence, $\mathbf{v}_1,\mathbf{v}_3\in\operatorname{span}\left\{\mathbf{u}_1,\mathbf{u}_2,\mathbf{u}_3\right\}$. \qed 
+\end{enumerate}
+\subsubsection*{Question 2}
+Let 
+\[
+\mathbf{A} = \begin{pmatrix}
+1 & -1 & 1 \\
+0 & 1 & 0 \\
+-1 & 0 & 1 \\
+1 & 1 & 1
+\end{pmatrix},\quad
+\mathbf{b} = \begin{pmatrix}
+-1 \\ 1 \\ -2 \\ 1
+\end{pmatrix},\quad
+\mathbf{c} = \begin{pmatrix}
+0 \\ 3 \\ -2 \\ 0
+\end{pmatrix}.
+\]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\itemsep 0em
+    \item Solve the linear system \(\mathbf{Ax}=\mathbf{b}\).
+    
+    \item Is the linear system \(\mathbf{Ax}=\mathbf{c}\) consistent? Justify your answer.
+    
+    \item Find a least squares solution to \(\mathbf{Ax}=\mathbf{c}\).
+    \item Use the result in \textbf{(c)} to find the projection of \(\mathbf{c}\) onto the column space of \(\mathbf{A}\).
+\end{enumerate}
+\noindent\emph{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Let $\mathbf{x}=\left(x,y,z\right)$. Then, by considering the RREF of $\left(\mathbf{A}\mid \mathbf{b}\right)$, we have \[\begin{pmatrix}1&0&0\\ 0&1&0\\ 0&0&1\\ 0&0&0\end{pmatrix}\begin{pmatrix}
+        x\\y\\z
+    \end{pmatrix}=\begin{pmatrix}
+        1\\1\\-1\\0
+    \end{pmatrix}.\]
+    So, $\mathbf{x}=\left(1,1,-1\right)$.
+    \item Let $\mathbf{c}=\left(x,y,z\right)$. Consider the RREF of $\left(\mathbf{A}\mid \mathbf{c}\right)$ so \begin{align*}
+        \begin{pmatrix}
+            1 &0 &0 \\ 0&1&0\\0&0&1\\0&0&0
+        \end{pmatrix}\begin{pmatrix}
+            x\\y\\z
+        \end{pmatrix}=\begin{pmatrix}
+            0\\0\\0\\1
+        \end{pmatrix}.
+    \end{align*}
+    The first row implies $x=0$, the second row implies $y=0$, and the third row implies $z=0$. However, the fourth row implies $0=1$, which is a contradiction, so the system is inconsistent.
+    \item Consider $\mathbf{A}^\text{T}\mathbf{Ax}=\mathbf{A}^\text{T}\mathbf{c}$, so \begin{align*}
+        \mathbf{x}=\left(\mathbf{A}^\text{T}\mathbf{A}\right)^{-1}\mathbf{A}^\text{T}\mathbf{c}=\begin{pmatrix}1\\ 1\\ -1\end{pmatrix}
+    \end{align*}
+    which is a least squares solution.
+    \item Consider $\mathbf{Ax}=\mathbf{c}$. Let $\mathbf{p}$ be the projection of $\mathbf{c}$ onto the column space of $\mathbf{A}$. Recall that $\mathbf{u}$ is a least squares solution to $\mathbf{Ax}=\mathbf{c}$ if and only if $\mathbf{Au}=\mathbf{p}$. Hence, the projection is \[\mathbf{p}= \begin{pmatrix}
+1 & -1 & 1 \\
+0 & 1 & 0 \\
+-1 & 0 & 1 \\
+1 & 1 & 1
+\end{pmatrix}\begin{pmatrix}1\\ 1\\ -1\end{pmatrix}=\begin{pmatrix}-1\\ 1\\ -2\\ 1\end{pmatrix}.\] \qed 
+\end{enumerate}
+\newpage
+\subsubsection*{Question 3}
+Let
+\[
+\mathbf{B} = \begin{pmatrix}
+2 & -2 & -1 \\
+1 & -1 & -1 \\
+1 & -2 & 0
+\end{pmatrix}.
+\]
+It is known that the eigenvalues of \(\mathbf{B}\) are \(1\) and \(-1\).
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\itemsep 0em
+    \item Find a basis for the eigenspace of \(\mathbf{B}\) associated with the eigenvalue \(1\).
+    \item Find a basis for the eigenspace of \(\mathbf{B}\) associated with the eigenvalue \(-1\).
+    \item Write down an invertible matrix \(\mathbf{P}\) and a diagonal matrix \(\mathbf{D}\) such that \(\mathbf{P}^{-1}\mathbf{BP} = \mathbf{D}\).
+\end{enumerate}
+\noindent\emph{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item By considering $\mathbf{Bx}=\mathbf{x}$, where $\mathbf{x}=\left(x,y,z\right)$, we have $\left(\mathbf{B}-\mathbf{I}\right)\mathbf{x}=\mathbf{0}$, so \[\begin{pmatrix}
+        1&-2&-1\\1&-2&-1\\1&-2&-1
+    \end{pmatrix}\begin{pmatrix}
+        x\\y\\z
+    \end{pmatrix}=\begin{pmatrix}
+        0\\0\\0
+    \end{pmatrix}.\]
+    Hence, $x=2y+z$. A basis is \[\left\{\begin{pmatrix}
+        1\\0\\1
+    \end{pmatrix},\begin{pmatrix}
+        2\\1\\0
+    \end{pmatrix}\right\}.\]
+    \item By considering $\mathbf{Bx}=-\mathbf{x}$, where $\mathbf{x}=\left(x,y,z\right)$, we have $\left(\mathbf{B}+\mathbf{I}\right)\mathbf{x}=\mathbf{0}$, so \begin{align*}
+        \begin{pmatrix}
+            3&-2&-1\\1&0&-1\\1&-2&1
+        \end{pmatrix}\begin{pmatrix}
+            x\\y\\z
+        \end{pmatrix}=\begin{pmatrix}
+            0\\0\\0
+        \end{pmatrix}.
+    \end{align*}
+    Solving the system yields $x=y=z$. A basis is \[\left\{\begin{pmatrix}
+        1\\1\\1
+    \end{pmatrix}\right\}.\]
+    \item We have $\mathbf{B}=\mathbf{PDP}^-1$ so \begin{align*}
+        \mathbf{P}=\begin{pmatrix}
+            1&2&1\\0&1&1\\1&0&1
+        \end{pmatrix}\quad\text{and}\quad \mathbf{D}=\begin{pmatrix}
+            1&0&0\\0&1&0\\0&0&-1
+        \end{pmatrix}.
+    \end{align*}\qed 
+\end{enumerate}
+\newpage
+\subsubsection*{Question 4}
+Let \(S = \{\mathbf{u}_1,\mathbf{u}_2,\mathbf{u}_3\}\) be a basis for \(\mathbb{R}^3\). Define \(T = \{\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3\}\) such that
+\[
+\mathbf{v}_1 = \mathbf{u}_1 - \mathbf{u}_2 + \mathbf{u}_3, \quad \mathbf{v}_2 = \mathbf{u}_1 - \mathbf{u}_2 + a \mathbf{u}_3, \quad \mathbf{v}_3 = \mathbf{u}_1 + b \mathbf{u}_2,
+\]
+where \(a\) and \(b\) are constants.
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\itemsep 0em
+    \item If \(T\) is a basis for \(\mathbb{R}^3\), write down the transition matrix from \(T\) to \(S\).
+    \item Determine the values of \(a\) and \(b\) so that \(T\) is a basis for \(\mathbb{R}^3\).
+    \item Suppose \(S\) is orthonormal. Determine the values of \(a\) and \(b\) so that \(T\) is orthogonal.
+\end{enumerate}
+\noindent\emph{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Suppose the coordinate vector of $\mathbf{x}$ with respect to $T$ is \[\left[\mathbf{x}\right]_T=\begin{pmatrix}
+        p\\q\\r
+    \end{pmatrix}\quad\text{so}\quad \mathbf{x}=p\mathbf{v}_1+q\mathbf{v}_2+r\mathbf{v}_3.\]
+    Hence, \[\mathbf{x}=\left(p+q+r\right)\mathbf{u}_1+\left(-p-q+br\right)\mathbf{u}_2+\left(p+aq\right)\mathbf{u}_3.\]
+    The transition matrix from $T$ to $S$ is \[\begin{pmatrix}
+        1&1&1 \\ -1&-1&b \\ 1&a&0
+    \end{pmatrix}.\]
+    \item By the invertible matrix theorem, \[\operatorname{det}\begin{pmatrix}
+        1&1&1 \\ -1&-1&b \\ 1&a&0
+    \end{pmatrix}\ne 0\quad\text{so}\quad \left(1-a\right)\left(1+b\right)\ne 0\]
+    Hence, $a\ne 1$ and $b\ne -1$.
+    \item We have \begin{align*}
+        \mathbf{v}_1\cdot\mathbf{v}_2=0\quad&\text{so}\quad \left\|\mathbf{u}_1\right\|^2+\left\|\mathbf{u}_2\right\|^2+a\left\|\mathbf{u}_3\right\|^3=0 \\
+        \mathbf{v}_1\cdot\mathbf{v}_3=0\quad&\text{so}\quad \left\|\mathbf{u}_1\right\|^2-b\left\|\mathbf{u}_2\right\|^2=0\\
+        \mathbf{v}_2\cdot \mathbf{v}_3=0\quad&\text{so}\quad \left\|\mathbf{u}_1\right\|^2-b\left\|\mathbf{u}_2\right\|^2=0
+    \end{align*}
+    Since $S$ is orthonormal, then $\left\|\mathbf{u}_i\right\|=1$ so $a=-2$ and $b=1$. \qed 
+\end{enumerate}
+\newpage
+\subsubsection*{Question 5}
+Let \(\mathbf{w}\) be a vector in \(\mathbb{R}^n\). Define
+\[
+V = \{\mathbf{u} \in \mathbb{R}^n : \mathbf{u}\cdot \mathbf{w} = 0\}.
+\]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\itemsep 0em
+    \item Show that \(V\) is a subspace of \(\mathbb{R}^n\).
+    \item If \(n=3\) and \(\mathbf{w}=(1,1,-1)\), find an orthonormal basis for \(V\).
+\end{enumerate}
+\noindent\emph{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item Let $\mathbf{u}=\mathbf{0}$, then $\mathbf{u}\cdot \mathbf{w}=\mathbf{0}\cdot\mathbf{w}=0$, so $V$ is non-empty.
+    \newline
+    \newline Next, let $\mathbf{u}_1,\mathbf{u}_2\in V$. Then, $\mathbf{u}_1\cdot \mathbf{w}=0$ and $\mathbf{u}_2\cdot \mathbf{w}=0$. So, \[\left(\mathbf{u}_1+\mathbf{u}_2\right)\cdot\mathbf{w}=\mathbf{u}_1\cdot\mathbf{w}+\mathbf{u}_2\cdot\mathbf{w}=0+0=0.\]
+    So, $V$ is closed under addition. Lastly, let $k\in\mathbb{R}$. Then, \[\left(k\mathbf{u}\right)\cdot\mathbf{w}=k\left(\mathbf{u}\cdot\mathbf{w}\right)=k\cdot 0 =0.\]
+    So, $V$ is closed under scalar multiplication. We conclude that $V$ is a subspace of $\mathbb{R}^n$.
+    \item Suppose $n=3$ and $\mathbf{w}=\left(1,1,-1\right)$. Then, let $\mathbf{u}=\left(u_1,u_2,u_3\right)$. Since $\mathbf{u}\cdot\mathbf{w}=0$, then $u_1+u_2-u_3=0$. We first construct a basis for $V$, say \[\left\{\begin{pmatrix}
+        1\\0\\1
+    \end{pmatrix},\begin{pmatrix}
+        0\\1\\1
+    \end{pmatrix}\right\}.\]
+    By the Gram-Schmidt process, \[\left\{\frac{1}{\sqrt{2}}\begin{pmatrix}
+        1\\0\\1
+    \end{pmatrix},\frac{1}{\sqrt{6}}\begin{pmatrix}
+        -1\\2\\1
+    \end{pmatrix}\right\}\]
+    is an orthonormal basis for $V$. \qed 
+\end{enumerate}
+\subsubsection*{Question 6}
+For each of the following statements, determine if it is true or false. Justify your answers.
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\itemsep 0em
+    \item A non-homogeneous system of linear equations can have a trivial solution.
+    \item For a square matrix \(\mathbf{A}\), if \(\lambda\) is an eigenvalue of \(\mathbf{A}\), then \(a\lambda^2 + b\lambda + c\) is an eigenvalue of \(a\mathbf{A}^2 + b\mathbf{A} + c\mathbf{I}\), where \(a,b,c\) are real constants.
+    \item For any positive integers \(n\) and \(m\), there exists a linear transformation \(T : \mathbb{R}^n \to \mathbb{R}^m\) such that \(\ker(T) = \{\mathbf{0}\}\).
+    \item For a linear transformation \(T : \mathbb{R}^n \to \mathbb{R}\), there exists a vector \(\mathbf{u} \in \mathbb{R}^n\) such that every vector \(\mathbf{v} \in \mathbb{R}^n\) can be expressed as \(\mathbf{v} = \mathbf{z} + a\mathbf{u}\) for some \(\mathbf{z} \in \ker(T)\) and \(a \in \mathbb{R}\).
+\end{enumerate}
+\noindent\emph{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item False. Consider a non-homogeneous system $\mathbf{Ax}=\mathbf{b}$ where $\mathbf{b}\ne \mathbf{0}$. Then, $\mathbf{x}=\mathbf{0}$ does not satisfy the mentioned equation.
+    \item True. Suppose $\lambda$ is an eigenvalue of $\mathbf{A}$ with corresponding eigenvector $\mathbf{v}$. Then, $\mathbf{Av}=\lambda\mathbf{v}$. As such, \begin{align*}
+        \left(a\mathbf{A}^2 + b\mathbf{A} + c\mathbf{I}\right)\mathbf{v}&=a\mathbf{A}^2\mathbf{v}+b\mathbf{Av}+c\mathbf{v}\\
+        &=a\mathbf{A}\left(\mathbf{Av}\right)+b\lambda\mathbf{v}+c\mathbf{v}\\
+        &=a\mathbf{A}\left(\lambda\mathbf{v}\right)+b\lambda\mathbf{v}+c\mathbf{v}\\
+        &=a\lambda\left(\mathbf{Av}\right)+b\lambda\mathbf{v}+c\mathbf{v}\\
+        &=a\lambda^2\mathbf{v}+b\lambda\mathbf{v}+c\mathbf{v}
+    \end{align*}
+    which is equal to $\left(a\lambda^2+b\lambda+c\right)\mathbf{v}$.
+    \item False. Recall that \[T:V\to W\text{ is injective}\quad\text{if and only if}\quad \operatorname{dim}\left(V\right)\le \operatorname{dim}\left(W\right)\quad \text{if and only if}\quad \operatorname{ker}\left(T\right)=\left\{\mathbf{0}\right\}.\]
+    To come up with a contradiction, we need $n>m$, so we can set $m=1$ and $n=2$. The matrix representation $\mathbf{A}$ has 1 row and 2 columns. Suppose \[\mathbf{A}=\begin{pmatrix}
+        1 & 1
+    \end{pmatrix}\quad\text{and}\quad \mathbf{v}=\begin{pmatrix}
+        x\\y
+    \end{pmatrix}\quad\text{so}\quad \mathbf{Ax}=\begin{pmatrix}
+        x+y \\ x+y
+    \end{pmatrix}.\]
+    Then, $\operatorname{ker}T=\left\{\left(x,y\right)\in\mathbb{R}^2:x+y=0\right\}$ so the kernel is $\ne \left\{\mathbf{0}\right\}$.
+    \item True. We proceed with casework. If $T=0$, i.e. $T$ is the zero transformation, then $\operatorname{ker}\left(T\right)=\mathbb{R}^n$. To see why, choose $\mathbf{u}\ne \mathbf{0}$. Then for any $\mathbf{v}$, we can write \[\mathbf{v} = \mathbf{v} + 0\cdot \mathbf{u}\quad\text{where}\quad \mathbf{v}\in\ker T\text{ and }0\in\mathbb{R}.\] 
+    On the other hand, if $T\ne 0$, then $\operatorname{rank}T=1$ and $\operatorname{nullity}T=n-1$ by the rank-nullity theorem. Choose $\mathbf{u}$ so that $T\left(\mathbf{u}\right)=1$. So, \[\text{for any }\mathbf{v}\in\mathbb{R}^n\quad\text{set}\quad a = T(\mathbf{v})\text{ and }\mathbf{z} = \mathbf{v} - a\mathbf{u}. \]
+    Thus,
+  \[
+    T(\mathbf{z}) = T(\mathbf{v}) - a\,T(\mathbf{u}) = a - a\cdot1 = 0,
+  \]
+  so \(\mathbf{z}\in\ker(T)\), and \(\mathbf{v} = \mathbf{z} + a\,\mathbf{u}\).  Hence every \(\mathbf{v}\) decomposes as required. \qed 
+\end{enumerate}
+
+\subsubsection*{Question 7}
+Let \(\mathbf{A}\) and \(\mathbf{B}\) be two square matrices of order \(n\) such that \(\mathbf{AB}=\mathbf{BA}\).
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\itemsep 0em
+    \item Suppose \(\mathbf{A}\) has \(n\) distinct eigenvalues \(\lambda_1, \lambda_2, \ldots, \lambda_n\).
+    \begin{enumerate}[label=\textbf{(\roman*)}]
+    \itemsep 0em
+        \item For each \(i=1,2,\ldots,n\), prove that \(\dim(E_{\lambda_i})=1\).
+        
+        \item For each \(i=1,2,\ldots,n\), prove that if \(\mathbf{Bu}_i \neq 0\), then \(\mathbf{Bu}_i\) is an eigenvector of \(\mathbf{A}\) associated with \(\lambda_i\).
+        
+        \item Show that \(\mathbf{B}\) is diagonalizable and there exists an invertible matrix \(\mathbf{P}\) such that both \(\mathbf{P}^{-1}\mathbf{AP}\) and \(\mathbf{P}^{-1}\mathbf{BP}\) are diagonal matrices.
+    \end{enumerate}
+    \item Let \(n=2\). Give an example of matrices \(\mathbf{A}\) and \(\mathbf{B}\) such that \(\mathbf{AB}=\mathbf{BA}\) and \(\mathbf{A}\) is diagonalizable while \(\mathbf{B}\) is not.
+\end{enumerate}
+\noindent\emph{Solution.}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \itemsep 0em
+    \item \begin{enumerate}[label=\textbf{(\roman*)}]
+        \itemsep 0em
+        \item Since $\mathbf{A}$ is of order $n$ and $\mathbf{A}$ has $n$ distinct eigenvalues, then each eigenspace $E_{\lambda_i}$ is at most one-dimensional, otherwise the order of $\mathbf{A}$ would be $>n$, which is a contradiction.
+        \newline
+        \newline Next, the dimension of each $E_{\lambda_i}$ is $\ge 1$ since it contains an eigenvector $\mathbf{u}_i$ (by definition, $\mathbf{u}_i\ne \mathbf{0}$) such that $\mathbf{Au}_i=\lambda_i\mathbf{u}_i$.
+        \newline
+        \newline Since $\operatorname{dim}\left(E_{\lambda_i}\right)\le 1$ and $\operatorname{dim}\left(E_{\lambda_i}\right)\ge 1$, then the result follows.
+        \item From \textbf{(a)}, $\mathbf{Au}_i=\lambda_i\mathbf{u}_i$, so \begin{align*}
+            \mathbf{BAu}_i&=\lambda_i\mathbf{Bu}_i \\
+            \mathbf{ABu}_i&=\lambda_i\mathbf{Bu}_i\quad\text{from the preamble}
+        \end{align*}
+        where we note that $\mathbf{Bu}_i\ne\mathbf{0}$. Since $\mathbf{A}\left(\mathbf{Bu}_i\right)=\lambda_i\left(\mathbf{Bu}_i\right)$, then the result follows.
+        \item From \textbf{(ii)}, we have $\mathbf{ABu}_i=\lambda_i\mathbf{Bu}_i$. By \textbf{(i)}, each eigenspace is one-dimensional, i.e. $E_{\lambda_i}=\operatorname{span}\left\{\mathbf{u}_i\right\}$. Geometrically, this is a line in $\mathbb{R}^n$, so $\operatorname{span}\left\{\mathbf{u}_i\right\}=\mu_i\mathbf{u}_i$ for some $\mu_i\in\mathbb{R}$. Thus, $\mathbf{Bu}_i=\mu_i\mathbf{u}_i$. Since $1\le i \le n$, then $\left\{\mathbf{u}_1,\ldots,\mathbf{u}_n\right\}$ is a basis for $\mathbb{R}^n$. As such $\mathbf{B}$ has $n$ distinct eigenvalues $\mu_i$, which implies that it is diagonalizable.
+        \newline
+        \newline Since $\mathbf{A}$ and $\mathbf{B}$ are diagonalizable, then there exists an invertible matrix $\mathbf{P}$ (this $\mathbf{P}$ is common to both $\mathbf{A}$ and $\mathbf{B}$ due to the result established in the first part of \textbf{(iii)}) and diagonal matrices $\mathbf{D}_1$ and $\mathbf{D}_2$ such that \[\mathbf{A}=\mathbf{PD}_1\mathbf{P}^{-1}\quad\text{and}\quad \mathbf{B}=\mathbf{PD}_2\mathbf{P}^{-1}.\]
+        Hence, $\mathbf{P}^{-1}\mathbf{AP}=\mathbf{D}_1$ and $\mathbf{P}^{-1}\mathbf{BP}=\mathbf{D}_2$ which are diagonal matrices.
+    \end{enumerate}
+    \item To construct such an example, we motivate using the fact that diagonal matrices commute and are diagonalizable. So, choose $\mathbf{A}=\mathbf{D}$ for some diagonal matrix $\mathbf{D}$, i.e. $\mathbf{D}=\mathbf{I}$ and we can choose $\mathbf{B}$ to be non-diagonalizable. Hence, \begin{align*}
+        \mathbf{A}=\begin{pmatrix}
+            1&0\\0&1
+        \end{pmatrix}\quad\text{and}\quad \mathbf{B}=\begin{pmatrix}
+            0&1\\0&0
+        \end{pmatrix}.
+    \end{align*} \qed 
+\end{enumerate}
+\end{document}
