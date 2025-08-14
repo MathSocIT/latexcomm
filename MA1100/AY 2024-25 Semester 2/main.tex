@@ -1,0 +1,345 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{subfig}
+\newcommand\mytab{\tab \hspace{+1cm}}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tikz-cd}
+\usepackage{geometry}
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+\usepackage[most]{tcolorbox}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+\usepackage[utf8]{inputenc}
+\linespread{1.2}
+\usepackage{tikz,lipsum,lmodern}
+\usepackage{hyperref}
+\newtcolorbox{mybox}{
+enhanced,
+boxrule=0pt,frame hidden,
+borderline west={4pt}{0pt}{green!75!black},
+colback=green!10!white,
+sharp corners
+}
+\newtcolorbox{mybox2}{
+enhanced,
+boxrule=0pt,frame hidden,
+borderline west={4pt}{0pt}{blue!75!black},
+colback=blue!10!white,
+sharp corners
+}
+\usepackage{amsmath,amsfonts,amsthm,bm} % Math packages
+\usepackage[most]{tcolorbox}
+\usepackage{amssymb}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\usepackage{amsmath}
+
+\usepackage{natbib}
+\usepackage{wrapfig}
+\usepackage{mathtools}
+\usepackage{url}
+\usepackage{pax}
+\usepackage{pdfpages}
+\usepackage{graphicx}
+\usepackage{mathptmx}
+\usepackage{tikz}
+\usepackage{blindtext}
+\newcommand{\U}{\mathcal{U}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\X}{\times}
+
+
+\title{MA1100 AY24/25 Sem 2 Final}
+\author{
+  Solution by Malcolm Tan Jun Xi\\
+  Audited by Ryan Loh Wei Xuan
+}
+\date{}
+
+
+\begin{document}
+
+\maketitle
+\noindent\textbf{Question 1:} In each part, determine whether the statement is true or false. Write \textbf{True} or \textbf{False} as your answer in the box next to the statement. No justification is needed.
+\begin{enumerate}[label=\alph*)]
+    \item Let $P,Q$ and $R$ be statements. Then $(P\implies Q)\implies R$ and $P\implies(Q\implies R)$ are logically equivalent
+    \item Let $P(x)$ and $Q(x)$ be predicates with free variable $x$ and universe $\mathcal{U}$. Then $(\forall x\in\mathcal{U})[P(x)\land Q(x)]$ and $\{(\forall x\in\mathcal{U})P(x)\}\land\{(\forall x\in\U) Q(x)\}$ are logically equivalent
+    \item For any sets $A,B$ and $C$, if $A\subseteq B\cup C$, then $A\subseteq B$ or $A\subseteq C$.
+    \item If $f:X\to Y$ is a function and $Z$ is a proper subset of $Y$ such that for all $x\in X$, $f(x)\in Z$, then $ Z$ is the range of $f$.
+    \item For any sets $X,Y,Z$ and any functions $f:X\to Y$ and $g:Y\to Z$, if $g\circ f$ is surjective, then $f$ is surjective
+    \item If $f:X\to Y$ is a function, then for all $A\subseteq X$, we have $f^{-1}[f[A]]=A$
+    \item If $a,b\in\Z$ with $a$ not zero, then $gcd(a,b)=gcd(a,a+b)$
+    \item If $X$ and $Y$ are uncountable sets, then there exists a bijection $f:X\to Y$
+    \item There does not exist a surjection $g:\Z\to\Z\times\Z\times\Z$
+    \item There are exactly 720 surjective functions with domain $\N_6$ and codomain $\N_6$
+\end{enumerate}
+\newpage
+\noindent\emph{Solution:}\\
+    (a) By truth table, we have
+    \begin{table}[h!]
+        \centering
+        \begin{tabular}{|c|c|c|c|c|c|c|}\hline
+            $P$ & $Q$ & $R$ & $P\implies Q$ & $Q\implies R$ & $(P\implies Q)\implies R$ & $P\implies(Q\implies R)$\\\hline
+            T &  T&  T&  T&  T&  T& T\\\hline
+            T &  T&  F&  T&  F&  F& F\\\hline
+            T &  F&  T&  F&  T&  T& T\\\hline
+            T &  F&  F&  F&  T&  T& T\\\hline
+            F &  T&  T&  T&  T&  T& T\\\hline
+             F&  T&  F&  T&  T&  \textbf{F}& \textbf{T}\\\hline
+             F&  F&  T&  T&  T&  T& T\\ \hline
+ F& F& F& T& T& \textbf{F}&\textbf{T}\\\hline
+        \end{tabular}
+    \end{table}\\
+    Therefore the statement is \textbf{False}.\qed\\[2em]
+    (b) For the forward direction, suppose for all $x\in \U$, we have $P(x)$ and $Q(x)$ to be true. As such $\{(\forall x\in\mathcal{U})P(x)\}\land\{(\forall x\in\U) Q(x)\}$ is also true.\\
+    For the reverse direction, suppose for all $x\in\U$, $P(x)$ is true and for all $x\in\U$, $Q(x)$ is true. Therefore $(\forall x\in\mathcal{U})[P(x)\land Q(x)]$ is also true. Hence the statement is \textbf{True}\qed\\[2em]
+    (c) Consider $A=\{1,2\}$, $B=\{1\}$ and $C=\{2\}$. In this case $B\cup C=\{1,2\}$ which implies that $A\subseteq B\cup C$ but neither $A\subseteq B$ or $A\subseteq C$. Thus the statement is \textbf{False}.\qed\\[2em]
+    (d) Since $Z\subseteq Y$ and for all $x\in X$, we have $f(x)\in Z$, then by definition $R_f=\{f(x)\ |\ x\in X\}$ which implies that $Z=R_f$. Therefore, the statement is \textbf{True}.\qed\\[2em]
+    (e) Consider $X=\{1\}$, $Y=\{a,b\}$ and $Z=\{\gamma\}$, then we can define the followings
+    \begin{itemize}
+        \item $f(1)=a$
+        \item $g(a)=\gamma$ and $g(b)=\gamma$
+    \end{itemize}
+    This implies that $g\circ f(1)=\gamma$ is surjective, but $f$ is not surjective onto Y. Therefore the statement is \textbf{False}.\qed\\[2em]
+    (f) Consider $A=\{1\}$ and $f(x)=x^2$, then we have
+    \begin{itemize}
+        \item $f(1)=1$
+    \end{itemize}
+    This shows that $f[A]=\{1\}$. However, $f^{-1}[f[A]]=\{1,-1\}\neq A$. Therefore the statement is \textbf{False}.\qed\\[2em]
+    (g) Suppose we have $\gcd(a,a+b)$, by Bezout Lemma, we have $x,y\in\Z$ such that
+    \begin{align*}
+        \gcd(a,a+b)=ax+(a+b)y=ax+ay+by=a(x+y)+by
+    \end{align*}
+    Since $x+y$ is the sum of integers, by Bezout Lemma, we have
+    \begin{align*}
+        a(x+y)+by=\gcd(a,b)
+    \end{align*}
+    Therefore 
+    \begin{align*}
+        \gcd(a,a+b)=\gcd(a,b)
+    \end{align*}
+    The statement is \textbf{True}.\qed\\[2em]
+    (h) Consider $X=\R$ and $Y=\mathcal{P}(\R)$. Both are uncountable but they do not have the same cardinality. hence there do not exist a bijection $f:\R\to\mathcal{P}(\R)$. The statement is \textbf{False}\qed\\[2em]
+    (i) Consider Cantor's Tuple Bijection. Bijection exists Hence there exist a surjection. The statement is \textbf{False}. \\[2em]
+    (j) Since $|\N_6|=6$, then the number of surjective functions is give by
+    \begin{align*}
+        6!=720
+    \end{align*}
+    Therefore the statement is \textbf{True}.\qed\\[2em]
+    \noindent\textbf{Question 2:} Let $f:\Z\X\Z\to\Z\X\Z$ be defined by, for all $(m,n)\in\Z\X\Z$,
+\begin{align*}
+    f(m,n)=(2m-5n,m-2n)
+\end{align*}
+\begin{enumerate}[label=\roman*)]
+    \item Prove that $f$ is injective
+    \item Determine whether $f$ is invertible and find its inverse function if it exists. Justify your answers.
+\end{enumerate}
+\emph{Solution:}\\
+(i) Let $(m_1,n_1),(m_2,n_2)\in\Z\X\Z$ such that we have
+\begin{align*}
+    f(m_1,n_1)&=f(m_2,n_2)\\
+    (2m_1-5n_1,m_1-2n_1)&=(2m_2-5n_2,m_2-2n_2)
+\end{align*}
+By equality of ordered pairs, we have
+\begin{align*}
+    2m_1-5n_1=2m_2-5n_2\qquad\text{and}\qquad m_1-2n_1=m_2-2n_2
+\end{align*}
+From the first equation, we have
+\begin{align*}
+    2(m_1-m_2)=5(n_1-n_2)
+\end{align*}
+From the second equation, we have
+\begin{align*}
+    m_1-m_2=2(n_1-n_2)
+\end{align*}
+Substituting the second equation to the first equation yields
+\begin{align*}
+    4(n_1-n_2)&=5(n_1-n_2)\\
+    n_1-n_2&=0\\
+    n_1&=n_2
+\end{align*}
+Similarly from the second equation, we have 
+\begin{align*}
+    m_1-m_2&=0\implies m_1=m_2
+\end{align*}
+This shows that $(m_1,n_1)=(m_2,n_2)$ as such $f$ is injective.\qed\\[2em]
+(ii) For $f$ to be invertible, $f$ has to be a bijection. Since we have proven that $f$ is injective, we will determine whether $f$ is surjective. $f$ is surjective if for all $(a,b)\in Z\X\Z$, there exist $(m,n)\in\Z\X\Z$ such that
+\begin{align*}
+    f(m,n)=(a,b)
+\end{align*}
+We can choose $(m,n)=(5b-2a,2b-a)$ such that we have
+\begin{align*}
+    f(m,n)=(2(5b-2a)-5(2b-a),5b-2a-2(2b-a))=(10b-4a-10b+5a,5b-2a-4b+2a)=(a,b)
+\end{align*}
+Therefore $f$ is surjective. Since $f$ is both injective and surjective, $f$ is bijective as such $f$ is invertible with the inverse function to be
+\begin{align*}
+    f^{-1}(m,n)=(5n-2m,2n-m)
+\end{align*}\qed\\[2em]
+\textbf{Question 3:} Prove that if $X$ and $Y$ are nonempty finite sets and $|X|<|Y|$, then there does not exist a surjection $f:X\to Y$\\[2em]
+\emph{Solution:} Define $|X|=m$ and $|Y|=n$ where $m,n\in\Z$ and $m<n$. Since $|X|=m$ implies that $X$ has only $m$ elements, then set $R_f=\{f(x)\ |\ x\in X\}$ can have at most $m$ elements. Therefore $|f[X]|\leq m$.  Suppose for the sake of contradiction that there exist a surjection $f:X\to Y$, then $R_f=Y$ which implies $|R_f|=n$. Therefore $m=n$ which is a contradiction.\qed\\[2em]
+\textbf{Question 4:} Let $R$ be an equivalence relation on the set $\N_7=\{1,2,3,4,5,6,7\}$ such that
+\begin{itemize}
+    \item $R$ has exactly 4 distinct equivalence classes;
+    \item $|[1]|=|[2]|=1$
+    \item $(3,4)\in\R$ and $(3,5)\not\in R$
+    \item $[4]\not=[6]$ and $[6]\cap[7]\not=\emptyset$
+\end{itemize}
+\begin{enumerate}[label=\roman*)]
+    \item List all the elements in each equivalence class of $R$
+    \item List all the elements of $R$
+\end{enumerate}
+\emph{Solution:}\\
+(i) We have
+\begin{itemize}
+    \item $[1]=\{1\}$
+    \item $[2]=\{2\}$
+    \item $[3]=[4]=\{3,4\}$
+    \item $[5]=[6]=[7]=\{5,6,7\}$
+\end{itemize}\qed\\[2em]
+(ii) We have
+\begin{align*}
+    R=\{(1,1),(2,2),(3,3),(3,4),(4,3),(4,4),(5,5),(5,6),(5,7),(6,5),(6,6),(6,7),(7,5),(7,6),(7,7)\}
+\end{align*}\qed\\[2em]
+\textbf{Question 5:} Let $\sim$ be the relation on $\R^2$ defined by, for all $(a,b),(c,d)\in\R^2$,
+\begin{align*}
+    (a,b)\sim(c,d)\iff |a|+|b|=|c|+|d|
+\end{align*}
+\begin{enumerate}[label=\roman*)]
+    \item Prove that $\sim$ is an equivalence relation.
+    \item Give a geometrical description of the equivalence class $[(1,0)]$ as a subset of $\R^2$
+    \item Find a bijection $g:\R^2/\sim\to[0,\infty)$.
+\end{enumerate}
+\emph{Solution:}\\
+(i) Consider
+\begin{align*}
+    (a,b)\sim (a,b)\iff |a|+|b|=|a|+|b|
+\end{align*}
+which is trivially true. Hence $\sim$ is reflexive\\[2em]
+Next Consider
+\begin{align*}
+    (a,b)\sim (c,d)\iff|a|+|b|=|c|+|d|\iff |c|+|d|=|a|+|b|\iff (c,d)\sim (a,b)
+\end{align*}
+ Therefore $\sim$ is symmetric\\[2em]
+Lastly, we can consider $(a,b)\sim(c,d)$ and $(c,d)\sim (e,f)$ then we have
+\begin{align*}
+    (a,b)\sim (c,d)\iff|a|+|b|=|c|+|d|\qquad\text{and}\qquad (c,d)\sim (e,f)\iff |c|+|d|=|e|+|f|
+\end{align*}
+Note that
+\begin{align*}
+    |a|+|b|=|e|+|f|\iff (a,b)\sim (e,f)
+\end{align*}
+Therefore $\sim$ is transitive\\[2em]
+In conclusion, since $\sim$ is reflexive, symmetric and transitive, $\sim$ is an equivalence relation\qed\\[2em]
+(ii) We have
+\begin{align*}
+    [(1,0)]=\{(x,y)\in\R^2\ |\ |x|+|y|=1\}
+\end{align*}
+This is the set of all points in $\R^2$ whose Manhattan norm(magnitude) is 1. This describes a diamond centered at the origin with vertices at $(1,0), (0,1), (-1,0), (0,-1)$ which are the boundaries of the unit ball.\qed\\[2em]
+(iii) We have
+\begin{align*}
+    [(a,b)]=\{(x,y)\in\R^2\ |\ |x|+|y|=|a|+|b|\}
+\end{align*}
+As such we can define
+\begin{align*}
+    g([(a,b)])=|a|+|b|
+\end{align*}
+If $(a,b)\sim (c,d)$, then $|a|+|b|=|c|+|d|$ which implies that $g([a,b])=g([c,d])$. As such the function is well defined.\\
+Suppose $g([a,b])=g([c,d])$, then $|a|+|b|=|c|+|d|$ which implies $(a,b)\sim (c,d)$ thus $[a,b]=[c,d]$. Hence $g$ is injective\\
+For any $r\in[0,\infty)$, we can choose $[(a,b)]=[(r,0)]$ such that $g([(r,0)])=|r|+|0|=r$. As such $g$ is surjective. \\[2em]
+In conclusion, 
+\begin{align*}
+    g([(a,b)])=|a|+|b|
+\end{align*}
+is the bijection $g:\R^2/\sim\to[0,\infty)$\qed\\[2em]
+\textbf{Question 6:} Let $c,m\in\Z^+$, and let $d=\gcd(c,m)$, $r=\frac{c}{d}$ and $s=\frac{m}{d}$
+\begin{enumerate}[label=\roman*)]
+    \item Prove that $r$ and $s$ are relatively prime
+    \item Prove that if $a,b\in\Z$ and $ca\equiv cb\mod m $, then $a\equiv b\mod s$
+\end{enumerate}
+\emph{Solution:}\\
+(i) By Bezout Lemma, we can consider
+\begin{align*}
+    \gcd(r,s)=rx+sy
+\end{align*}
+where $x,y\in\Z$. Then we have
+\begin{align*}
+    \gcd(r,s)=rx+sy=\frac{cx}{d}+\frac{my}{d}=\frac{cx+my}{d}=\frac{d}{d}=1
+\end{align*}
+Hence $r$ and $s$ are relatively prime.\qed\\[2em]
+(ii) Since we have $ca\equiv cb\mod m$, then $m\ |\ ca-cb$. As such there exist $k\in\Z$ such that
+\begin{align*}
+    ca-cb&=mk\\
+    rd(a-b)&=sdk\\
+    r(a-b)&=sk\implies s\ |\ r(a-b)
+\end{align*}
+Since $s$ and $r$ are relatively prime, then $s\ |\ (a-b)$ which implies that $a\equiv b\mod s$\qed\\[2em]
+\textbf{Question 7:} Let $\N=\{1,2,3,...\}$ denote the set of all positive integers and let $\mathcal{P}(\N)$ be the power set of $\N$. Let
+\begin{align*}
+    X=\{S\in\mathcal{P}(\N)\ |\ S\ \text{is finite}\}
+\end{align*}
+that is, $X$ is the set of all finite subsets of $\N$. Prove that $X$ is denumerable.\\[2em]
+\emph{Solution:} Since $S$ is finite, then we can let $|S|=n$ where $n\in\N$. $X_n$ will then be the set of all subsets of $\N$ of size exactly $n$. Since it is known that $\N$ is countable and $X_n\subseteq \N$, then $X_n$ is also countable. Now define
+\begin{align*}
+    X=\bigcup_{n=0}^\infty X_n
+\end{align*}
+As such $X$ is a union of countable sets with implies that $X$ is countable. Since $n\in\N$ is infinite, then $X$ is countable infinite which implies that $X$ is denumerable.\qed\\[2em]
+\textbf{Question 8:} Let $\R^+$ denote the set of all positive real numbers.
+\begin{enumerate}[label=\roman*)]
+    \item For each $n\in\Z^+$, let
+    \begin{align*}
+        A_n=\left(\frac{1}{n},\infty\right)=\left\{x\in\R\ |\ x>\frac{1}{n}\right\}
+    \end{align*}
+    Prove that
+    \begin{align*}
+        \bigcup_{n=1}^\infty A_n=\R^+
+        \end{align*}
+        \item Prove that if $B$ is a subset of $\R^+$ and $B$ is uncountable, then there exists $t\in\R^+$ such that the set
+        \begin{align*}
+            \{x\in B\ |\ x>t\}
+        \end{align*}
+        is uncountable.
+\end{enumerate}
+\emph{Solution:}\\
+(i) For the forward inclusion, we can let $x\in\displaystyle{\bigcup_{n=1}^\infty A_n}$, then there exist $n\in\Z^+$ such that $x\in A_n$. Hence
+\begin{align*}
+    x>\frac{1}{n}>0\implies x\in \R^+
+\end{align*}
+Therefore
+\begin{align*}
+    \bigcup_{n=1}^\infty A_n\subseteq \R^+
+\end{align*}
+For the reverse inclusion, we can let $x\in\R^+$, then $x>0$. Note that since $\displaystyle{\lim_{n\infty}\frac{1}{n}=0}$, there exist $n\in\Z^+$ such that
+\begin{align*}
+    x>\frac{1}{n}>0\implies x\in A_n\qquad\text{for some }n\in\Z^+
+\end{align*}
+Therefore
+\begin{align*}
+    x\in \bigcup_{n=1}^\infty A_n\implies \R^+\subseteq\bigcup_{n=1}^\infty A_n
+\end{align*}
+In conclusion, we have proven
+\begin{align*}
+    \bigcup_{n=1}^\infty A_n=\R^+
+\end{align*}\qed\\[2em]
+(ii) Suppose for the sake of contradiction that for all $t\in\R^+$, the set $\{x\in B\ |\ x>t\}$ is countable and since $B\subseteq \R^+$, then
+\begin{align*}
+    B=B\cap \R^+=B\cap\left(\bigcup_{n=1}^\infty A_n\right)=\bigcup_{n=1}^\infty (B\cap A_n)
+\end{align*}
+Let $t=\frac{1}{n}$ and $n\in\Z^+$ such that
+\begin{align*}
+    B\cap A_n=\left\{x\in B\ |\ x>\frac{1}{n}\right\}
+\end{align*}
+From our assumption, $B\cap A_n$ is countable.Note that the union of all countable sets is countable, Hence $\bigcup_{n=1}^\infty (B\cap A_n)$ is countable. However, the equality suggest that $B$ is also countable which is a contradiction. Therefore there exists $t\in\R^+$ such that the set is uncountable.\qed
+\end{document}
